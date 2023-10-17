@@ -42,21 +42,12 @@
             // Create test data
             
             var mapLocation = [
-                {
-                    LocName: "Boon Lay Zone F Residents' Network",
-                    lat: 1.344691,
-                    lng: 103.702112
-                },
-                {
-                    LocName: "Bishan Home (For The Intellectually Disabled)",
-                    lat: 1.347525,
-                    lng: 103.854656
-                },
-                {
-                    LocName: "Lion's Home for the Elders (Bishan) Senior Care Centre",
-                    lat: 1.349261,
-                    lng: 103.853511
-                }
+                {GardenID: 0, GardenName: "Boon Lay Zone F Residents' Network", Latitude: 1.344691, Longitude: 103.702112, Region: "West"},
+                {GardenID: 1, GardenName: "Bishan Home (For The Intellectually Disabled)", Latitude: 1.347525, Longitude: 103.854656, Region: "Central"},
+                {GardenID: 2, GardenName: "Lion's Home for the Elders (Bishan) Senior Care Centre", Latitude: 1.349261, Longitude: 103.853511, Region: "Central"},
+                {GardenID: 35, GardenName: "Nanyang Zone '2' Residents' Committee", Latitude: 1.343154, Longitude: 103.68948, Region: "North"},
+                {GardenID: 67, GardenName: "Social Innovation Park (SIP @ Punggol) -  SEED Sensory Garden", Latitude: 1.394665, Longitude: 103.916759, Region: "North-East"},
+                {GardenID: 142, GardenName: "Gladiolus Place", Latitude: 1.322073, Longitude: 103.954405, Region: "East"}
             ];
     
             // Initialize variables
@@ -64,23 +55,24 @@
             let map;
             let mapInitialized = false;
     
-            function retrieveLocDetails(idx) {
+            function retrieveLocDetails(garden) {
+              garden = garden.split("_");
                 return {
-                    LocName: mapLocation[idx].LocName,
-                    lat: Number(mapLocation[idx].lat),
-                    lng: Number(mapLocation[idx].lng)
+                    GardenName: garden[0],
+                    Latitude: Number(garden[1]),
+                    Longitude: Number(garden[2])
                 };
             }
     
-            function change(idx) {
+            function change(garden) {
                 if (mapInitialized) {
-                    let location = retrieveLocDetails(idx);
+                    let location = retrieveLocDetails(garden);
                     let marker = new google.maps.Marker({
-                        position: { lat: location.lat, lng: location.lng },
+                        position: { lat: location.Latitude, lng: location.Longitude },
                         map,
-                        title: location.LocName
+                        title: location.GardenName
                     });
-                    map.setCenter({ lat: location.lat, lng: location.lng });
+                    map.setCenter({ lat: location.Latitude, lng: location.Longitude });
     
                     // Clear existing markers and add the new one
                     clearOverlays();
@@ -91,9 +83,10 @@
             }
     
             function initMap() {
-                let location = retrieveLocDetails(0);
+                firstGarden = mapLocation[0].GardenName + "_" + mapLocation[0].Latitude + "_" + mapLocation[0].Longitude;
+                let location = retrieveLocDetails(firstGarden);
                 map = new google.maps.Map(document.getElementById("map"), {
-                    center: { lat: location.lat, lng: location.lng },
+                    center: { lat: location.Latitude, lng: location.Longitude },
                     zoom: 17,
                     mapId: "40c99f5bd3e0f892"
                 });
@@ -101,9 +94,9 @@
                 mapInitialized = true;
     
                 var marker = new google.maps.Marker({
-                    position: { lat: location.lat, lng: location.lng },
+                    position: { lat: location.Latitude, lng: location.Longitude },
                     map,
-                    title: location.LocName
+                    title: location.GardenName
                 });
     
                 markersArray.push(marker);
@@ -175,14 +168,13 @@
         </div>
 
         <div class="row">
-          <div class="col">Filter By:</div>
+          <div class="col">Filter By Location:</div>
         </div>
 
         <div class="row">
           <!--Start of Filter-->
           <div class="col-2">
             <div class="bg-light">
-              Location<br>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="north">
                 <label class="form-check-label">North</label>
@@ -207,68 +199,58 @@
           </div>
           <!--End of Filter-->
 
-          <!--Start of Map List-->
+          <!--Start of Garden List-->
           <div class="col-5">
-            <div class="bg-light">
-              
-              <div class="card border">
-                <div class="card-body">
-                  <h5 class="card-title">Boon Lay Zone F Residents' Network</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to content.</p>
-                  <button type="button" class="btn btn-primary"  value="Boon Lay Zone F Residents' Network" onclick="change(0)">View</button>
-                </div>
-              </div>
-              
-
-              <div class="card border">
-                <div class="card-body">
-                  <h5 class="card-title">Bishan Home (For The Intellectually Disabled)</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to content.</p>
-                  <button type="button" class="btn btn-primary" value="Bishan Home (For The Intellectually Disabled)" onclick="change(1)">View</button>
-                </div>
-              </div>
-
-              <div class="card border">
-                <div class="card-body">
-                  <h5 class="card-title">Lion's Home for the Elders (Bishan) Senior Care Centre</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to content.</p>
-                  <button type="button" class="btn btn-primary" value="Lion's Home for the Elders (Bishan) Senior Care Centre" onclick="change(2)">View</button>
-                </div>
-              </div>
-
-            </div>
+            <div class="bg-light" id="gardens"></div>
           </div>
-          <!--End of Map List-->
+          <!--End of Garden List-->
 
           <!--Start of Map Location-->
           <div class="col-5">
             <div class="bg-light">
               <div id="map"></div>
-              <script src="https://maps.googleapis.com/maps/api/js?key=.AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
             </div>
           </div>
           <!--End of Map Location-->
-
-
         </div>
         
+        <!--Start of Saved Gardens-->
         <div class="row mt-5">
           <h2>Saved Gardens</h2>
         </div>
 
         <div class="row bg-light mt-2 mb-5 border">
           <div class="col p-4">
-            Community Gardent @ Bedok
+            Community Garden @ Bedok
           </div>
         </div>
-        
-
-
+        <!--End of Saved Gardens-->
       </div>
-      
-
-
       <!--End of body-->
+
+      <script>
+        function refresh(obj) {
+          var output = "";
+          for(garden of obj){
+            let GardenName = garden.LocName;
+            let Latitude = Number(garden.Latitude);
+            let Longitude = Number(garden.Longitude);
+            let v = GardenName + "_" + Latitude + "_" + Longitude;
+            output += `<div class="card border">
+                <div class="card-body">
+                  <h5 class="card-title">${garden.GardenName}</h5>
+                  <p class="card-text">${garden.Region}</p>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='change(this.value)'>View</button>
+                </div>
+              </div>`;
+          }
+
+          document.getElementById("gardens").innerHTML = output;
+        }
+
+        refresh(mapLocation);
+      </script>
 
     </body>
 </html>
