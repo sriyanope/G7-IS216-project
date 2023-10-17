@@ -11,37 +11,66 @@
         <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
         <!-- CSS stylesheet -->
         <link rel="stylesheet" href="styles.css">
+
+        <style>
+                    a {
+              font-size:14px;
+              font-weight:700
+              }
+          .superNav {
+              font-size:13px;
+              }
+          .form-control {
+              outline:none !important;
+              box-shadow: none !important;
+              }
+              @media screen and (max-width:540px){
+          .centerOnMobile {
+                  text-align:center
+              }
+              }
+
+          .navbar {
+              background-color: #F6F8E0;
+          }
+
+          .btn{
+              background-color: #547D2E;
+          }
+        </style>
+
     </head>
     <body>
       <!--Start of Nav-->
-      <nav class="navbar navbar-expand-lg navbar-light navbg">
-        <div class="row">
-          <div class="col">
-            <img src="/public/images/vegetable-fruits-organic-food-store-logo-51.png" alt="Icon">
+      <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
+
+        <img src="logo.png" alt="Logo" width="80" height="50">
+
+        <div class="container">
+          <a class="navbar-brand" href="#"><i class="fa-solid fa-shop me-2"></i> <strong>Green Guardians</strong></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+            <ul class="navbar-nav ms-auto ">
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#"><i class="about"></i> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#"><i class="events"></i> Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#"><i class="findAGarden"></i> Find A Garden</a>
+              </li>
+
+
+              <li class="nav-item">
+                <button class="btn text-white" href="#">
+                    <img src="icons.png" width="30">
+                    Profile</button>
+              </li>
+            </ul>
           </div>
-          <div class="col justify-content-center">
-            <a class="navbar-brand newtext" href="SignUp.html">ECOmmunity</a>
-          </div>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item p-3 active">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item p-3">
-              <a class="nav-link disabled" href="#">Event</a>
-            </li>
-            <li class="nav-item p-3">
-              <a class="nav-link" href="FindAGarden.html">Find a Garden</a>
-            </li>
-            <li class="nav-item p-3">
-              <img src="" alt="Icon" class="d-inline">
-              <a class="nav-link d-inline" href="#">My Profile</a>
-            </li>
-          </ul>
         </div>
       </nav>
       <!--End of Nav-->
@@ -116,16 +145,16 @@
               
                       <div class="col">
                         <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
+                          <a href=""><img class="card-img-top" src="public/images/Event Image.jpg"></a>
                           <div class="card-body">
                             <a href="" class="text-decoration-none text-dark">
                               <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
+                              <p class="card-text"><img src="public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
+                              <p><img src="public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
                               <span>41/50 filled</span>
-                              <span><img src="images/like.svg" onclick="change()"></span>
+                              <span><img src="public/images/like.svg" onclick="change()"></span>
                             </div>
                           </div>
                         </div>
@@ -133,16 +162,16 @@
 
                       <div class="col">
                         <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
+                          <a href=""><img class="card-img-top" src="public/images/Event Image.jpg"></a>
                           <div class="card-body">
                             <a href="" class="text-decoration-none text-dark">
                               <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
+                              <p class="card-text"><img src="public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
+                              <p><img src="public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
                               <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
+                              <span><img src="public/images/like.svg" onclick="change()"></span>
                             </div>
                           </div>
                         </div>
@@ -150,16 +179,16 @@
 
                       <div class="col">
                         <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
+                          <a href=""><img class="card-img-top" src="public/images/Event Image.jpg"></a>
                           <div class="card-body">
                             <a href="" class="text-decoration-none text-dark">
                               <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
+                              <p class="card-text"><img src="public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
+                              <p><img src="public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
                               <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
+                              <span><img src="public/images/like.svg" onclick="change()"></span>
                             </div>
                           </div>
                         </div>
@@ -167,16 +196,16 @@
 
                       <div class="col">
                         <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
+                          <a href=""><img class="card-img-top" src="public/images/Event Image.jpg"></a>
                           <div class="card-body">
                             <a href="" class="text-decoration-none text-dark">
                               <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
+                              <p class="card-text"><img src="public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
+                              <p><img src="public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
                               <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
+                              <span><img src="public/images/like.svg" onclick="change()"></span>
                             </div>
                           </div>
                         </div>
@@ -184,16 +213,16 @@
 
                       <div class="col">
                         <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
+                          <a href=""><img class="card-img-top" src="public/images/Event Image.jpg"></a>
                           <div class="card-body">
                             <a href="" class="text-decoration-none text-dark">
                               <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
+                              <p class="card-text"><img src="public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
+                              <p><img src="public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
                               <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
+                              <span><img src="public/images/like.svg" onclick="change()"></span>
                             </div>
                           </div>
                         </div>
@@ -201,50 +230,16 @@
 
                       <div class="col">
                         <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
+                          <a href=""><img class="card-img-top" src="public/images/Event Image.jpg"></a>
                           <div class="card-body">
                             <a href="" class="text-decoration-none text-dark">
                               <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
+                              <p class="card-text"><img src="public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
+                              <p><img src="public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
                             </a>
                             <div class="d-flex justify-content-between align-items-center">
                               <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="images/Event Image.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span class="text-muted">9 mins</span>
+                              <span><img src="public/images/like.svg" onclick="change()"></span>
                             </div>
                           </div>
                         </div>
