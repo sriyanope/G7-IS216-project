@@ -129,3 +129,135 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       </body>
     </html>
+=======
+<!doctype html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+             <!-- google font API -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
+            <!-- CSS stylesheet -->
+            <link rel="stylesheet" href="style.css">
+
+            <style>
+               a {
+                    font-size:14px;
+                    font-weight:700
+                    }
+                .superNav {
+                    font-size:13px;
+                    }
+                .form-control {
+                    outline:none !important;
+                    box-shadow: none !important;
+                    }
+                    @media screen and (max-width:540px){
+                .centerOnMobile {
+                        text-align:center
+                    }
+                    }
+
+                .navbar {
+                    background-color: #F6F8E0;
+                }
+
+                .btn{
+                    background-color: #547D2E;
+                }
+
+                .bggreen {
+                    background-color: #B7CF9B;
+                }
+
+            </style>
+
+            <title>Create An Event</title>
+            
+        </head>
+        <body>
+            <!-- nav bar -->
+            <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
+
+                <div class="container m-0" style="flex-wrap: wrap; margin: 0;">
+                  <img src="../logo.png" alt="Logo" width="80" height="50" class="col-1 me-0">
+                  <a class="navbar-brand me-auto m-1" href="#"> <strong>ECOmmunity</strong></a>
+                  <button class="navbar-toggler align-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                    <ul class="navbar-nav ms-auto">
+                      <li class="nav-item ms-auto mt-1">
+                        <a class="nav-link mx-2" href="#"><i class="about"></i> About</a>
+                      </li>
+                      <li class="nav-item ms-auto mt-1">
+                        <a class="nav-link mx-2" href="#"><i class="events"></i> Events</a>
+                      </li>
+                      <li class="nav-item ms-auto mt-1">
+                        <a class="nav-link mx-2" href="FindAGarden.html"><i class="findAGarden"></i> Find A Garden</a>
+                      </li>
+                      <li class="nav-item ms-auto mt-1">
+                        <button class="btn text-white" href="#">
+                            <img src="../icons.png" width="30">
+                            Profile</button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+
+              <!-- start the form for creating event -->
+              <h3><strong>Create An Event</strong></h3>
+              <p>Need some inspiration before starting your own? <a href="JoinAnEvent.html">Join an Event!</a></p>
+              <form id="CreateEventDetails">
+                <div class="mb-3">
+                  <label for="EventTitle" class="form-label">Event Title</label>
+                  <input type="text" class="form-control" id="EventTitle" aria-describedby="EventTitle">
+                </div>
+                <div class="mb-3">
+                  <label for="EventCategory" class="form-label">Event Category</label>
+                  <input type="text" class="form-control" id="EventCategory">
+                </div>
+                <div class="mb-3">
+                    <label for="Date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="Date">
+                  </div>
+                  <div class="mb-3">
+                    <label for="Timing" class="form-label">Timing</label>
+                    <input type="time" class="form-control" id="Timing">
+                  </div>
+                  <div class="mb-3">
+                    <label for="Location" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="Location">
+                  </div>
+                  <div class="mb-3">
+                    <label for="AboutThisEvent" class="form-label">About This Event</label>
+                    <input type="text" class="form-control" id="AboutThisEvent">
+                  </div>
+                  <div class="mb-3">
+                    <label for="AboutThisEvent" class="form-label">About This Event</label>
+                    <input type="text" class="form-control" id="AboutThisEvent">
+                  </div>
+                  <div class="input-group mb-3">
+                    <label class="form-label" for="UploadEventPicture">Upload Picture</label><br>
+                    <input type="file" class="form-control d-block" id="UploadEventPicture">
+                  </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Event</button>
+              </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+      </body>
+    </html>

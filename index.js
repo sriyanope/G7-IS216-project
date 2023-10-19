@@ -39,7 +39,7 @@ async function listDatabases(client){
 };
  
 
-
+// function to change the sign in button to my profile after on click
 
 
 // let app = Express();
