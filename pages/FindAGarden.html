@@ -1,0 +1,261 @@
+<html>
+  <head>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
+      <!-- CSS stylesheet -->
+      <link rel="stylesheet" href="style.css">
+      
+      <title>Find a Garden</title>
+
+      <!--Start of Google Maps Code-->
+      <style>
+        #map {
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+
+        a {
+            font-size:14px;
+            font-weight:700
+            }
+        .superNav {
+            font-size:13px;
+            }
+        .form-control {
+            outline:none !important;
+            box-shadow: none !important;
+            }
+            @media screen and (max-width:540px){
+        .centerOnMobile {
+                text-align:center
+            }
+            }
+
+        .navbar {
+            background-color: #F6F8E0;
+        }
+
+        .btn{
+            background-color: #547D2E;
+        }
+
+      </style>
+  
+      <script>
+          // Create test data
+          
+          var mapLocation = [
+              {GardenID: 0, GardenName: "Boon Lay Zone F Residents' Network", Latitude: 1.344691, Longitude: 103.702112, Region: "West"},
+              {GardenID: 1, GardenName: "Bishan Home (For The Intellectually Disabled)", Latitude: 1.347525, Longitude: 103.854656, Region: "Central"},
+              {GardenID: 2, GardenName: "Lion's Home for the Elders (Bishan) Senior Care Centre", Latitude: 1.349261, Longitude: 103.853511, Region: "Central"},
+              {GardenID: 35, GardenName: "Nanyang Zone '2' Residents' Committee", Latitude: 1.343154, Longitude: 103.68948, Region: "North"},
+              {GardenID: 67, GardenName: "Social Innovation Park (SIP @ Punggol) -  SEED Sensory Garden", Latitude: 1.394665, Longitude: 103.916759, Region: "North-East"},
+              {GardenID: 142, GardenName: "Gladiolus Place", Latitude: 1.322073, Longitude: 103.954405, Region: "East"}
+          ];
+  
+          // Initialize variables
+          var markersArray = [];
+          let map;
+          let mapInitialized = false;
+  
+          function retrieveLocDetails(garden) {
+            garden = garden.split("_");
+              return {
+                  GardenName: garden[0],
+                  Latitude: Number(garden[1]),
+                  Longitude: Number(garden[2])
+              };
+          }
+  
+          function change(garden) {
+              if (mapInitialized) {
+                  let location = retrieveLocDetails(garden);
+                  let marker = new google.maps.Marker({
+                      position: { lat: location.Latitude, lng: location.Longitude },
+                      map,
+                      title: location.GardenName
+                  });
+                  map.setCenter({ lat: location.Latitude, lng: location.Longitude });
+  
+                  // Clear existing markers and add the new one
+                  clearOverlays();
+                  markersArray.push(marker);
+              } else {
+                  alert('Map has not been initialized yet. Please wait for it to load.');
+              }
+          }
+  
+          function initMap() {
+              firstGarden = mapLocation[0].GardenName + "_" + mapLocation[0].Latitude + "_" + mapLocation[0].Longitude;
+              let location = retrieveLocDetails(firstGarden);
+              map = new google.maps.Map(document.getElementById("map"), {
+                  center: { lat: location.Latitude, lng: location.Longitude },
+                  zoom: 17,
+                  mapId: "40c99f5bd3e0f892"
+              });
+  
+              mapInitialized = true;
+  
+              var marker = new google.maps.Marker({
+                  position: { lat: location.Latitude, lng: location.Longitude },
+                  map,
+                  title: location.GardenName
+              });
+  
+              markersArray.push(marker);
+          }
+  
+          function clearOverlays() {
+              for (var i = 0; i < markersArray.length; i++) {
+                  markersArray[i].setMap(null);
+              }
+              markersArray.length = 0;
+          }
+      </script>
+      <!--End of Google Maps Code-->
+    </head>
+
+    <body>
+      <!--Start of Nav-->
+      <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
+
+        <div class="container m-0" style="flex-wrap: wrap; margin: 0;">
+          <img src="../logo.png" alt="Logo" width="80" height="50" class="col-1 me-0">
+          <a class="navbar-brand me-auto m-1" href="#"> <strong>ECOmmunity</strong></a>
+          <button class="navbar-toggler align-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item ms-auto mt-1">
+                <a class="nav-link mx-2" href="#"><i class="about"></i> About</a>
+              </li>
+              <li class="nav-item ms-auto mt-1">
+                <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
+              </li>
+              <li class="nav-item ms-auto mt-1">
+                <a class="nav-link mx-2 disabled" href="FindAGarden.html"><i class="findAGarden"></i> Find A Garden</a>
+              </li>
+              <li class="nav-item ms-auto mt-1">
+                <button class="btn text-white" href="#">
+                    <img src="../icons.png" width="30">
+                  My Profile</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--End of Nav-->
+      
+      <!--Start of body-->
+      <div class="container">
+        <div class="row p-5">
+          <div class="col"></div>
+          <div class="col-3 mx-auto">
+            <h2><b>Find a Garden</b></h2>
+          </div>
+          <div class="col-7 mx-auto">
+            <form class="d-flex">
+              <input class="form-control py-2 me-0 border-end-0" type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-secondary border-end-0" type="submit" style="border-top-left-radius: 0; border-bottom-left-radius: 0"><i class="fa fa-search"><img src="../public/images/search.svg"/></i></button>
+            </form>
+          </div>
+          <div class="col"></div>
+        </div>
+
+        <div class="row">
+          <div class="col">Filter By Location:</div>
+        </div>
+
+        <div class="row">
+          <!--Start of Filter-->
+
+          <div class="col-2">
+            <div class="bg-light">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="north">
+                <label class="form-check-label">North</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="south">
+                <label class="form-check-label">South</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="east">
+                <label class="form-check-label">East</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="west">
+                <label class="form-check-label">West</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="central">
+                <label class="form-check-label">Central</label>
+              </div>
+            </div>
+          </div>
+          <!--End of Filter-->
+
+          <!--Start of Garden List-->
+          <div class="col-5">
+            <div class="bg-light" id="gardens"></div>
+          </div>
+          <!--End of Garden List-->
+
+          <!--Start of Map Location-->
+          <div class="col-5">
+            <div class="bg-light">
+              <div id="map"></div>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
+            </div>
+          </div>
+          <!--End of Map Location-->
+        </div>
+        
+        <!--Start of Saved Gardens-->
+        <div class="row mt-5">
+          <h2>Saved Gardens</h2>
+        </div>
+
+        <div class="row bg-light mt-2 mb-5 border">
+          <div class="col p-4">
+            Community Garden @ Bedok
+          </div>
+        </div>
+        <!--End of Saved Gardens-->
+      </div>
+      <!--End of body-->
+
+      <script>
+        function refresh(obj) {
+          var output = "";
+          for(garden of obj){
+            let GardenName = garden.LocName;
+            let Latitude = Number(garden.Latitude);
+            let Longitude = Number(garden.Longitude);
+            let v = GardenName + "_" + Latitude + "_" + Longitude;
+            output += `<div class="card border">
+                <div class="card-body">
+                  <h5 class="card-title">${garden.GardenName}</h5>
+                  <p class="card-text">${garden.Region}</p>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='change(this.value)'>View</button>
+                </div>
+              </div>`;
+          }
+
+          document.getElementById("gardens").innerHTML = output;
+        }
+
+        refresh(mapLocation);
+      </script>
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="...HUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    </body>
+</html>
