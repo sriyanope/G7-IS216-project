@@ -13,7 +13,7 @@
       
       <title>Find a Garden</title>
 
-      <!--Start of Google Maps Code-->
+      <!--Styling-->
       <style>
         #map {
             width: 100%;
@@ -47,78 +47,69 @@
 
       </style>
   
-      <script>
-          // Create test data
-          
-          var mapLocation = [
-              {GardenID: 0, GardenName: "Boon Lay Zone F Residents' Network", Latitude: 1.344691, Longitude: 103.702112, Region: "West"},
-              {GardenID: 1, GardenName: "Bishan Home (For The Intellectually Disabled)", Latitude: 1.347525, Longitude: 103.854656, Region: "Central"},
-              {GardenID: 2, GardenName: "Lion's Home for the Elders (Bishan) Senior Care Centre", Latitude: 1.349261, Longitude: 103.853511, Region: "Central"},
-              {GardenID: 35, GardenName: "Nanyang Zone '2' Residents' Committee", Latitude: 1.343154, Longitude: 103.68948, Region: "North"},
-              {GardenID: 67, GardenName: "Social Innovation Park (SIP @ Punggol) -  SEED Sensory Garden", Latitude: 1.394665, Longitude: 103.916759, Region: "North-East"},
-              {GardenID: 142, GardenName: "Gladiolus Place", Latitude: 1.322073, Longitude: 103.954405, Region: "East"}
-          ];
-  
-          // Initialize variables
-          var markersArray = [];
-          let map;
-          let mapInitialized = false;
-  
-          function retrieveLocDetails(garden) {
-            garden = garden.split("_");
-              return {
-                  GardenName: garden[0],
-                  Latitude: Number(garden[1]),
-                  Longitude: Number(garden[2])
-              };
-          }
-  
-          function change(garden) {
-              if (mapInitialized) {
-                  let location = retrieveLocDetails(garden);
-                  let marker = new google.maps.Marker({
-                      position: { lat: location.Latitude, lng: location.Longitude },
-                      map,
-                      title: location.GardenName
-                  });
-                  map.setCenter({ lat: location.Latitude, lng: location.Longitude });
-  
-                  // Clear existing markers and add the new one
-                  clearOverlays();
-                  markersArray.push(marker);
-              } else {
-                  alert('Map has not been initialized yet. Please wait for it to load.');
+      <?php
+        spl_autoload_register(
+          function ($class){
+              require_once  "MySQL/$class.php";
+          });
+        $dao = new GardenDAO();
+        $gardenList = $dao->getGardens();
+      ?>
+
+        <!--Start of Google Maps Code-->
+        <script>
+            var mapLocation = <?php echo $gardenList; ?>;
+            var markersArray = [];
+            let map;
+            let mapInitialized = false;
+    
+            function retrieveLocDetails(garden) {
+              if(typeof garden === 'string'){
+                garden = garden.split("_");
               }
-          }
-  
-          function initMap() {
-              firstGarden = mapLocation[0].GardenName + "_" + mapLocation[0].Latitude + "_" + mapLocation[0].Longitude;
-              let location = retrieveLocDetails(firstGarden);
-              map = new google.maps.Map(document.getElementById("map"), {
-                  center: { lat: location.Latitude, lng: location.Longitude },
-                  zoom: 17,
-                  mapId: "40c99f5bd3e0f892"
-              });
-  
-              mapInitialized = true;
-  
-              var marker = new google.maps.Marker({
-                  position: { lat: location.Latitude, lng: location.Longitude },
-                  map,
-                  title: location.GardenName
-              });
-  
-              markersArray.push(marker);
-          }
-  
-          function clearOverlays() {
-              for (var i = 0; i < markersArray.length; i++) {
-                  markersArray[i].setMap(null);
-              }
-              markersArray.length = 0;
-          }
-      </script>
-      <!--End of Google Maps Code-->
+                return {
+                    GardenName: garden[1],
+                    Latitude: Number(garden[2]),
+                    Longitude: Number(garden[3])
+                };
+            }
+    
+            function showGarden(garden) {
+                    let location = retrieveLocDetails(garden);
+                    let marker = new google.maps.Marker({
+                        position: { lat: location.Latitude, lng: location.Longitude },
+                        map,
+                        title: location.GardenName
+                    });
+                    map.setCenter({ lat: location.Latitude, lng: location.Longitude });
+    
+                    // Clear existing markers and add the new one
+                    clearOverlays();
+                    markersArray.push(marker);
+            }
+    
+            function initMap() {
+                firstGarden = [0, "", 1.362338, 103.807374, ""];
+                let location = retrieveLocDetails(firstGarden);
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: { lat: location.Latitude, lng: location.Longitude },
+                    zoom: 15,
+                    mapId: "40c99f5bd3e0f892"
+                });
+                mapInitialized = true;
+    
+
+            }
+    
+            function clearOverlays() {
+                for (var i = 0; i < markersArray.length; i++) {
+                    markersArray[i].setMap(null);
+                }
+                markersArray.length = 0;
+            }
+        </script>
+        <!--End of Google Maps Code-->
+
     </head>
 
     <body>
@@ -156,20 +147,26 @@
       
       <!--Start of body-->
       <div class="container">
+        <!--Start of Search Textbox-->
         <div class="row p-5">
           <div class="col"></div>
           <div class="col-3 mx-auto">
             <h2><b>Find a Garden</b></h2>
           </div>
           <div class="col-7 mx-auto">
-            <form class="d-flex">
-              <input class="form-control py-2 me-0 border-end-0" type="search" style="border-top-right-radius: 0; border-bottom-right-radius: 0" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-secondary border-end-0" type="submit" style="border-top-left-radius: 0; border-bottom-left-radius: 0"><i class="fa fa-search"><img src="../public/images/search.svg"/></i></button>
-            </form>
+            <div class="input-group">
+              <input class="form-control border-end-0 border rounded-pill" type="search" id="search" onkeyup="filter(this.value)">
+              <span class="input-group-append">
+                      <i class="fa fa-search"></i>
+                  </button>
+              </span>
+            </div>
           </div>
           <div class="col"></div>
         </div>
+        <!--End of Search Textbox-->
 
+        <!--Start of Filter-->
         <div class="row">
           <div class="col">Filter By Location:</div>
         </div>
@@ -180,24 +177,24 @@
           <div class="col-2">
             <div class="bg-light">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="north">
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
                 <label class="form-check-label">North</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="south">
-                <label class="form-check-label">South</label>
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
+                <label class="form-check-label">North-East</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="east">
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
+                <label class="form-check-label">Central</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
                 <label class="form-check-label">East</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="west">
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
                 <label class="form-check-label">West</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="central">
-                <label class="form-check-label">Central</label>
               </div>
             </div>
           </div>
@@ -233,28 +230,73 @@
       </div>
       <!--End of body-->
 
+      <!--Start of functions-->
       <script>
-        function refresh(obj) {
+        function showGardenList(obj) {
           var output = "";
-          for(garden of obj){
-            let GardenName = garden.LocName;
+
+          for(garden of obj.garden){
+            let GardenID = garden.gardenID;
+            let GardenName = garden.gardenName;
             let Latitude = Number(garden.Latitude);
             let Longitude = Number(garden.Longitude);
-            let v = GardenName + "_" + Latitude + "_" + Longitude;
+            let Region = garden.Region;
+            
+            let v = GardenID + "_" + GardenName + "_" + Latitude + "_" + Longitude + "_" + Region;
+
             output += `<div class="card border">
                 <div class="card-body">
-                  <h5 class="card-title">${garden.GardenName}</h5>
-                  <p class="card-text">${garden.Region}</p>
-                  <button type="button" class="btn btn-primary" value="${v}" onclick='change(this.value)'>View</button>
+                  <h5 class="card-title">${GardenName}</h5>
+                  <p class="card-text">${Region}</p>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='selectedGarden(this.value)'>View More</button>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='save(this.value)'>Save</button>
                 </div>
               </div>`;
           }
-
           document.getElementById("gardens").innerHTML = output;
         }
 
-        refresh(mapLocation);
+
+        function filter() {
+          const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+          let selectedRegions = Array.from(checkboxes).map(checkbox => checkbox.value);
+          if(selectedRegions.length == 0){
+            selectedRegions = ['north', 'north-east', 'central', 'east', 'west'];
+          }
+          searchKey = document.getElementById("search").value;
+
+          url = "MySQL/GardenFilter.php?key=" + searchKey + "&regions=" + selectedRegions;
+          console.log(url)
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                showGardenList(data); // Now you can work with the JSON data
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+        function selectedGarden(input){
+
+        }
+
+
+        function save(){
+
+        }
+
       </script>
+      <!--End of functions-->
+
+      <script>showGardenList(mapLocation);</script>
       
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="...HUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </body>
