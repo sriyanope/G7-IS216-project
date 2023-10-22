@@ -16,6 +16,7 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="style.css">
 
+            <?php session_start() ?>
 
             <style>
                a {
@@ -94,23 +95,30 @@
         
                     <h3 class="mt-1">Log In</h3>
                     <div class="mb-5">Log in to enjoy all the features like joining events and finding community gardens near you!</div>
-        
-                    <div class="form-outline mb-4">
-                        <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email"/>
-                    </div>
-        
-                    <div class="form-outline mb-4">
-                        <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password"/>
-                    </div>
-        
-                    <button class="btn text-white btn-lg btn-block px-5" type="submit">Login</button>
-        
-                    <div class="pt-3">Don't have an account? 
-                        <a href='SignUp.html' style="text-decoration: underline; color: black">Create an Account</a>
-
-
-                    </div>
                     
+                    
+                    <form action="MySQL/ProcessLogIn.php" method="post" onsubmit="return validateForm()">
+                    <div class="form-outline mb-4">
+                        <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username"/>
+                    </div>
+        
+                    <div class="form-outline mb-4">
+                        <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password"/>
+                    </div>
+
+                    <?php 
+                      if(isset($_SESSION['error'])){
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                      }
+                      ?>
+
+                    <button class="btn text-white btn-lg btn-block px-5" type="submit">Login</button>
+
+                    <div class="pt-3">Don't have an account? 
+                        <a href='SignUp.php' style="text-decoration: underline; color: black">Create an Account</a>
+                    </div>
+                    </form>
         
         
                     </div>
@@ -118,7 +126,34 @@
                 </div>
             </div>
             </div>
+
         </section>
+
+
+        <script>
+            function validateForm() {
+                          
+              var msg = "";
+              var check = true;
+              var username = document.getElementById("username1").value;
+              var password = document.getElementById("password1").value;
+
+              if(username.length == 0 || /^\s*$/.test(username)){
+                  check = false;
+                  msg += "Username cannot be empty or contain spaces\n";
+              }
+              if(password.length == 0){
+                  check = false;
+                  msg += "Password must not be empty\n";
+              }
+                  
+              if(!check){
+                  alert(msg);
+              }
+
+           return check;
+           }
+        </script>
 
 
 
