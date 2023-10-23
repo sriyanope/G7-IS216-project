@@ -1,4 +1,5 @@
 <html>
+  <?php session_start(); ?>
   <head>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,20 +69,22 @@
                 garden = garden.split("_");
               }
                 return {
-                    GardenName: garden[1],
-                    Latitude: Number(garden[2]),
-                    Longitude: Number(garden[3])
+                  gardenId: garden[0],
+                  gardenName: garden[1],
+                  latitude: Number(garden[2]),
+                  longitude: Number(garden[3]),
+                  region: garden[4]
                 };
             }
     
             function showGarden(garden) {
                     let location = retrieveLocDetails(garden);
                     let marker = new google.maps.Marker({
-                        position: { lat: location.Latitude, lng: location.Longitude },
+                        position: { lat: location.latitude, lng: location.longitude },
                         map,
                         title: location.GardenName
                     });
-                    map.setCenter({ lat: location.Latitude, lng: location.Longitude });
+                    map.setCenter({ lat: location.latitude, lng: location.longitude });
     
                     // Clear existing markers and add the new one
                     clearOverlays();
@@ -92,7 +95,7 @@
                 firstGarden = [0, "", 1.362338, 103.807374, ""];
                 let location = retrieveLocDetails(firstGarden);
                 map = new google.maps.Map(document.getElementById("map"), {
-                    center: { lat: location.Latitude, lng: location.Longitude },
+                    center: { lat: location.latitude, lng: location.longitude },
                     zoom: 15,
                     mapId: "40c99f5bd3e0f892"
                 });
@@ -135,9 +138,11 @@
                 <a class="nav-link mx-2 disabled" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
               </li>
               <li class="nav-item ms-auto mt-1">
-                <button class="btn text-white" href="#">
-                    <img src="../icons.png" width="30">
-                  My Profile</button>
+                <a href="Profile.php">
+                  <button class="btn text-white" href="#">
+                      <img src="../icons.png" width="30">
+                    My Profile</button>
+                </a>
               </li>
             </ul>
           </div>
@@ -223,7 +228,7 @@
 
         <div class="row bg-light mt-2 mb-5 border">
           <div class="col p-4">
-            Community Garden @ Bedok
+            <ul id="savedGardens"></ul>
           </div>
         </div>
         <!--End of Saved Gardens-->
@@ -236,21 +241,22 @@
           var output = "";
 
           for(garden of obj.garden){
-            let GardenID = garden.gardenID;
-            let GardenName = garden.gardenName;
-            let Latitude = Number(garden.Latitude);
-            let Longitude = Number(garden.Longitude);
-            let Region = garden.Region;
+            let gardenID = garden.gardenID;
+            let gardenName = garden.gardenName;
+            let latitude = Number(garden.latitude);
+            let longitude = Number(garden.longitude);
+            let region = garden.region;
             
-            let v = GardenID + "_" + GardenName + "_" + Latitude + "_" + Longitude + "_" + Region;
+            let v = gardenID + "_" + gardenName + "_" + latitude + "_" + longitude + "_" + region;
 
             output += `<div class="card border">
-                <div class="card-body">
-                  <h5 class="card-title">${GardenName}</h5>
-                  <p class="card-text">${Region}</p>
+            <div class="card-body">
+                  <h5 class="card-title">${gardenName}</h5>
+                  <p class="card-text">${region}</p>
                   <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
                   <button type="button" class="btn btn-primary" value="${v}" onclick='selectedGarden(this.value)'>View More</button>
                   <button type="button" class="btn btn-primary" value="${v}" onclick='save(this.value)'>Save</button>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='unsave(this.value)'>Unsave</button>
                 </div>
               </div>`;
           }
@@ -267,6 +273,7 @@
           searchKey = document.getElementById("search").value;
 
           url = "MySQL/GardenFilter.php?key=" + searchKey + "&regions=" + selectedRegions;
+          console.log(url);
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -288,14 +295,83 @@
         }
 
 
-        function save(){
+        function showSavedGarden() {
+          var output = "";
+          let username = <?php echo $_SESSION['username'] ?>;
+          url = "MySQL/SavedGarden.php?type=show&username=" + username;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+              console.log(data.garden);
+              for(garden of data.garden){
+                let gardenID = garden.gardenID;
+                let gardenName = garden.gardenName;
+
+                output += `<li><span>${gardenName}</span></li>`;
+              }
+              document.getElementById("savedGardens").innerHTML = output;
+                })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
 
         }
 
+        function save(garden){
+          let gardenObj = retrieveLocDetails(garden);
+          let gardenId = gardenObj.gardenId;
+          let username = <?php echo $_SESSION['username'] ?>;
+          url = "MySQL/SavedGarden.php?type=add&gardenId=" + gardenId + "&username=" + username;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
+            })
+            .then(data => {
+              showSavedGarden();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function unsave(garden){
+          let gardenObj = retrieveLocDetails(garden);
+          let gardenId = gardenObj.gardenId;
+          let username = <?php echo $_SESSION['username'] ?>;
+          url = "MySQL/SavedGarden.php?type=delete&gardenId=" + gardenId + "&username=" + username;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
+            })
+            .then(data => {
+              showSavedGarden();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+        
       </script>
       <!--End of functions-->
 
-      <script>showGardenList(mapLocation);</script>
+      <script>
+        showGardenList(mapLocation);
+        showSavedGarden();
+      </script>
       
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="...HUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </body>
