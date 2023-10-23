@@ -1,5 +1,6 @@
 <!doctype html>
     <html lang="en">
+    <?php session_start() ?>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,25 +115,48 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="#"><i class="about"></i> About</a>
+                    <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
                     <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="FindAGarden.html"><i class="findAGarden"></i> Find A Garden</a>
+                    <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
-                    <button class="btn btn-success text-white" href="#">
-                        <img src="../icons.png" width="30">
-                        My Profile</button>
+                    <a href="Profile.php">
+                      <button class="btn btn-success text-white" href="#">
+                          <img src="../icons.png" width="30">
+                          My Profile</button>
+                    </a>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
           <!-- End of Navbar -->
+          <script>
+            var username = "1";
 
+            url = "MySQL/User.php?type=getUser&username=" + username;
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                console.log(data.user);
+                document.getElementById("fullName").innerText = data.user[0].fullName;
+                document.getElementById("email").innerText = data.user[0].email;
+                document.getElementById("bio").innerText = data.user[0].bio;
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+
+          </script>
           <!-- Legend:
             Container1: for the profile picture, Edit profile tag, Sign Out tag, byline line and Social Media tags + all other componenets-->
 
@@ -145,10 +169,13 @@
             </div>
             <div class="row">
                 <div class="col text-center">
+                  <a href="ProfileEdit.php">
                     <button type="button" class="btn btn-success mx-2" href="ProfileEdit.html">
                         <img src="../public/images/edit.png" class="editProfileimg"> 
                         Edit Profile
                     </button>
+                  </a>
+                    
   
                     <button type="button" class="btn btn-success">
                         <img src="../public/images/logout.png" class="editProfileimg"> 
@@ -157,16 +184,14 @@
                 </div>
             </div>
             <div class="row text-center">
-                <h1 class="profileName">Rafiq Hamid</h1>
+                <h1 class="profileName" id="fullName"></h1>
             </div>
             <div class="row text-center">
                 <p class="byline">"Software Developer by day, secret gardener by night"</p>
                 <div class="col text-center mb-3">
                     Click me! ->
                     <button type="button" class=" btn bg-dark text-white mx-2"> <!-- onclick='copyFunction()' was meant to be here-->
-                        <img src="../public/images/open-mail.png" class="editProfileimg"> 
-                        rh123@email.com
-                    </button>
+                        <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
                 </div>
             </div>
             <div class="row">
@@ -190,7 +215,7 @@
                     <h3 class="featureTitle">Bio:</h3>
                 </div>
                 <div class="col-md-4 offset-md-4">
-                    <textarea disabled rows="5" cols="70" class="bio text-center">
+                    <textarea disabled rows="5" cols="70" class="bio text-center" id="bio">
                     get to know more about me
                     </textarea>
                 </div>

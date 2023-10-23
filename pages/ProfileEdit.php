@@ -1,5 +1,6 @@
 <!doctype html>
     <html lang="en">
+    <?php session_start() ?>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,10 +145,12 @@
                     <a class="nav-link mx-2" href="FindAGarden.html"><i class="findAGarden"></i> Find A Garden</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
-                    <button class="btn btn-success text-white" href="Profile.html">
-                        <img src="../icons.png" width="30">
-                        My Profile
-                    </button>
+                    <a href="Profile.php">
+                        <button class="btn btn-success text-white" href="Profile.html">
+                            <img src="../icons.png" width="30">
+                            My Profile
+                        </button>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -172,7 +175,7 @@
                         <h2 class="featureTitle">Name:</h2>
                     </div>
                     <div class="col-sm-6 col-centered">
-                        <input type="text" class="form-control f-field" name="fname" Placeholder="This name will be displayed for all users to see" >
+                        <input type="text" class="form-control f-field" name="fname" id="fullName" Placeholder="This name will be displayed for all users to see" >
                     </div>
 
                     <!-- Edit ByLine -->
@@ -180,7 +183,7 @@
                         <h2 class="featureTitle">Byline:</h2>
                     </div>
                     <div class="col-sm-6 col-centered needs-validation">
-                        <input type="text" class="form-control f-field" name="byline" Placeholder="A quirky one liner about yourself" >
+                        <input type="text" class="form-control f-field" name="byline" id="byline" Placeholder="A quirky one liner about yourself" >
                     </div>
 
                     <!-- Edit DOB -->
@@ -188,7 +191,7 @@
                         <h2 class="featureTitle">Date of Birth:</h2>
                     </div>
                     <div class="col-sm-6 col-centered">
-                        <input type="date" class="form-control f-field" id="input-age" onchange="getAge()">
+                        <input type="date" class="form-control f-field" id="dob" onchange="getAge()">
                         <br>
                         <p id="age"> Your age is: </p>
                     </div>
@@ -198,7 +201,7 @@
                         <h2 class="featureTitle">Email:</h2>
                     </div>
                     <div class="col-sm-6 col-centered">
-                        <input type="email" class="form-control f-field" name="email" Placeholder="ilovetrees@email.com" >
+                        <input type="email" class="form-control f-field" name="email" id="email" Placeholder="ilovetrees@email.com" >
                     </div>
 
                     <!-- Edit Bio -->
@@ -266,7 +269,7 @@
 
                     <!-- Save Edit buttons -->
                     <div class="col-sm-6 col-centered mt-5 text-center">
-                        <button class="btn btn-success" type="submit">Save Edits</button>
+                        <button class="btn btn-success" type="submit" onclick="updateUserProfile()">Save Edits</button>
                     </div>
                     
                     
@@ -284,6 +287,48 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="...HUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         </body>
         <script>
+            var username = <?php echo $_SESSION['username'] ?>;
+
+            url = "MySQL/User.php?type=getUser&username=" + username;
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                console.log(data.user);
+                document.getElementById("fullName").value = data.user[0].fullName;
+                document.getElementById("email").value = data.user[0].email;
+                document.getElementById("bio").value = data.user[0].bio;
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+
+            
+              function updateUserProfile() {
+                let fullName = document.getElementById("fullName").value;
+                let byline = document.getElementById("byline").value;
+                let dob = document.getElementById("dob").value;
+                let email = document.getElementById("email").value;
+                let bio = document.getElementById("bio").value;
+                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&age=12" + "&bio=" + bio;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response
+                })
+                .then(data => {
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+              }
+
             // document.getElementsByName("bday")[0].addEventListener("keypress", submitBday())
             // function submitBday(){
             //     // ageNum = ""
@@ -303,7 +348,7 @@
 
             // }
 
-            let input = document.getElementById('input-age');
+            let input = document.getElementById('dob');
 
             input.addEventListener('input', function() {
                 getAge(input.value)
@@ -319,8 +364,10 @@
                 }
                 document.getElementById('age').innerHTML += String(age);
                 
-
             }
+
+
+
 
             // TRIAL CODE FOR FORM VALIDATION
 

@@ -16,8 +16,6 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="/style.css">
 
-            <?php session_start() ?>
-
             <style>
                a {
                     font-size:14px;
@@ -51,6 +49,79 @@
             </style>
 
             <title>Sign Up</title>
+
+            <?php
+
+              # Start session
+              session_start();
+         
+
+              spl_autoload_register(
+                  function($class){
+                      require_once "MySQL/$class.php";
+                  }
+              );
+
+              function registerUser($username, $fullName, $gender, $age, $email, $hashedPassword) {
+                  $sql = "insert into user (username, fullName, gender, age, email, password) values (:username, :fullName, :gender, :age, :email, :hashedPassword);"; 
+
+                  $connMgr = new ConnectionManager();
+                  $pdo = $connMgr->getConnection();
+                  
+                  try{
+                      $stmt = $pdo->prepare($sql);
+                      $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                      $stmt->bindParam(':fullName', $fullName, PDO::PARAM_STR);
+                      $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+                      $stmt->bindParam(':age', $age, PDO::PARAM_INT);
+                      $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+                      $stmt->bindParam(':hashedPassword', $hashedPassword, PDO::PARAM_STR);
+
+                      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                      $result = $stmt->execute();
+                      return $result;
+                  } 
+                  catch (PDOException $e) {
+                      // Check if the exception is due to a duplicate key (username in this case)
+                      if ($e->errorInfo[1] === 1062) {
+                          return false; // Return a specific error code for duplicate username
+                          $_SESSION["error"] = "Username already existed";
+                      } else {
+                          // For other exceptions, you can log the error or handle them as needed
+                          error_log("Database Error: " . $e->getMessage());
+                          return false;
+                      }
+                  }
+              }
+
+
+              # Get parameters passed from register.php
+              if(isset($_POST['submit'])){
+                $username = $_POST["username1"];
+                $fullName = $_POST["name1"];
+                $gender = $_POST["gender1"];
+                $age = $_POST["age1"];
+                $email = $_POST["email1"];
+                $password = $_POST["password1"];
+                
+                
+                # Hash entered password
+                $hashed = password_hash($password, PASSWORD_DEFAULT);
+                
+                $status = registerUser($username, $fullName, $gender, $age, $email, $hashed);
+                if($status){
+                
+                    $_SESSION["username"] = $username;
+                    header("location: LandingPage.html");
+                    exit;
+                }
+                else{
+                    $_SESSION['error'] = "Username has been taken, please input another username";
+                    
+                }
+              }
+
+              ?>
 
         </head>
         <body>
@@ -95,7 +166,7 @@
                     <h3 class="mt-1">Create An Account</h3>
                     <div class="mb-5">Create an account to enjoy all the features like joining events and finding community gardens near you!</div>
 
-                    <form action="MySQL/ProcessSignUp.php" method="post" onsubmit="return validateForm()">
+                    <form method="post" onsubmit="return validateForm()">
                       <div class="form-outline mb-4">
                         <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username">
                       </div>
@@ -136,7 +207,7 @@
                       }
                       ?>
 
-                      <button class="btn text-white btn-lg btn-block px-5" type="submit">Sign Up</button>
+                      <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Sign Up</button>
           
                       <div class="pt-3">Already have an account? 
                           <a href='login.php' style="text-decoration: underline; color: black">Log In</a>

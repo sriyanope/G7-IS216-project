@@ -16,8 +16,6 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="style.css">
 
-            <?php session_start() ?>
-
             <style>
                a {
                     font-size:14px;
@@ -50,6 +48,58 @@
 
 
             </style>
+
+            <?php
+
+            session_start();
+            unset($_SESSION['username']);
+
+            spl_autoload_register(
+                function($class){
+                    require_once "MySQL/$class.php";
+                }
+            );
+
+            function retrieveUser($username) {
+                $sql = "select username, password from user where username = :username;"; 
+
+                $connMgr = new ConnectionManager();
+                $pdo = $connMgr->getConnection();
+                
+
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    $stmt->execute();
+                    $result = "";
+
+                    while($row = $stmt->fetch()) {
+                        $result = $row["password"];
+                    }
+
+                    return $result;
+
+            }
+
+
+            if(isset($_POST['submit'])){
+              $username = $_POST["username1"];
+              $password = $_POST["password1"];
+              $hashedPassword = retrieveUser($username);
+
+              if ($hashedPassword !== null) {
+                  if (password_verify($password, $hashedPassword)) {
+                      $_SESSION['username'] = $username;
+                      header("location: LandingPage.html");
+                      exit;
+                  } else {
+                      $_SESSION['error'] = "Wrong Username or Password, please try again.";
+                  }
+            }
+            }
+
+            ?>
 
             <title>Log In</title>
             
@@ -97,7 +147,7 @@
                     <div class="mb-5">Log in to enjoy all the features like joining events and finding community gardens near you!</div>
                     
                     
-                    <form action="MySQL/ProcessLogIn.php" method="post" onsubmit="return validateForm()">
+                    <form method="post" onsubmit="return validateForm()">
                     <div class="form-outline mb-4">
                         <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username"/>
                     </div>
@@ -113,7 +163,7 @@
                       }
                       ?>
 
-                    <button class="btn text-white btn-lg btn-block px-5" type="submit">Login</button>
+                    <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Login</button>
 
                     <div class="pt-3">Don't have an account? 
                         <a href='SignUp.php' style="text-decoration: underline; color: black">Create an Account</a>
@@ -154,6 +204,10 @@
            return check;
            }
         </script>
+
+
+
+
 
 
 

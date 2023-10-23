@@ -1,4 +1,5 @@
 <?php
+
     class GardenDAO {
        
         public function getGardens() {
@@ -14,7 +15,7 @@
             $result['garden'] = [];
             
             while($row = $stmt->fetch()) {
-                $result['garden'][] = array('gardenID' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'Latitude' => $row["latitude"], 'Longitude' => $row["longitude"], 'Region' => $row["region"]);
+                $result['garden'][] = array('gardenID' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"], 'region' => $row["region"]);
             }
             
             $stmt = null;
