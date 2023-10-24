@@ -90,7 +90,7 @@
 
               <h3 class="text-center"><strong>Create An Event</strong></h3>
               <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.html">Join an Event!</a></p>
-              <form id="CreateEventDetails" method="post" onsubmit="return validateForm()">
+              <form id="CreateEventDetails" method="post" onsubmit="return validateForm(); required()">
                 <div class="mb-3">
                   <label for="EventTitle" class="form-label">Event Title</label>
                   <input type="text" class="form-control" id="EventTitle" aria-describedby="EventTitle">
@@ -152,7 +152,19 @@
     
                return check;
                }
+
+               function required(inputText){
+                  if (inputText.value.length == 0)
+                    { 
+                      alert("Please fill in all fields");  	
+                      return false; 
+                    }  	
+                    return true; 
+               } 
               </script>
+
+
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
