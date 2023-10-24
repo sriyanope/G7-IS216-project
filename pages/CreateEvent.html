@@ -15,11 +15,12 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="style.css">
-
+           
             <style>
                a {
                     font-size:14px;
-                    font-weight:700
+                    font-weight:700;
+                    color: black;
                     }
                 .superNav {
                     font-size:13px;
@@ -84,9 +85,12 @@
               </nav>
 
               <!-- start the form for creating event -->
-              <h3><strong>Create An Event</strong></h3>
-              <p>Need some inspiration before starting your own? <a href="JoinAnEvent.html">Join an Event!</a></p>
-              <form id="CreateEventDetails">
+              <div class="container-fluid">
+                <div class="p-5 mb-5 ">
+
+              <h3 class="text-center"><strong>Create An Event</strong></h3>
+              <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.html">Join an Event!</a></p>
+              <form id="CreateEventDetails" method="post" onsubmit="return validateForm()">
                 <div class="mb-3">
                   <label for="EventTitle" class="form-label">Event Title</label>
                   <input type="text" class="form-control" id="EventTitle" aria-describedby="EventTitle">
@@ -96,35 +100,60 @@
                   <input type="text" class="form-control" id="EventCategory">
                 </div>
                 <div class="mb-3">
-                    <label for="Date" class="form-label">Date</label>
+                    <label for="Date" id="eventDate" class="form-label">Date</label>
                     <input type="date" class="form-control" id="Date">
                   </div>
                   <div class="mb-3">
-                    <label for="Timing" class="form-label">Timing</label>
+                    <label for="Timing" id="starttiming" class="form-label">Start Time</label>
+                    <input type="time" class="form-control" id="Timing">
+                  </div>
+                  <div class="mb-3">
+                    <label for="Timing" id="endtiming" class="form-label">End Time</label>
                     <input type="time" class="form-control" id="Timing">
                   </div>
                   <div class="mb-3">
                     <label for="Location" class="form-label">Location</label>
                     <input type="text" class="form-control" id="Location">
                   </div>
-                  <div class="mb-3">
+                  <div class="mb-3">                    
                     <label for="AboutThisEvent" class="form-label">About This Event</label>
-                    <input type="text" class="form-control" id="AboutThisEvent">
-                  </div>
-                  <div class="mb-3">
-                    <label for="AboutThisEvent" class="form-label">About This Event</label>
-                    <input type="text" class="form-control" id="AboutThisEvent">
+                    <textarea id="AboutThisEvent" class="form-control" rows="4" cols="50"></textarea>
                   </div>
                   <div class="input-group mb-3">
-                    <label class="form-label" for="UploadEventPicture">Upload Picture</label><br>
+                    <label class="form-label pe-3" for="UploadEventPicture">Add Pictures</label><br>
                     <input type="file" class="form-control d-block" id="UploadEventPicture">
                   </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Create Event</button>
+                <button type="submit" class="btn text-white">Create Event</button>
               </form>
+              </div>
+              </div>
+
+              <!-- errors -->
+              <script>
+                function validateForm() {
+                              
+                  var msg = "";
+                  var check = true;
+                  var startTime = document.getElementById("starttiming").value;
+                  var endTime = document.getElementById("endtiming").value;
+
+                  const date1 = new Date(document.getElementById("eventDate").value + startTime);
+                  const date2 = new Date(document.getElementById("eventDate").value + endTime);
+
+                  // Verify if the first time is equal, more recent or less recent than the second
+                  if (date1.getTime() > date2.getTime()) {
+                    check = false;
+                    msg += "End Time must be after Start Time";;
+                  }
+                   
+                  if(!check){
+                      alert(msg);
+                  }
+    
+               return check;
+               }
+              </script>
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       </body>
