@@ -140,7 +140,7 @@
                   const date1 = new Date(document.getElementById("eventDate").value + startTime);
                   const date2 = new Date(document.getElementById("eventDate").value + endTime);
 
-                  // Verify if the first time is equal, more recent or less recent than the second
+                  // Verify if the start time is more recent than the end time
                   if (date1.getTime() > date2.getTime()) {
                     check = false;
                     msg += "End Time must be after Start Time";;
@@ -154,6 +154,7 @@
                }
 
                function required(inputText){
+                // Verify if any fields are empty 
                   if (inputText.value.length == 0)
                     { 
                       alert("Please fill in all fields");  	
