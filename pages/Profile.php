@@ -162,6 +162,8 @@
                 document.getElementById("fullName").innerText = data.user[0].fullName;
                 document.getElementById("email").innerText = data.user[0].email;
                 document.getElementById("bio").innerText = data.user[0].bio;
+                document.getElementById("instagram").href = data.user[0].instagram;
+                document.getElementById("telegram").href = "https://t.me/" + data.user[0].telegram;
               })
               .catch(error => {
                   console.error('Error:', error);
@@ -208,18 +210,24 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                    <button type="button" class=" btn bg-dark text-white mx-2">
+                  <a href="#">
+                  <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/linkedin.png" class="editProfileimg"> 
                         LinkedIn
                     </button>
+                    </a>
+                    <a href="#" id="instagram">
                     <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/instagram.png" class="editProfileimg"> 
                         Instagram
                     </button>
+                    </a>
+                    <a href="#" id="telegram">
                     <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/telegram.png" class="editProfileimg"> 
                         Telegram
                     </button>
+                    </a>
                 </div>
             </div>
             <div class="row">

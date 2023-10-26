@@ -203,7 +203,7 @@
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password">
+                        <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" onpaste="return false;">
                       </div>
 
                       <?php 
