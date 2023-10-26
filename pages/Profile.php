@@ -1,6 +1,6 @@
 <!doctype html>
     <html lang="en">
-    <?php session_start() ?>
+    <?php session_start(); ?>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@600&display=swap" rel="stylesheet">
 
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="/style.css">
+            <link rel="stylesheet" href="../style.css">
 
 
             <style>
@@ -136,7 +136,7 @@
           </nav>
           <!-- End of Navbar -->
           <script>
-            var username = "1";
+            var username = <?php echo $_SESSION['username']; ?>;
 
             url = "MySQL/User.php?type=getUser&username=" + username;
             fetch(url)
@@ -176,11 +176,12 @@
                     </button>
                   </a>
                     
-  
-                    <button type="button" class="btn btn-success">
+                  <a href="LogIn.php">
+                  <button type="button" class="btn btn-success">
                         <img src="../public/images/logout.png" class="editProfileimg"> 
                         Sign Out
                     </button>
+                  </a>
                 </div>
             </div>
             <div class="row text-center">
