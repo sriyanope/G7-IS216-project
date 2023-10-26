@@ -14,7 +14,7 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="/style.css">
+            <link rel="stylesheet" href="../style.css">
 
             <style>
                a {
@@ -62,8 +62,8 @@
                   }
               );
 
-              function registerUser($username, $fullName, $gender, $age, $email, $hashedPassword) {
-                  $sql = "insert into user (username, fullName, gender, age, email, password) values (:username, :fullName, :gender, :age, :email, :hashedPassword);"; 
+              function registerUser($username, $fullName, $gender, $dob, $email, $hashedPassword) {
+                  $sql = "insert into user (username, fullName, gender, dob, email, password) values (:username, :fullName, :gender, :dob, :email, :hashedPassword);"; 
 
                   $connMgr = new ConnectionManager();
                   $pdo = $connMgr->getConnection();
@@ -73,7 +73,7 @@
                       $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                       $stmt->bindParam(':fullName', $fullName, PDO::PARAM_STR);
                       $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
-                      $stmt->bindParam(':age', $age, PDO::PARAM_INT);
+                      $stmt->bindParam(':dob', $dob, PDO::PARAM_STR);
                       $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                       $stmt->bindParam(':hashedPassword', $hashedPassword, PDO::PARAM_STR);
 
@@ -100,7 +100,7 @@
                 $username = $_POST["username1"];
                 $fullName = $_POST["name1"];
                 $gender = $_POST["gender1"];
-                $age = $_POST["age1"];
+                $dob = $_POST["dob1"];
                 $email = $_POST["email1"];
                 $password = $_POST["password1"];
                 
@@ -108,7 +108,7 @@
                 # Hash entered password
                 $hashed = password_hash($password, PASSWORD_DEFAULT);
                 
-                $status = registerUser($username, $fullName, $gender, $age, $email, $hashed);
+                $status = registerUser($username, $fullName, $gender, $dob, $email, $hashed);
                 if($status){
                 
                     $_SESSION["username"] = $username;
@@ -184,7 +184,7 @@
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="number" class="form-control inputstl" name="age1" id="age1" placeholder="Enter Your Age">
+                        <input type="date" class="form-control inputstl" name="dob1" id="dob1">
                       </div>
 
                       <div class="form-outline mb-4">
@@ -223,7 +223,7 @@
                           var username = document.getElementById("username1").value;
                           var fullName = document.getElementById("name1").value;
                           var gender = document.getElementById("gender1").value;
-                          var age = document.getElementById("age1").value;
+                          var dob = document.getElementById("dob1").value;
                           var email = document.getElementById("email1").value;
                           var password1 = document.getElementById("password1").value;
                           var password2 = document.getElementById("password2").value;
@@ -241,9 +241,16 @@
                               check = false;
                               msg += "Please select a gender\n";
                           }
-                          if(age.length == 0){
+                          if(dob.length == 0){
                               check = false;
-                              msg += "Age cannot be empty\n";
+                              msg += "Date of Birth cannot be empty\n";
+                          }else{
+                            currentDate = new Date();
+                            maxYear = currentDate.getFullYear() - 12;
+                            if(Number(dob.substring(0, 4)) > maxYear){
+                              check = false;
+                              msg += "You have to be more than 12 years old to sign up\n";
+                            }
                           }
                           if(password1.length == 0){
                               check = false;
