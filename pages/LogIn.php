@@ -14,7 +14,9 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="../style.css">
+            <!--reCAPTHA v2.0-->
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
             <style>
                a {
@@ -84,20 +86,34 @@
 
 
             if(isset($_POST['submit'])){
-              $username = $_POST["username1"];
-              $password = $_POST["password1"];
-              $hashedPassword = retrieveUser($username);
+                $secret = "6LehUX4oAAAAADi4e2nB_zOqJCDD1xmWzyly9Pme";
+                $response = $_POST["g-recaptcha-response"];
+                $remoteip = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip";
+                $data = file_get_contents($url);
+                $row = json_decode($data, true);
+                
+                $username = $_POST["username1"];
+                $password = $_POST["password1"];
+                $hashedPassword = retrieveUser($username);
 
-              if ($hashedPassword !== null) {
-                  if (password_verify($password, $hashedPassword)) {
-                      $_SESSION['username'] = $username;
-                      header("location: LandingPage.html");
-                      exit;
-                  } else {
-                      $_SESSION['error'] = "Wrong Username or Password, please try again.";
-                  }
+                if($row['success'] != true){
+                    $_SESSION['error'] = "Error: Please complete the reCAPTCHA";
+                }else if ($hashedPassword !== null) {
+                    if (password_verify($password, $hashedPassword)) {
+                        $_SESSION['username'] = $username;
+                        header("location: LandingPage.html");
+                        exit;
+                    } else {
+                        $_SESSION['error'] = "Wrong Username or Password, please try again.";
+                    }
+                }
             }
-            }
+
+
+
+
+
 
             ?>
 
@@ -123,7 +139,7 @@
                     <a class="nav-link mx-2" href="#"><i class="events"></i> Events</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="FindAGarden.html"><i class="findAGarden"></i> Find A Garden</a>
+                    <a class="nav-link mx-2" href="#"><i class="findAGarden"></i> Find A Garden</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
                     <button class="btn text-white" href="#">
@@ -156,13 +172,15 @@
                         <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password"/>
                     </div>
 
+                    <div class="g-recaptcha" data-sitekey="6LehUX4oAAAAABXpjfAUapqrTexUmEPXuQzRIs9v"></div>
+
                     <?php 
                       if(isset($_SESSION['error'])){
                         echo $_SESSION['error'];
                         unset($_SESSION['error']);
                       }
                       ?>
-
+                
                     <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Login</button>
 
                     <div class="pt-3">Don't have an account? 

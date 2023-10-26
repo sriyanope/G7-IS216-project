@@ -10,7 +10,7 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
       <!-- CSS stylesheet -->
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="../style.css">
       
       <title>Find a Garden</title>
 

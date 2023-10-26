@@ -15,7 +15,7 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="/style.css">
+            <link rel="stylesheet" href="../style.css">
             <!-- photo editing css animation CDN-->
             <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" />
@@ -136,13 +136,13 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="#"><i class="about"></i> About</a>
+                    <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
                     <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="FindAGarden.html"><i class="findAGarden"></i> Find A Garden</a>
+                    <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
                     <a href="Profile.php">
@@ -191,7 +191,7 @@
                         <h2 class="featureTitle">Date of Birth:</h2>
                     </div>
                     <div class="col-sm-6 col-centered">
-                        <input type="date" class="form-control f-field" id="dob" onchange="getAge()">
+                        <input type="date" class="form-control f-field" id="dob" onchange="getAge()" disabled>
                         <br>
                         <p id="age"> Your age is: </p>
                     </div>
@@ -300,6 +300,7 @@
               .then(data => {
                 console.log(data.user);
                 document.getElementById("fullName").value = data.user[0].fullName;
+                document.getElementById("dob").value = data.user[0].dob;
                 document.getElementById("email").value = data.user[0].email;
                 document.getElementById("bio").value = data.user[0].bio;
               })
@@ -314,7 +315,7 @@
                 let dob = document.getElementById("dob").value;
                 let email = document.getElementById("email").value;
                 let bio = document.getElementById("bio").value;
-                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&age=12" + "&bio=" + bio;
+                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&dob=" + dob + "&bio=" + bio;
                 fetch(url)
                 .then(response => {
                     if (!response.ok) {

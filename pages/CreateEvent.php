@@ -14,7 +14,7 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="../style.css">
 
             <style>
                a {
@@ -74,9 +74,11 @@
                         <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
                       </li>
                       <li class="nav-item ms-auto mt-1">
-                        <button class="btn text-white" href="#">
+                        <a href="Profile.php">
+                          <button class="btn text-white" href="#">
                             <img src="../icons.png" width="30">
                             Profile</button>
+                        </a>
                       </li>
                     </ul>
                   </div>
