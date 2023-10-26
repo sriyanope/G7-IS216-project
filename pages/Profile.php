@@ -22,6 +22,7 @@
 
 
             <style>
+              
                 a {
                     font-size:14px;
                     font-weight:700
@@ -33,11 +34,17 @@
                     outline:none !important;
                     box-shadow: none !important;
                     }
-                    @media screen and (max-width:540px){
+                    @media screen and (max-width:900px){
                 .centerOnMobile {
                         text-align:center
                     }
                     }
+
+                    @media screen and (max-width: 280px) { 
+
+                                        .logo { display: none; }  
+
+                                        }
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -93,7 +100,13 @@
                     border-radius: 10px;
                 }
             
+                textarea {
+                  -webkit-box-sizing: border-box;
+                  -moz-box-sizing: border-box;
+                  box-sizing: border-box;
 
+                  width: 100%;
+              }
 
 
             </style>
@@ -103,19 +116,19 @@
         </head>
         <body>
             <!-- Start of Navbar -->
-          <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
+            <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
-            <div class="container m-0" style="flex-wrap: wrap; margin: 0;">
-              <img src="../logo.png" alt="Logo" width="80" height="50" class="col-1 me-0">
-              <a class="navbar-brand me-auto m-1" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-              <button class="navbar-toggler align-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
+              <img src="../logo.png" alt="Logo" style="width: 114px; height: 65px;" class="me-0 logo">
+              <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+              <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               
               <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                    <a class="nav-link mx-2 disabled" href="#"><i class="about"></i> About</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
                     <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
@@ -124,16 +137,14 @@
                     <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
-                    <a href="Profile.php">
-                      <button class="btn btn-success text-white" href="#">
-                          <img src="../icons.png" width="30">
-                          My Profile</button>
-                    </a>
+                    <a href="Profile.php"><button class="btn text-white" href="#">
+                        <img src="../icons.png" width="30">
+                        My Profile</button></a>
                   </li>
                 </ul>
               </div>
             </div>
-          </nav>
+            </nav>
           <!-- End of Navbar -->
           <script>
             var username = <?php echo $_SESSION['username']; ?>;
@@ -216,7 +227,7 @@
                     <h3 class="featureTitle">Bio:</h3>
                 </div>
                 <div class="col-md-4 offset-md-4">
-                    <textarea disabled rows="5" cols="70" class="bio text-center" id="bio">
+                    <textarea disabled rows="5" cols="30" class="bio text-center" id="bio">
                     get to know more about me
                     </textarea>
                 </div>

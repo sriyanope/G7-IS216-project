@@ -29,10 +29,13 @@
                     outline:none !important;
                     box-shadow: none !important;
                     }
-                    @media screen and (max-width:540px){
+                    @media screen and (max-width:900px){
                 .centerOnMobile {
                         text-align:center
                     }
+                    }
+                    @media screen and (max-width: 280px) { 
+                    .logo { display: none; }  
                     }
 
                 .navbar {
@@ -56,10 +59,10 @@
         <body>
           <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
-            <div class="container m-0" style="flex-wrap: wrap; margin: 0;">
-              <img src="../logo.png" alt="Logo" width="80" height="50" class="col-1 me-0">
-              <a class="navbar-brand me-auto m-1" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-              <button class="navbar-toggler align-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
+              <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+              <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+              <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               
