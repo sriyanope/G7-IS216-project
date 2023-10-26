@@ -6,68 +6,41 @@
         }
     );
 
-    $type = $_GET['type'];
-    $username = $_GET['username'];
 
+    function getEvents() {
+        $key = $_GET['key'];
+        $regions = $_GET['regions'];
+        
+        $r = "";
+        $regions = explode(",", $regions);
+        foreach($regions as $region){
+            $r = $r . " region = '$region' OR";
+        }
+        $r = substr($r, 0, -3);
 
-    if($type == "getUser"){
-        getUser($username);
-    }else if($type == "updateUser"){
-        $fullName = $_GET['fullName'];
-        $email = $_GET['email'];
-        $dob = $_GET['dob'];
-        $bio = $_GET['bio'];
-        $instagram = $_GET['instagram'];
-        $telegram = $_GET['telegram'];
-        updateUser($username, $fullName, $email, $dob, $bio, $instagram, $telegram);
-    }
-
-    function getUser($username) {
-        $sql = "select * from user where username = :username;"; 
+        $sql = "select * from event";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and $r;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
         
+        $in = '%'.$key.'%';
+        $stmt->bindParam(':key', $in, PDO::PARAM_STR);
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         $result = Array();
-        $result['user'] = [];
+        $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"], 'gender' => $row["gender"], 'dob' => $row["dob"], 'phoneNumber' => $row["phoneNumber"], 'email' => $row["email"], 'bio' => $row["bio"], 'pastEventsHosted' => $row["pastEventsHosted"], 'pastEventsAttended' => $row["pastEventsAttended"], 'instagram' => $row["instagram"], 'telegram' => $row["telegram"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'image' => $row["image"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"]);
         }
         
         $stmt = null;
         $pdo = null;
         echo json_encode($result);
-
     }
 
-
-    function updateUser($username, $fullName, $email, $dob, $bio, $instagram, $telegram) {
-        $sql = "update user set fullName = :fullName, email = :email, dob = :dob, bio = :bio, instagram = :instagram, telegram = :telegram  where username = :username;"; 
-
-        $connMgr = new ConnectionManager();
-        $pdo = $connMgr->getConnection();
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':fullName', $fullName, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':dob', $dob, PDO::PARAM_STR);
-        $stmt->bindParam(':bio', $bio, PDO::PARAM_STR);
-        $stmt->bindParam(':instagram', $instagram, PDO::PARAM_STR);
-        $stmt->bindParam(':telegram', $telegram, PDO::PARAM_STR);
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
-        
-        $stmt = null;
-        $pdo = null;
-
-    }
+    getEvents();
 
 ?>
