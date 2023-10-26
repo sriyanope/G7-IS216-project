@@ -235,7 +235,8 @@
                                                     <input
                                                         type="text"
                                                         class="form-control d-inline-block mx-auto"
-                                                        name="instagram" placeholder="https://instagram.com/username"/> 
+                                                        name="instagram" placeholder="https://instagram.com/username"
+                                                        id="instagram"/> 
                                                 </div>
                                             </li>
                                         </div>
@@ -260,7 +261,8 @@
                                             <input
                                                 type="text"
                                                 class="form-control d-inline-block mx-auto"
-                                                name="telegram" placeholder="@username"/> 
+                                                name="telegram" placeholder="@username"
+                                                id="telegram"/> 
                                         </div>
                                     </li>
                                     
@@ -306,6 +308,8 @@
                 document.getElementById("dob").value = data.user[0].dob;
                 document.getElementById("email").value = data.user[0].email;
                 document.getElementById("bio").value = data.user[0].bio;
+                document.getElementById("instagram").value = data.user[0].instagram;
+                document.getElementById("telegram").value = data.user[0].telegram;
               })
               .catch(error => {
                   console.error('Error:', error);
@@ -318,7 +322,9 @@
                 let dob = document.getElementById("dob").value;
                 let email = document.getElementById("email").value;
                 let bio = document.getElementById("bio").value;
-                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&dob=" + dob + "&bio=" + bio;
+                let instagram = document.getElementById("instagram").value;
+                let telegram = document.getElementById("telegram").value;
+                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&dob=" + dob + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
                 fetch(url)
                 .then(response => {
                     if (!response.ok) {
