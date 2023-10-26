@@ -147,24 +147,24 @@
             <div class="bg-light">
               <label class="mx-3 mt-3">Location</label><br>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="north">
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
                 <label class="form-check-label">North</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="south">
-                <label class="form-check-label">South</label>
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
+                <label class="form-check-label">North-East</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="east">
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
+                <label class="form-check-label">Central</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
                 <label class="form-check-label">East</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="west">
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
                 <label class="form-check-label">West</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="central">
-                <label class="form-check-label">Central</label>
               </div>
             </div>
           </div>
@@ -178,110 +178,8 @@
                 <!--div class="album py-5 bg-light"-->
                   <div class="container">
                     <!-- change here -->
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
                     <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
-              
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="../public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span><img src="../public/images/like.svg" onclick="change()"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="../public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span><img src="../public/images/like.svg" onclick="change()"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="../public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span><img src="../public/images/like.svg" onclick="change()"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="../public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span><img src="../public/images/like.svg" onclick="change()"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="../public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span><img src="../public/images/like.svg" onclick="change()"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="card">
-                          <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                          <div class="card-body">
-                            <a href="" class="text-decoration-none text-dark">
-                              <h3>Tree Planting</h3>
-                              <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">23 Dec 2023, 3pm - 7pm</p>
-                              <p><img src="../public/images/location pin.svg" class="pe-1">51 Canning Rise, S179872</p>
-                            </a>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <span>41/50 filled</span>
-                              <span><img src="../public/images/like.svg" onclick="change()"></span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -295,6 +193,122 @@
 
       </div>
       
+      <script>
+
+        function filter() {
+          const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+          let selectedRegions = Array.from(checkboxes).map(checkbox => checkbox.value);
+          if(selectedRegions.length == 0){
+            selectedRegions = ['north', 'north-east', 'central', 'east', 'west'];
+          }
+          searchKey = document.getElementById("search").value;
+
+          url = "MySQL/Event.php?key=" + searchKey + "&regions=" + selectedRegions;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                showEventList(data); // Now you can work with the JSON data
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+        function convertTo12HourFormat(time24) {
+            const [hours, minutes] = time24.split(':');
+            let period = 'AM';
+            let hours12 = parseInt(hours);
+
+            if (hours12 >= 12) {
+                period = 'PM';
+                if (hours12 > 12) {
+                    hours12 -= 12;
+                }
+            }
+
+            return `${hours12}:${minutes} ${period}`;
+        }
+
+        function convertDateFormat(inputDate) {
+            const parts = inputDate.split("-");
+            if (parts.length === 3) {
+                const [year, month, day] = parts;
+                const outputDate = `${day}-${month}-${year}`;
+                return outputDate;
+            }
+            return "Invalid Date"; // Handle invalid input
+        }
+
+
+        function showEventList(obj) {
+          var output = "";
+          console.log(obj);
+          for(event of obj.event){
+            console.log(event);
+            let eventId = event.eventId;
+            let eventTitle = event.eventTitle;
+            let category = event.category;
+            let eventDate = event.eventDate;
+            let startTime = event.startTime;
+            let endTime = event.endTime;
+            let noOfSlots = event.noOfSlots;
+            let filled = event.filled;
+            let about = event.about;
+            let image = event.image;
+            let review = event.review;
+            let comment = event.comment;
+            let username = event.username;
+            let gardenId = event.gardenId;
+            
+            eventDate = convertDateFormat(eventDate);
+            startTime = convertTo12HourFormat(startTime);
+            endTime = convertTo12HourFormat(endTime);
+
+            let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + image + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
+
+            output += `<div class="col">
+              <div class="card h-100">
+                <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
+                <div class="card-body">
+                  <a href="" class="text-decoration-none text-dark">
+                    <h4>${eventTitle}</h4>
+                    <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
+                    <p><img src="../public/images/location pin.svg" class="pe-1">${gardenId}</p>
+                  </a>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span>${filled}/${noOfSlots}</span>
+                    <span><button type="button" class="btn btn-primary" value="${v}" onclick='save(this.value)'>Save</button></span>
+                  </div>
+                </div>
+              </div>
+            </div>`
+          }
+          document.getElementById("events").innerHTML = output;
+        }
+
+
+        url = "MySQL/Event.php?key=&regions=north,north-east,central,east,west";
+        fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+            showEventList(data);
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+
+      </script>
 
 
       <!--End of body-->

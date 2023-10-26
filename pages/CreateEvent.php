@@ -58,6 +58,58 @@
             <title>Create An Event</title>
             
         </head>
+
+        <?php
+          session_start();
+          $username = $_SESSION['username'];
+          
+          spl_autoload_register(
+            function ($class){
+                require_once  "MySQL/$class.php";
+            });
+
+          if(isset($_POST['submit'])){
+            $eventTitle = $_POST['eventTitle'];
+            $category = $_POST['category'];
+            $eventDate = $_POST['eventDate'];
+            $startTime = $_POST['startTime'];
+            $endTime = $_POST['endTime'];
+            $noOfSlots = $_POST['noOfSlots'];
+            $location = $_POST['location'];
+            $about = $_POST['about'];
+            $gardenId = 10; //HARDCODEDDDDDDDDDDDDDDDDDDDDDDD
+
+            // $startTime = strtotime($startTime);
+            // $startTime = date('H:i', $startTime);
+            // $endTime = strtotime($endTime);
+            // $endTime = date('H:i', $endTime);
+          
+            $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :username, :gardenId);";
+
+            $connMgr = new ConnectionManager();
+            $pdo = $connMgr->getConnection();
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':eventTitle', $eventTitle, PDO::PARAM_STR);
+            $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+            $stmt->bindParam(':eventDate', $eventDate, PDO::PARAM_STR);
+            $stmt->bindParam(':startTime', $startTime, PDO::PARAM_STR);
+            $stmt->bindParam(':endTime', $endTime, PDO::PARAM_STR);
+            $stmt->bindParam(':noOfSlots', $noOfSlots, PDO::PARAM_INT);
+            $stmt->bindParam(':about', $about, PDO::PARAM_STR);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->bindParam(':gardenId', $gardenId, PDO::PARAM_INT);
+
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            
+            $stmt = null;
+            $pdo = null;
+
+            header("location: JoinAnEvent.php");
+          }
+        ?>
+
         <body>
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
@@ -95,41 +147,45 @@
                 <div class="p-5 mb-5 ">
 
               <h3 class="text-center"><strong>Create An Event</strong></h3>
-              <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.html">Join an Event!</a></p>
-              <form id="CreateEventDetails" method="post" onsubmit="return validateForm(); required()">
+              <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.php">Join an Event!</a></p>
+              <form id="CreateEventDetails" method="post" onsubmit="return validateForm(); required();">
                 <div class="mb-3">
-                  <label for="EventTitle" class="form-label">Event Title</label>
-                  <input type="text" class="form-control" id="EventTitle" aria-describedby="EventTitle">
+                  <label for="eventTitle" class="form-label">Event Title</label>
+                  <input type="text" class="form-control" name="eventTitle" id="eventTitle" aria-describedby="eventTitle">
                 </div>
                 <div class="mb-3">
-                  <label for="EventCategory" class="form-label">Event Category</label>
-                  <input type="text" class="form-control" id="EventCategory">
+                  <label for="category" class="form-label">Event Category</label>
+                  <input type="text" class="form-control" name="category" id="category">
                 </div>
                 <div class="mb-3">
-                    <label for="Date" id="eventDate" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="Date">
+                    <label for="eventDate" id="eventDate" class="form-label">Date</label>
+                    <input type="date" class="form-control" name="eventDate" id="eventDate">
                   </div>
                   <div class="mb-3">
-                    <label for="Timing" id="starttiming" class="form-label">Start Time</label>
-                    <input type="time" class="form-control" id="Timing">
+                    <label for="startTime" id="starttiming" class="form-label">Start Time</label>
+                    <input type="time" class="form-control" name="startTime" id="startTime">
                   </div>
                   <div class="mb-3">
-                    <label for="Timing" id="endtiming" class="form-label">End Time</label>
-                    <input type="time" class="form-control" id="Timing">
+                    <label for="endTime" id="endtiming" class="form-label">End Time</label>
+                    <input type="time" class="form-control" name="endTime" id="endTime">
                   </div>
                   <div class="mb-3">
-                    <label for="Location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="Location">
+                    <label for="noOfSlots" class="form-label">No. of slots</label>
+                    <input type="number" class="form-control" name="noOfSlots" id="noOfSlots">
+                  </div>
+                  <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" name="location" id="location">
                   </div>
                   <div class="mb-3">                    
-                    <label for="AboutThisEvent" class="form-label">About This Event</label>
-                    <textarea id="AboutThisEvent" class="form-control" rows="4" cols="50"></textarea>
+                    <label for="about" class="form-label">About This Event</label>
+                    <textarea id="about" name="about" class="form-control" rows="4" cols="50"></textarea>
                   </div>
                   <div class="input-group mb-3">
                     <label class="form-label pe-3" for="UploadEventPicture">Add Pictures</label><br>
                     <input type="file" class="form-control d-block" id="UploadEventPicture">
                   </div>
-                <button type="submit" class="btn text-white">Create Event</button>
+                <button type="submit" name="submit" class="btn text-white">Create Event</button>
               </form>
               </div>
               </div>
@@ -140,8 +196,8 @@
                               
                   var msg = "";
                   var check = true;
-                  var startTime = document.getElementById("starttiming").value;
-                  var endTime = document.getElementById("endtiming").value;
+                  var startTime = document.getElementById("startTime").value;
+                  var endTime = document.getElementById("endTime").value;
 
                   const date1 = new Date(document.getElementById("eventDate").value + startTime);
                   const date2 = new Date(document.getElementById("eventDate").value + endTime);
