@@ -138,7 +138,8 @@
 
       <!--Start of Main Body-->
         <div class="row">
-          <div class="col">Filter By Region:</div>
+          <div class="col-2">Filter By Region:</div>
+          <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
@@ -247,9 +248,8 @@
 
         function showEventList(obj) {
           var output = "";
-          console.log(obj);
+          document.getElementById("resultCount").innerText = obj.event.length + " results";
           for(event of obj.event){
-            console.log(event);
             let eventId = event.eventId;
             let eventTitle = event.eventTitle;
             let category = event.category;

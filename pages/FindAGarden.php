@@ -176,7 +176,8 @@
 
         <!--Start of Filter-->
         <div class="row">
-          <div class="col">Filter By Region:</div>
+          <div class="col-2">Filter By Region:</div>
+          <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
@@ -247,8 +248,9 @@
       <script>
         function showGardenList(obj) {
           var output = "";
-
+          document.getElementById("resultCount").innerText = obj.garden.length + " results";
           for(garden of obj.garden){
+
             let gardenID = garden.gardenID;
             let gardenName = garden.gardenName;
             let latitude = Number(garden.latitude);
@@ -281,7 +283,6 @@
           searchKey = document.getElementById("search").value;
 
           url = "MySQL/GardenFilter.php?key=" + searchKey + "&regions=" + selectedRegions;
-          console.log(url);
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -315,14 +316,17 @@
                 return response.json();
             })
             .then(data => {
-              console.log(data.garden);
-              for(garden of data.garden){
+              if(data.garden.length == 0){
+                document.getElementById("savedGardens").innerHTML = "No garden saved";
+              }else{
+                for(garden of data.garden){
                 let gardenID = garden.gardenID;
                 let gardenName = garden.gardenName;
 
                 output += `<li class='my-2'><span>${gardenName}</span></li>`;
               }
               document.getElementById("savedGardens").innerHTML = output;
+              }
                 })
             .catch(error => {
                 console.error('Error:', error);

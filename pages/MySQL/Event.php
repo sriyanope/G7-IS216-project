@@ -8,7 +8,7 @@
 
 
     function getEvents() {
-        $key = $_GET['key'];
+        $key = '%'.$_GET['key'].'%';
         $regions = $_GET['regions'];
         
         $r = "";
@@ -18,15 +18,14 @@
         }
         $r = substr($r, 0, -3);
 
-        $sql = "select * from event";
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and $r;";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r);";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
         
         $stmt = $pdo->prepare($sql);
-        $in = '%'.$key.'%';
-        $stmt->bindParam(':key', $in, PDO::PARAM_STR);
+
+        $stmt->bindParam(':key', $key, PDO::PARAM_STR);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         $result = Array();
