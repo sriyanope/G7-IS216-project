@@ -23,7 +23,7 @@
     }
 
     function getUser($username) {
-        $sql = "select * from user where username = :username;"; 
+        $sql = "select * from users where username = :username;"; 
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -37,7 +37,7 @@
         $result['user'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"], 'gender' => $row["gender"], 'dob' => $row["dob"], 'phoneNumber' => $row["phoneNumber"], 'email' => $row["email"], 'bio' => $row["bio"], 'pastEventsHosted' => $row["pastEventsHosted"], 'pastEventsAttended' => $row["pastEventsAttended"], 'instagram' => $row["instagram"], 'telegram' => $row["telegram"]);
+            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"], 'gender' => $row["gender"], 'dob' => $row["dob"], 'email' => $row["email"], 'bio' => $row["bio"], 'pastEventsHosted' => $row["pastEventsHosted"], 'pastEventsAttended' => $row["pastEventsAttended"], 'instagram' => $row["instagram"], 'telegram' => $row["telegram"]);
         }
         
         $stmt = null;
@@ -48,7 +48,7 @@
 
 
     function updateUser($username, $fullName, $email, $dob, $bio, $instagram, $telegram) {
-        $sql = "update user set fullName = :fullName, email = :email, dob = :dob, bio = :bio, instagram = :instagram, telegram = :telegram  where username = :username;"; 
+        $sql = "update users set fullName = :fullName, email = :email, dob = :dob, bio = :bio, instagram = :instagram, telegram = :telegram  where username = :username;"; 
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();

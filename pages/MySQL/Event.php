@@ -24,9 +24,9 @@
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
         
+        $stmt = $pdo->prepare($sql);
         $in = '%'.$key.'%';
         $stmt->bindParam(':key', $in, PDO::PARAM_STR);
-        $stmt = $pdo->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         $result = Array();
