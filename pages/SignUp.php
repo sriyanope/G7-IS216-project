@@ -69,7 +69,7 @@
               );
 
               function registerUser($username, $fullName, $gender, $dob, $email, $hashedPassword) {
-                  $sql = "insert into user (username, fullName, gender, dob, email, password) values (:username, :fullName, :gender, :dob, :email, :hashedPassword);"; 
+                  $sql = "insert into users (username, fullName, gender, dob, email, password) values (:username, :fullName, :gender, :dob, :email, :hashedPassword);"; 
 
                   $connMgr = new ConnectionManager();
                   $pdo = $connMgr->getConnection();
@@ -147,13 +147,13 @@
                       <a class="nav-link mx-2 disabled" href="#"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
+                      <a class="nav-link mx-2" href="#"><i class="events"></i> Events</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                      <a class="nav-link mx-2" href="#"><i class="findAGarden"></i> Find A Garden</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a href="Profile.php"><button class="btn text-white" href="#">
+                      <a href="#"><button class="btn text-white" href="#">
                           <img src="../icons.png" width="30">
                           My Profile</button></a>
                     </li>
