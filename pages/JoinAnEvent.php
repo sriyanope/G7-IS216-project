@@ -138,14 +138,13 @@
 
       <!--Start of Main Body-->
         <div class="row">
-          <div class="col">Filter By:</div>
+          <div class="col">Filter By Region:</div>
         </div>
 
         <div class="row">
           <!--Start of Filter-->
           <div class="col-2">
             <div class="bg-light">
-              <label class="mx-3 mt-3">Location</label><br>
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
                 <label class="form-check-label">North</label>

@@ -176,7 +176,7 @@
 
         <!--Start of Filter-->
         <div class="row">
-          <div class="col">Filter By Location:</div>
+          <div class="col">Filter By Region:</div>
         </div>
 
         <div class="row">
@@ -184,28 +184,31 @@
 
           <div class="col-2">
             <div class="bg-light">
-              <div class="form-check">
+              <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
                 <label class="form-check-label">North</label>
               </div>
-              <div class="form-check">
+              <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
                 <label class="form-check-label">North-East</label>
               </div>
-              <div class="form-check">
+              <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
                 <label class="form-check-label">Central</label>
               </div>
-              <div class="form-check">
+              <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
                 <label class="form-check-label">East</label>
               </div>
-              <div class="form-check">
+              <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
                 <label class="form-check-label">West</label>
               </div>
             </div>
+
           </div>
+
+
           <!--End of Filter-->
 
           <!--Start of Garden List-->
@@ -220,21 +223,23 @@
               <div id="map"></div>
               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
             </div>
+
+          <!--Start of Saved Gardens-->
+          <div class="row mt-5">
+            <h4>Saved Gardens</h4>
+          </div>
+
+          <div class="row bg-light mt-2 mb-5 border">
+            <div class="col pt-3">
+              <ul id="savedGardens"></ul>
+            </div>
+          </div>
+          <!--End of Saved Gardens-->
           </div>
           <!--End of Map Location-->
-        </div>
-        
-        <!--Start of Saved Gardens-->
-        <div class="row mt-5">
-          <h2>Saved Gardens</h2>
+          
         </div>
 
-        <div class="row bg-light mt-2 mb-5 border">
-          <div class="col p-4">
-            <ul id="savedGardens"></ul>
-          </div>
-        </div>
-        <!--End of Saved Gardens-->
       </div>
       <!--End of body-->
 
@@ -315,7 +320,7 @@
                 let gardenID = garden.gardenID;
                 let gardenName = garden.gardenName;
 
-                output += `<li><span>${gardenName}</span></li>`;
+                output += `<li class='my-2'><span>${gardenName}</span></li>`;
               }
               document.getElementById("savedGardens").innerHTML = output;
                 })

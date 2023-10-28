@@ -15,6 +15,8 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
+            <!--Vue-->
+            <script src="https://unpkg.com/vue@next"></script>
 
             <style>
                a {
@@ -173,12 +175,14 @@
                     <div class="mb-5">Create an account to enjoy all the features like joining events and finding community gardens near you!</div>
 
                     <form method="post" onsubmit="return validateForm()">
-                      <div class="form-outline mb-4">
-                        <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username">
+                    <div class="form-outline mb-4" id="appUsername">
+                        <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username" v-model="username1">
+                        <span v-if="usernameCheck()" style="color:red;">Username has to be at least 8 characters</span>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="name" class="form-control inputstl" name="name1" id="name1" placeholder="Enter Your Full Name">
+                      <div class="form-outline mb-4" id="appFullName">
+                        <input type="name" class="form-control inputstl" name="name1" id="name1" placeholder="Enter Your Full Name" v-model="fullName1">
+                        <span v-if="fullNameCheck()" style="color:red;">Full Name has to be at least 3 characters and does not contain spaces only</span>
                       </div>
 
                       <div class="form-outline mb-4">
@@ -193,17 +197,20 @@
                         <input type="date" class="form-control inputstl" name="dob1" id="dob1">
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="email" class="form-control inputstl" name="email1" id="email1" placeholder="Enter Email">
+                      <div class="form-outline mb-4" id="appEmail">
+                        <input type="text" class="form-control inputstl" name="email1" id="email1" placeholder="Enter Email" v-model="email1">
+                        <span v-if="emailCheck()" style="color:red;" style="color:red;">Enter a valid email</span>
                         </dv>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="password" class="form-control inputstl" name="password1" id="password1" placeholder="Enter Password">
+                      <div class="form-outline mb-4" id="appPassword">
+                        <input type="password" class="form-control inputstl" name="password1" id="password1" placeholder="Enter Password" v-model="password1">
+                        <span v-if="passwordCheck()" style="color:red;">Password has to be at least 8 characters</span>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" onpaste="return false;">
+                      <div class="form-outline mb-4" id="appConfirmPassword">
+                        <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" v-model="confirmPassword1" onpaste="return false;">
+                        <span v-if="confirmPasswordCheck()" style="color:red;">Confirm Password does not match with Password</span>
                       </div>
 
                       <?php 
@@ -221,6 +228,75 @@
                     </form>
 
                     <script>
+
+
+
+                      const appUsername = Vue.createApp({
+                        data(){
+                          return {username1: ""}
+                        },
+                        methods: {
+                          usernameCheck() {
+                            if(this.username1.length > 0 && this.username1.length < 8){
+                              return true
+                            }
+                          }
+                        }
+                      }).mount('#appUsername');
+
+                      const appFullName = Vue.createApp({
+                          data(){
+                            return {fullName1: ""}
+                          },
+                          methods: {
+                            fullNameCheck() {
+                              if(this.fullName1.length > 0 && (!/[^ ]/.test(this.fullName1) || this.fullName1.length < 3)){
+                                return true
+                              }
+                            }
+                          }
+                        }).mount('#appFullName');
+
+                        const appEmail = Vue.createApp({
+                          data(){
+                            return {email1: ""}
+                          },
+                          methods: {
+                            emailCheck() {
+                              const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                              if (this.email1.length > 0 && !emailPattern.test(this.email1)) {
+                                return true
+                              }
+                            }
+                          }
+                        }).mount('#appEmail');
+
+                        const appPassword = Vue.createApp({
+                          data(){
+                            return {password1: ""}
+                          },
+                          methods: {
+                            passwordCheck() {
+                              if(this.password1.length > 0 && this.password1.length < 8){
+                                return true
+                              }
+                            }
+                          }
+                        }).mount('#appPassword');
+
+                        const appConfirmPassword = Vue.createApp({
+                          data(){
+                            return {confirmPassword1: ""}
+                          },
+                          methods: {
+                            confirmPasswordCheck() {
+                              var password1 = document.getElementById("password1").value;
+                              return (this.confirmPassword1.length > 0 && password1 !== this.confirmPassword1);
+                            }
+                          }
+                        }).mount('#appConfirmPassword');
+
+
 
                       function validateForm() {
                           

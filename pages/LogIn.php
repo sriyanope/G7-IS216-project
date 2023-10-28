@@ -17,6 +17,8 @@
             <link rel="stylesheet" href="../style.css">
             <!--reCAPTHA v2.0-->
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <!--Vue-->
+            <script src="https://unpkg.com/vue@next"></script>
 
             <style>
                a {
@@ -52,6 +54,13 @@
 
                 .bggreen {
                     background-color: #B7CF9B;
+                }
+                .text-center1 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: auto;
+                    margin-left: auto;
                 }
 
 
@@ -170,15 +179,19 @@
                     
                     
                     <form method="post" onsubmit="return validateForm()">
-                    <div class="form-outline mb-4">
-                        <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username"/>
+                    <div class="form-outline mb-4" id="appUsername">
+                        <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username" v-model="username1"/>
+                        <span v-if="usernameCheck()" style="color:red;">Username has to be at least 8 characters</span>
                     </div>
         
-                    <div class="form-outline mb-4">
-                        <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password"/>
+                    <div class="form-outline mb-4" id="appPassword">
+                        <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password" v-model="password1"/>
+                        <span v-if="passwordCheck()" style="color:red;">Password has to be at least 8 characters</span>
                     </div>
 
-                    <div class="g-recaptcha align-content-center" data-sitekey="6LehUX4oAAAAABXpjfAUapqrTexUmEPXuQzRIs9v" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
+                    <div class="text-center1">
+                        <div class="g-recaptcha" data-sitekey="6LehUX4oAAAAABXpjfAUapqrTexUmEPXuQzRIs9v" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
+                        </div>
                     </div>
 
                     <?php 
@@ -206,6 +219,34 @@
 
 
         <script>
+
+            const appUsername = Vue.createApp({
+                data(){
+                    return {username1: ""}
+                },
+                methods: {
+                    usernameCheck() {
+                    if(this.username1.length > 0 && this.username1.length < 8){
+                        return true
+                    }
+                    }
+                }
+                }).mount('#appUsername');
+
+
+            const appPassword = Vue.createApp({
+                data(){
+                return {password1: ""}
+                },
+                methods: {
+                passwordCheck() {
+                    if(this.password1.length > 0 && this.password1.length < 8){
+                    return true
+                    }
+                }
+                }
+            }).mount('#appPassword');
+
             function validateForm() {
                           
               var msg = "";
