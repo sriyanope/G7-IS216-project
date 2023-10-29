@@ -1,4 +1,5 @@
 <!doctype html>
+    <?php session_start(); ?>
     <html lang="en">
         <head>
             <meta charset="utf-8">
@@ -77,11 +78,16 @@
                      color: white; /* Icon color */
                      font-size: 1.5rem; /* Icon size */
                  }
+
+                 #map {
+                    height: 60vh;
+                }
             </style>
 
             <title>Garden Page</title>
             
         </head>
+
         <body>
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
@@ -119,7 +125,7 @@
                 <div class="row pt-5"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
-                        <h2><b>Community Garden @ Bedok</b></h2>
+                        <h2><b><span id="gardenName"></span></b></h2>
                     </div> 
                 </div>
 
@@ -169,24 +175,6 @@
                     </div>
                 </div>
                 
-                <!-- My Notes -->
-
-                <div class="row pt-3"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-                        <h2><b>My Notes</b></h2>
-                    </div> 
-                </div>
-
-                <div class="row pt-1"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-                        <p>
-                            At our Tree Planting Event, you can expect an inspiring day of hands-on environmental action. Participants will have the opportunity to get their hands dirty as we work together to plant a variety of native trees in a designated area. Don't worry if you're new to tree planting; our experienced team will provide all the necessary guidance and tools. You'll learn about the importance of tree planting for our ecosystem, climate, and local community. Throughout the event, there will be engaging educational sessions and discussions on environmental conservation. So, come prepared to dig holes, place saplings in the ground, and nurture these young trees into a thriving forest. It's a day filled with camaraderie, learning, and the satisfaction of contributing to a healthier planet. Join us in making a tangible difference and be a part of this meaningful conservation effort!
-                        </p>
-                    </div> 
-                </div>
-
                 <!-- My Pictures -->
 
                 <div class="row pt-3"> 
@@ -226,7 +214,7 @@
                 <div class="row pt-2"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
-                        <h2><b>Update My Notes</b></h2>
+                        <h2><b>My Notes</b></h2>
                     </div> 
                 </div>
 
@@ -239,38 +227,107 @@
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    
                                 <label for="notes" class="form-label">Notes</label>
-                                <textarea id="Notes" name="notes" class="form-control" rows="4" cols="50"></textarea>
+                                <textarea name="notes" class="form-control" rows="4" cols="50" id="note"></textarea>
                               </div>
                               <div class="input-group mb-3">
                                 <label class="form-label pe-3 mt-3" for="UploadGardenPicture">Add Pictures</label><br>
                                 <input type="file" class="form-control d-block mt-3" id="UploadGardenPicture">
                               </div>
-                            <button type="submit" name="submit" class="btn text-white mb-5 mt-3">Update Notes</button>
+                            <button type="button" name="submit" class="btn text-white mb-5 mt-3" onclick="updateNote()">Update Notes</button>
                           </form>
-
+                          <h2><b>Location</b></h2>
+                          <div id="map"></div>
                     </div> 
+
                 </div>
-
-
-                
-
-
-             
-
-
-
-
-
-
-
-
             </div>
 
 
+            <?php $gardenId = $_GET['garden']; ?>;
+            
+            <script>
+                function initMap(lat, lng) {
+                    lat = Number(lat);
+                    lng = Number(lng);
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        center: { lat: lat, lng: lng },
+                        zoom: 17,
+                        mapId: "40c99f5bd3e0f892"
+                    });
+                    
+                    var marker = new google.maps.Marker({
+                        position: { lat: Number(lat), lng: Number(lng) },
+                        map
+                    });
+                    }
+
+                var username = <?php echo $_SESSION['username']; ?>;
+                var gardenId = <?php echo $gardenId; ?>;
+                url = "MySQL/GardenPageInfo.php?type=getGarden&gardenId=" + gardenId;
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        document.getElementById("gardenName").innerText = data.garden[0].gardenName;
+                        lat = Number(data.garden[0].latitude);
+                        lng = Number(data.garden[0].longitude);
+                        initMap(lat, lng);
 
 
+                        })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                
+
+                function getNote() {
+                url = "MySQL/GardenPageInfo.php?type=getNote&gardenId=" + gardenId + "&username=" + username;
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if(data.gardenNote.length > 0){
+                            document.getElementById("note").innerText = data.gardenNote[0].note;
+                        }
+                        })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                function updateNote() {
+                    note = document.getElementById("note").value;
+                    url = "MySQL/GardenPageInfo.php?type=updateNote&gardenId=" + gardenId + "&username=" + username + "&note=" + note;
+
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response;
+                        })
+                        .then(data => {
+                            getNote();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+
+                getNote();
+
+            </script>
 
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       </body>
     </html>

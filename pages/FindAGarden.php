@@ -72,7 +72,7 @@
     
             function retrieveLocDetails(garden) {
               if(typeof garden === 'string'){
-                garden = garden.split("_");
+                garden = garden.split("aaaaa");
               }
                 return {
                   gardenId: garden[0],
@@ -257,7 +257,7 @@
             let longitude = Number(garden.longitude);
             let region = garden.region;
             
-            let v = gardenID + "_" + gardenName + "_" + latitude + "_" + longitude + "_" + region;
+            let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region;
 
             output += `<div class="card border">
             <div class="card-body">
@@ -299,8 +299,9 @@
         }
 
 
-        function selectedGarden(input){
-
+        function selectedGarden(garden){
+          garden = retrieveLocDetails(garden);
+          window.location.href = "GardenPage.php?garden=" + garden.gardenId;
         }
 
 
