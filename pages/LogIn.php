@@ -101,7 +101,7 @@
 
 
             if(isset($_POST['submit'])){
-                $secret = "6LehUX4oAAAAADi4e2nB_zOqJCDD1xmWzyly9Pme";
+                $secret = "6Ld-fNcoAAAAAHSdGkVONlDrrecsy-4JMsrROuBi";
                 $response = $_POST["g-recaptcha-response"];
                 $remoteip = $_SERVER['REMOTE_ADDR'];
                 $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip";
@@ -190,7 +190,7 @@
                     </div>
 
                     <div class="text-center1">
-                        <div class="g-recaptcha" data-sitekey="6LehUX4oAAAAABXpjfAUapqrTexUmEPXuQzRIs9v" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
+                        <div class="g-recaptcha" data-sitekey="6Ld-fNcoAAAAAOS824_2sZOSzTMzy1xDo5CkBsoN" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
                         </div>
                     </div>
 
