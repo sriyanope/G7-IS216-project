@@ -78,12 +78,7 @@
             $location = $_POST['location'];
             $about = $_POST['about'];
             $gardenId = 10; //HARDCODEDDDDDDDDDDDDDDDDDDDDDDD
-
-            // $startTime = strtotime($startTime);
-            // $startTime = date('H:i', $startTime);
-            // $endTime = strtotime($endTime);
-            // $endTime = date('H:i', $endTime);
-          
+         
             $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :username, :gardenId);";
 
             $connMgr = new ConnectionManager();
@@ -155,7 +150,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="category" class="form-label">Event Category</label>
-                  <input type="text" class="form-control" name="category" id="category">
+
                 </div>
                 <div class="mb-3">
                     <label for="eventDate" id="eventDate" class="form-label">Date</label>
@@ -171,7 +166,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="noOfSlots" class="form-label">No. of slots</label>
-                    <input type="number" class="form-control" name="noOfSlots" id="noOfSlots">
+                    <input type="number" class="form-control" name="noOfSlots" id="noOfSlots" min=0 max=50>
                   </div>
                   <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
@@ -205,7 +200,7 @@
                   // Verify if the start time is more recent than the end time
                   if (date1.getTime() > date2.getTime()) {
                     check = false;
-                    msg += "End Time must be after Start Time";;
+                    msg += "End Time must be after Start Time";
                   }
                    
                   if(!check){

@@ -128,13 +128,17 @@
               </span>
             </div> -->
             <form class="d-flex">
-              <input class="form-control border-end-0 border rounded-pill" type="search" id="search" placeholder="Search an Event" onkeyup="filter(this.value)">
+              <input class="form-control border-end-0 border rounded-pill" type="search" id="search" placeholder="Search" onkeyup="filter(this.value)">
             </form>
 
           </div>
           <div class="col"></div>
         </div>
       <!--End of Search Row-->
+
+      <div class="row">
+        <p class="text-center pb-4">Need some inspiration before starting your own? <a href="CreateEvent.php">Create an Event!</a></p>
+        </div>
 
       <!--Start of Main Body-->
         <div class="row">
@@ -203,7 +207,7 @@
           }
           searchKey = document.getElementById("search").value;
 
-          url = "MySQL/Event.php?key=" + searchKey + "&regions=" + selectedRegions;
+          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions;
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -256,14 +260,23 @@
             let eventDate = event.eventDate;
             let startTime = event.startTime;
             let endTime = event.endTime;
-            let noOfSlots = event.noOfSlots;
-            let filled = event.filled;
+            let noOfSlots = Number(event.noOfSlots);
+            let filled = Number(event.filled);
             let about = event.about;
             let image = event.image;
             let review = event.review;
             let comment = event.comment;
             let username = event.username;
             let gardenId = event.gardenId;
+            let gardenName = event.gardenName;
+
+            if(filled < (noOfSlots/2)){
+              slots = "<span style='color:green'>" + filled + "/" + noOfSlots + "</span>";
+            }else if(filled == noOfSlots){
+              slots = "<span style='color:red'>" + filled + "/" + noOfSlots + "</span>";
+            }else{
+              slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + "</span>";
+            }
             
             eventDate = convertDateFormat(eventDate);
             startTime = convertTo12HourFormat(startTime);
@@ -278,10 +291,10 @@
                   <a href="" class="text-decoration-none text-dark">
                     <h4>${eventTitle}</h4>
                     <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
-                    <p><img src="../public/images/location pin.svg" class="pe-1">${gardenId}</p>
+                    <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
                   </a>
                   <div class="d-flex justify-content-between align-items-center">
-                    <span>${filled}/${noOfSlots}</span>
+                    ${slots}
                     <span><button type="button" class="btn btn-primary" value="${v}" onclick='save(this.value)'>Save</button></span>
                   </div>
                 </div>
@@ -292,7 +305,7 @@
         }
 
 
-        url = "MySQL/Event.php?key=&regions=north,north-east,central,east,west";
+        url = "MySQL/Event.php?type=getAllEvents&key=&regions=north,north-east,central,east,west";
         fetch(url)
           .then(response => {
               if (!response.ok) {
