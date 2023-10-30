@@ -213,20 +213,33 @@
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
-
                     <h6 class="pt-2" style="color: #f3c623;"><span id="slotsLabel"></span></h6>
-
                 </div>
             </div>
 
+            <div class="row"> 
+                <div class="col-1"></div> 
+                <div class="col-10">
+                <h4>Participants</h4>
+                <div class="row bg-light mt-2 mb-5 border">
+                    <div class="col pt-3">
+                    <ul id="participants"></ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+
+
             <!-- participants -->
-            <div class="row pt-4">
+            <!-- <div class="row pt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;">
+                    <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;"> -->
 
-
-                        <div class="row pt-4">
+                    
+                        <!-- <div class="row pt-4">
                             <div class="col text-center">
                                     <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
                                     <div>John</div>
@@ -279,16 +292,16 @@
                                 <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
                                 <div>John</div>
                             </div>
-                        </div>
-
+                        </div> -->
+<!-- 
 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- about the group -->
 
-            <div class="row"> 
+            <!-- <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
 
@@ -386,7 +399,7 @@
                 <div class="col-1" style="display: flex; align-items: center;">
                     <span style="display: inline-block; align-items: left;">15%</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Edit This Event -->
             <div class="row"> 
@@ -492,6 +505,29 @@
                     console.error('Error:', error);
                 });
 
+
+                url = "MySQL/UserEvent.php?eventId=" + eventId;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    output = "";
+                    for(user of data.user){
+                        username = user.username;
+                        fullName = user.fullName;
+                        output += `<li class='my-2'><a href='Profile.php?username=${username}' style='text-decoration: none;color:black'><span>${fullName}</span></a></li>`;
+                        document.getElementById("participants").innerHTML = output;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+
                 function enableInput() {
                     document.getElementById("eventTitle").removeAttribute("disabled");
                     document.getElementById("category").removeAttribute("disabled");
@@ -564,8 +600,6 @@
                     }
                     return "Invalid Date"; // Handle invalid input
                 }
-
-
 
             </script>
 

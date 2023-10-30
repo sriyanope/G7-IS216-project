@@ -216,19 +216,10 @@
             </div>
             <div class="row text-center">
                 <div class="col text-center mb-3">
-                    Click me! ->
+
                     <button type="button" class=" btn bg-dark text-white mx-2"> <!-- onclick='copyFunction()' was meant to be here-->
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                  <a href="#">
-                  <button type="button" class=" btn bg-dark text-white mx-2">
-                        <img src="../public/images/linkedin.png" class="editProfileimg"> 
-                        LinkedIn
-                    </button>
-                    </a>
+
                     <a href="#" id="instagram">
                     <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/instagram.png" class="editProfileimg"> 

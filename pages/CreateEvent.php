@@ -150,8 +150,16 @@
                 </div>
                 <div class="mb-3">
                   <label for="category" class="form-label">Event Category</label>
-
+                  <select class="form-select" aria-label="Default select example" name="category">
+                      <option value="Workshop">Workshop</option>
+                      <option value="Garden Workday">Garden Workday</option>
+                      <option value="Education">Education</option>
+                      <option value="Harvest">Harvest</option>
+                      <option value="Leisure">Leisure</option>
+                      <option value="Leisure">Others</option>
+                    </select>
                 </div>
+                
                 <div class="mb-3">
                     <label for="eventDate" id="eventDate" class="form-label">Date</label>
                     <input type="date" class="form-control" name="eventDate" id="eventDate">

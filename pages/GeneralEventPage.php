@@ -146,6 +146,7 @@
                     <div class="col-1"></div> 
                     <div class="col-10">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
+                        <p>Category: <span id="categoryLabel"></span></p>
                     </div> 
                 </div>
 
@@ -427,6 +428,7 @@
                     document.getElementById("eventTitleLabel").innerText = data.event[0].eventTitle;
                     document.getElementById("locationDateTimeLabel").innerHTML = data.event[0].gardenName + "<br>" + convertDateFormat(data.event[0].eventDate) + " • " + convertTo12HourFormat(data.event[0].startTime) + " - " + convertTo12HourFormat(data.event[0].endTime);
                     document.getElementById("fullNameLabel").innerText = data.event[0].fullName;
+                    document.getElementById("categoryLabel").innerText = data.event[0].category;
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
                     document.getElementById("aboutLabel").innerText = data.event[0].about;
