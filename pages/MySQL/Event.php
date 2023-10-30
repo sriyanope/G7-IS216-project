@@ -27,6 +27,18 @@
     //     $about = $_GET['about'];
     //     $eventId = $_GET['eventId'];
     //     updateEvent($eventTitle, $category, $eventDate, $startTime, $endTime, $noOfSlots, $about, $eventId);
+     }else if($type == "joinEvent"){
+        $eventId = $_GET['eventId'];
+        joinEvent($eventId, $username);
+     }else if($type == "leaveEvent"){
+        $eventId = $_GET['eventId'];
+        leaveEvent($eventId, $username);
+     }else if($type == "checkJoinedEvent"){
+        $eventId = $_GET['eventId'];
+        checkJoinedEvent($eventId, $username);
+     }else if($type == "getFilled"){
+        $eventId = $_GET['eventId'];
+        getFilled($eventId);
      }
 
     function getAllEvents() {
@@ -87,7 +99,7 @@
     }
 
     function getEventByEventId($eventId1) {
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventId = :eventId1;";
+        $sql = "select * from users u join event e join garden g on e.gardenID = g.gardenID where eventId = :eventId1;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -101,7 +113,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'image' => $row["image"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'image' => $row["image"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'fullName' => $row["fullName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"]);
         }
         
         $stmt = null;
@@ -131,6 +143,106 @@
         $stmt = null;
         $pdo = null;
         
+    }
+
+    function checkJoinedEvent($eventId, $username){
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+
+        $sql = "select * from userevent where eventId = :eventId and username = :username;";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $result = Array();
+        $result['event'] = [];
+
+        while($row = $stmt->fetch()) {
+            $result['event'][] = array('eventId' => $row["eventID"]);
+        }
+
+        $stmt = null;
+        $pdo = null;
+
+        echo json_encode($result);
+    }
+
+    function joinEvent($eventId, $username){
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+
+        $sql = "insert into userevent values (:eventId, :username, '');";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+
+        $sql = "update event set filled = filled + 1 where eventId = :eventId;";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        $stmt = null;
+        $pdo = null;
+    }
+
+    function leaveEvent($eventId, $username){
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+
+        $sql = "delete from userevent where eventId = :eventId and username = :username;";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+
+        $sql = "update event set filled = filled - 1 where eventId = :eventId;";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        $stmt = null;
+        $pdo = null;
+    }
+
+    function getFilled($eventId) {
+        $sql = "select * from event where eventId = :eventId;";
+
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+        
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $result = Array();
+        $result['event'] = [];
+        
+        while($row = $stmt->fetch()) {
+            $result['event'][] = array('filled' => $row["filled"], 'noOfSlots' => $row["noOfSlots"]);
+        }
+        
+        $stmt = null;
+        $pdo = null;
+        echo json_encode($result);
     }
 
 ?>

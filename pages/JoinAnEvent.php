@@ -286,9 +286,9 @@
 
             output += `<div class="col">
               <div class="card h-100">
-                <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
+                <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
                 <div class="card-body">
-                  <a href="" class="text-decoration-none text-dark">
+                  <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
                     <h4>${eventTitle}</h4>
                     <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
                     <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>

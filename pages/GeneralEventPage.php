@@ -14,7 +14,7 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="../style.css">
             <link rel="stylesheet" href="organiserView/progressBar.css">
             <link rel="stylesheet" href="starRating.css">
            
@@ -92,6 +92,9 @@
                     height: 40px;
                     width: 50%;
                 }
+                #map {
+                    height: 60vh;
+                }
 
             </style>
 
@@ -112,13 +115,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2 disabled" href="#"><i class="about"></i> About</a>
+                      <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="../JoinAnEvent.html"><i class="events"></i> Events</a>
+                      <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="../FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a href="Profile.php"><button class="btn text-white" href="#">
@@ -135,14 +138,14 @@
                 <div class="row pt-5"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
-                        <h2><b>Tree Planting @ Fort Canning</b></h2>
+                        <h2><b id="eventTitleLabel"></b></h2>
                     </div> 
                 </div>
 
                 <div class="row"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
-                        <p><img src="../public/images/location pin.svg"> 51 Canning Rise, S179872 • 23 October 2023 • 3pm-7pm</p>
+                        <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
                     </div> 
                 </div>
 
@@ -167,7 +170,7 @@
                             <img class="d-block w-100" src="../public/images/EventImage.jpg" alt="Second slide">
                             </div>
                             <div class="carousel-item">
-                            <img class="d-block w-100" src="../../public/images/randomGarden.jpeg" alt="Third slide">
+                            <img class="d-block w-100" src="../public/images/randomGarden.jpeg" alt="Third slide">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -187,8 +190,8 @@
                 <div class="col-4">
 
                     <!-- host jeremy -->
-                    <h3 class="pt-4"><b>Event host
-                        <span style="color:#54493B">JEREMY</span>
+                    <h3 class="pt-4"><b>Event host:
+                        <a href="#" id="profileLabel" style="text-decoration:none;color:black;"><span style="color:#54493B" id="fullNameLabel"></span></a>
                         <!-- progress bar -->
                         <div class="container">
                             <i class="fas fa-3x fa-battery-full icon"></i>
@@ -199,10 +202,11 @@
                             </div>
                         </div>
                         <!-- filled -->
-                        <h6 class="pt-2" style="color: #f3c623;">23/41 Filled</h6>
+                        <h6 class="pt-2" style="color: #f3c623;" id="slotsLabel"></h6>
 
                         <!-- Join -->
-                        <button type="submit" class="btn text-white" id="join">Join</button>
+                        <div style="color:red;" id='fullLabel'></div>
+                        <button type="submit" class="btn text-white" id="joinBtn" onclick="joinEvent()">Join</button>
                     </b></h3>
 
                 </div>
@@ -234,7 +238,7 @@
                 <div class="col-1"></div> 
                 <div class="col-5">
 
-                    <p>At our Tree Planting Event, you can expect an inspiring day of hands-on environmental action. Participants will have the opportunity to get their hands dirty as we work together to plant a variety of native trees in a designated area. Don't worry if you're new to tree planting; our experienced team will provide all the necessary guidance and tools. You'll learn about the importance of tree planting for our ecosystem, climate, and local community. Throughout the event, there will be engaging educational sessions and discussions on environmental conservation. So, come prepared to dig holes, place saplings in the ground, and nurture these young trees into a thriving forest. It's a day filled with camaraderie, learning, and the satisfaction of contributing to a healthier planet. Join us in making a tangible difference and be a part of this meaningful conservation effort!</p>
+                    <p id="aboutLabel"></p>
 
                 </div>
             </div>
@@ -248,7 +252,7 @@
             </div>
 
             <!-- Reviews -->
-             <div class="row"> 
+      <!--       <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-5">
 
@@ -257,13 +261,13 @@
                 </div>
             </div>
 
-            <!-- Review Box-->
+
             <div class="row pt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
                     <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;">
 
-                        <!-- one review -->
+
                         <div class="row pt-5">
                             <div class="col-1"></div>
                             <div class="col-6">
@@ -288,7 +292,7 @@
                             </div>
                         </div>
 
-                        <!-- one review -->
+
                         <div class="row pt-5">
                             <div class="col-1"></div>
                             <div class="col-6">
@@ -313,7 +317,7 @@
                             </div>
                         </div>
 
-                        <!-- one review -->
+
                         <div class="row pt-5">
                             <div class="col-1"></div>
                             <div class="col-6">
@@ -343,22 +347,22 @@
                 </div>
             </div>
 
-             <!-- hr -->
+
              <div class="row">
                 <div class="col-1"></div>
                 <div class="col-5 pt-3">
                     <hr>
                 </div>
-            </div>
+            </div>-->
 
             <!-- Comments -->
-            <div class="row"> 
+            <!-- <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
 
                     <h3 class="pt-4"><b>Add Your Comments</b></h3>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Edit Form -->
 
@@ -366,7 +370,7 @@
                 <div class="col-1"></div> 
                 <div class="col-10">
 
-                    <form id="addComments" method="post">
+                    <!-- <form id="addComments" method="post">
                         <div class="mb-3">
                           <label for="Name" class="form-label">Name</label>
                           <input type="text" class="form-control" id="Name" aria-describedby="Name">
@@ -397,31 +401,176 @@
                             <input type="file" class="form-control d-block" id="UploadEventPicture">
                         </div>
                         <button type="submit" class="btn text-white" id="submit">Submit</button>
-                      </form>
+                      </form> -->
+                      <h2><b>Location</b></h2>
+                      <div id="map"></div>
                       </div>
+
                       </div>
-                    
+
                 </div>
+
             </div>
 
+            <script>
+
+                eventId = <?php echo $_GET['eventId']; ?>;
+                url = "MySQL/Event.php?type=getEventByEventId&eventId=" + eventId;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("eventTitleLabel").innerText = data.event[0].eventTitle;
+                    document.getElementById("locationDateTimeLabel").innerHTML = data.event[0].gardenName + "<br>" + convertDateFormat(data.event[0].eventDate) + " • " + convertTo12HourFormat(data.event[0].startTime) + " - " + convertTo12HourFormat(data.event[0].endTime);
+                    document.getElementById("fullNameLabel").innerText = data.event[0].fullName;
+                    document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
+                    checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
+                    document.getElementById("aboutLabel").innerText = data.event[0].about;
+                    profileLink = "Profile.php?username=" + data.event[0].username;
+                    document.getElementById("profileLabel").setAttribute("href", profileLink);
+                    
+                    
+                    lat = Number(data.event[0].latitude);
+                    lng = Number(data.event[0].longitude);
+                    initMap(lat, lng);
+                    
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
 
 
+                url = "MySQL/Event.php?type=checkJoinedEvent&eventId=" + eventId;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if(data.event.length > 0){
+                        document.getElementById("joinBtn").setAttribute("onclick", "leaveEvent()");
+                        document.getElementById("joinBtn").innerText = "Leave";
+                    }
 
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+                
+
+                function convertTo12HourFormat(time24) {
+                    const [hours, minutes] = time24.split(':');
+                    let period = 'AM';
+                    let hours12 = parseInt(hours);
+
+                    if (hours12 >= 12) {
+                        period = 'PM';
+                        if (hours12 > 12) {
+                            hours12 -= 12;
+                        }
+                    }
+
+                    return `${hours12}:${minutes} ${period}`;
+                }
+
+                function convertDateFormat(inputDate) {
+                    const parts = inputDate.split("-");
+                    if (parts.length === 3) {
+                        const [year, month, day] = parts;
+                        const outputDate = `${day}-${month}-${year}`;
+                        return outputDate;
+                    }
+                    return "Invalid Date"; // Handle invalid input
+                }
+
+                function initMap(lat, lng) {
+                    lat = Number(lat);
+                    lng = Number(lng);
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        center: { lat: lat, lng: lng },
+                        zoom: 17,
+                        mapId: "40c99f5bd3e0f892"
+                    });
+                    
+                    var marker = new google.maps.Marker({
+                        position: { lat: lat, lng: lng },
+                        map
+                    });
+                    }
+                
+                function joinEvent() {
+                    url = "MySQL/Event.php?type=joinEvent&eventId=" + eventId;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response;
+                    })
+                    .then(data => {
+                        document.getElementById("joinBtn").setAttribute("onclick", "leaveEvent()");
+                        document.getElementById("joinBtn").innerText = "Leave";
+                        updateFilled();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                function leaveEvent() {
+                    url = "MySQL/Event.php?type=leaveEvent&eventId=" + eventId;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response;
+                    })
+                    .then(data => {
+                        document.getElementById("joinBtn").setAttribute("onclick", "joinEvent()");
+                        document.getElementById("joinBtn").innerText = "Join";
+                        updateFilled();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                function updateFilled(){
+                    url = "MySQL/Event.php?type=getFilled&eventId=" + eventId;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots
+                        checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                function checkFullSlots($filled, $totalSlots){
+                    if($filled == $totalSlots && document.getElementById("joinBtn").getAttribute("onclick") == "joinEvent()"){
+                        document.getElementById("joinBtn").setAttribute("class", "btn text-white d-none");
+                        document.getElementById("fullLabel").innerText = "Slots are full!";
+                    }
+                }
+
+            </script>
             
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -442,7 +591,7 @@
 
 
 
-
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       </body>
     </html>
