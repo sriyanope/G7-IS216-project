@@ -132,8 +132,7 @@
                 <div class="row"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
-                        <p><img src="../public/images/location pin.svg"> Blk 635 Bedok North, Singapore 179872 • 
-                            <span style="color: gray;">Vegetable Garden</span>
+                        <p><img src="../public/images/location pin.svg"><span id="address"></span>
                         </p>
                         
                     </div> 
@@ -273,6 +272,7 @@
                     })
                     .then(data => {
                         document.getElementById("gardenName").innerText = data.garden[0].gardenName;
+                        document.getElementById("address").innerText = data.garden[0].address;
                         lat = Number(data.garden[0].latitude);
                         lng = Number(data.garden[0].longitude);
                         initMap(lat, lng);

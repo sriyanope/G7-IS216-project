@@ -137,7 +137,7 @@
       <!--End of Search Row-->
 
       <div class="row">
-        <p class="text-center pb-4">Need some inspiration before starting your own? <a href="CreateEvent.php">Create an Event!</a></p>
+        <p class="text-center pb-4">Need some inspiration before starting your own? <a href="CreateEvent.php" style='color:black;'>Create an Event!</a></p>
         </div>
 
       <!--Start of Main Body-->
@@ -271,11 +271,11 @@
             let gardenName = event.gardenName;
 
             if(filled < (noOfSlots/2)){
-              slots = "<span style='color:green'>" + filled + "/" + noOfSlots + "</span>";
-            }else if(filled == noOfSlots){
-              slots = "<span style='color:red'>" + filled + "/" + noOfSlots + "</span>";
+              slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
+            }else if(filled >= noOfSlots - 3){
+              slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
             }else{
-              slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + "</span>";
+              slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
             }
             
             eventDate = convertDateFormat(eventDate);

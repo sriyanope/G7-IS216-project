@@ -84,11 +84,6 @@
                     height:25px;
                 }
                
-                .byline{
-                    font-size: 18px;
-                    margin-top: 10px;
-                    color:grey;
-                }
                 .featureTitle{
                     font-family: 'Orelega One', sans-serif;
                     /* position: */
@@ -173,6 +168,33 @@
             
             <div class="row">
                 <div class="form-group">
+
+                    <!-- Edit DOB -->
+                    <div class="col-sm-6 col-centered">
+                        <h2 class="featureTitle">Username:</h2>
+                    </div>
+                    <div class="col-sm-6 col-centered">
+                        <input type="text" class="form-control f-field" id="username" disabled>
+                        <br>
+                    </div>
+
+                    <!-- Edit DOB -->
+                    <div class="col-sm-6 col-centered">
+                        <h2 class="featureTitle">Date of Birth:</h2>
+                    </div>
+                    <div class="col-sm-6 col-centered">
+                        <input type="date" class="form-control f-field" id="dob" disabled>
+                        <br>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="col-sm-6 col-centered">
+                        <h2 class="featureTitle">Gender:</h2>
+                    </div>
+                    <div class="col-sm-6 col-centered">
+                        <input type="text" class="form-control f-field" name="gender" id="gender" disabled >
+                    </div>
+
                     <!-- Edit Name -->
                     <div class="col-sm-6 col-centered">
                         <h2 class="featureTitle">Name:</h2>
@@ -181,41 +203,12 @@
                         <input type="text" class="form-control f-field" name="fname" id="fullName" Placeholder="This name will be displayed for all users to see" >
                     </div>
 
-                    <!-- Edit ByLine -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Byline:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered needs-validation">
-                        <input type="text" class="form-control f-field" name="byline" id="byline" Placeholder="A quirky one liner about yourself" >
-                    </div>
-
-                    <!-- Edit DOB -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Date of Birth:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <input type="date" class="form-control f-field" id="dob" onchange="getAge()" disabled>
-                        <br>
-                        <p id="age"> Your age is: </p>
-                    </div>
-
                     <!-- Edit Email -->
                     <div class="col-sm-6 col-centered">
                         <h2 class="featureTitle">Email:</h2>
                     </div>
                     <div class="col-sm-6 col-centered">
                         <input type="email" class="form-control f-field" name="email" id="email" Placeholder="ilovetrees@email.com" >
-                    </div>
-
-                    <!-- Edit Bio -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Bio:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                         <div class="mb-3"> 
-                             <textarea class="form-control f-field" id="bio" rows="5" col="70"></textarea> 
-                         </div> 
-                        
                     </div>
 
                     <!-- Edit Social Media -->
@@ -245,23 +238,13 @@
                                     </div>
                                    
                                     <li>
-                                        <img src="../public/images/linkedin.png" class="social-img">
-                                        <div class="col-5 d-inline-block m-auto">
-                                            <label for="Linkedin"></label>
-                                            <input
-                                                type="text"
-                                                class="form-control d-inline-block mx-auto"
-                                                name="Linkedin" placeholder="https://www.linkedin.com/in/username"/> 
-                                        </div>
-                                    </li>
-                                    <li>
                                         <img src="../public/images/telegram.png" class="social-img">
                                         <div class="col-5 d-inline-block m-auto">
                                             <label for="telegram"></label>
                                             <input
                                                 type="text"
                                                 class="form-control d-inline-block mx-auto"
-                                                name="telegram" placeholder="@username"
+                                                name="telegram" placeholder="username"
                                                 id="telegram"/> 
                                         </div>
                                     </li>
@@ -270,6 +253,16 @@
                               
                             </div>
                           </div>
+                    </div>
+
+                    <!-- Edit Bio -->
+                    <div class="col-sm-6 col-centered">
+                        <h2 class="featureTitle">Bio:</h2>
+                    </div>
+                    <div class="col-sm-6 col-centered">
+                         <div class="mb-3"> 
+                             <textarea class="form-control f-field" id="bio" rows="5" col="70"></textarea> 
+                         </div> 
                     </div>
 
                     <!-- Save Edit buttons -->
@@ -303,6 +296,8 @@
                   return response.json();
               })
               .then(data => {
+                document.getElementById("username").value = data.user[0].username;
+                document.getElementById("gender").value = data.user[0].gender;
                 document.getElementById("fullName").value = data.user[0].fullName;
                 document.getElementById("dob").value = data.user[0].dob;
                 document.getElementById("email").value = data.user[0].email;
@@ -317,7 +312,6 @@
             
               function updateUserProfile() {
                 let fullName = document.getElementById("fullName").value;
-                let byline = document.getElementById("byline").value;
                 let dob = document.getElementById("dob").value;
                 let email = document.getElementById("email").value;
                 let bio = document.getElementById("bio").value;

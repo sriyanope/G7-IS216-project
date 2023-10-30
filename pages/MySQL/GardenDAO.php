@@ -15,7 +15,7 @@
             $result['garden'] = [];
             
             while($row = $stmt->fetch()) {
-                $result['garden'][] = array('gardenID' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"], 'region' => $row["region"]);
+                $result['garden'][] = array('gardenID' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"], 'region' => $row["region"], 'address' => $row["address"]);
             }
             
             $stmt = null;

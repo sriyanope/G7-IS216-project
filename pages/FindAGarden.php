@@ -79,7 +79,8 @@
                   gardenName: garden[1],
                   latitude: Number(garden[2]),
                   longitude: Number(garden[3]),
-                  region: garden[4]
+                  region: garden[4],
+                  address: garden[5]
                 };
             }
     
@@ -250,19 +251,19 @@
           var output = "";
           document.getElementById("resultCount").innerText = obj.garden.length + " results";
           for(garden of obj.garden){
-
             let gardenID = garden.gardenID;
             let gardenName = garden.gardenName;
             let latitude = Number(garden.latitude);
             let longitude = Number(garden.longitude);
             let region = garden.region;
+            let address = garden.address;
             
-            let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region;
+            let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
 
             output += `<div class="card border">
             <div class="card-body">
                   <h5 class="card-title">${gardenName}</h5>
-                  <p class="card-text">${region}</p>
+                  <p class="card-text">Address: ${address}</p>
                   <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
                   <button type="button" class="btn btn-primary" value="${v}" onclick='selectedGarden(this.value)'>View More</button>
                   <button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this.value)'>Save</button>
