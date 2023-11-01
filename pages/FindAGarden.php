@@ -4,7 +4,6 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +51,13 @@
             background-color: #547D2E;
         }
 
+        .notification {
+          position: fixed;
+          bottom: 0;
+          right:0;
+          z-index: 100; /* Ensure it's on top of other content */
+        }
+
       </style>
   
       <?php
@@ -71,7 +77,7 @@
             var markersArray = [];
             let map;
             let mapInitialized = false;
-    
+
             // function to store garden details into an object
             function retrieveLocDetails(garden) {
               if(typeof garden === 'string'){
@@ -157,10 +163,30 @@
           </div>
         </div>
         </nav>
+
+        <!-- Notification -->
+        <div id="notification" class="notification"></div>
       
-<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
+<!--Put in landing pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-->
 
 <script>
+
+  function removeNotification(){
+    url = "MySQL/Notification.php?type=removeNotification";
+    fetch(url)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response;
+      })
+      .then(data => {
+        
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+  }
 
   url = "MySQL/Notification.php?type=deletedEventNotification";
   fetch(url)
@@ -173,12 +199,12 @@
     .then(data => {
       output = "";
       for(notif of data.notification){
-        eventTitle = data.notification.eventTitle;
-        reason = data.notification.reason;
+        eventTitle = notif.eventTitle;
+        reason = notif.reason;
         output += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
               <strong>Notification: </strong> ${eventTitle} has been deleted with the following reason:
                 ${reason}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick='removeNotification()'></button>
             </div>`
       }
       document.getElementById("notification").innerHTML = output;
@@ -189,10 +215,9 @@
 
 </script>
 
-<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
+<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
 
       <!-- content -->
-      <div id="notification"></div>
       <div class="container">
         <!-- search textbox -->
         <div class="row p-5">
@@ -319,10 +344,10 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json(); // Parse the JSON response
+                return response.json();
             })
             .then(data => {
-                showGardenList(data); // Now you can work with the JSON data
+                showGardenList(data);
             })
             .catch(error => {
                 console.error('Error:', error);

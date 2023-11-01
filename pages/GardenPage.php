@@ -9,7 +9,6 @@
              <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,18 +65,18 @@
                  }
  
                  .carousel-control-prev, .carousel-control-next {
-                     background-color: rgba(0, 0, 0, 0.5); /* Background color */
-                     width: 3rem; /* Adjust the width as needed */
-                     height: 3rem; /* Adjust the height as needed */
-                     border-radius: 50%; /* Makes them round */
-                     opacity: 1; /* Set the opacity to make them fully visible */
-                     top: 50%; /* Adjust the vertical position */
-                     transform: translateY(-50%); /* Center vertically */
+                     background-color: rgba(0, 0, 0, 0.5);
+                     width: 3rem;
+                     height: 3rem;
+                     border-radius: 50%;
+                     opacity: 1;
+                     top: 50%;
+                     transform: translateY(-50%);
                  }
  
                  .carousel-control-prev-icon, .carousel-control-next-icon {
-                     color: white; /* Icon color */
-                     font-size: 1.5rem; /* Icon size */
+                     color: white;
+                     font-size: 1.5rem;
                  }
 
                  #map {

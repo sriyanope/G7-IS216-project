@@ -16,10 +16,9 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
-            <!-- photo editing css animation CDN-->
-            <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" />
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/svg-with-js.min.css" rel="stylesheet" /> -->
+            <!--Vue-->
+            <script src="https://unpkg.com/vue@next"></script>
+
 
             <!-- styling -->
             <style>
@@ -59,17 +58,9 @@
                 }
 
                 .profileName{
-                    /* font-size: 70px; */
-                    /* font-weight: 700px; */
-                    /* line-height: 100%; */
                     font-family: 'Outfit', sans-serif;
                     font-size:70px;
-                    margin-top:10px;
-                    /* width: 649px;
-                    height: 129px; */
-                    /* text-align: center; */
-                    /* padding-left:200px */
-                    
+                    margin-top:10px;                    
                     
                 }
                 .profilePhotoFrame{
@@ -87,7 +78,6 @@
                
                 .featureTitle{
                     font-family: 'Orelega One', sans-serif;
-                    /* position: */
                     margin-top: 40px;
 
                 }
@@ -105,7 +95,6 @@
                     border: 2px, solid, black;
                 }
                 .social-media{
-                    /* margin-top:2px; */
                     list-style-type: none;
                     padding-left:4px;
                 }
@@ -181,6 +170,15 @@
                             <br>
                         </div>
 
+                        <!-- full name -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Full Name:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered" id="appFullName">
+                            <input type="text" class="form-control f-field" name="fname" id="fullName" Placeholder="This name will be displayed for all users to see" v-model="fullName1">
+                            <span v-if="fullNameCheck()" style="color:red;">Full Name has to be at least 3 characters and does not contain spaces only</span>
+                        </div>
+
                         <!-- gender -->
                         <div class="col-sm-6 col-centered">
                             <h2 class="featureTitle">Gender:</h2>
@@ -189,21 +187,16 @@
                             <input type="text" class="form-control f-field" name="gender" id="gender" disabled >
                         </div>
 
-                        <!-- full name -->
-                        <div class="col-sm-6 col-centered">
-                            <h2 class="featureTitle">Name:</h2>
-                        </div>
-                        <div class="col-sm-6 col-centered">
-                            <input type="text" class="form-control f-field" name="fname" id="fullName" Placeholder="This name will be displayed for all users to see" >
-                        </div>
-
                         <!-- email -->
                         <div class="col-sm-6 col-centered">
                             <h2 class="featureTitle">Email:</h2>
                         </div>
-                        <div class="col-sm-6 col-centered">
-                            <input type="email" class="form-control f-field" name="email" id="email" Placeholder="ilovetrees@email.com" >
+                        <div class="col-sm-6 col-centered" id="appEmail">
+                            <input type="email" class="form-control f-field" name="email" id="email" Placeholder="ilovetrees@email.com" v-model="email1">
+                            <span v-if="emailCheck()" style="color:red;" style="color:red;">Enter a valid email</span>
                         </div>
+
+
 
                         <!-- social media -->
                         <div class="col-sm-6 col-centered">
@@ -309,111 +302,65 @@
                 let bio = document.getElementById("bio").value;
                 let instagram = document.getElementById("instagram").value;
                 let telegram = document.getElementById("telegram").value;
-                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
-                fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response
-                })
-                .then(data => {
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-                window.location="Profile.php";
+
+                check = true;
+                msg = "";
+                if(fullName.length < 3){
+                    check = false;
+                    msg += "Full Name cannot contain less than 3 characters\n";
+                }
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if(!emailPattern.test(email)){
+                    check = false;
+                    msg += "Email is not valid\n";
+                }                    
+                if(!check){
+                    alert(msg);
+                }else{
+                    url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response
+                    })
+                    .then(data => {
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                    window.location="Profile.php";
+                }
+
               }
 
-            // document.getElementsByName("bday")[0].addEventListener("keypress", submitBday())
-            // function submitBday(){
-            //     // ageNum = ""
-            //     row = "";
-            //     var row = "Your age is: "
-            //     var bday = document.getElementsByName("bday")[0].value
-            //     bDate = new Date(bday);
-            //     // ageNum = String(~~ (Date.now() - bDate)/ (31557600000))
-            //     // var ageDay = document.getElementById("age");
-            //     // age.innerHTML = row + ageNum;
-            //     row += ~~((Date.now() - bday) / (31557600000));
-            //     var ageNum = document.getElementById('age');
-            //     ageNum.innerHTML = row;
-                
-            //     // console.log(document.getElementsByName("bday")[0]);
-            //     // return document.getElementsByName("bday")[0].innerText += row;
-
-            // }
-
-
-
-
-            // TRIAL CODE FOR FORM VALIDATION
-
-            // var forms = document.querySelectorAll('.needs-validation')
-            // Array.prototype.slice.call(forms)
-            // .forEach(function (form) {
-            //     form.addEventListener('submit', function (event) {
-            //     if (!form.checkValidity()) {
-            //         event.preventDefault()
-            //         event.stopPropagation()
-            //     }
-
-            //     form.classList.add('was-validated')
-            //     }, false)
-            // })
-
-
-            // for the profile picture upload!! DO NOT DELETE!!!! // !!!!
-
-            /*
-                Create the XMLHttpRequest object
-                Set the desired HTTP request method
-                Create the response handler function
-                Send the request by calling the open() method on the XMLHttpRequest object
-                Process the response by calling the responseXML property of the XMLHttpRequest object
-                Close the XMLHttpResponse object
-                Handle any errors that may occur during the process
-                Check the response status code to determine whether the request was successful or not.
-            */
-
-            document.addEventListener("DOMContentLoaded", function () {
-                // Get the necessary elements
-                const changePictureButton = document.getElementById("changePicture");
-                const imageInput = document.getElementById("imageInput");
-                const profilePicture = document.getElementById("profilePicture");
-
-                // Add an event listener to the button
-                changePictureButton.addEventListener("click", () => {
-                    imageInput.click();
-                });
-
-                // Add an event listener to the file input to handle the selected image
-                imageInput.addEventListener("change", () => {
-                    const selectedImage = imageInput.files[0];
-
-                    if (selectedImage) {
-                        const formData = new FormData();
-                        formData.append("profileImage", selectedImage);
-
-                        const xhr = new XMLHttpRequest();
-                        xhr.open("POST", "upload.php", true);
-
-                        xhr.onload = function () {
-                            if (xhr.status === 200) {
-                                // Update the profile picture with the uploaded image
-                                profilePicture.src = xhr.responseText;
-                            }
-                        };
-
-                        xhr.send(formData);
+              const appFullName = Vue.createApp({
+                data(){
+                    return {fullName1: ""}
+                },
+                methods: {
+                    fullNameCheck() {
+                    if(this.fullName1.length > 0 && (!/[^ ]/.test(this.fullName1) || this.fullName1.length < 3)){
+                        return true
                     }
-            });
-                
-            });
+                    }
+                }
+                }).mount('#appFullName');
 
-            
-
-
+                const appEmail = Vue.createApp({
+                data(){
+                    return {email1: ""}
+                },
+                methods: {
+                    emailCheck() {
+                    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    if (this.email1.length > 0 && !emailPattern.test(this.email1)) {
+                        return true
+                    }
+                    }
+                }
+                }).mount('#appEmail');
 
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

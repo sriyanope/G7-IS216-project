@@ -59,17 +59,9 @@
                 }
 
                 .profileName{
-                    /* font-size: 70px; */
-                    /* font-weight: 700px; */
-                    /* line-height: 100%; */
                     font-family: 'Outfit', sans-serif;
                     font-size:70px;
-                    margin-top:10px;
-                    /* width: 649px;
-                    height: 129px; */
-                    /* text-align: center; */
-                    /* padding-left:200px */
-                    
+                    margin-top:10px; 
                 }
                 .profilePhotoFrame{
                     position:relative;
@@ -85,7 +77,6 @@
                 }
                 .featureTitle{
                     font-family: 'Orelega One', sans-serif;
-                    /* position: */
                     margin-top: 40px;
 
                 }
@@ -172,18 +163,25 @@
                 document.getElementById("fullName").innerText = data.user[0].fullName;
                 document.getElementById("email").innerText = data.user[0].email;
                 document.getElementById("bio").innerText = data.user[0].bio;
-                document.getElementById("instagram").href = data.user[0].instagram;
-                document.getElementById("telegram").href = "https://t.me/" + data.user[0].telegram;
+                if(data.user[0].instagram.length > 0){
+                  document.getElementById("instagram").href = data.user[0].instagram;
+                }else{
+                  document.getElementById("instagram").setAttribute("class", "d-none");
+                }
+
+                if(data.user[0].telegram.length > 0){
+                  document.getElementById("telegram").href = "https://t.me/" + data.user[0].telegram;
+                }else{
+                  document.getElementById("telegram").setAttribute("class", "d-none");
+                }
+
               })
               .catch(error => {
                   console.error('Error:', error);
               });
 
           </script>
-          <!-- Legend:
-            Container1: for the profile picture, Edit profile tag, Sign Out tag, byline line and Social Media tags + all other componenets-->
-
-          <!-- container  -->
+          <!-- content  -->
           <div class="container-fluid">
             <div class="row">
                 <div class="col text-center mt-4">
@@ -223,7 +221,7 @@
             <div class="row text-center">
                 <div class="col text-center mb-3">
 
-                    <button type="button" class=" btn bg-dark text-white mx-2"> <!-- onclick='copyFunction()' was meant to be here-->
+                    <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
 
                     <a href="#" id="instagram">
@@ -353,8 +351,4 @@
 
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
         </body>
-        <script>
-           // idk if yall wanna try, but i wanted to add a button where when you click on the email, it copies onto your clipboard? here is a link from w3 
-           // schools that I tried with but I failed https://www.w3schools.com/howto/howto_js_copy_clipboard.asp, check it out
-        </script>
-    </html>
+  </html>

@@ -8,7 +8,6 @@
              <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,30 +102,25 @@
 
             <!-- if no events -->
 
-            <!--
-                <div class="container-fluid bggreen">
-                    <div class="row noEventCentre">
-                        <h2><b>You have not created any events!</b></h2>
-                        <h6>Want to host an event?
-                        <a href='../CreateEvent.html' style="text-decoration: underline; color: black">Create your own!</a>
-                        </h6>
-                    </div>
+            <div class="container-fluid bggreen d-none" id="noEvent">
+                <div class="row noEventCentre">
+                    <h2><b>You have not created any events!</b></h2>
+                    <h6>Want to host an event?
+                    <a href='CreateEvent.php' style="text-decoration: underline; color: black">Create your own!</a>
+                    </h6>
                 </div>
-            -->
+            </div>
             
             <!-- if there are events-->
-            <div class="container-fluid bggreen">
+            <div class="container-fluid bggreen" id="yesEvent">
                 <div class="row pt-5 pb-4 mx-auto">
                     <h1><b>My Events</b></h1>
                 </div>
             
                 <div class="row px-3 mx-5">
                     <div class="album ">
-                        <!--div class="album py-5 bg-light"-->
                         <div class="container">
-                            <!-- change here -->
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
-                            <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
                             </div>
                         </div>
                     </div>
@@ -170,6 +164,10 @@
 
             // display the list of events
             function showEvents(obj){
+                if(obj.event.length == 0){
+                    document.getElementById("noEvent").setAttribute("class", "container-fluid bggreen");
+                    document.getElementById("yesEvent").setAttribute("class", "container-fluid bggreen d-none");
+                }
                 output = "";
                 for(event of obj.event){
                     let eventId = event.eventId;

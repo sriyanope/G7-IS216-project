@@ -9,7 +9,6 @@
              <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,18 +65,18 @@
                 }
 
                 .carousel-control-prev, .carousel-control-next {
-                    background-color: rgba(0, 0, 0, 0.5); /* Background color */
-                    width: 3rem; /* Adjust the width as needed */
-                    height: 3rem; /* Adjust the height as needed */
-                    border-radius: 50%; /* Makes them round */
-                    opacity: 1; /* Set the opacity to make them fully visible */
-                    top: 50%; /* Adjust the vertical position */
-                    transform: translateY(-50%); /* Center vertically */
+                    background-color: rgba(0, 0, 0, 0.5);
+                    width: 3rem;
+                    height: 3rem;
+                    border-radius: 50%;
+                    opacity: 1;
+                    top: 50%;
+                    transform: translateY(-50%);
                 }
 
                 .carousel-control-prev-icon, .carousel-control-next-icon {
-                    color: white; /* Icon color */
-                    font-size: 1.5rem; /* Icon size */
+                    color: white;
+                    font-size: 1.5rem;
                 }
 
                 .rectangle {
@@ -405,7 +404,6 @@
                 <div class="col-10">
 
                     <h3 class="pt-4"><b>Edit This Event</b></h3>
-                    <!--<button type="button" class="btn text-white" onclick="enableInput()">Edit</button>-->
                 </div>
             </div>
 
@@ -558,58 +556,6 @@
                     console.error('Error:', error);
                 });
 
-
-                // Functions
-                // Allow the change of event details
-                // function enableInput() {
-                //     document.getElementById("eventTitle").removeAttribute("disabled");
-                //     document.getElementById("category").removeAttribute("disabled");
-                //     document.getElementById("eventDate").removeAttribute("disabled");
-                //     document.getElementById("startTime").removeAttribute("disabled");
-                //     document.getElementById("endTime").removeAttribute("disabled");
-                //     document.getElementById("noOfSlots").removeAttribute("disabled");
-                //     document.getElementById("location").removeAttribute("disabled");
-                //     document.getElementById("about").removeAttribute("disabled");
-                //     document.getElementById("updateBtn").setAttribute("class", "btn text-white");
-                // }
-
-                // update event details into MySQL
-                // function updateInput() {
-                //     document.getElementById("eventTitle").setAttribute("disabled", "");
-                //     document.getElementById("category").setAttribute("disabled", "");
-                //     document.getElementById("eventDate").setAttribute("disabled", "");
-                //     document.getElementById("startTime").setAttribute("disabled", "");
-                //     document.getElementById("endTime").setAttribute("disabled", "");
-                //     document.getElementById("noOfSlots").setAttribute("disabled", "");
-                //     document.getElementById("location").setAttribute("disabled", "");
-                //     document.getElementById("about").setAttribute("disabled", "");
-                //     document.getElementById("updateBtn").setAttribute("class", "btn text-white d-none");
-                    
-                    // eventTitle = document.getElementById("eventTitle");
-                    // category = document.getElementById("category");
-                    // eventDate = document.getElementById("eventDate");
-                    // startTime = document.getElementById("startTime");
-                    // endTime = document.getElementById("endTime");
-                    // noOfSlots = document.getElementById("noOfSlots");
-                    // location = document.getElementById("location");
-                    // about = document.getElementById("about");
-                    // url = "MySQL/Event.php?type=updateEvent&eventTitle="+eventTitle+"&category="+category+"&eventDate="+eventDate+"&startTime="+startTime+"&endTime="+endTime+"&noOfSlots="+noOfSlots+"&location="+location+"&about="+about;
-                    // console.log(url);
-                    // fetch(url)
-                    // .then(response => {
-                    //     if (!response.ok) {
-                    //         throw new Error('Network response was not ok');
-                    //     }
-                    //     return response;
-                    // })
-                    // .then(data => {
-
-                    // })
-                    // .catch(error => {
-                    //     console.error('Error:', error);
-                    // });
-                // }
-
                 // convert to 12 hour format
                 function convertTo12HourFormat(time24) {
                     const [hours, minutes] = time24.split(':');
@@ -637,6 +583,7 @@
                     return "Invalid Date";
                 }
 
+                // function to delete event
                 function deleteEvent() {
                     deleteReason = document.getElementById("deleteReason").value;
                     url = "MySQL/Event.php?type=deleteEvent&eventId=" + eventId + "&deleteReason=" + deleteReason;
