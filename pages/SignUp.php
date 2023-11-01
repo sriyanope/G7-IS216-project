@@ -214,7 +214,7 @@
                         <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Sign Up</button>
             
                         <div class="pt-3">Already have an account? 
-                            <a href='login.php' style="text-decoration: underline; color: black">Log In</a>
+                            <a href='logIn.php' style="text-decoration: underline; color: black">Log In</a>
                         </div>
                       </form>
 
@@ -313,7 +313,7 @@
                                 msg += "Please select a gender\n";
                             }
                             const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                            if(!emailPattern.test(this.email1)){
+                            if(!emailPattern.test(email)){
                                 check = false;
                                 msg += "Email is not valid\n";
                             }

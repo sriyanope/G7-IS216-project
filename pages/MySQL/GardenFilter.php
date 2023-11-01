@@ -16,7 +16,7 @@
     }
     $r = substr($r, 0, -3);
 
-    $sql = "select * from garden where gardenName like :key or address like :key order by gardenName;";
+    $sql = "select * from garden where (gardenName like :key or address like :key) and ($r) order by gardenName;";
 
     $connMgr = new ConnectionManager();
     $pdo = $connMgr->getConnection();
