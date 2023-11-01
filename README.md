@@ -14,5 +14,10 @@ adding it here for easy ref
 2. Architecture overview describing the network and application architecture at a high level
 3. Quick start application overview describing the most common aspects of the application
 4. Pattern documentation describing patterns that are employed for major things like the API interactions from the front end, error handling, back end validation, etc.
+
+npm install - for dependancies 
+npm run serve - to run a local instance of our applicaiton 
+
+project website - coming soon
    
 
