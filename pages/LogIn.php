@@ -121,6 +121,11 @@
                             exit;
                         } else {
                             $_SESSION['error'] = "Wrong Username or Password, please try again.";
+                            if(isset($_SESSION['failedLogin'])){
+                                $_SESSION['failedLogin'] += 1;
+                            }else{
+                                $_SESSION['failedLogin'] = 1;
+                            }
                         }
                     }
                 }

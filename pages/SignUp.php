@@ -71,8 +71,8 @@
               );
 
               // function to register user upon validation success
-              function registerUser($username, $fullName, $gender, $dob, $email, $hashedPassword) {
-                  $sql = "insert into users (username, fullName, gender, dob, email, password) values (:username, :fullName, :gender, :dob, :email, :hashedPassword);"; 
+              function registerUser($username, $fullName, $gender, $email, $hashedPassword) {
+                  $sql = "insert into users (username, fullName, gender, email, password) values (:username, :fullName, :gender, :email, :hashedPassword);"; 
 
                   $connMgr = new ConnectionManager();
                   $pdo = $connMgr->getConnection();
@@ -82,7 +82,6 @@
                       $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                       $stmt->bindParam(':fullName', $fullName, PDO::PARAM_STR);
                       $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
-                      $stmt->bindParam(':dob', $dob, PDO::PARAM_STR);
                       $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                       $stmt->bindParam(':hashedPassword', $hashedPassword, PDO::PARAM_STR);
 
@@ -109,13 +108,12 @@
                 $username = $_POST["username1"];
                 $fullName = $_POST["name1"];
                 $gender = $_POST["gender1"];
-                $dob = $_POST["dob1"];
                 $email = $_POST["email1"];
                 $password = $_POST["password1"];
                 
                 $hashed = password_hash($password, PASSWORD_DEFAULT);
                 
-                $status = registerUser($username, $fullName, $gender, $dob, $email, $hashed);
+                $status = registerUser($username, $fullName, $gender, $email, $hashed);
                 if($status){
                 
                     $_SESSION["username"] = $username;
@@ -191,10 +189,6 @@
                             <option>Male</option>
                             <option>Female</option>
                           </select>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                          <input type="date" class="form-control inputstl" name="dob1" id="dob1">
                         </div>
 
                         <div class="form-outline mb-4" id="appEmail">
@@ -304,7 +298,6 @@
                             var username = document.getElementById("username1").value;
                             var fullName = document.getElementById("name1").value;
                             var gender = document.getElementById("gender1").value;
-                            var dob = document.getElementById("dob1").value;
                             var email = document.getElementById("email1").value;
                             var password1 = document.getElementById("password1").value;
                             var password2 = document.getElementById("password2").value;
@@ -321,17 +314,6 @@
                             if(gender == "Gender"){
                                 check = false;
                                 msg += "Please select a gender\n";
-                            }
-                            if(dob.length == 0){
-                                check = false;
-                                msg += "Date of Birth cannot be empty\n";
-                            }else{
-                              currentDate = new Date();
-                              maxYear = currentDate.getFullYear() - 12;
-                              if(Number(dob.substring(0, 4)) > maxYear){
-                                check = false;
-                                msg += "You have to be more than 12 years old to sign up\n";
-                              }
                             }
                             if(password1.length == 0){
                                 check = false;
