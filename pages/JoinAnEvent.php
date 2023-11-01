@@ -41,6 +41,22 @@
               outline: 0 !important;
               border-color: initial;
               box-shadow: none;
+<<<<<<< Updated upstream
+=======
+                    }
+
+          .filter-container {
+            background-color: #F6F8E0 !important;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: #547D2E;
+            text-align: center;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+>>>>>>> Stashed changes
           }
 
         </style>
