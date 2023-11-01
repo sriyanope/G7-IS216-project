@@ -18,6 +18,7 @@
             <link rel="stylesheet" href="organiserView/progressBar.css">
             <link rel="stylesheet" href="starRating.css">
            
+            <!-- styling -->
             <style>
                a {
                     font-size:14px;
@@ -98,6 +99,7 @@
 
             </style>
 
+            <!-- title -->
             <title>An Event</title>
             
         </head>
@@ -152,7 +154,6 @@
 
 
             <!-- carousel -->
-
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
@@ -190,7 +191,7 @@
                 <div class="col-1"></div> 
                 <div class="col-4">
 
-                    <!-- host jeremy -->
+                    <!-- host name -->
                     <h3 class="pt-4"><b>Event host:
                         <a href="#" id="profileLabel" style="text-decoration:none;color:black;"><span style="color:#54493B" id="fullNameLabel"></span></a>
                         <!-- progress bar -->
@@ -205,7 +206,7 @@
                         <!-- filled -->
                         <h6 class="pt-2" style="color: #f3c623;" id="slotsLabel"></h6>
 
-                        <!-- Join -->
+                        <!-- join -->
                         <div style="color:red;" id='fullLabel'></div>
                         <button type="submit" class="btn text-white" id="joinBtn" onclick="joinEvent()">Join</button>
                     </b></h3>
@@ -224,7 +225,7 @@
                 </div>
             </div>
 
-            <!-- About this Event -->
+            <!-- about this event -->
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-5">
@@ -365,7 +366,7 @@
                 </div>
             </div> -->
 
-            <!-- Edit Form -->
+            <!-- edit form -->
 
             <div class="row pt-3"> 
                 <div class="col-1"></div> 
@@ -403,18 +404,20 @@
                         </div>
                         <button type="submit" class="btn text-white" id="submit">Submit</button>
                       </form> -->
+
+                      <!-- google map -->
                       <h2><b>Location</b></h2>
                       <div id="map"></div>
                       </div>
 
-                      </div>
-
+                    </div>
                 </div>
-
             </div>
 
+            <!-- javascript -->
             <script>
 
+                // get event details and populate page
                 eventId = <?php echo $_GET['eventId']; ?>;
                 url = "MySQL/Event.php?type=getEventByEventId&eventId=" + eventId;
                 fetch(url)
@@ -446,7 +449,7 @@
                 });
 
 
-
+                // show join button if the user has not joined the event
                 url = "MySQL/Event.php?type=checkJoinedEvent&eventId=" + eventId;
                 fetch(url)
                 .then(response => {
@@ -466,8 +469,7 @@
                     console.error('Error:', error);
                 });
 
-                
-
+                // function to convert to 12 hour format
                 function convertTo12HourFormat(time24) {
                     const [hours, minutes] = time24.split(':');
                     let period = 'AM';
@@ -483,6 +485,7 @@
                     return `${hours12}:${minutes} ${period}`;
                 }
 
+                // function to convert to dd-mm-yyyy date format
                 function convertDateFormat(inputDate) {
                     const parts = inputDate.split("-");
                     if (parts.length === 3) {
@@ -493,6 +496,7 @@
                     return "Invalid Date"; // Handle invalid input
                 }
 
+                // function to initialise google map
                 function initMap(lat, lng) {
                     lat = Number(lat);
                     lng = Number(lng);
@@ -508,6 +512,7 @@
                     });
                     }
                 
+                // function to update MySQL on joining event
                 function joinEvent() {
                     url = "MySQL/Event.php?type=joinEvent&eventId=" + eventId;
                     fetch(url)
@@ -527,6 +532,7 @@
                     });
                 }
 
+                // function to update MySQL on leaving event
                 function leaveEvent() {
                     url = "MySQL/Event.php?type=leaveEvent&eventId=" + eventId;
                     fetch(url)
@@ -546,6 +552,7 @@
                     });
                 }
 
+                // function to retrieve updated filled event
                 function updateFilled(){
                     url = "MySQL/Event.php?type=getFilled&eventId=" + eventId;
                     fetch(url)
@@ -573,11 +580,7 @@
 
             </script>
             
-
-
-
-
-            </div>
+        </div>
 
             <script>
 

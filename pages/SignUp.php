@@ -18,58 +18,59 @@
             <!--Vue-->
             <script src="https://unpkg.com/vue@next"></script>
 
+            <!-- styling -->
             <style>
-               a {
-                    font-size:14px;
-                    font-weight:700
-                    }
-                .superNav {
-                    font-size:13px;
-                    }
-                .form-control {
-                    outline:none !important;
-                    box-shadow: none !important;
-                    }
-                    @media screen and (max-width:900px){
-                .centerOnMobile {
-                        text-align:center
-                    }
-                    }
+              a {
+                  font-size:14px;
+                  font-weight:700
+                  }
+              .superNav {
+                  font-size:13px;
+                  }
+              .form-control {
+                  outline:none !important;
+                  box-shadow: none !important;
+                  }
+                  @media screen and (max-width:900px){
+              .centerOnMobile {
+                      text-align:center
+                  }
+                  }
 
               @media screen and (max-width: 280px) { 
-
-                                  .logo { display: none; }  
-
-                                  }
-
-                .navbar {
-                    background-color: #F6F8E0;
+                .logo {
+                  display: none;
                 }
+              }
 
-                .btn{
-                    background-color: #547D2E;
-                }
+              .navbar {
+                  background-color: #F6F8E0;
+              }
 
-                .bggreen {
-                    background-color: #B7CF9B;
-                }
+              .btn{
+                  background-color: #547D2E;
+              }
+
+              .bggreen {
+                  background-color: #B7CF9B;
+              }
 
             </style>
 
+            <!-- title -->
             <title>Sign Up</title>
 
             <?php
 
-              # Start session
               session_start();
          
-
               spl_autoload_register(
                   function($class){
                       require_once "MySQL/$class.php";
                   }
               );
 
+              // function to register user upon validation success
               function registerUser($username, $fullName, $gender, $dob, $email, $hashedPassword) {
                   $sql = "insert into users (username, fullName, gender, dob, email, password) values (:username, :fullName, :gender, :dob, :email, :hashedPassword);"; 
 
@@ -103,7 +104,7 @@
               }
 
 
-              # Get parameters passed from register.php
+              // Get parameters passed from register.php
               if(isset($_POST['submit'])){
                 $username = $_POST["username1"];
                 $fullName = $_POST["name1"];
@@ -112,8 +113,6 @@
                 $email = $_POST["email1"];
                 $password = $_POST["password1"];
                 
-                
-                # Hash entered password
                 $hashed = password_hash($password, PASSWORD_DEFAULT);
                 
                 $status = registerUser($username, $fullName, $gender, $dob, $email, $hashed);
@@ -162,209 +161,207 @@
                   </ul>
                 </div>
               </div>
-              </nav>  
+            </nav>  
                     
-        <section class="vh-100" style="background-color: #B7CF9B;">
-            <div class="container py-2 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
-        
-                    <h3 class="mt-1">Create An Account</h3>
-                    <div class="mb-5">Create an account to enjoy all the features like joining events and finding community gardens near you!</div>
-
-                    <form method="post" onsubmit="return validateForm()">
-                    <div class="form-outline mb-4" id="appUsername">
-                        <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username" v-model="username1">
-                        <span v-if="usernameCheck()" style="color:red;">Username has to be at least 8 characters</span>
-                      </div>
-
-                      <div class="form-outline mb-4" id="appFullName">
-                        <input type="name" class="form-control inputstl" name="name1" id="name1" placeholder="Enter Your Full Name" v-model="fullName1">
-                        <span v-if="fullNameCheck()" style="color:red;">Full Name has to be at least 3 characters and does not contain spaces only</span>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <select class="form-control inputstl" name="gender1" id="gender1">
-                          <option disabled selected>Gender</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input type="date" class="form-control inputstl" name="dob1" id="dob1">
-                      </div>
-
-                      <div class="form-outline mb-4" id="appEmail">
-                        <input type="text" class="form-control inputstl" name="email1" id="email1" placeholder="Enter Email" v-model="email1">
-                        <span v-if="emailCheck()" style="color:red;" style="color:red;">Enter a valid email</span>
-                        </dv>
-                      </div>
-
-                      <div class="form-outline mb-4" id="appPassword">
-                        <input type="password" class="form-control inputstl" name="password1" id="password1" placeholder="Enter Password" v-model="password1">
-                        <span v-if="passwordCheck()" style="color:red;">Password has to be at least 8 characters</span>
-                      </div>
-
-                      <div class="form-outline mb-4" id="appConfirmPassword">
-                        <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" v-model="confirmPassword1" onpaste="return false;">
-                        <span v-if="confirmPasswordCheck()" style="color:red;">Confirm Password does not match with Password</span>
-                      </div>
-
-                      <?php 
-                      if(isset($_SESSION['error'])){
-                        echo $_SESSION['error'];
-                        unset($_SESSION['error']);
-                      }
-                      ?>
-
-                      <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Sign Up</button>
+          <!-- content -->
+          <section class="vh-100" style="background-color: #B7CF9B;">
+              <div class="container py-2 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                      <div class="card-body p-5 text-center">
           
-                      <div class="pt-3">Already have an account? 
-                          <a href='login.php' style="text-decoration: underline; color: black">Log In</a>
-                      </div>
-                    </form>
+                      <h3 class="mt-1">Create An Account</h3>
+                      <div class="mb-5">Create an account to enjoy all the features like joining events and finding community gardens near you!</div>
 
-                    <script>
+                      <form method="post" onsubmit="return validateForm()">
+                        <div class="form-outline mb-4" id="appUsername">
+                          <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username" v-model="username1">
+                          <span v-if="usernameCheck()" style="color:red;">Username has to be at least 8 characters</span>
+                        </div>
 
+                        <div class="form-outline mb-4" id="appFullName">
+                          <input type="name" class="form-control inputstl" name="name1" id="name1" placeholder="Enter Your Full Name" v-model="fullName1">
+                          <span v-if="fullNameCheck()" style="color:red;">Full Name has to be at least 3 characters and does not contain spaces only</span>
+                        </div>
 
+                        <div class="form-outline mb-4">
+                          <select class="form-control inputstl" name="gender1" id="gender1">
+                            <option disabled selected>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                          </select>
+                        </div>
 
-                      const appUsername = Vue.createApp({
-                        data(){
-                          return {username1: ""}
-                        },
-                        methods: {
-                          usernameCheck() {
-                            if(this.username1.length > 0 && this.username1.length < 8){
-                              return true
+                        <div class="form-outline mb-4">
+                          <input type="date" class="form-control inputstl" name="dob1" id="dob1">
+                        </div>
+
+                        <div class="form-outline mb-4" id="appEmail">
+                          <input type="text" class="form-control inputstl" name="email1" id="email1" placeholder="Enter Email" v-model="email1">
+                          <span v-if="emailCheck()" style="color:red;" style="color:red;">Enter a valid email</span>
+                          </dv>
+                        </div>
+
+                        <div class="form-outline mb-4" id="appPassword">
+                          <input type="password" class="form-control inputstl" name="password1" id="password1" placeholder="Enter Password" v-model="password1">
+                          <span v-if="passwordCheck()" style="color:red;">Password has to be at least 8 characters</span>
+                        </div>
+
+                        <div class="form-outline mb-4" id="appConfirmPassword">
+                          <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" v-model="confirmPassword1" onpaste="return false;">
+                          <span v-if="confirmPasswordCheck()" style="color:red;">Confirm Password does not match with Password</span>
+                        </div>
+
+                        <?php 
+                          if(isset($_SESSION['error'])){
+                            echo $_SESSION['error'];
+                            unset($_SESSION['error']);
+                          }
+                        ?>
+
+                        <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Sign Up</button>
+            
+                        <div class="pt-3">Already have an account? 
+                            <a href='login.php' style="text-decoration: underline; color: black">Log In</a>
+                        </div>
+                      </form>
+
+                      <script>
+
+                        // vue for input requirements
+                        const appUsername = Vue.createApp({
+                          data(){
+                            return {username1: ""}
+                          },
+                          methods: {
+                            usernameCheck() {
+                              if(this.username1.length > 0 && this.username1.length < 8){
+                                return true
+                              }
                             }
                           }
+                        }).mount('#appUsername');
+
+                        const appFullName = Vue.createApp({
+                            data(){
+                              return {fullName1: ""}
+                            },
+                            methods: {
+                              fullNameCheck() {
+                                if(this.fullName1.length > 0 && (!/[^ ]/.test(this.fullName1) || this.fullName1.length < 3)){
+                                  return true
+                                }
+                              }
+                            }
+                          }).mount('#appFullName');
+
+                          const appEmail = Vue.createApp({
+                            data(){
+                              return {email1: ""}
+                            },
+                            methods: {
+                              emailCheck() {
+                                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                                if (this.email1.length > 0 && !emailPattern.test(this.email1)) {
+                                  return true
+                                }
+                              }
+                            }
+                          }).mount('#appEmail');
+
+                          const appPassword = Vue.createApp({
+                            data(){
+                              return {password1: ""}
+                            },
+                            methods: {
+                              passwordCheck() {
+                                if(this.password1.length > 0 && this.password1.length < 8){
+                                  return true
+                                }
+                              }
+                            }
+                          }).mount('#appPassword');
+
+                          const appConfirmPassword = Vue.createApp({
+                            data(){
+                              return {confirmPassword1: ""}
+                            },
+                            methods: {
+                              confirmPasswordCheck() {
+                                var password1 = document.getElementById("password1").value;
+                                return (this.confirmPassword1.length > 0 && password1 !== this.confirmPassword1);
+                              }
+                            }
+                          }).mount('#appConfirmPassword');
+
+
+                        // function to validate form
+                        function validateForm() {
+                            
+                            var msg = "";
+                            var check = true;
+                            var username = document.getElementById("username1").value;
+                            var fullName = document.getElementById("name1").value;
+                            var gender = document.getElementById("gender1").value;
+                            var dob = document.getElementById("dob1").value;
+                            var email = document.getElementById("email1").value;
+                            var password1 = document.getElementById("password1").value;
+                            var password2 = document.getElementById("password2").value;
+
+
+                            if(username.length == 0 || /^\s*$/.test(username)){
+                                check = false;
+                                msg += "Username cannot be empty or contain spaces\n";
+                            }
+                            if(fullName.length == 0){
+                                check = false;
+                                msg += "Full Name cannot be empty\n";
+                            }
+                            if(gender == "Gender"){
+                                check = false;
+                                msg += "Please select a gender\n";
+                            }
+                            if(dob.length == 0){
+                                check = false;
+                                msg += "Date of Birth cannot be empty\n";
+                            }else{
+                              currentDate = new Date();
+                              maxYear = currentDate.getFullYear() - 12;
+                              if(Number(dob.substring(0, 4)) > maxYear){
+                                check = false;
+                                msg += "You have to be more than 12 years old to sign up\n";
+                              }
+                            }
+                            if(password1.length == 0){
+                                check = false;
+                                msg += "Password must not be empty\n";
+                            }
+                            if(password2.length == 0){
+                                check = false;
+                                msg += "Confirm Password must not be empty\n";
+                            }
+                            if(password1 != password2){
+                                check = false;
+                                msg += "Password and conform password does not match";
+                            }
+                              
+                            if(!check){
+                                alert(msg);
+                            }
+                            return check;
                         }
-                      }).mount('#appUsername');
-
-                      const appFullName = Vue.createApp({
-                          data(){
-                            return {fullName1: ""}
-                          },
-                          methods: {
-                            fullNameCheck() {
-                              if(this.fullName1.length > 0 && (!/[^ ]/.test(this.fullName1) || this.fullName1.length < 3)){
-                                return true
-                              }
-                            }
-                          }
-                        }).mount('#appFullName');
-
-                        const appEmail = Vue.createApp({
-                          data(){
-                            return {email1: ""}
-                          },
-                          methods: {
-                            emailCheck() {
-                              const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                              if (this.email1.length > 0 && !emailPattern.test(this.email1)) {
-                                return true
-                              }
-                            }
-                          }
-                        }).mount('#appEmail');
-
-                        const appPassword = Vue.createApp({
-                          data(){
-                            return {password1: ""}
-                          },
-                          methods: {
-                            passwordCheck() {
-                              if(this.password1.length > 0 && this.password1.length < 8){
-                                return true
-                              }
-                            }
-                          }
-                        }).mount('#appPassword');
-
-                        const appConfirmPassword = Vue.createApp({
-                          data(){
-                            return {confirmPassword1: ""}
-                          },
-                          methods: {
-                            confirmPasswordCheck() {
-                              var password1 = document.getElementById("password1").value;
-                              return (this.confirmPassword1.length > 0 && password1 !== this.confirmPassword1);
-                            }
-                          }
-                        }).mount('#appConfirmPassword');
-
-
-
-                      function validateForm() {
-                          
-                          var msg = "";
-                          var check = true;
-                          var username = document.getElementById("username1").value;
-                          var fullName = document.getElementById("name1").value;
-                          var gender = document.getElementById("gender1").value;
-                          var dob = document.getElementById("dob1").value;
-                          var email = document.getElementById("email1").value;
-                          var password1 = document.getElementById("password1").value;
-                          var password2 = document.getElementById("password2").value;
-
-
-                          if(username.length == 0 || /^\s*$/.test(username)){
-                              check = false;
-                              msg += "Username cannot be empty or contain spaces\n";
-                          }
-                          if(fullName.length == 0){
-                              check = false;
-                              msg += "Full Name cannot be empty\n";
-                          }
-                          if(gender == "Gender"){
-                              check = false;
-                              msg += "Please select a gender\n";
-                          }
-                          if(dob.length == 0){
-                              check = false;
-                              msg += "Date of Birth cannot be empty\n";
-                          }else{
-                            currentDate = new Date();
-                            maxYear = currentDate.getFullYear() - 12;
-                            if(Number(dob.substring(0, 4)) > maxYear){
-                              check = false;
-                              msg += "You have to be more than 12 years old to sign up\n";
-                            }
-                          }
-                          if(password1.length == 0){
-                              check = false;
-                              msg += "Password must not be empty\n";
-                          }
-                          if(password2.length == 0){
-                              check = false;
-                              msg += "Confirm Password must not be empty\n";
-                          }
-                          if(password1 != password2){
-                              check = false;
-                              msg += "Password and conform password does not match";
-                          }
-                             
-                          if(!check){
-                              alert(msg);
-                          }
-                    // return true if ok, false if there is a validation error
-                          return check;
-                      }
-                  </script>
-        
-        
+                      </script>
+          
+          
                     </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
-        </section>
+          </section>
 
-
-</body>
+        </body>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

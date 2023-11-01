@@ -18,6 +18,7 @@
             <link rel="stylesheet" href="../style.css">
             <link rel="stylesheet" href="progressBar.css">
            
+            <!-- styling -->
             <style>
                a {
                     font-size:14px;
@@ -95,6 +96,7 @@
 
             </style>
 
+            <!-- title -->
             <title>My Event</title>
             
         </head>
@@ -148,7 +150,6 @@
 
 
             <!-- carousel -->
-
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
@@ -176,8 +177,7 @@
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
-                        </div>
-                    
+                    </div>
                 </div> 
             </div>
 
@@ -196,7 +196,6 @@
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
-
                     <div class="container">
                         <i class="fas fa-3x fa-battery-full icon"></i>
                   
@@ -205,7 +204,6 @@
                           <div class="loader" style="--n: 1; --f: 0;"></div>
                         </div>
                       </div>
-
                 </div>
             </div>
 
@@ -401,7 +399,7 @@
                 </div>
             </div> -->
 
-            <!-- Edit This Event -->
+            <!-- Edit this event -->
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
@@ -411,7 +409,7 @@
                 </div>
             </div>
 
-            <!-- Edit Form -->
+            <!-- edit form -->
 
             <div class="row pt-3"> 
                 <div class="col-1"></div> 
@@ -468,10 +466,12 @@
                 </div>
             </div>
 
+            <!-- javascript -->
             <script>
 
                 var eventId = <?php echo $_GET['eventId']; ?>;
-                
+
+                // retrieve event details and populate website
                 url = "MySQL/Event.php?type=getEventByEventId&eventId=" + eventId;
                 fetch(url)
                 .then(response => {
@@ -505,7 +505,7 @@
                     console.error('Error:', error);
                 });
 
-
+                // retrieve participant and populate website
                 url = "MySQL/UserEvent.php?eventId=" + eventId;
                 fetch(url)
                 .then(response => {
@@ -528,6 +528,8 @@
                 });
 
 
+                // Functions
+                // Allow the change of event details
                 function enableInput() {
                     document.getElementById("eventTitle").removeAttribute("disabled");
                     document.getElementById("category").removeAttribute("disabled");
@@ -540,6 +542,7 @@
                     document.getElementById("updateBtn").setAttribute("class", "btn text-white");
                 }
 
+                // update event details into MySQL
                 function updateInput() {
                     document.getElementById("eventTitle").setAttribute("disabled", "");
                     document.getElementById("category").setAttribute("disabled", "");
@@ -576,6 +579,7 @@
                     // });
                 }
 
+                // convert to 12 hour format
                 function convertTo12HourFormat(time24) {
                     const [hours, minutes] = time24.split(':');
                     let period = 'AM';
@@ -591,6 +595,7 @@
                     return `${hours12}:${minutes} ${period}`;
                 }
 
+                // convert to dd-mm-yyyy date format
                 function convertDateFormat(inputDate) {
                     const parts = inputDate.split("-");
                     if (parts.length === 3) {
@@ -598,7 +603,7 @@
                         const outputDate = `${day}-${month}-${year}`;
                         return outputDate;
                     }
-                    return "Invalid Date"; // Handle invalid input
+                    return "Invalid Date";
                 }
 
             </script>
