@@ -8,7 +8,6 @@
              <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,12 +89,10 @@
                       return $result;
                   } 
                   catch (PDOException $e) {
-                      // Check if the exception is due to a duplicate key (username in this case)
                       if ($e->errorInfo[1] === 1062) {
-                          return false; // Return a specific error code for duplicate username
+                          return false;
                           $_SESSION["error"] = "Username already existed";
                       } else {
-                          // For other exceptions, you can log the error or handle them as needed
                           error_log("Database Error: " . $e->getMessage());
                           return false;
                       }
@@ -307,13 +304,18 @@
                                 check = false;
                                 msg += "Username cannot be empty or contain spaces\n";
                             }
-                            if(fullName.length == 0){
+                            if(fullName.length < 3){
                                 check = false;
-                                msg += "Full Name cannot be empty\n";
+                                msg += "Full Name cannot contain less than 3 characters\n";
                             }
                             if(gender == "Gender"){
                                 check = false;
                                 msg += "Please select a gender\n";
+                            }
+                            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                            if(!emailPattern.test(this.email1)){
+                                check = false;
+                                msg += "Email is not valid\n";
                             }
                             if(password1.length == 0){
                                 check = false;

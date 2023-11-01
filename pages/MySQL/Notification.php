@@ -38,7 +38,6 @@
         $stmt = null;
         $pdo = null;
 
-        removeNotification($username);
         echo json_encode($result);
 
     }
