@@ -21,6 +21,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" />
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/svg-with-js.min.css" rel="stylesheet" /> -->
 
+            <!-- styling -->
             <style>
                 a {
                     font-size:14px;
@@ -40,10 +41,10 @@
                     }
 
                     @media screen and (max-width: 331px) { 
-
-                                        .logo { display: none; }  
-
-                                        }
+                        .logo { 
+                            display: none;
+                        }
+                    }
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -117,174 +118,176 @@
                     padding-left: 1rem;
                 }
                 
-            
-
             </style>
 
+            <!-- title -->
             <title>Edit Profile Page</title>
             
         </head>
         <body>
-        <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
+            <!-- nav bar -->
+            <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
-            <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
-            <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-            <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-            <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-                <ul class="navbar-nav ms-auto">
-                <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
-                </li>
-                <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-                </li>
-                <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-                </li>
-                <li class="nav-item ms-auto mt-1">
-                    <a href="Profile.php"><button class="btn text-white" href="#">
-                        <img src="../icons.png" width="30">
-                        My Profile</button></a>
-                </li>
-                </ul>
-            </div>
-            </div>
+                <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
+                    <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                    <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                    <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a href="Profile.php"><button class="btn text-white" href="#">
+                                    <img src="../icons.png" width="30">
+                                    My Profile</button></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </nav>
-          <div class="container-fluid">
-            <div class="row">
-                <div class="text-center mt-4">
-                    <img id="profilePicture" src="../public/images/defaultProfile.jpg" alt="Profile Picture" class="profilePhotoFrame">
-                    <input type="file" id="imageInput" style="display: none">
+
+            <!-- user profile -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="text-center mt-4">
+                        <img id="profilePicture" src="../public/images/defaultProfile.jpg" alt="Profile Picture" class="profilePhotoFrame">
+                        <input type="file" id="imageInput" style="display: none">
+                    </div>
+                    <div class="text-center mt-2">
+                        <button id="changePicture" class="btn btn-success rounded ">Change Picture</button>
+                    </div>
                 </div>
-                <div class="text-center mt-2">
-                    <button id="changePicture" class="btn btn-success rounded ">Change Picture</button>
-                </div>
-            </div>
            
             
-            <div class="row">
-                <div class="form-group">
+                <div class="row">
+                    <div class="form-group">
 
-                    <!-- Edit DOB -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Username:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <input type="text" class="form-control f-field" id="username" disabled>
-                        <br>
-                    </div>
+                        <!-- username -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Username:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <input type="text" class="form-control f-field" id="username" disabled>
+                            <br>
+                        </div>
 
-                    <!-- Edit DOB -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Date of Birth:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <input type="date" class="form-control f-field" id="dob" disabled>
-                        <br>
-                    </div>
+                        <!-- dob -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Date of Birth:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <input type="date" class="form-control f-field" id="dob" disabled>
+                            <br>
+                        </div>
 
-                    <!-- Gender -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Gender:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <input type="text" class="form-control f-field" name="gender" id="gender" disabled >
-                    </div>
+                        <!-- gender -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Gender:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <input type="text" class="form-control f-field" name="gender" id="gender" disabled >
+                        </div>
 
-                    <!-- Edit Name -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Name:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <input type="text" class="form-control f-field" name="fname" id="fullName" Placeholder="This name will be displayed for all users to see" >
-                    </div>
+                        <!-- full name -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Name:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <input type="text" class="form-control f-field" name="fname" id="fullName" Placeholder="This name will be displayed for all users to see" >
+                        </div>
 
-                    <!-- Edit Email -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Email:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <input type="email" class="form-control f-field" name="email" id="email" Placeholder="ilovetrees@email.com" >
-                    </div>
+                        <!-- email -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Email:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <input type="email" class="form-control f-field" name="email" id="email" Placeholder="ilovetrees@email.com" >
+                        </div>
 
-                    <!-- Edit Social Media -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Socials:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                        <div class="card ">
-                            <div class="card-body" style="background-color: #d8dfd1;">
-                                <ul class="social-media">
-                                    <div class="row">
-                                        <div class="col">
-                                            <li>
-                                                <img src="../public/images/instagram.png" class="social-img">
-                                                <div class="col-5 d-inline-block m-auto">
-                                                    <label for="instagram"></label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control d-inline-block mx-auto"
-                                                        name="instagram" placeholder="https://instagram.com/username"
-                                                        id="instagram"/> 
-                                                </div>
-                                            </li>
+                        <!-- social media -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Socials:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <div class="card ">
+                                <div class="card-body" style="background-color: #d8dfd1;">
+                                    <ul class="social-media">
+                                        <div class="row">
+                                            <div class="col">
+                                                <li>
+                                                    <img src="../public/images/instagram.png" class="social-img">
+                                                    <div class="col-5 d-inline-block m-auto">
+                                                        <label for="instagram"></label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control d-inline-block mx-auto"
+                                                            name="instagram" placeholder="https://instagram.com/username"
+                                                            id="instagram"/> 
+                                                    </div>
+                                                </li>
+                                            </div>
+                                            
+
                                         </div>
-                                        
-
-                                    </div>
-                                   
-                                    <li>
-                                        <img src="../public/images/telegram.png" class="social-img">
-                                        <div class="col-5 d-inline-block m-auto">
-                                            <label for="telegram"></label>
-                                            <input
-                                                type="text"
-                                                class="form-control d-inline-block mx-auto"
-                                                name="telegram" placeholder="username"
-                                                id="telegram"/> 
-                                        </div>
-                                    </li>
                                     
-                                </ul>
-                              
+                                        <li>
+                                            <img src="../public/images/telegram.png" class="social-img">
+                                            <div class="col-5 d-inline-block m-auto">
+                                                <label for="telegram"></label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control d-inline-block mx-auto"
+                                                    name="telegram" placeholder="username"
+                                                    id="telegram"/> 
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
+                                
+                                </div>
                             </div>
-                          </div>
-                    </div>
+                        </div>
 
-                    <!-- Edit Bio -->
-                    <div class="col-sm-6 col-centered">
-                        <h2 class="featureTitle">Bio:</h2>
-                    </div>
-                    <div class="col-sm-6 col-centered">
-                         <div class="mb-3"> 
-                             <textarea class="form-control f-field" id="bio" rows="5" col="70"></textarea> 
-                         </div> 
-                    </div>
+                        <!-- bio -->
+                        <div class="col-sm-6 col-centered">
+                            <h2 class="featureTitle">Bio:</h2>
+                        </div>
+                        <div class="col-sm-6 col-centered">
+                            <div class="mb-3"> 
+                                <textarea class="form-control f-field" id="bio" rows="5" col="70"></textarea> 
+                            </div> 
+                        </div>
 
-                    <!-- Save Edit buttons -->
-                    <div class="col-sm-6 col-centered mt-5 text-center">
-                        <button class="btn btn-success" type="submit" onclick="updateUserProfile()">Save Edits</button>
-                    </div>
-                    
-                    
-                    
+                        <!-- save edit button -->
+                        <div class="col-sm-6 col-centered mt-5 text-center">
+                            <button class="btn btn-success" type="submit" onclick="updateUserProfile()">Save Edits</button>
+                        </div>
+
+                    </div> 
                 </div>
-                
             </div>
 
-          </div>
-
                     
-        </div>
+            </div>
         </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+
         </body>
+
+        <!-- javascript -->
         <script>
+
+            // retrieve profile information from MySQL and populate page
             var username = <?php echo $_SESSION['username'] ?>;
 
             url = "MySQL/User.php?type=getUser&username=" + username;
@@ -309,7 +312,7 @@
                   console.error('Error:', error);
               });
 
-            
+              // function to update MySQL on edited profile information
               function updateUserProfile() {
                 let fullName = document.getElementById("fullName").value;
                 let dob = document.getElementById("dob").value;
@@ -350,24 +353,6 @@
             //     // return document.getElementsByName("bday")[0].innerText += row;
 
             // }
-
-            let input = document.getElementById('dob');
-
-            input.addEventListener('input', function() {
-                getAge(input.value)
-            })
-            function getAge(dateString){
-                age = "";
-                var today = new Date();
-                var birthDate = new Date(dateString);
-                var age = today.getFullYear() - birthDate.getFullYear();
-                var m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()) && age != NaN) {
-                    age--;
-                }
-                document.getElementById('age').innerHTML += String(age);
-                
-            }
 
 
 
@@ -441,4 +426,6 @@
 
 
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+
     </html>

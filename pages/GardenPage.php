@@ -18,6 +18,7 @@
             <link rel="stylesheet" href="../style.css">
             <link rel="stylesheet" href="myPictures.css">
 
+            <!-- styling -->
             <style>
                 a {
                      font-size:14px;
@@ -84,6 +85,7 @@
                 }
             </style>
 
+            <!-- title -->
             <title>Garden Page</title>
             
         </head>
@@ -140,7 +142,6 @@
 
 
                 <!-- carousel -->
-
                 <div class="row"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
@@ -174,8 +175,7 @@
                     </div>
                 </div>
                 
-                <!-- My Pictures -->
-
+                <!-- my Pictures -->
                 <div class="row pt-3"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
@@ -201,7 +201,7 @@
                     </div> 
                 </div>
 
-                <!-- Edit Notes -->
+                <!-- edit notes -->
 
                 <div class="row pt-5"> 
                     <div class="col-1"></div> 
@@ -217,7 +217,7 @@
                     </div> 
                 </div>
 
-                <!-- Form -->
+                <!-- form -->
 
                 <div class="row pt-2"> 
                     <div class="col-1"></div> 
@@ -242,9 +242,12 @@
             </div>
 
 
+            <!-- get garden id -->
             <?php $gardenId = $_GET['gardenId']; ?>;
             
             <script>
+
+                // function to initialise map
                 function initMap(lat, lng) {
                     lat = Number(lat);
                     lng = Number(lng);
@@ -260,6 +263,7 @@
                     });
                     }
 
+                // retrieve garden details and show google map
                 var username = <?php echo $_SESSION['username']; ?>;
                 var gardenId = <?php echo $gardenId; ?>;
                 url = "MySQL/GardenPageInfo.php?type=getGarden&gardenId=" + gardenId;
@@ -283,7 +287,7 @@
                         console.error('Error:', error);
                     });
                 
-
+                // function to retrieve note and update in page
                 function getNote() {
                 url = "MySQL/GardenPageInfo.php?type=getNote&gardenId=" + gardenId + "&username=" + username;
                 fetch(url)
@@ -303,6 +307,7 @@
                     });
                 }
 
+                // function to save note
                 function updateNote() {
                     note = document.getElementById("note").value;
                     url = "MySQL/GardenPageInfo.php?type=updateNote&gardenId=" + gardenId + "&username=" + username + "&note=" + note;

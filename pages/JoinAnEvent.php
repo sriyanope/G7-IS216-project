@@ -13,6 +13,7 @@
         <!-- CSS stylesheet -->
         <link rel="stylesheet" href="../style.css">
 
+        <!-- styling -->
         <style>
           a {
               font-size:14px;
@@ -47,7 +48,7 @@
 
     </head>
     <body>
-      <!--Start of Nav-->
+      <!-- nav bar-->
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
@@ -106,12 +107,9 @@
           </div>
         </div>
       </nav> -->
-      
-      <!--End of Nav-->
-      
-      <!--Start of body-->
+    
 
-      <!--Start of Search Row-->
+      <!-- search bar -->
       <div class="container">
         <div class="row p-5">
           <div class="col"></div>
@@ -134,20 +132,19 @@
           </div>
           <div class="col"></div>
         </div>
-      <!--End of Search Row-->
 
       <div class="row">
         <p class="text-center pb-4">Need some inspiration before starting your own? <a href="CreateEvent.php" style='color:black;'>Create an Event!</a></p>
         </div>
 
-      <!--Start of Main Body-->
+      <!-- content -->
         <div class="row">
           <div class="col-2">Filter By Region:</div>
           <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
-          <!--Start of Filter-->
+          <!-- filter-->
           <div class="col-2">
             <div class="bg-light">
               <div class="form-check m-3">
@@ -172,9 +169,8 @@
               </div>
             </div>
           </div>
-          <!--End of Filter-->
 
-          <!--Start of Event List-->
+          <!-- event list -->
           <div class="col-10">
             <div class="bg-light">
 
@@ -189,16 +185,13 @@
                 </div>
             </div>
           </div>
-          <!--End of Event Body-->
-
-
-
         </div>
-
       </div>
       
+      <!-- javascript -->
       <script>
 
+        // function to update event list when user uses the filter or types in the search bar
         function filter() {
           const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
           let selectedRegions = Array.from(checkboxes).map(checkbox => checkbox.value);
@@ -213,17 +206,17 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json(); // Parse the JSON response
+                return response.json();
             })
             .then(data => {
-                showEventList(data); // Now you can work with the JSON data
+                showEventList(data);
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
 
-
+        // function to convert to 12 hour format
         function convertTo12HourFormat(time24) {
             const [hours, minutes] = time24.split(':');
             let period = 'AM';
@@ -235,10 +228,10 @@
                     hours12 -= 12;
                 }
             }
-
             return `${hours12}:${minutes} ${period}`;
         }
 
+        // function to convert dd-mm-yyyy date format
         function convertDateFormat(inputDate) {
             const parts = inputDate.split("-");
             if (parts.length === 3) {
@@ -246,10 +239,10 @@
                 const outputDate = `${day}-${month}-${year}`;
                 return outputDate;
             }
-            return "Invalid Date"; // Handle invalid input
+            return "Invalid Date";
         }
 
-
+        // function to show event list
         function showEventList(obj) {
           var output = "";
           document.getElementById("resultCount").innerText = obj.event.length + " results";
@@ -304,7 +297,7 @@
           document.getElementById("events").innerHTML = output;
         }
 
-
+        // initialise the page with all events
         url = "MySQL/Event.php?type=getAllEvents&key=&regions=north,north-east,central,east,west";
         fetch(url)
           .then(response => {
@@ -322,8 +315,6 @@
 
       </script>
 
-
-      <!--End of body-->
       <!-- Bootstrap JS bundle to be placed before the closing </body> tag -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       

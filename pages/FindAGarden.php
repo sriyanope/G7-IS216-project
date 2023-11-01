@@ -14,7 +14,7 @@
       
       <title>Find a Garden</title>
 
-      <!--Styling-->
+      <!-- styling -->
       <style>
         #map {
             width: 100%;
@@ -55,21 +55,24 @@
       </style>
   
       <?php
+        // retrieve garden details
         spl_autoload_register(
           function ($class){
               require_once  "MySQL/$class.php";
           });
         $dao = new GardenDAO();
         $gardenList = $dao->getGardens();
+      
       ?>
 
-        <!--Start of Google Maps Code-->
+        <!-- javascript -->
         <script>
             var mapLocation = <?php echo $gardenList; ?>;
             var markersArray = [];
             let map;
             let mapInitialized = false;
     
+            // function to store garden details into an object
             function retrieveLocDetails(garden) {
               if(typeof garden === 'string'){
                 garden = garden.split("aaaaa");
@@ -84,6 +87,7 @@
                 };
             }
     
+            // display map
             function showGarden(garden) {
                     let location = retrieveLocDetails(garden);
                     let marker = new google.maps.Marker({
@@ -98,6 +102,7 @@
                     markersArray.push(marker);
             }
     
+            // initialise google map
             function initMap() {
                 firstGarden = [0, "", 1.362338, 103.807374, ""];
                 let location = retrieveLocDetails(firstGarden);
@@ -111,6 +116,7 @@
 
             }
     
+            // clear existing overlays
             function clearOverlays() {
                 for (var i = 0; i < markersArray.length; i++) {
                     markersArray[i].setMap(null);
@@ -118,12 +124,11 @@
                 markersArray.length = 0;
             }
         </script>
-        <!--End of Google Maps Code-->
 
     </head>
 
     <body>
-      <!--Start of Nav-->
+      <!-- nav bar -->
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
           <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
@@ -152,11 +157,10 @@
           </div>
         </div>
         </nav>
-      <!--End of Nav-->
       
-      <!--Start of body-->
+      <!-- content -->
       <div class="container">
-        <!--Start of Search Textbox-->
+        <!-- search textbox -->
         <div class="row p-5">
           <div class="col"></div>
           <div class="col-3 mx-auto">
@@ -173,16 +177,14 @@
           </div>
           <div class="col"></div>
         </div>
-        <!--End of Search Textbox-->
 
-        <!--Start of Filter-->
+        <!-- filter -->
         <div class="row">
           <div class="col-2">Filter By Region:</div>
           <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
-          <!--Start of Filter-->
 
           <div class="col-2">
             <div class="bg-light">
@@ -210,23 +212,19 @@
 
           </div>
 
-
-          <!--End of Filter-->
-
-          <!--Start of Garden List-->
+          <!-- garden list -->
           <div class="col-5">
             <div class="bg-light" id="gardens"></div>
           </div>
-          <!--End of Garden List-->
 
-          <!--Start of Map Location-->
+          <!-- google map -->
           <div class="col-5">
             <div class="bg-light">
               <div id="map"></div>
               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
             </div>
 
-          <!--Start of Saved Gardens-->
+          <!-- saved gardens -->
           <div class="row mt-5">
             <h4>Saved Gardens</h4>
           </div>
@@ -236,17 +234,15 @@
               <ul id="savedGardens"></ul>
             </div>
           </div>
-          <!--End of Saved Gardens-->
-          </div>
-          <!--End of Map Location-->
-          
-        </div>
+        </div> 
+      </div>
 
       </div>
-      <!--End of body-->
 
-      <!--Start of functions-->
+      <!-- javascript -->
       <script>
+
+        // function to show garden list
         function showGardenList(obj) {
           var output = "";
           document.getElementById("resultCount").innerText = obj.garden.length + " results";
@@ -274,7 +270,7 @@
           document.getElementById("gardens").innerHTML = output;
         }
 
-
+        // function to update garden list based on filter and search bar
         function filter() {
           const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
           let selectedRegions = Array.from(checkboxes).map(checkbox => checkbox.value);
@@ -299,13 +295,13 @@
             });
         }
 
-
+        // function to go to a particular garden page
         function selectedGarden(garden){
           garden = retrieveLocDetails(garden);
           window.location.href = "GardenPage.php?gardenId=" + garden.gardenId;
         }
 
-
+        // function to show list of saved gardens
         function showSavedGarden() {
           var output = "";
           let username = <?php echo $_SESSION['username'] ?>;
@@ -337,6 +333,7 @@
 
         }
 
+        // function to save garden
         function save(garden){
           let gardenObj = retrieveLocDetails(garden);
           let gardenId = gardenObj.gardenId;
@@ -357,6 +354,7 @@
             });
         }
 
+        // function to unsave garden
         function unsave(garden){
           let gardenObj = retrieveLocDetails(garden);
           let gardenId = gardenObj.gardenId;
@@ -377,12 +375,6 @@
             });
         }
 
-
-        
-      </script>
-      <!--End of functions-->
-
-      <script>
         showSavedGarden();
         filter();
       </script>

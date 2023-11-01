@@ -16,6 +16,7 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
            
+            <!-- styling -->
             <style>
                a {
                     font-size:14px;
@@ -64,6 +65,7 @@
 
             </style>
 
+            <!-- title -->
             <title>My Events</title>
             
         </head>
@@ -125,18 +127,21 @@
                             <!-- change here -->
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
                             <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
-                    
-
-                  <!--End of Event Body-->                
+                            </div>
+                        </div>
+                    </div>
+                </div>                                  
             </div>
 
+            <!-- javascript -->
             <script>
-
+                // function to head to the event page
                 function viewOrgEvent(garden){
                     eventId = garden.split("_")[0];
                     window.location.href = "AnEventPageOrg.php?eventId=" + eventId;
                     }
 
+                // function to convert time to 12 hour format
                 function convertTo12HourFormat(time24) {
                     const [hours, minutes] = time24.split(':');
                     let period = 'AM';
@@ -152,6 +157,7 @@
                     return `${hours12}:${minutes} ${period}`;
                 }
 
+                // function to convert to dd-mm-yyyy date format
                 function convertDateFormat(inputDate) {
                     const parts = inputDate.split("-");
                     if (parts.length === 3) {
@@ -159,9 +165,10 @@
                         const outputDate = `${day}-${month}-${year}`;
                         return outputDate;
                     }
-                    return "Invalid Date"; // Handle invalid input
+                    return "Invalid Date";
                 }
 
+            // display the list of events
             function showEvents(obj){
                 output = "";
                 for(event of obj.event){
@@ -213,10 +220,9 @@
                     </div>`;
                     }
                     document.getElementById("events").innerHTML = output;
-                
-
             }
 
+            // initialise the page
             url = "MySQL/Event.php?type=myEvents";
             fetch(url)
             .then(response => {

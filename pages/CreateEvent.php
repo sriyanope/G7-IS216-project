@@ -16,6 +16,7 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
            
+            <!-- styling -->
             <style>
                a {
                     font-size:14px;
@@ -55,11 +56,13 @@
 
             </style>
 
+            <!-- title -->
             <title>Create An Event</title>
             
         </head>
 
         <?php
+          // create event into MySQL
           session_start();
           $username = $_SESSION['username'];
           
@@ -77,7 +80,7 @@
             $noOfSlots = $_POST['noOfSlots'];
             $location = $_POST['location'];
             $about = $_POST['about'];
-            $gardenId = 10; //HARDCODEDDDDDDDDDDDDDDDDDDDDDDD
+            $gardenId = 10; //HARDCODEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
          
             $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :username, :gardenId);";
 
@@ -205,7 +208,7 @@
                   const date1 = new Date(document.getElementById("eventDate").value + startTime);
                   const date2 = new Date(document.getElementById("eventDate").value + endTime);
 
-                  // Verify if the start time is more recent than the end time
+                  // verify if the start time is more recent than the end time
                   if (date1.getTime() > date2.getTime()) {
                     check = false;
                     msg += "End Time must be after Start Time";
@@ -219,7 +222,7 @@
                }
 
                function required(inputText){
-                // Verify if any fields are empty 
+                // verify if any fields are empty 
                   if (inputText.value.length == 0)
                     { 
                       alert("Please fill in all fields");  	
