@@ -46,12 +46,14 @@
                     }
 
           .filter-container {
-            background-color: #61bd4f;
+            background-color: #f6f8e0;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             color: #547D2E;
             text-align: center;
+            max-width: 300px;
+            margin; 0 auto;
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
