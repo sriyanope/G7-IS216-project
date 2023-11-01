@@ -31,6 +31,10 @@
      }else if($type == "joinEvent"){
         $eventId = $_GET['eventId'];
         joinEvent($eventId, $username);
+     }else if($type == "deleteEvent"){
+        $eventId = $_GET['eventId'];
+        $deleteReason = $_GET['deleteReason'];
+        deleteEvent($eventId, $deleteReason);
      }else if($type == "leaveEvent"){
         $eventId = $_GET['eventId'];
         leaveEvent($eventId, $username);
@@ -191,6 +195,62 @@
         $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
 
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        $stmt = null;
+        $pdo = null;
+    }
+
+    function deleteEvent($eventId, $reason){
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+
+        $sql = "select * from userevent where eventId = :eventId";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        while($row = $stmt->fetch()) {
+            $username = $row["username"];
+            deletedEventParticipants($eventId, $username, $reason);
+        }
+
+        $sql = "delete from userevent where eventId = :eventId;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $sql = "delete from event where eventId = :eventId;";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $stmt = null;
+        $pdo = null;
+    }
+
+    function deletedEventParticipants($eventId, $username, $reason){
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+
+        $sql = "select * from event where eventId = :eventId";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+
+        while($row = $stmt->fetch()) {
+            $eventTitle = $row["eventTitle"];
+        }
+        
+        $sql = "INSERT INTO deletedEvent (eventID, username, eventTitle, reason) VALUES (:eventId, :username, :eventTitle, :reason);";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':eventTitle', $eventTitle, PDO::PARAM_STR);
+        $stmt->bindParam(':reason', $reason, PDO::PARAM_STR);
         $stmt->execute();
 
         $stmt = null;

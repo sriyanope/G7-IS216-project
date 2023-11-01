@@ -158,7 +158,41 @@
         </div>
         </nav>
       
+<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
+
+<script>
+
+  url = "MySQL/Notification.php?type=deletedEventNotification";
+  fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+      output = "";
+      for(notif of data.notification){
+        eventTitle = data.notification.eventTitle;
+        reason = data.notification.reason;
+        output += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Notification: </strong> ${eventTitle} has been deleted with the following reason:
+                ${reason}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`
+      }
+      document.getElementById("notification").innerHTML = output;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+</script>
+
+<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
+
       <!-- content -->
+      <div id="notification"></div>
       <div class="container">
         <!-- search textbox -->
         <div class="row p-5">

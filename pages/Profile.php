@@ -111,32 +111,33 @@
         <body>
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
-              <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
-                <img src="../logo.png" alt="Logo" style="width: 114px; height: 65px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-                <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-                  <ul class="navbar-nav ms-auto">
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a href="Profile.php"><button class="btn text-white" href="#">
-                          <img src="../icons.png" width="30">
-                          My Profile</button></a>
-                    </li>
-                  </ul>
+
+                <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
+                    <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                    <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                    <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a href="Profile.php"><button class="btn text-white" href="#">
+                                    <img src="../icons.png" width="30">
+                                    My Profile</button></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </nav>
 
           <!-- javascript -->

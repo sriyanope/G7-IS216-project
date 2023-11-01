@@ -405,7 +405,7 @@
                 <div class="col-10">
 
                     <h3 class="pt-4"><b>Edit This Event</b></h3>
-                    <button type="button" class="btn text-white" onclick="enableInput()">Edit</button>
+                    <!--<button type="button" class="btn text-white" onclick="enableInput()">Edit</button>-->
                 </div>
             </div>
 
@@ -458,7 +458,38 @@
                             <label class="form-label pe-3" for="UploadEventPicture">Add Pictures</label><br>
                             <input type="file" class="form-control d-block" id="UploadEventPicture" disabled>
                           </div>
-                        <button type="button" class="btn text-white d-none" id="updateBtn" onclick="updateInput()">Update Edit</button>
+                        
+                        
+                          <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                            Delete Event
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Delete Event</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                Are you sure that you want to delete?  This action is irreversible.
+                                </div>
+                                <div class="form-group mx-3">
+                                    <label for="exampleInputEmail1">Reason for deleting event</label>
+                                    <textarea class="form-control" rows="3" id="deleteReason"></textarea>
+                                </div>
+
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="deleteEvent()">Proceed</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                       </form>
                       </div>
                       </div>
@@ -530,29 +561,29 @@
 
                 // Functions
                 // Allow the change of event details
-                function enableInput() {
-                    document.getElementById("eventTitle").removeAttribute("disabled");
-                    document.getElementById("category").removeAttribute("disabled");
-                    document.getElementById("eventDate").removeAttribute("disabled");
-                    document.getElementById("startTime").removeAttribute("disabled");
-                    document.getElementById("endTime").removeAttribute("disabled");
-                    document.getElementById("noOfSlots").removeAttribute("disabled");
-                    document.getElementById("location").removeAttribute("disabled");
-                    document.getElementById("about").removeAttribute("disabled");
-                    document.getElementById("updateBtn").setAttribute("class", "btn text-white");
-                }
+                // function enableInput() {
+                //     document.getElementById("eventTitle").removeAttribute("disabled");
+                //     document.getElementById("category").removeAttribute("disabled");
+                //     document.getElementById("eventDate").removeAttribute("disabled");
+                //     document.getElementById("startTime").removeAttribute("disabled");
+                //     document.getElementById("endTime").removeAttribute("disabled");
+                //     document.getElementById("noOfSlots").removeAttribute("disabled");
+                //     document.getElementById("location").removeAttribute("disabled");
+                //     document.getElementById("about").removeAttribute("disabled");
+                //     document.getElementById("updateBtn").setAttribute("class", "btn text-white");
+                // }
 
                 // update event details into MySQL
-                function updateInput() {
-                    document.getElementById("eventTitle").setAttribute("disabled", "");
-                    document.getElementById("category").setAttribute("disabled", "");
-                    document.getElementById("eventDate").setAttribute("disabled", "");
-                    document.getElementById("startTime").setAttribute("disabled", "");
-                    document.getElementById("endTime").setAttribute("disabled", "");
-                    document.getElementById("noOfSlots").setAttribute("disabled", "");
-                    document.getElementById("location").setAttribute("disabled", "");
-                    document.getElementById("about").setAttribute("disabled", "");
-                    document.getElementById("updateBtn").setAttribute("class", "btn text-white d-none");
+                // function updateInput() {
+                //     document.getElementById("eventTitle").setAttribute("disabled", "");
+                //     document.getElementById("category").setAttribute("disabled", "");
+                //     document.getElementById("eventDate").setAttribute("disabled", "");
+                //     document.getElementById("startTime").setAttribute("disabled", "");
+                //     document.getElementById("endTime").setAttribute("disabled", "");
+                //     document.getElementById("noOfSlots").setAttribute("disabled", "");
+                //     document.getElementById("location").setAttribute("disabled", "");
+                //     document.getElementById("about").setAttribute("disabled", "");
+                //     document.getElementById("updateBtn").setAttribute("class", "btn text-white d-none");
                     
                     // eventTitle = document.getElementById("eventTitle");
                     // category = document.getElementById("category");
@@ -577,7 +608,7 @@
                     // .catch(error => {
                     //     console.error('Error:', error);
                     // });
-                }
+                // }
 
                 // convert to 12 hour format
                 function convertTo12HourFormat(time24) {
@@ -606,6 +637,24 @@
                     return "Invalid Date";
                 }
 
+                function deleteEvent() {
+                    deleteReason = document.getElementById("deleteReason").value;
+                    url = "MySQL/Event.php?type=deleteEvent&eventId=" + eventId + "&deleteReason=" + deleteReason;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response;
+                    })
+                    .then(data => {
+                        window.location="myEvents.php";
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
             </script>
 
 
@@ -625,7 +674,9 @@
 
 
 
-
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       </body>
     </html>

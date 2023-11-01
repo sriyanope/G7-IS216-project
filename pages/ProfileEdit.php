@@ -181,15 +181,6 @@
                             <br>
                         </div>
 
-                        <!-- dob -->
-                        <div class="col-sm-6 col-centered">
-                            <h2 class="featureTitle">Date of Birth:</h2>
-                        </div>
-                        <div class="col-sm-6 col-centered">
-                            <input type="date" class="form-control f-field" id="dob" disabled>
-                            <br>
-                        </div>
-
                         <!-- gender -->
                         <div class="col-sm-6 col-centered">
                             <h2 class="featureTitle">Gender:</h2>
@@ -302,7 +293,6 @@
                 document.getElementById("username").value = data.user[0].username;
                 document.getElementById("gender").value = data.user[0].gender;
                 document.getElementById("fullName").value = data.user[0].fullName;
-                document.getElementById("dob").value = data.user[0].dob;
                 document.getElementById("email").value = data.user[0].email;
                 document.getElementById("bio").value = data.user[0].bio;
                 document.getElementById("instagram").value = data.user[0].instagram;
@@ -315,12 +305,11 @@
               // function to update MySQL on edited profile information
               function updateUserProfile() {
                 let fullName = document.getElementById("fullName").value;
-                let dob = document.getElementById("dob").value;
                 let email = document.getElementById("email").value;
                 let bio = document.getElementById("bio").value;
                 let instagram = document.getElementById("instagram").value;
                 let telegram = document.getElementById("telegram").value;
-                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&dob=" + dob + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
+                url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
                 fetch(url)
                 .then(response => {
                     if (!response.ok) {
@@ -333,6 +322,7 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
+                window.location="Profile.php";
               }
 
             // document.getElementsByName("bday")[0].addEventListener("keypress", submitBday())
