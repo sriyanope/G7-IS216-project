@@ -70,6 +70,9 @@
                 require_once  "MySQL/$class.php";
             });
 
+          $location = $_GET['gardenName'];
+          $gardenId = $_GET['gardenId'];
+
           if(isset($_POST['submit'])){
             $eventTitle = $_POST['eventTitle'];
             $category = $_POST['category'];
@@ -77,9 +80,7 @@
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
             $noOfSlots = $_POST['noOfSlots'];
-            $location = $_POST['location'];
             $about = $_POST['about'];
-            $gardenId = 10; //HARDCODEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
          
             $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :username, :gardenId);";
 

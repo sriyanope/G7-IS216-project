@@ -17,6 +17,8 @@
             <link rel="stylesheet" href="../style.css">
             <link rel="stylesheet" href="organiserView/progressBar.css">
             <link rel="stylesheet" href="starRating.css">
+            <!-- Axios -->
+            <script src="https://unpkg.com/axios/dist/axios.js"></script>
            
             <!-- styling -->
             <style>
@@ -408,11 +410,44 @@
                       <!-- google map -->
                       <h2><b>Location</b></h2>
                       <div id="map"></div>
-                      </div>
 
+                      <h2 class='my-5'><b>Comments</b></h2>
+                      <table class='table mt-3'>
+                            <tbody id='tbody'></tbody>
+                        </table>
+
+                        <table class='table'>
+                            <tbody>
+                                <tr>
+                                    <th scope='row' style='width: 100px'>Nickname</th>
+                                    <td>
+                                        <input id='nickname'>
+                                        <span id='nickname-error' class="text-danger"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope='row'>Chat</th>
+                                    <td class='font-italic'>
+                                        <input id='text' class="w-75" type="text" maxlength='100'>
+                                        <button id='btnSend' class='btn btn-primary'>SEND</button>
+
+                                        <br>
+                                        <span id='num-chars'>0</span> / 100
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p id='output'></p>
+                      </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
 
             <!-- javascript -->
             <script>
@@ -601,6 +636,97 @@
                 });
 
             </script>
+
+
+<script>
+
+        var nicknameInput = document.getElementById('nickname');
+        nicknameInput.addEventListener('keyup', checkNickname);
+
+        var textInput = document.getElementById('text');
+        textInput.addEventListener('keyup', doText);
+
+        var btnSend = document.getElementById('btnSend');
+        btnSend.addEventListener('click', doSend);
+
+        var numChars = document.getElementById('num-chars');
+
+        function htmlEntities(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function process(nickname, text) {
+            eventId = <?php echo $_GET['eventId']; ?>;
+            uname = <?php echo $_SESSION['username']; ?>;
+            let gotoURL = "server/chat.php?eventId=1"
+            // this function process can be invoked with and without arguments.
+            // When there is no argument passed in, we have no parameters to send to the API.
+            let getParameters = {};
+            // If there are arguments passed in (i.e. parameter text has value), prepare the GET parameters to be sent to the API.
+            if (typeof text !== "undefined") {
+                getParameters.nickname = uname;
+                getParameters.text = text;
+                getParameters.eventId = eventId;
+            }
+
+            axios.get(gotoURL, {
+                params: getParameters,
+            })
+            .then (response => {
+                let rows = '';
+                let obj = response.data[eventId];
+                for (msg of obj) {
+                    rows = '<tr>'
+                        + '<th scope="row">' + msg.who + '</th>'
+                        + '<td>' + htmlEntities(msg.text) + '</td>'
+                        + '</tr>' + rows;
+                }
+                document.getElementById('tbody').innerHTML = rows;
+                
+            })
+            .catch(error => {
+                output.innerHTML = "Error: " + error.message;
+                console.log(error.message)
+            });
+        }
+
+        function checkNickname() {
+            nickname = nicknameInput.value;
+            let errorMsg = document.getElementById('nickname-error');
+            if (nickname.length < 3) {
+                errorMsg.innerText = "Must be at least 3 characters";
+            } else {
+                errorMsg.innerText = "";
+            }
+        }
+
+        function doText(event) {
+
+            if (event.code === 'Enter') {
+                doSend();
+            }
+            numChars.innerHTML = textInput.value.length;
+        }
+
+        function doSend() {
+            let nickname = nicknameInput.value;
+            process(nickname, textInput.value);
+            textInput.value = '';
+            numChars.innerHTML = 0;
+        }
+
+        nicknameInput.value = 'anonymous' + Math.floor(Math.random() * 100000);
+
+        process();
+        
+        // pull messages every 1 second
+        //window.setInterval(process, 1000);
+
+    </script>
 
 
 
