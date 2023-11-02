@@ -106,7 +106,7 @@
                       <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
+                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
@@ -135,13 +135,16 @@
                     <div class="col-10">
                         <p><img src="../public/images/location pin.svg"><span id="address"></span>
                         </p>
-                        
+                        <h2><b>Location</b></h2>
+                        <div id="map"></div>
                     </div> 
                 </div>
 
 
+
+
                 <!-- carousel -->
-                <div class="row"> 
+                <!-- <div class="row"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
 
@@ -172,35 +175,9 @@
                         
                         </div> 
                     </div>
-                </div>
-                
-                <!-- my Pictures -->
-                <div class="row pt-3"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-                        <h2><b>My Pictures</b></h2>
-                    </div> 
-                </div>
+                </div> -->
 
-                <div class="row pt-3 myPictures"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-                        
-                        <div class="gallery">
-                            <img src="../public/images/EventImage.jpg" alt="my pics">
-                            <img src="https://picsum.photos/id/15/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/1040/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/106/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/136/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/1039/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/110/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/1047/300/300" alt="my pics">
-                            <img src="https://picsum.photos/id/1057/300/300" alt="my pics">
-                        </div>
-                    </div> 
-                </div>
-
-                <!-- edit notes -->
+                <!-- notes -->
 
                 <div class="row pt-5"> 
                     <div class="col-1"></div> 
@@ -227,14 +204,12 @@
                                 <label for="notes" class="form-label">Notes</label>
                                 <textarea name="notes" class="form-control" rows="4" cols="50" id="note"></textarea>
                               </div>
-                              <div class="input-group mb-3">
+                              <!-- <div class="input-group mb-3">
                                 <label class="form-label pe-3 mt-3" for="UploadGardenPicture">Add Pictures</label><br>
                                 <input type="file" class="form-control d-block mt-3" id="UploadGardenPicture">
-                              </div>
-                            <button type="button" name="submit" class="btn text-white mb-5 mt-3" onclick="updateNote()">Update Notes</button>
+                              </div> -->
+                            <button type="button" name="submit" class="btn text-white mb-5 mt-3" onclick="updateNote()">Update Note</button>
                           </form>
-                          <h2><b>Location</b></h2>
-                          <div id="map"></div>
                     </div> 
 
                 </div>

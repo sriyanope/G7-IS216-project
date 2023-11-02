@@ -71,7 +71,7 @@
 
               // function to register user upon validation success
               function registerUser($username, $fullName, $gender, $email, $hashedPassword) {
-                  $sql = "insert into users (username, fullName, gender, email, password) values (:username, :fullName, :gender, :email, :hashedPassword);"; 
+                  $sql = "insert into users (username, fullName, gender, email, password, profilePhoto) values (:username, :fullName, :gender, :email, :hashedPassword, '../ProfileIcon.jpg');"; 
 
                   $connMgr = new ConnectionManager();
                   $pdo = $connMgr->getConnection();

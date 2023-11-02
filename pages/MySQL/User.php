@@ -37,7 +37,7 @@
         $result['user'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"], 'gender' => $row["gender"], 'email' => $row["email"], 'bio' => $row["bio"], 'pastEventsHosted' => $row["pastEventsHosted"], 'pastEventsAttended' => $row["pastEventsAttended"], 'instagram' => $row["instagram"], 'telegram' => $row["telegram"]);
+            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"], 'gender' => $row["gender"], 'email' => $row["email"], 'bio' => $row["bio"], 'pastEventsHosted' => $row["pastEventsHosted"], 'pastEventsAttended' => $row["pastEventsAttended"], 'profilePhoto' => $row["profilePhoto"], 'instagram' => $row["instagram"], 'telegram' => $row["telegram"]);
         }
         
         $stmt = null;

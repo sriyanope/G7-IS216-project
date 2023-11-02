@@ -71,7 +71,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'image' => $row["image"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
         }
         
         $stmt = null;
@@ -95,7 +95,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'image' => $row["image"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
         }
         
         $stmt = null;
@@ -118,7 +118,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'image' => $row["image"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'fullName' => $row["fullName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'fullName' => $row["fullName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"]);
         }
         
         $stmt = null;
