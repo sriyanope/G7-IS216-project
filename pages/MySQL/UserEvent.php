@@ -24,7 +24,7 @@
         $result['user'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"]);
+            $result['user'][] = array('username' => $row["username"], 'fullName' => $row["fullName"], 'profilePhoto' => $row["profilePhoto"]);
         }
         
         $stmt = null;

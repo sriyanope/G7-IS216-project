@@ -148,7 +148,7 @@
                 echo 0;
               }else{
                 echo 1;
-              } ?>
+              } ?>;
             
             // retrieve profile details and populate page
             url = "MySQL/User.php?type=getUser&username=" + username;
@@ -163,17 +163,20 @@
                 document.getElementById("fullName").innerText = data.user[0].fullName;
                 document.getElementById("email").innerText = data.user[0].email;
                 document.getElementById("bio").innerText = data.user[0].bio;
-                if(data.user[0].instagram.length > 0){
+
+                if(data.user[0].instagram !== null && data.user[0].instagram.length > 0){
                   document.getElementById("instagram").href = data.user[0].instagram;
                 }else{
                   document.getElementById("instagram").setAttribute("class", "d-none");
                 }
 
-                if(data.user[0].telegram.length > 0){
+                if(data.user[0].telegram !== null && data.user[0].telegram.length > 0){
                   document.getElementById("telegram").href = "https://t.me/" + data.user[0].telegram;
                 }else{
                   document.getElementById("telegram").setAttribute("class", "d-none");
                 }
+
+                document.getElementById("image").setAttribute("src", data.user[0].profilePhoto);
 
               })
               .catch(error => {
@@ -185,7 +188,7 @@
           <div class="container-fluid">
             <div class="row">
                 <div class="col text-center mt-4">
-                        <img class="profilePhotoFrame" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"> 
+                        <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px;" src="../public/ProfileIcon.jpg"> 
                 </div>
             </div>
             <div class="row">

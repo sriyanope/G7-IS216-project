@@ -149,11 +149,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="text-center mt-4">
-                        <img id="profilePicture" src="../public/images/defaultProfile.jpg" alt="Profile Picture" class="profilePhotoFrame">
-                        <input type="file" id="imageInput" style="display: none">
+                        <img src="../public/ProfileIcon.jpg" id="profilePhoto" style="width: 200px; height: 200px;" alt="Profile Picture" class="profilePhotoFrame">
+                        
                     </div>
                     <div class="text-center mt-2">
-                        <button id="changePicture" class="btn btn-success rounded ">Change Picture</button>
+                        <input type="file" id="image">
                     </div>
                 </div>
            
@@ -290,6 +290,7 @@
                 document.getElementById("bio").value = data.user[0].bio;
                 document.getElementById("instagram").value = data.user[0].instagram;
                 document.getElementById("telegram").value = data.user[0].telegram;
+                document.getElementById("profilePhoto").setAttribute("src", data.user[0].profilePhoto);
               })
               .catch(error => {
                   console.error('Error:', error);
@@ -317,23 +318,62 @@
                 if(!check){
                     alert(msg);
                 }else{
-                    url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
-                    fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
+
+                    allowedExtensions = ['jpg', 'jpeg', 'png'];
+                    const maxSize = 200000;
+
+                    const fileInput = document.getElementById('image');
+                    const file = fileInput.files[0];
+
+                    if (file) {
+                        const fileExtension = file.name.split('.').pop().toLowerCase();
+
+                        if (allowedExtensions.includes(fileExtension)) {
+                            if (file.size <= maxSize) {
+                                // Create a FormData object and send the image
+                                const formData = new FormData();
+                                formData.append('image', document.getElementById('image').files[0]);
+                                fetch('MySQL/ProcessImage.php', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                .then(response => {
+                                    if (response.status === 200) {
+                                        console.log('Image uploaded successfully.');
+                                        url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
+                                        fetch(url)
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                            }
+                                            return response
+                                        })
+                                        .then(data => {
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                        });
+                                        window.location="Profile.php";
+                                    } else {
+                                        alert('Image upload failed.');
+                                    }
+                                })
+                                .catch(error => {
+                                    alert('Error:', error);
+                                });
+                            } else {
+                                alert('Image size exceeds the maximum allowed size (200 KB).');
+                            }
+                        } else {
+                            alert('Invalid file extension. Please select a JPG, JPEG, or PNG image.');
                         }
-                        return response
-                    })
-                    .then(data => {
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                    window.location="Profile.php";
+                    }
+
                 }
 
               }
+
+
 
               const appFullName = Vue.createApp({
                 data(){

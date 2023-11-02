@@ -229,7 +229,6 @@
             </div>
           </div>
         </div>
-      </div>
 
           <!-- event list -->
           <div class="col-10">
@@ -248,6 +247,7 @@
           </div>
         </div>
       </div>
+    </div>
       
       <!-- javascript -->
       <script>

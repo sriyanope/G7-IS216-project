@@ -1,6 +1,7 @@
 <!doctype html>
     <html lang="en">
         <head>
+            <?php session_start(); ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -119,7 +120,7 @@
                       <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.html"><i class="events"></i> Events</a>
+                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
@@ -212,7 +213,7 @@
 
                 </div>
                 <div class="col-1">
-                    <img src="../public/images/defaultProfile.jpg" style="height: 100px; margin-top: 10px;">
+                    <img src="../ProfileIcon.jpg" id="profilePhoto" style="border-radius: 100px;width: 100px; height: 100px; margin-top: 10px;">
                 </div>
             </div>
 
@@ -417,7 +418,9 @@
             <script>
 
                 // get event details and populate page
+
                 eventId = <?php echo $_GET['eventId']; ?>;
+                orgUsername = <?php echo $_SESSION['username']; ?>;
                 url = "MySQL/Event.php?type=getEventByEventId&eventId=" + eventId;
                 fetch(url)
                 .then(response => {
@@ -434,8 +437,13 @@
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
                     document.getElementById("aboutLabel").innerText = data.event[0].about;
+                    document.getElementById("profilePhoto").setAttribute("src", data.event[0].profilePhoto);
                     profileLink = "Profile.php?username=" + data.event[0].username;
                     document.getElementById("profileLabel").setAttribute("href", profileLink);
+
+                    if(orgUsername == data.event[0].username){
+                        document.getElementById("joinBtn").setAttribute("class", "btn text-white d-none");
+                    }
                     
                     
                     lat = Number(data.event[0].latitude);
@@ -576,6 +584,7 @@
                         document.getElementById("fullLabel").innerText = "Slots are full!";
                     }
                 }
+
 
             </script>
             

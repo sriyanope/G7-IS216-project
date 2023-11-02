@@ -233,27 +233,9 @@
             <!-- <div class="row pt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;"> -->
+                    <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;">
 
                     
-                        <!-- <div class="row pt-4">
-                            <div class="col text-center">
-                                    <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                    <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                        </div>
                         <div class="row pt-4">
                             <div class="col text-center">
                                     <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
@@ -289,8 +271,26 @@
                                 <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
                                 <div>John</div>
                             </div>
-                        </div> -->
-<!-- 
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col text-center">
+                                    <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
+                                    <div>John</div>
+                            </div>
+                            <div class="col text-center">
+                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
+                                <div>John</div>
+                            </div>
+                            <div class="col text-center">
+                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
+                                <div>John</div>
+                            </div>
+                            <div class="col text-center">
+                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
+                                <div>John</div>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
@@ -403,7 +403,7 @@
                 <div class="col-1"></div> 
                 <div class="col-10">
 
-                    <h3 class="pt-4"><b>Edit This Event</b></h3>
+                    <h3 class="pt-4"><b>Event Details</b></h3>
                 </div>
             </div>
 
@@ -451,10 +451,6 @@
                           <div class="mb-3">                    
                             <label for="AboutThisEvent" class="form-label">About This Event</label>
                             <textarea id="about" class="form-control" rows="4" cols="50" disabled></textarea>
-                          </div>
-                          <div class="input-group mb-3">
-                            <label class="form-label pe-3" for="UploadEventPicture">Add Pictures</label><br>
-                            <input type="file" class="form-control d-block" id="UploadEventPicture" disabled>
                           </div>
                         
                         
@@ -545,10 +541,13 @@
                 })
                 .then(data => {
                     output = "";
+                    console.log(data);
                     for(user of data.user){
+
                         username = user.username;
                         fullName = user.fullName;
-                        output += `<li class='my-2'><a href='Profile.php?username=${username}' style='text-decoration: none;color:black'><span>${fullName}</span></a></li>`;
+                        profilePhoto = user.profilePhoto
+                        output += `<li class='my-2'><a href='Profile.php?username=${username}' style='text-decoration: none;color:black'><img src='${profilePhoto}' style='margin-right:20px;height: 30px;width:auto'><span>${fullName}</span></a></li>`;
                         document.getElementById("participants").innerHTML = output;
                     }
                 })
