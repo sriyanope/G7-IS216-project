@@ -10,8 +10,6 @@
       <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
       <!-- CSS stylesheet -->
       <link rel="stylesheet" href="../style.css">
-      <!-- iconify -->
-      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
       
       <title>Find a Garden</title>
 
@@ -59,71 +57,6 @@
           right:0;
           z-index: 100; /* Ensure it's on top of other content */
         }
-
-
-        .form-control {
-              outline: 0 !important;
-              border-color: initial;
-              box-shadow: none;
-                    }
-
-          .filter-container {
-            background-color: #f6f8e0;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            color: #547D2E;
-            text-align: center;
-            max-width: 100px;
-            margin; 0 auto;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-          }
-
-          .form-check-input {
-            display: none;
-          }
-
-          .form-check-label {
-            display: inline-block;
-            font-weight: 600;
-            font-size: 10px;
-            cursor: pointer;
-            margin: 5px;
-            position: relative;
-            transition: color 0.3s ease, transform 0.3s ease;
-          }
-
-          .form-check-label::before {
-            content: "\2713";
-            position: absolute;
-            left: -30px;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-          }
-
-          .form-check-input:checked + .form-check-label::before {
-            opacity: 1;
-            transform: scale(1);
-          }
-
-          .form-check-label:hover {
-            color: #B7CF9B;
-            transform: scale(1.1);
-          }
-          
-          .filterHead {
-          font-weight: 600;
-          font-size: 12px; 
-          color: black;
-          margin-bottom: 10px;
-          text-align: center; 
-          text-transform: uppercase; 
-          letter-spacing: 2px; 
-          }
 
       </style>
   
@@ -288,12 +221,11 @@
       <div class="container">
         <!-- search textbox -->
         <div class="row p-5">
-          <div class="col"></div>
-          <div class="col-3 mx-auto">
-            <h2><b>Find a Garden</b></h2>
-
+          <div class="col-1"></div>
+          <div class="col-4 mx-auto">
+            <h2><b>Select a Location</b></h2>
           </div>
-          <div class="col-7 mx-auto">
+          <div class="col-6 mx-auto">
             <div class="input-group">
               <input class="form-control border-end-0 border rounded-pill" type="search" id="search" placeholder="Search" onkeyup="filter(this.value)">
               <span class="input-group-append">
@@ -302,7 +234,7 @@
               </span>
             </div>
           </div>
-          <div class="col"></div>
+          <div class="col-1"></div>
         </div>
 
         <!-- filter -->
@@ -311,32 +243,33 @@
           <div class="col-3" id="resultCount"></div>
         </div>
 
-      <div class="row">
-        <div class="col-2">
-          <div class="filter-container">
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
-              <label class="form-check-label">North</label>
+        <div class="row">
+
+          <div class="col-2">
+            <div class="bg-light">
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
+                <label class="form-check-label">North</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
+                <label class="form-check-label">North-East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
+                <label class="form-check-label">Central</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
+                <label class="form-check-label">East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
+                <label class="form-check-label">West</label>
+              </div>
             </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
-              <label class="form-check-label">North-East</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
-              <label class="form-check-label">Central</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
-              <label class="form-check-label">East</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
-              <label class="form-check-label">West</label>
-            </div>
+
           </div>
-        </div>
-      </div>
 
           <!-- garden list -->
           <div class="col-5">
@@ -350,16 +283,6 @@
               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
             </div>
 
-          <!-- saved gardens -->
-          <div class="row mt-5">
-            <h4>Saved Gardens</h4>
-          </div>
-
-          <div class="row bg-light mt-2 mb-5 border">
-            <div class="col pt-3">
-              <ul id="savedGardens"></ul>
-            </div>
-          </div>
         </div> 
       </div>
 
@@ -372,52 +295,26 @@
         function showGardenList(obj) {
           var output = "";
           document.getElementById("resultCount").innerText = obj.garden.length + " results";
-          url = "MySQL/SavedGarden.php?type=show&username=" + username;
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                savedList = [];
-                for(garden of data.garden){
-                  savedList.push(garden.gardenName);
-                }
-                for(garden of obj.garden){
-                  let gardenID = garden.gardenID;
-                  let gardenName = garden.gardenName;
-                  let latitude = Number(garden.latitude);
-                  let longitude = Number(garden.longitude);
-                  let region = garden.region;
-                  let address = garden.address;
-                  let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
+          for(garden of obj.garden){
+            let gardenID = garden.gardenID;
+            let gardenName = garden.gardenName;
+            let latitude = Number(garden.latitude);
+            let longitude = Number(garden.longitude);
+            let region = garden.region;
+            let address = garden.address;
+            
+            let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
 
-                  if(savedList.indexOf(gardenName) == -1){
-                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
-                  }else{
-                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
-                  }
-
-                  output += `<div class="card border">
-                      <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
-                        <div class="card-body">
-                          <h5 class="card-title">${gardenName}</h5>
-                          <p class="card-text">Address: ${address}</p>
-                          </a>
-                          <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
-                          ${btn}
-                        </div>
-
-                    </div>
-                    `;
-                }
-                document.getElementById("gardens").innerHTML = output;
-                })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            output += `<div class="card border">
+            <div class="card-body">
+                  <h5 class="card-title">${gardenName}</h5>
+                  <p class="card-text">Address: ${address}</p>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
+                  <button type="button" class="btn btn-primary" value="${v}" onclick='select(this.value)'>Select</button>
+                </div>
+              </div>`;
+          }
+          document.getElementById("gardens").innerHTML = output;
         }
 
         // function to update garden list based on filter and search bar
@@ -444,98 +341,13 @@
                 console.error('Error:', error);
             });
         }
-
-        // function to go to a particular garden page
-        function selectedGarden(garden){
-          garden = retrieveLocDetails(garden);
-          window.location.href = "GardenPage.php?gardenId=" + garden.gardenId;
-        }
-
-        var username = <?php 
-        if(isset($_SESSION['username'])){
-          echo $_SESSION['username'];
-        }else{
-          echo "NonUser";
-        }  
-        ?>;
         
-        // function to show list of saved gardens
-        function showSavedGarden() {
-          var output = "";
-          url = "MySQL/SavedGarden.php?type=show&username=" + username;
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-              if(data.garden.length == 0){
-                document.getElementById("savedGardens").innerHTML = "No garden saved";
-              }else{
-                for(garden of data.garden){
-                let gardenID = garden.gardenID;
-                let gardenName = garden.gardenName;
-
-                output += `<li class='my-2'><a href='GardenPage.php?gardenId=${gardenID}' style='text-decoration: none;color:black'><span>${gardenName}</span></a></li>`;
-              }
-              document.getElementById("savedGardens").innerHTML = output;
-              }
-                })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
-
-        }
-
-        // function to save garden
-        function save(this1, garden){
-          let gardenObj = retrieveLocDetails(garden);
-          let gardenId = gardenObj.gardenId;
-          url = "MySQL/SavedGarden.php?type=add&gardenId=" + gardenId + "&username=" + username;
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response;
-            })
-            .then(data => {
-              showSavedGarden();
-              this1.setAttribute("onclick", "unsave(this, this.value)");
-              this1.innerText = "Unsave";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-
-        // function to unsave garden
-        function unsave(this1, garden){
-          let gardenObj = retrieveLocDetails(garden);
-          let gardenId = gardenObj.gardenId;
-          url = "MySQL/SavedGarden.php?type=delete&gardenId=" + gardenId + "&username=" + username;
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response;
-            })
-            .then(data => {
-              showSavedGarden();
-              this1.setAttribute("onclick", "save(this, this.value)");
-              this1.innerText = "Save";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        function select(garden){
+          garden = retrieveLocDetails(garden);
+          window.location.href = "CreateEvent.php?gardenId=" + garden.gardenId + "&gardenName=" + garden.gardenName;
         }
 
         filter();
-        showSavedGarden();
         
       </script>
       

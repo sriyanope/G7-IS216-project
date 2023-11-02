@@ -187,11 +187,11 @@
                     let gardenName = event.gardenName;
 
                     if(filled < (noOfSlots/2)){
-                        slots = "<span style='color:green'>" + filled + "/" + noOfSlots + "</span>";
+                        slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
                         }else if(filled == noOfSlots){
-                        slots = "<span style='color:red'>" + filled + "/" + noOfSlots + "</span>";
+                        slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
                         }else{
-                        slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + "</span>";
+                        slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
                         }
                         
                     eventDate = convertDateFormat(eventDate);
@@ -201,21 +201,25 @@
                     let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + image + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
 
                     output += `<div class="col">
-                    <div class="card h-100">
-                        <a href=""><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                        <div class="card-body">
-                        <a href="" class="text-decoration-none text-dark">
-                            <h4>${eventTitle}</h4>
-                            <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
-                            <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
-                        </a>
-                        <div class="d-flex justify-content-between align-items-center">
-                            ${slots}
-                            <span><button type="button" class="btn btn-primary" value="${v}" onclick='viewOrgEvent(this.value)'>View More</button></span>
+                        <div class="card h-100">
+                            <a href="javascript:void(0);" onclick='viewOrgEvent("${v}")' class="text-decoration-none text-dark">
+                            <img class="card-img-top" src="../public/images/EventImage.jpg">
+                            <div class="card-body">
+                                <h4>${eventTitle}</h4>
+                                <p class="card-text">
+                                <img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}
+                                </p>
+                                <p>
+                                <img src="../public/images/location pin.svg" class="pe-1">${gardenName}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                ${slots}
+                                </div>
+                            </div>
+                            </a>
                         </div>
                         </div>
-                    </div>
-                    </div>`;
+                        `;
                     }
                     document.getElementById("events").innerHTML = output;
             }
