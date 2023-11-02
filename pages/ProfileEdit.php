@@ -319,6 +319,20 @@
                     alert(msg);
                 }else{
 
+                    url = "MySQL/User.php?type=updateUser&fullName="+fullName+"&email="+email+"&bio="+bio+"&instagram="+instagram+"&telegram="+telegram;
+                    console.log(url);
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response;
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+
                     allowedExtensions = ['jpg', 'jpeg', 'png'];
                     const maxSize = 200000;
 
@@ -353,7 +367,6 @@
                                         .catch(error => {
                                             console.error('Error:', error);
                                         });
-                                        window.location="Profile.php";
                                     } else {
                                         alert('Image upload failed.');
                                     }
@@ -368,7 +381,7 @@
                             alert('Invalid file extension. Please select a JPG, JPEG, or PNG image.');
                         }
                     }
-
+                    window.location="Profile.php";
                 }
 
               }

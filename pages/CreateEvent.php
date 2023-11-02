@@ -70,6 +70,9 @@
                 require_once  "MySQL/$class.php";
             });
 
+          $location = $_GET['gardenName'];
+          $gardenId = $_GET['gardenId'];
+
           if(isset($_POST['submit'])){
             $eventTitle = $_POST['eventTitle'];
             $category = $_POST['category'];
@@ -77,11 +80,9 @@
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
             $noOfSlots = $_POST['noOfSlots'];
-            $location = $_POST['location'];
             $about = $_POST['about'];
-            $gardenId = 10; //HARDCODEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
          
-            $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :username, :gardenId);";
+            $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, createdDate, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, CURDATE(), :username, :gardenId);";
 
             $connMgr = new ConnectionManager();
             $pdo = $connMgr->getConnection();
@@ -103,9 +104,56 @@
             $stmt = null;
             $pdo = null;
 
-            header("location: JoinAnEvent.php");
+            header("location: MyEvents.php");
           }
         ?>
+
+<script>
+  function validateForm() {
+    var msg = "";
+    var check = true;
+    var eventTitle = document.getElementById("eventTitle").value;
+    var category = document.getElementById("category").value;
+    var eventDate = document.getElementById("eventDate").value;
+    var startTime = document.getElementById("startTime").value;
+    var endTime = document.getElementById("endTime").value;
+    var noOfSlots = document.getElementById("noOfSlots").value;
+    var location = document.getElementById("location").value;
+    var about = document.getElementById("about").value;
+    var photos = document.getElementById("UploadEventPicture").value;
+
+    // Check if any fields are empty
+    if (!eventTitle || !category || !eventDate || !startTime || !endTime || !noOfSlots || !location || !about || !photos) {
+      check = false;
+      msg += "Please fill in all fields.\n";
+    }
+
+    const date1 = new Date(eventDate + "T" + startTime);
+    const date2 = new Date(eventDate + "T" + endTime);
+
+    // Verify if the start time is more recent than the end time
+    if (date1.getTime() >= date2.getTime()) {
+      check = false;
+      msg += "End Time must be after Start Time.\n";
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedEventDate = new Date(eventDate);
+
+    // Verify if the event date is not earlier than today
+    if (selectedEventDate.getTime() < today.getTime()) {
+      check = false;
+      msg += "Event date cannot be earlier than today.\n";
+    }
+
+    if (!check) {
+      alert(msg);
+    }
+
+    return check;
+  }
+</script>
 
         <body>
             <!-- nav bar -->
@@ -145,7 +193,7 @@
 
               <h3 class="text-center"><strong>Create An Event</strong></h3>
               <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.php">Join an Event!</a></p>
-              <form id="CreateEventDetails" method="post" onsubmit="return validateForm(); required();">
+              <form id="CreateEventDetails" method="post" onsubmit="return validateForm()">
                 <div class="mb-3">
                   <label for="eventTitle" class="form-label">Event Title</label>
                   <input type="text" class="form-control" name="eventTitle" id="eventTitle" aria-describedby="eventTitle">
@@ -195,31 +243,7 @@
               </div>
               </div>
 
-              <!-- errors -->
-              <script>
-                function validateForm() {
-                              
-                  var msg = "";
-                  var check = true;
-                  var startTime = document.getElementById("startTime").value;
-                  var endTime = document.getElementById("endTime").value;
-
-                  const date1 = new Date(document.getElementById("eventDate").value + startTime);
-                  const date2 = new Date(document.getElementById("eventDate").value + endTime);
-
-                  // verify if the start time is more recent than the end time
-                  if (date1.getTime() > date2.getTime()) {
-                    check = false;
-                    msg += "End Time must be after Start Time";
-                  }
-                   
-                  if(!check){
-                      alert(msg);
-                  }
-    
-               return check;
-               }
-
+            <script>
                function required(inputText){
                 // verify if any fields are empty 
                   if (inputText.value.length == 0)

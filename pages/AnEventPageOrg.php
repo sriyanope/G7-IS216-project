@@ -191,20 +191,16 @@
             </div>
 
             <!-- progress bar -->
-
             <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
-                    <div class="container">
-                        <i class="fas fa-3x fa-battery-full icon"></i>
-                  
-                        <div class="progress2 progress-moved">
-                          <div class="progress-bar2"></div>
-                          <div class="loader" style="--n: 1; --f: 0;"></div>
+                <div class="col-1"></div>
+                    <div class="col-3">
+                        <div class="progress">
+                        <div class="progress-bar bg-warning" id="progressBar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                      </div>
-                </div>
+                    </div>
+                <div class="col-1"></div>
             </div>
+
 
             <!-- filled -->
             <div class="row"> 
@@ -518,6 +514,7 @@
                     document.getElementById("endTime").value = data.event[0].endTime;
                     document.getElementById("noOfSlots").value = Number(data.event[0].noOfSlots);
                     let filled = Number(data.event[0].filled);
+                    let slots = Number(data.event[0].noOfSlots);
                     document.getElementById("about").value = data.event[0].about;
                     let image = data.event[0].image;
                     let review = data.event[0].review;
@@ -525,6 +522,10 @@
                     let username = data.event[0].username;
                     let gardenId = data.event[0].gardenId;
                     document.getElementById("location").value = data.event[0].gardenName;
+
+                    percent = (filled/slots)*100;
+                    console.log(percent);
+                    document.getElementById("progressBar").setAttribute("style", `width: ${percent}%`);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -544,10 +545,10 @@
                     console.log(data);
                     for(user of data.user){
 
-                        username = user.username;
+                        username1 = user.username;
                         fullName = user.fullName;
-                        profilePhoto = user.profilePhoto
-                        output += `<li class='my-2'><a href='Profile.php?username=${username}' style='text-decoration: none;color:black'><img src='${profilePhoto}' style='margin-right:20px;height: 30px;width:auto'><span>${fullName}</span></a></li>`;
+                        profilePhoto = user.profilePhoto;
+                        output += `<li class='my-2'><a href='Profile.php?username=${username1}' style='text-decoration: none;color:black'><img src='${profilePhoto}' style='margin-right:20px;height: 30px;width:auto'><span>${fullName}</span></a></li>`;
                         document.getElementById("participants").innerHTML = output;
                     }
                 })
@@ -605,18 +606,6 @@
 
 
             </div>
-
-            <script>
-
-                // progress bar
-                CSS.registerProperty({
-                    name: "--p",
-                    syntax: "<integer>",
-                    initialValue: 0,
-                    inherits: true,
-                });
-
-            </script>
 
 
 
