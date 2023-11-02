@@ -214,9 +214,6 @@
                     </b></h3>
 
                 </div>
-                <div class="col-1">
-                    <img src="../ProfileIcon.jpg" id="profilePhoto" style="border-radius: 100px;width: 100px; height: 100px; margin-top: 10px;">
-                </div>
             </div>
 
             <!-- hr -->
@@ -255,157 +252,11 @@
                 </div>
             </div>
 
-            <!-- Reviews -->
-      <!--       <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-5">
-
-                    <h3 class="pt-4"><b>Read through what others have said</b></h3>
-
-                </div>
-            </div>
-
-
-            <div class="row pt-4">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;">
-
-
-                        <div class="row pt-5">
-                            <div class="col-1"></div>
-                            <div class="col-6">
-                                <h4>Lily</h4>
-                            </div>
-                            <div class="col-4 justify-content-end">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <span style="color:gray; font-size: 70%;">
-                                    27/07/2022
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <p>This was an amazing event that I really enjoyed! Looking forward to the next one already!</p>
-                            </div>
-                        </div>
-
-
-                        <div class="row pt-5">
-                            <div class="col-1"></div>
-                            <div class="col-6">
-                                <h4>Lily</h4>
-                            </div>
-                            <div class="col-4 justify-content-end">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <span style="color:gray; font-size: 70%;">
-                                    27/07/2022
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <p>This was an amazing event that I really enjoyed! Looking forward to the next one already!</p>
-                            </div>
-                        </div>
-
-
-                        <div class="row pt-5">
-                            <div class="col-1"></div>
-                            <div class="col-6">
-                                <h4>Lily</h4>
-                            </div>
-                            <div class="col-4 justify-content-end">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <img src="../public/images/filledStar.png" style="height: 50%;">
-                                <span style="color:gray; font-size: 70%;">
-                                    27/07/2022
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <p>This was an amazing event that I really enjoyed! Looking forward to the next one already!</p>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-
-             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-5 pt-3">
-                    <hr>
-                </div>
-            </div>-->
-
-            <!-- Comments -->
-            <!-- <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
-
-                    <h3 class="pt-4"><b>Add Your Comments</b></h3>
-                </div>
-            </div> -->
-
             <!-- edit form -->
 
             <div class="row pt-3"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
-
-                    <!-- <form id="addComments" method="post">
-                        <div class="mb-3">
-                          <label for="Name" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="Name" aria-describedby="Name">
-                        </div>
-                        <div class="mb-3">
-                          <label for="Rating" class="form-label">Rating</label>
-                          
-                          <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                          </div>
-
-                        </div>
-                        <div class="mb-3">                    
-                            <label for="Comments" class="form-label">Comments</label>
-                            <textarea id="Comments" class="form-control" rows="4" cols="50"></textarea>
-                        </div>
-                        <div class="input-group mb-3">
-                            <label class="form-label pe-3" for="UploadEventPicture">Add Pictures</label><br>
-                            <input type="file" class="form-control d-block" id="UploadEventPicture">
-                        </div>
-                        <button type="submit" class="btn text-white" id="submit">Submit</button>
-                      </form> -->
 
                       <!-- google map -->
                       <h2><b>Location</b></h2>
@@ -416,29 +267,32 @@
                             <tbody id='tbody'></tbody>
                         </table>
 
-                        <table class='table'>
-                            <tbody>
-                                <tr>
-                                    <th scope='row' style='width: 100px'>Nickname</th>
-                                    <td>
-                                        <input id='nickname'>
-                                        <span id='nickname-error' class="text-danger"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope='row'>Chat</th>
-                                    <td class='font-italic'>
-                                        <input id='text' class="w-75" type="text" maxlength='100'>
-                                        <button id='btnSend' class='btn btn-primary'>SEND</button>
+                        <div>
+                            <table class='table'>
+                                <tbody>
+                                    <tr class="d-none">
+                                        <th scope='row' style='width: 100px'>Nickname</th>
+                                        <td>
+                                            <input id='nickname'>
+                                            <span id='nickname-error' class="text-danger"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope='row'>Send a Message!</th>
+                                        <td class='font-italic'>
+                                            <input id='text' class="w-75" type="text" maxlength='100'>
+                                            <button id='btnSend' class='btn btn-primary'>SEND</button>
 
-                                        <br>
-                                        <span id='num-chars'>0</span> / 100
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            <br>
+                                            <span id='num-chars'>0</span> / 100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <p id='output'></p>
+                            <p id='output'></p>
+                        </div>
+
                       </div>
                     </div>
                 </div>
@@ -472,7 +326,6 @@
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
                     document.getElementById("aboutLabel").innerText = data.event[0].about;
-                    document.getElementById("profilePhoto").setAttribute("src", data.event[0].profilePhoto);
                     profileLink = "Profile.php?username=" + data.event[0].username;
                     document.getElementById("profileLabel").setAttribute("href", profileLink);
 
@@ -680,10 +533,10 @@
                 let rows = '';
                 let obj = response.data[eventId];
                 for (msg of obj) {
-                    rows = '<tr>'
-                        + '<th scope="row">' + msg.who + '</th>'
+                    rows = rows + '<tr>'
+                        + '<td scope="row">' + msg.who + '</td>'
                         + '<td>' + htmlEntities(msg.text) + '</td>'
-                        + '</tr>' + rows;
+                        + '</tr>';
                 }
                 document.getElementById('tbody').innerHTML = rows;
                 
@@ -724,7 +577,7 @@
         process();
         
         // pull messages every 1 second
-        //window.setInterval(process, 1000);
+        window.setInterval(process, 1000);
 
     </script>
 

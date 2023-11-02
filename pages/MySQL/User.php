@@ -8,7 +8,7 @@
     );
 
     $type = $_GET['type'];
-    $username = $_GET['username'];
+    $username = $_SESSION['username'];
 
 
     if($type == "getUser"){

@@ -17,17 +17,6 @@
     }else if($type == "getEventByEventId"){
         $eventId = $_GET['eventId'];
         getEventByEventId($eventId);
-     }
-    else if($type == "updateEvent"){
-    //     $eventTitle = $_GET['eventTitle'];
-    //     $category = $_GET['category'];
-    //     $eventDate = $_GET['eventDate'];
-    //     $startTime = $_GET['startTime'];
-    //     $endTime = $_GET['endTime'];
-    //     $noOfSlots = $_GET['noOfSlots'];
-    //     $about = $_GET['about'];
-    //     $eventId = $_GET['eventId'];
-    //     updateEvent($eventTitle, $category, $eventDate, $startTime, $endTime, $noOfSlots, $about, $eventId);
      }else if($type == "joinEvent"){
         $eventId = $_GET['eventId'];
         joinEvent($eventId, $username);
@@ -57,7 +46,7 @@
         }
         $r = substr($r, 0, -3);
 
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r);";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -71,7 +60,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
         }
         
         $stmt = null;
@@ -81,7 +70,7 @@
 
 
     function myEvents($username1) {
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where username = :username;";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where username = :username order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -95,7 +84,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"]);
         }
         
         $stmt = null;
@@ -118,7 +107,7 @@
         $result['event'] = [];
         
         while($row = $stmt->fetch()) {
-            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'review' => $row["review"], 'comment' => $row["comment"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'fullName' => $row["fullName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"]);
+            $result['event'][] = array('eventId' => $row["eventID"], 'eventTitle' => $row["eventTitle"], 'category' => $row["category"], 'eventDate' => $row["eventDate"], 'startTime' => $row["startTime"], 'endTime' => $row["endTime"], 'noOfSlots' => $row["noOfSlots"], 'filled' => $row["filled"], 'about' => $row["about"], 'photos' => $row["photos"], 'username' => $row["username"], 'gardenId' => $row["gardenID"], 'gardenName' => $row["gardenName"], 'fullName' => $row["fullName"], 'latitude' => $row["latitude"], 'longitude' => $row["longitude"]);
         }
         
         $stmt = null;

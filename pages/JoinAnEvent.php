@@ -194,7 +194,11 @@
         </div>
 
       <div class="row">
-        <p class="text-center pb-4">Need some inspiration before starting your own? <a href="CreateEvent.php" style='color:black;'>Create an Event!</a></p>
+        <div class='col'></div>
+        <div class='col-5'><p class="text-center pb-4">Need some inspiration before starting your own? <a href="EventLocation.php" style='color:black;'>Create an Event!</a></p></div>
+        <div class='col-5'><p class="text-center pb-4">Already created an event? <a href="MyEvents.php" style='color:black;'>Check them out!</a></p></div>
+        <div class='col'></div>
+        
         </div>
 
       <!-- content -->
@@ -305,8 +309,11 @@
 
         // function to show event list
         function showEventList(obj) {
-          var output = "";
           document.getElementById("resultCount").innerText = obj.event.length + " results";
+          if(obj.event.length == 0){
+            document.getElementById("events").innerHTML = "<div class='col'><h3 class='d-flex justify-content-center'>No result</h3></div>";
+          }else{
+            var output = "";
           for(event of obj.event){
             let eventId = event.eventId;
             let eventTitle = event.eventTitle;
@@ -324,10 +331,10 @@
             let gardenId = event.gardenId;
             let gardenName = event.gardenName;
 
-            if(filled < (noOfSlots/2)){
-              slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
-            }else if(filled >= noOfSlots - 3){
+            if(filled >= noOfSlots - 3){
               slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
+            }else if(filled < (noOfSlots/2)){
+              slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
             }else{
               slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
             }
@@ -356,6 +363,8 @@
             </div>`
           }
           document.getElementById("events").innerHTML = output;
+          }
+
         }
 
         // initialise the page with all events

@@ -10,6 +10,8 @@
       <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
       <!-- CSS stylesheet -->
       <link rel="stylesheet" href="../style.css">
+      <!-- iconify -->
+      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
       
       <title>Find a Garden</title>
 
@@ -224,6 +226,7 @@
           <div class="col"></div>
           <div class="col-3 mx-auto">
             <h2><b>Find a Garden</b></h2>
+
           </div>
           <div class="col-7 mx-auto">
             <div class="input-group">
@@ -305,28 +308,52 @@
         function showGardenList(obj) {
           var output = "";
           document.getElementById("resultCount").innerText = obj.garden.length + " results";
-          for(garden of obj.garden){
-            let gardenID = garden.gardenID;
-            let gardenName = garden.gardenName;
-            let latitude = Number(garden.latitude);
-            let longitude = Number(garden.longitude);
-            let region = garden.region;
-            let address = garden.address;
-            
-            let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
+          url = "MySQL/SavedGarden.php?type=show&username=" + username;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                savedList = [];
+                for(garden of data.garden){
+                  savedList.push(garden.gardenName);
+                }
+                for(garden of obj.garden){
+                  let gardenID = garden.gardenID;
+                  let gardenName = garden.gardenName;
+                  let latitude = Number(garden.latitude);
+                  let longitude = Number(garden.longitude);
+                  let region = garden.region;
+                  let address = garden.address;
+                  let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
 
-            output += `<div class="card border">
-            <div class="card-body">
-                  <h5 class="card-title">${gardenName}</h5>
-                  <p class="card-text">Address: ${address}</p>
-                  <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
-                  <button type="button" class="btn btn-primary" value="${v}" onclick='selectedGarden(this.value)'>View More</button>
-                  <button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this.value)'>Save</button>
-                  <button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this.value)'>Unsave</button>
-                </div>
-              </div>`;
-          }
-          document.getElementById("gardens").innerHTML = output;
+                  if(savedList.indexOf(gardenName) == -1){
+                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
+                  }else{
+                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                  }
+
+                  output += `<div class="card border">
+                      <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
+                        <div class="card-body">
+                          <h5 class="card-title">${gardenName}</h5>
+                          <p class="card-text">Address: ${address}</p>
+                          </a>
+                          <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
+                          ${btn}
+                        </div>
+
+                    </div>
+                    `;
+                }
+                document.getElementById("gardens").innerHTML = output;
+                })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
 
         // function to update garden list based on filter and search bar
@@ -400,7 +427,7 @@
         }
 
         // function to save garden
-        function save(garden){
+        function save(this1, garden){
           let gardenObj = retrieveLocDetails(garden);
           let gardenId = gardenObj.gardenId;
           url = "MySQL/SavedGarden.php?type=add&gardenId=" + gardenId + "&username=" + username;
@@ -413,6 +440,8 @@
             })
             .then(data => {
               showSavedGarden();
+              this1.setAttribute("onclick", "unsave(this, this.value)");
+              this1.innerText = "Unsave";
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -420,7 +449,7 @@
         }
 
         // function to unsave garden
-        function unsave(garden){
+        function unsave(this1, garden){
           let gardenObj = retrieveLocDetails(garden);
           let gardenId = gardenObj.gardenId;
           url = "MySQL/SavedGarden.php?type=delete&gardenId=" + gardenId + "&username=" + username;
@@ -433,6 +462,8 @@
             })
             .then(data => {
               showSavedGarden();
+              this1.setAttribute("onclick", "save(this, this.value)");
+              this1.innerText = "Save";
             })
             .catch(error => {
                 console.error('Error:', error);
