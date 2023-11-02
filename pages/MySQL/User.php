@@ -12,6 +12,7 @@
 
 
     if($type == "getUser"){
+        $username = $_GET['username'];
         getUser($username);
     }else if($type == "updateUser"){
         $fullName = $_GET['fullName'];

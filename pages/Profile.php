@@ -136,20 +136,22 @@
 
             // gets the username of the user
             var username = <?php 
-            if(isset($_GET['username'])){
-              echo $_GET['username'];
+            if(isset($_GET['username1'])){
+              echo $_GET['username1'];
             }else{
               echo $_SESSION['username'];
             } ?>;
 
             // checks if the profile page belongs to the user
             var checkOwnProfile = <?php 
-              if(isset($_GET['username'])){
-                echo 0;
-              }else{
+              if((isset($_GET['username1']) and $_GET['username1'] == $_SESSION['username']) or !isset($_GET['username1'])){
                 echo 1;
+              }else{
+                echo 0;
               } ?>;
-            
+
+              console.log(checkOwnProfile)
+
             // retrieve profile details and populate page
             url = "MySQL/User.php?type=getUser&username=" + username;
             fetch(url)
@@ -160,6 +162,7 @@
                   return response.json();
               })
               .then(data => {
+                console.log(data.user)
                 document.getElementById("fullName").innerText = data.user[0].fullName;
                 document.getElementById("email").innerText = data.user[0].email;
                 document.getElementById("bio").innerText = data.user[0].bio;

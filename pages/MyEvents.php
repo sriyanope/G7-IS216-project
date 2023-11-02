@@ -106,7 +106,7 @@
                 <div class="row noEventCentre">
                     <h2><b>You have not created any events!</b></h2>
                     <h6>Want to host an event?
-                    <a href='CreateEvent.php' style="text-decoration: underline; color: black">Create your own!</a>
+                    <a href='EventLocation.php' style="text-decoration: underline; color: black">Create your own!</a>
                     </h6>
                 </div>
             </div>
