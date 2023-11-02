@@ -326,7 +326,7 @@
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
                     document.getElementById("aboutLabel").innerText = data.event[0].about;
-                    profileLink = "Profile.php?username=" + data.event[0].username;
+                    profileLink = "Profile.php?username1=" + data.event[0].username;
                     document.getElementById("profileLabel").setAttribute("href", profileLink);
 
                     if(orgUsername == data.event[0].username){

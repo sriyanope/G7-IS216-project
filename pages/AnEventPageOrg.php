@@ -524,7 +524,6 @@
                     document.getElementById("location").value = data.event[0].gardenName;
 
                     percent = (filled/slots)*100;
-                    console.log(percent);
                     document.getElementById("progressBar").setAttribute("style", `width: ${percent}%`);
                 })
                 .catch(error => {
@@ -542,13 +541,11 @@
                 })
                 .then(data => {
                     output = "";
-                    console.log(data);
                     for(user of data.user){
-
                         username1 = user.username;
                         fullName = user.fullName;
                         profilePhoto = user.profilePhoto;
-                        output += `<li class='my-2'><a href='Profile.php?username=${username1}' style='text-decoration: none;color:black'><img src='${profilePhoto}' style='margin-right:20px;height: 30px;width:auto'><span>${fullName}</span></a></li>`;
+                        output += `<li class='my-2'><a href='Profile.php?username1=${username1}' style='text-decoration: none;color:black'><img src='${profilePhoto}' style='margin-right:20px;height: 30px;width:auto'><span>${fullName}</span></a></li>`;
                         document.getElementById("participants").innerHTML = output;
                     }
                 })
