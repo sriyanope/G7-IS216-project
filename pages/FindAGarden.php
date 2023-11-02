@@ -333,7 +333,7 @@
                   if(savedList.indexOf(gardenName) == -1){
                     btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
                   }else{
-                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                    btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
                   }
 
                   output += `<div class="card border">
@@ -342,7 +342,7 @@
                           <h5 class="card-title">${gardenName}</h5>
                           <p class="card-text">Address: ${address}</p>
                           </a>
-                          <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Map</button>
+                          <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Show Map</button>
                           ${btn}
                         </div>
 

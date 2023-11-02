@@ -10,7 +10,6 @@
     $type = $_GET['type'];
     $username = $_SESSION['username'];
 
-
     if($type == "getUser"){
         $username = $_GET['username'];
         getUser($username);
