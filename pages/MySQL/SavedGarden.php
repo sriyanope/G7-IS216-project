@@ -17,7 +17,7 @@
         $note = $_GET['note'];
     }
 
-    if($type == "show"){
+    if($type == "show" and $username != "nonUser"){
         getSavedGarden($username);
     }else if($type == "add"){
         add($gardenId, $username);

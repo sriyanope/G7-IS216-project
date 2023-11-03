@@ -12,6 +12,16 @@
       <link rel="stylesheet" href="../style.css">
       <!-- iconify -->
       <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+
+      <!-- jQuery library -->
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+      <!-- Popper JS -->
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
       
       <title>Find a Garden</title>
 
@@ -57,7 +67,7 @@
           position: fixed;
           bottom: 0;
           right:0;
-          z-index: 100; /* Ensure it's on top of other content */
+          z-index: 100;
         }
 
 
@@ -224,7 +234,7 @@
               <li class="nav-item ms-auto mt-1">
                 <a href="Profile.php"><button class="btn text-white" href="#">
                     <img src="../icons.png" width="30">
-                    My Profile</button></a>
+                    <span id="profileBtnText">My Profile</span></button></a>
               </li>
             </ul>
           </div>
@@ -268,19 +278,55 @@
       for(notif of data.notification){
         eventTitle = notif.eventTitle;
         reason = notif.reason;
-        output += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Notification: </strong> ${eventTitle} has been deleted with the following reason:
-                ${reason}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick='removeNotification()'></button>
-            </div>`
+        output += `
+              <strong>${eventTitle}</strong> has been deleted with the following reason: ${reason}<br>
+            `
       }
-      document.getElementById("notification").innerHTML = output;
+      document.getElementById("notificationModal").innerHTML = output;
+
+      // Get a reference to the button element by its ID
+      const myButton = document.getElementById('notificationBtn');
+
+      // Check if the button element exists
+      if (myButton) {
+        // Trigger a click event on the button
+        myButton.click();
+      }
+
     })
     .catch(error => {
         console.error('Error:', error);
     });
 
 </script>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span id='notificationModal'></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick='removeNotification()'>Got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
 
@@ -351,15 +397,18 @@
             </div>
 
           <!-- saved gardens -->
-          <div class="row mt-5">
-            <h4>Saved Gardens</h4>
-          </div>
+          <div id="savedGardenDiv">
+            <div class="row mt-5">
+              <h4>Saved Gardens</h4>
+            </div>
 
-          <div class="row bg-light mt-2 mb-5 border">
-            <div class="col pt-3">
-              <ul id="savedGardens"></ul>
+            <div class="row bg-light mt-2 mb-5 border">
+              <div class="col pt-3">
+                <ul id="savedGardens"></ul>
+              </div>
             </div>
           </div>
+
         </div> 
       </div>
 
@@ -372,20 +421,56 @@
         function showGardenList(obj) {
           var output = "";
           document.getElementById("resultCount").innerText = obj.garden.length + " results";
-          url = "MySQL/SavedGarden.php?type=show&username=" + username;
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                savedList = [];
-                for(garden of data.garden){
-                  savedList.push(garden.gardenName);
-                }
-                for(garden of obj.garden){
+          if(username != "nonUser"){
+            url = "MySQL/SavedGarden.php?type=show&username=" + username;
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                  savedList = [];
+                  for(garden of data.garden){
+                    savedList.push(garden.gardenName);
+                  }
+                  for(garden of obj.garden){
+                    let gardenID = garden.gardenID;
+                    let gardenName = garden.gardenName;
+                    let latitude = Number(garden.latitude);
+                    let longitude = Number(garden.longitude);
+                    let region = garden.region;
+                    let address = garden.address;
+                    let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
+
+                    if(savedList.indexOf(gardenName) == -1){
+                      btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
+                    }else{
+                      btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                    }
+
+                    output += `<div class="card border">
+                        <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
+                          <div class="card-body">
+                            <h5 class="card-title">${gardenName}</h5>
+                            <p class="card-text">Address: ${address}</p>
+                            </a>
+                            <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Show Map</button>
+                            ${btn}
+                          </div>
+
+                      </div>
+                      `;
+                  }
+                  document.getElementById("gardens").innerHTML = output;
+                  })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+          }else{
+            document.getElementById("savedGardenDiv").setAttribute("class", "d-none");
+            for(garden of obj.garden){
                   let gardenID = garden.gardenID;
                   let gardenName = garden.gardenName;
                   let latitude = Number(garden.latitude);
@@ -394,30 +479,19 @@
                   let address = garden.address;
                   let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
 
-                  if(savedList.indexOf(gardenName) == -1){
-                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
-                  }else{
-                    btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
-                  }
-
                   output += `<div class="card border">
-                      <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
                         <div class="card-body">
                           <h5 class="card-title">${gardenName}</h5>
                           <p class="card-text">Address: ${address}</p>
-                          </a>
                           <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Show Map</button>
-                          ${btn}
                         </div>
 
                     </div>
                     `;
                 }
                 document.getElementById("gardens").innerHTML = output;
-                })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+          }
+
         }
 
         // function to update garden list based on filter and search bar
@@ -451,13 +525,17 @@
           window.location.href = "GardenPage.php?gardenId=" + garden.gardenId;
         }
 
-        var username = <?php 
-        if(isset($_SESSION['username'])){
-          echo $_SESSION['username'];
-        }else{
-          echo "NonUser";
-        }  
-        ?>;
+        var username = '<?php 
+          if(isset($_SESSION['username'])){
+            echo $_SESSION['username'];
+          } else {
+            echo "nonUser";
+          }  
+        ?>';
+
+        if(username == "nonUser"){
+          document.getElementById("profileBtnText").innerText = "Log In/Sign Up";
+        }
         
         // function to show list of saved gardens
         function showSavedGarden() {
@@ -486,12 +564,26 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-
-
         }
 
-        // function to save garden
+        // function to display an alert and automatically dismiss it after 5 seconds
+        function displayAlert(message, type) {
+          const notification = document.getElementById("notification");
+          const alert = document.createElement("div");
+          alert.className = `alert alert-${type} alert-dismissible fade show`;
+          alert.innerHTML = `${message}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>`;
+          notification.appendChild(alert);
+          setTimeout(function() {
+            alert.style.display = "none";
+          }, 5000);
+        }
+
+        // Function to save garden
         function save(this1, garden){
+          
           let gardenObj = retrieveLocDetails(garden);
           let gardenId = gardenObj.gardenId;
           url = "MySQL/SavedGarden.php?type=add&gardenId=" + gardenId + "&username=" + username;
@@ -506,13 +598,15 @@
               showSavedGarden();
               this1.setAttribute("onclick", "unsave(this, this.value)");
               this1.innerText = "Unsave";
+              message = garden.split("aaaaa")[1];
+              displayAlert(message + " <b>Saved</b>", "warning");
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
 
-        // function to unsave garden
+        // Function to unsave garden
         function unsave(this1, garden){
           let gardenObj = retrieveLocDetails(garden);
           let gardenId = gardenObj.gardenId;
@@ -528,17 +622,24 @@
               showSavedGarden();
               this1.setAttribute("onclick", "save(this, this.value)");
               this1.innerText = "Save";
+              message = garden.split("aaaaa")[1];
+              displayAlert(message + " <b>Unsaved</b>", "warning");
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
 
+
+
         filter();
-        showSavedGarden();
+
+        if(username != "nonUser"){
+          showSavedGarden();
+        }
         
       </script>
-      
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
     </body>
 </html>
