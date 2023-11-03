@@ -415,14 +415,8 @@
                           <input type="text" class="form-control" id="eventTitle" aria-describedby="EventTitle" disabled>
                         </div>
                         <div class="mb-3">
-                            <label for="category" class="form-label">Event Category</label>
-                            <select class="form-control inputstl" name="category" id="category" disabled>
-                                <option>Garden Workshops</option>
-                                <option>Harvest</option>
-                                <option>Food Donation Drives</option>
-                                <option>Leisure</option>
-                                <option>Others</option>
-                            </select>
+                          <label for="category" class="form-label">Category</label>
+                          <input type="text" class="form-control" id="category" aria-describedby="category" disabled>
                         </div>
                         <div class="mb-3">
                             <label for="Date" class="form-label">Date</label>
