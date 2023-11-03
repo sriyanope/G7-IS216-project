@@ -194,11 +194,9 @@
         </div>
 
       <div class="row">
-        <div class='col'></div>
-        <div class='col-5'><p class="text-center pb-4">Need some inspiration before starting your own? <a href="EventLocation.php" style='color:black;'>Create an Event!</a></p></div>
-        <div class='col-5'><p class="text-center pb-4">Already created an event? <a href="MyEvents.php" style='color:black;'>Check them out!</a></p></div>
-        <div class='col'></div>
-        
+        <div class='col-4'><p class="text-center pb-4">Want to create you event? <a href="EventLocation.php" style='color:black;'><br>Create them here!</a></p></div>
+        <div class='col-4'><p class="text-center pb-4">Already created an event? <a href="MyEvents.php" style='color:black;'><br>Check them out!</a></p></div>
+        <div class='col-4'><p class="text-center pb-4">Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a></p></div>       
         </div>
 
       <!-- content -->
@@ -310,60 +308,87 @@
         // function to show event list
         function showEventList(obj) {
           document.getElementById("resultCount").innerText = obj.event.length + " results";
-          if(obj.event.length == 0){
-            document.getElementById("events").innerHTML = "<div class='col'><h3 class='d-flex justify-content-center'>No result</h3></div>";
-          }else{
-            var output = "";
-          for(event of obj.event){
-            let eventId = event.eventId;
-            let eventTitle = event.eventTitle;
-            let category = event.category;
-            let eventDate = event.eventDate;
-            let startTime = event.startTime;
-            let endTime = event.endTime;
-            let noOfSlots = Number(event.noOfSlots);
-            let filled = Number(event.filled);
-            let about = event.about;
-            let image = event.image;
-            let review = event.review;
-            let comment = event.comment;
-            let username = event.username;
-            let gardenId = event.gardenId;
-            let gardenName = event.gardenName;
+          url = "MySQL/SavedJoinedEvents.php?type=saved";
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+              savedList = [];
+                for(event of data.event){
+                  savedList.push(event.eventId);
+                }
 
-            if(filled >= noOfSlots - 3){
-              slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
-            }else if(filled < (noOfSlots/2)){
-              slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
-            }else{
-              slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
-            }
-            
-            eventDate = convertDateFormat(eventDate);
-            startTime = convertTo12HourFormat(startTime);
-            endTime = convertTo12HourFormat(endTime);
+                if(obj.event.length == 0){
+                  document.getElementById("events").innerHTML = "<div class='col'><h3 class='d-flex justify-content-center'>No result</h3></div>";
+                }else{
+                  var output = "";
+                for(event of obj.event){
+                  let eventId = event.eventId;
+                  let eventTitle = event.eventTitle;
+                  let category = event.category;
+                  let eventDate = event.eventDate;
+                  let startTime = event.startTime;
+                  let endTime = event.endTime;
+                  let noOfSlots = Number(event.noOfSlots);
+                  let filled = Number(event.filled);
+                  let about = event.about;
+                  let image = event.image;
+                  let username = event.username;
+                  let gardenId = event.gardenId;
+                  let gardenName = event.gardenName;
 
-            let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + image + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
+                  if(filled >= noOfSlots - 3){
+                    slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                  }else if(filled < (noOfSlots/2)){
+                    slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                  }else{
+                    slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                  }
+                  
+                  eventDate = convertDateFormat(eventDate);
+                  startTime = convertTo12HourFormat(startTime);
+                  endTime = convertTo12HourFormat(endTime);
 
-            output += `<div class="col">
-              <div class="card h-100">
-                <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
-                <div class="card-body">
-                  <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
-                    <h4>${eventTitle}</h4>
-                    <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
-                    <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
-                  </a>
-                  <div class="d-flex justify-content-between align-items-center">
-                    ${slots}
-                    <span><button type="button" class="btn btn-primary" value="${v}" onclick='save(this.value)'>Save</button></span>
-                  </div>
-                </div>
-              </div>
-            </div>`
-          }
-          document.getElementById("events").innerHTML = output;
-          }
+                  let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + image + "aaaaa" + username + "aaaaa" + gardenId;
+
+                  if(savedList.indexOf(eventId) == -1){
+                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
+                  }else{
+                    btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                  }
+
+                  output += `<div class="col">
+                    <div class="card h-100">
+                      <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
+                      <div class="card-body">
+                        <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
+                          <h4>${eventTitle}</h4>
+                          <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
+                          <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
+                        </a>
+                        <div class="d-flex justify-content-between align-items-center">
+                          ${slots}
+                          ${btn}
+                        </div>
+                      </div>
+                    </div>
+                  </div>`
+                }
+                document.getElementById("events").innerHTML = output;
+                }
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
+
+
 
         }
 
@@ -382,6 +407,67 @@
           .catch(error => {
               console.error('Error:', error);
           });
+
+          function retrieveEventDetails(event) {
+              if(typeof event === 'string'){
+                event = event.split("aaaaa");
+              }
+                return {
+                  eventId: event[0],
+                  eventTitle: event[1],
+                  category: event[2],
+                  eventDate: event[3],
+                  startTime: event[4],
+                  endTime: event[5],
+                  noOfSlots: Number(event[6]),
+                  filled: Number(event[7]),
+                  about: event[8],
+                  image: event[9],
+                  username: event[10],
+                  gardenId: event[11],
+                  gardenName: event[12]
+                };
+            }
+
+          function save(this1, event){
+            let eventObj = retrieveEventDetails(event);
+            let eventId = eventObj.eventId;
+            url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response;
+              })
+              .then(data => {
+                this1.setAttribute("onclick", "unsave(this, this.value)");
+                this1.innerText = "Unsave";
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+          }
+
+          function unsave(this1, event){
+            let eventObj = retrieveEventDetails(event);
+            let eventId = eventObj.eventId;
+            url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response;
+              })
+              .then(data => {
+                this1.setAttribute("onclick", "save(this, this.value)");
+                this1.innerText = "Save";
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+          }
 
       </script>
 
