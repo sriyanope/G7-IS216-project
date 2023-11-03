@@ -12,6 +12,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
         <!-- CSS stylesheet -->
         <link rel="stylesheet" href="../style.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
         <!-- styling -->
         <style>
@@ -101,6 +103,13 @@
           text-align: center; 
           text-transform: uppercase; 
           letter-spacing: 2px; 
+          }
+
+          .notification {
+              position: fixed;
+              bottom: 0;
+              right:0;
+              z-index: 100;
           }
           
 
@@ -212,6 +221,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
       
       <!-- javascript -->
       <script>
@@ -406,6 +418,7 @@
               .then(data => {
                 this1.setAttribute("onclick", "unsave(this, this.value)");
                 this1.innerText = "Unsave";
+                displayAlert("Event added to saved list", "warning");
               })
               .catch(error => {
                   console.error('Error:', error);
@@ -426,10 +439,26 @@
               .then(data => {
                 this1.setAttribute("onclick", "save(this, this.value)");
                 this1.innerText = "Save";
+                displayAlert("Event removed from saved list", "warning");
               })
               .catch(error => {
                   console.error('Error:', error);
               });
+          }
+
+          // function to display an alert and automatically dismiss it after 5 seconds
+          function displayAlert(message, type) {
+            const notification = document.getElementById("notification");
+            const alert = document.createElement("div");
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.innerHTML = `${message}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>`;
+            notification.appendChild(alert);
+            setTimeout(function() {
+                alert.style.display = "none";
+            }, 5000);
           }
 
       </script>

@@ -19,6 +19,8 @@
             <link rel="stylesheet" href="starRating.css">
             <!-- Axios -->
             <script src="https://unpkg.com/axios/dist/axios.js"></script>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
            
             <!-- styling -->
             <style>
@@ -97,6 +99,13 @@
                 }
                 #map {
                     height: 60vh;
+                }
+
+                .notification {
+                    position: fixed;
+                    bottom: 0;
+                    right:0;
+                    z-index: 100;
                 }
 
             </style>
@@ -210,7 +219,7 @@
 
                         <!-- join -->
                         <div style="color:red;" id='fullLabel'></div>
-                        <button type="submit" class="btn text-white" id="joinBtn" onclick="joinEvent()">Join</button>
+                        <button type="submit" class="btn text-white" id="joinBtn" onclick="joinEvent()" style="width:100px;">Join</button>
                     </b></h3>
 
                 </div>
@@ -298,7 +307,8 @@
                 </div>
             </div>
 
-
+            <!-- Notification -->
+            <div id="notification" class="notification"></div>
 
 
 
@@ -419,8 +429,9 @@
                     })
                     .then(data => {
                         document.getElementById("joinBtn").setAttribute("onclick", "leaveEvent()");
-                        document.getElementById("joinBtn").innerText = "Leave";
+                        document.getElementById("joinBtn").innerText = "Joined";
                         updateFilled();
+                        displayAlert("Event joined successfully", "warning");
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -441,6 +452,7 @@
                         document.getElementById("joinBtn").setAttribute("onclick", "joinEvent()");
                         document.getElementById("joinBtn").innerText = "Join";
                         updateFilled();
+                        displayAlert("Removed from event", "warning");
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -471,6 +483,21 @@
                         document.getElementById("joinBtn").setAttribute("class", "btn text-white d-none");
                         document.getElementById("fullLabel").innerText = "Slots are full!";
                     }
+                }
+
+                // function to display an alert and automatically dismiss it after 5 seconds
+                    function displayAlert(message, type) {
+                    const notification = document.getElementById("notification");
+                    const alert = document.createElement("div");
+                    alert.className = `alert alert-${type} alert-dismissible fade show`;
+                    alert.innerHTML = `${message}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>`;
+                    notification.appendChild(alert);
+                    setTimeout(function() {
+                        alert.style.display = "none";
+                    }, 5000);
                 }
 
 

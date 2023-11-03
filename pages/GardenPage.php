@@ -16,6 +16,8 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
             <link rel="stylesheet" href="myPictures.css">
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
             <!-- styling -->
             <style>
@@ -82,6 +84,14 @@
                  #map {
                     height: 60vh;
                 }
+
+                .notification {
+                    position: fixed;
+                    bottom: 0;
+                    right:0;
+                    z-index: 100;
+                }
+
             </style>
 
             <!-- title -->
@@ -140,43 +150,6 @@
                     </div> 
                 </div>
 
-
-
-
-                <!-- carousel -->
-                <!-- <div class="row"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                <img class="d-block w-100" src="../public/images/randomGarden.jpeg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                <img class="d-block w-100" src="../public/images/EventImage.jpg" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                <img class="d-block w-100" src="../public/images/randomGarden.jpeg" alt="Third slide">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            </a>
-                            </div>
-                        
-                        </div> 
-                    </div>
-                </div> -->
-
                 <!-- notes -->
 
                 <div class="row pt-5"> 
@@ -215,6 +188,8 @@
                 </div>
             </div>
 
+            <!-- Notification -->
+            <div id="notification" class="notification"></div>
 
             <!-- get garden id -->
             <?php $gardenId = $_GET['gardenId']; ?>;
@@ -295,10 +270,26 @@
                         })
                         .then(data => {
                             getNote();
+                            displayAlert("Notes updated successfully", "warning");
                         })
                         .catch(error => {
                             console.error('Error:', error);
                         });
+                }
+
+                // function to display an alert and automatically dismiss it after 5 seconds
+                function displayAlert(message, type) {
+                const notification = document.getElementById("notification");
+                const alert = document.createElement("div");
+                alert.className = `alert alert-${type} alert-dismissible fade show`;
+                alert.innerHTML = `${message}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>`;
+                notification.appendChild(alert);
+                setTimeout(function() {
+                    alert.style.display = "none";
+                }, 5000);
                 }
 
                 getNote();
