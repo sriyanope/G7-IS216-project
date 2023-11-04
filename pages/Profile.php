@@ -196,14 +196,14 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                  <a href="ProfileEdit.php">
+                  <a href="ProfileEdit.php" style="text-decoration:none;">
                     <button type="button" class="btn btn-success mx-2" href="ProfileEdit.html" id="editBtn">
                         <img src="../public/images/edit.png" class="editProfileimg"> 
                         Edit Profile
                     </button>
                   </a>
                     
-                  <a href="LogIn.php">
+                  <a href="LogIn.php" style="text-decoration:none;">
                   <button type="button" class="btn btn-success" id='signOutBtn'>
                         <img src="../public/images/logout.png" class="editProfileimg">
                         Sign Out
@@ -227,16 +227,16 @@
             <div class="row text-center">
                 <div class="col text-center mb-3">
 
-                    <button type="button" class=" btn bg-dark text-white mx-2">
+                    <button type="button" class=" btn bg-dark text-white mx-2" >
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
 
-                    <a href="#" id="instagram">
-                    <button type="button" class=" btn bg-dark text-white mx-2">
+                    <a href="#" id="instagram" style="text-decoration:none;">
+                    <button type="button" class=" btn bg-dark text-white mx-2" >
                         <img src="../public/images/instagram.png" class="editProfileimg"> 
                         Instagram
                     </button>
                     </a>
-                    <a href="#" id="telegram">
+                    <a href="#" id="telegram" style="text-decoration:none;">
                     <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/telegram.png" class="editProfileimg"> 
                         Telegram
@@ -254,102 +254,9 @@
                     </textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 offset-md-4">
-                    <h3 class="featureTitle">Events Attended:</h3>
-                </div>
-                <div class="col-md-4 offset-md-4">
-                    <div id="carouselExampleCaptions" class="carousel slide">
-                        <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="../public/images/EventImage.jpg" class="d-block w-100 " alt="event #1">
-                            <div class="carousel-caption d-none d-md-block">
-                              <h5>Tree Planting Event #1</h5>
-                              <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../public/images/EventImage.jpg" class="d-block w-100" alt="event #">
-                            <div class="carousel-caption d-none d-md-block">
-                              <h5>Tree Planting Event #2</h5>
-                              <p>Some representative placeholder content for the second slide.</p>
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../public/images/EventImage.jpg" class="d-block w-100" alt="event #">
-                            <div class="carousel-caption d-none d-md-block">
-                              <h5>Tree Planting Event #1</h5>
-                              <p>Some representative placeholder content for the third slide.</p>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
-                    
-                </div>
+            
 
-            </div>
-
-            <!-- carousel -->
-            <div class="row">
-                <div class="col-md-4 offset-md-4">
-                    <h3 class="featureTitle">Events Hosted:</h3>
-                </div>
-                <div class="col-md-4 offset-md-4">
-                    <div id="carouselWithCaptions" class="carousel slide" data-bs-ride="carousel">
-                        <ol class="carousel-indicators">
-                          <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="0" class="active"></li>
-                          <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="1"></li>
-                          <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="../public/images/EventImage.jpg" class="d-block w-100" alt="Slide 1">
-                            <div class="carousel-caption d-none d-sm-block">
-                              <h5>First slide label</h5>
-                              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../public/images/EventImage.jpg" class="d-block w-100" alt="Slide 2">
-                            <div class="carousel-caption d-none d-sm-block">
-                              <h5>Second slide label</h5>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../public/images/EventImage.jpg" class="d-block w-100" alt="Slide 3">
-                            <div class="carousel-caption d-none d-sm-block">
-                              <h5>Third slide label</h5>
-                              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselWithCaptions" role="button" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselWithCaptions" role="button" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </a>
-                    </div>
-                    
-                </div>
-
-            </div>
+            
             
           </div>
 
