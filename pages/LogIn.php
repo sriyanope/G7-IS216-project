@@ -193,13 +193,16 @@
                                         <div class="g-recaptcha" data-sitekey="6Ld-fNcoAAAAAOS824_2sZOSzTMzy1xDo5CkBsoN" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
                                         </div>
                                     </div>
-
+                                    
+                                    <span style='color:red;'>
                                     <?php 
                                     if(isset($_SESSION['error'])){
                                         echo $_SESSION['error'];
                                         unset($_SESSION['error']);
                                     }
                                     ?>
+                                    </span>
+
                                 
                                     <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Login</button>
 

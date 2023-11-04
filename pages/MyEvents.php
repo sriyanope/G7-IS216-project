@@ -114,7 +114,7 @@
             <!-- if there are events-->
             <div class="container-fluid bggreen" id="yesEvent">
                 <div class="row pt-5 pb-4 mx-auto">
-                    <h1><b>My Events</b></h1>
+                    <h1><b>My Created Events</b></h1>
                 </div>
             
                 <div class="row px-3 mx-5">
