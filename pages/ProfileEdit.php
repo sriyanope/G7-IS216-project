@@ -18,6 +18,10 @@
             <link rel="stylesheet" href="../style.css">
             <!--Vue-->
             <script src="https://unpkg.com/vue@next"></script>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
             <!-- styling -->
@@ -106,6 +110,17 @@
                 .social-link{
                     padding-left: 1rem;
                 }
+
+                .image-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .image-container img {
+                    width: 150px;
+                    margin-right: 10px;
+                }
+
                 
             </style>
 
@@ -149,14 +164,42 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="text-center mt-4">
-                        <img src="../public/ProfileIcon.jpg" id="profilePhoto" style="width: 200px; height: 200px;" alt="Profile Picture" class="profilePhotoFrame">
+                        <img src="../public/ProfileIcon.jpg" id="profilePhoto" style="width: 200px; height: 200px; margin-bottom:20px;" alt="Profile Picture" class="profilePhotoFrame">
                         
                     </div>
                     <div class="text-center mt-2">
-                        <input type="file" id="image">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">Change Profile Photo</button>
                     </div>
                 </div>
            
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Choose a Profile Photo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="image-container justify-content-center">
+                                    <img src="ProfileImage\1.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\2.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\3.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\4.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\5.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\6.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\7.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\8.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             
                 <div class="row">
                     <div class="form-group">
@@ -332,55 +375,6 @@
                             console.error('Error:', error);
                         });
 
-
-                    allowedExtensions = ['jpg', 'jpeg', 'png'];
-                    const maxSize = 200000;
-
-                    const fileInput = document.getElementById('image');
-                    const file = fileInput.files[0];
-
-                    if (file) {
-                        const fileExtension = file.name.split('.').pop().toLowerCase();
-
-                        if (allowedExtensions.includes(fileExtension)) {
-                            if (file.size <= maxSize) {
-                                // Create a FormData object and send the image
-                                const formData = new FormData();
-                                formData.append('image', document.getElementById('image').files[0]);
-                                fetch('MySQL/ProcessImage.php', {
-                                    method: 'POST',
-                                    body: formData
-                                })
-                                .then(response => {
-                                    if (response.status === 200) {
-                                        console.log('Image uploaded successfully.');
-                                        url = "MySQL/User.php?type=updateUser&username=" + username + "&fullName=" + fullName + "&email=" + email + "&bio=" + bio + "&instagram=" + instagram + "&telegram=" + telegram;
-                                        fetch(url)
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok');
-                                            }
-                                            return response
-                                        })
-                                        .then(data => {
-                                        })
-                                        .catch(error => {
-                                            console.error('Error:', error);
-                                        });
-                                    } else {
-                                        alert('Image upload failed.');
-                                    }
-                                })
-                                .catch(error => {
-                                    alert('Error:', error);
-                                });
-                            } else {
-                                alert('Image size exceeds the maximum allowed size (200 KB).');
-                            }
-                        } else {
-                            alert('Invalid file extension. Please select a JPG, JPEG, or PNG image.');
-                        }
-                    }
                     window.location="Profile.php";
                 }
 
@@ -414,6 +408,22 @@
                     }
                 }
                 }).mount('#appEmail');
+
+                function updateProfilePhoto(link){
+                    console.log(link);
+                    document.getElementById("profilePhoto").setAttribute("src", link);
+                    url = "MySQL/User.php?type=updatePhoto&photo=" + link;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
 
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
