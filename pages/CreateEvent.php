@@ -118,12 +118,11 @@
     var startTime = document.getElementById("startTime").value;
     var endTime = document.getElementById("endTime").value;
     var noOfSlots = document.getElementById("noOfSlots").value;
-    var location = document.getElementById("location").value;
     var about = document.getElementById("about").value;
     var photos = document.getElementById("UploadEventPicture").value;
 
     // Check if any fields are empty
-    if (!eventTitle || !category || !eventDate || !startTime || !endTime || !noOfSlots || !location || !about || !photos) {
+    if (!eventTitle || !category || !eventDate || !startTime || !endTime || !noOfSlots || !about || !photos) {
       check = false;
       msg += "Please fill in all fields.\n";
     }
@@ -226,17 +225,9 @@
                     <label for="noOfSlots" class="form-label">No. of slots</label>
                     <input type="number" class="form-control" name="noOfSlots" id="noOfSlots" min=0 max=50>
                   </div>
-                  <div class="mb-3">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" name="location" id="location">
-                  </div>
                   <div class="mb-3">                    
                     <label for="about" class="form-label">About This Event</label>
                     <textarea id="about" name="about" class="form-control" rows="4" cols="50"></textarea>
-                  </div>
-                  <div class="input-group mb-3">
-                    <label class="form-label pe-3" for="UploadEventPicture">Add Pictures</label><br>
-                    <input type="file" class="form-control d-block" id="UploadEventPicture">
                   </div>
                 <button type="submit" name="submit" class="btn text-white">Create Event</button>
               </form>

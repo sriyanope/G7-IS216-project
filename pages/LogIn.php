@@ -67,7 +67,12 @@
             <?php
 
                 session_start();
+
                 unset($_SESSION['username']);
+
+                if(!isset($_SESSION['failedLogin'])){
+                    $_SESSION['failedLogin'] = 0;
+                }
 
                 spl_autoload_register(
                     function($class){
@@ -111,20 +116,22 @@
                     $password = $_POST["password1"];
                     $hashedPassword = retrieveUser($username);
 
-                    if($row['success'] != true){
+                    if($_SESSION['failedLogin'] > 3 and $row['success'] != true){
                         $_SESSION['error'] = "Error: Please complete the reCAPTCHA";
+                        $_SESSION['failedLogin'] += 1;
                     }else if ($hashedPassword !== null) {
                         if (password_verify($password, $hashedPassword)) {
+                            unset($_SESSION['failedLogin']);
                             $_SESSION['username'] = $username;
                             header("location: LandingPage.html");
                             exit;
                         } else {
-                            $_SESSION['error'] = "Wrong Username or Password, please try again.";
-                            if(isset($_SESSION['failedLogin'])){
-                                $_SESSION['failedLogin'] += 1;
+                            if(isset($_SESSION['errors'])){
+                                $_SESSION['error'] .= "<br>Wrong Username or Password, please try again.";                                
                             }else{
-                                $_SESSION['failedLogin'] = 1;
+                                $_SESSION['error'] = "Wrong Username or Password, please try again.";
                             }
+                            $_SESSION['failedLogin'] += 1;
                         }
                     }
                 }
@@ -133,7 +140,7 @@
 
             <!-- title -->
             <title>Log In</title>
-            
+
         </head>
         <body>
             <!-- nav bar -->
@@ -178,20 +185,19 @@
                                 <div class="mb-5">Log in to enjoy all the features like joining events and finding community gardens near you!</div>
                         
                         
-                                <form method="post" onsubmit="return validateForm()">
-                                    <div class="form-outline mb-4" id="appUsername">
-                                        <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username" v-model="username1"/>
-                                        <span v-if="usernameCheck()" style="color:red;">Username has to be at least 8 characters</span>
+                                <form method="post">
+                                    <div class="form-outline mb-4">
+                                        <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username"/>
+
                                     </div>
                         
-                                    <div class="form-outline mb-4" id="appPassword">
-                                        <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password" v-model="password1"/>
-                                        <span v-if="passwordCheck()" style="color:red;">Password has to be at least 8 characters</span>
+                                    <div class="form-outline mb-4">
+                                        <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password"/>
+
                                     </div>
 
-                                    <div class="text-center1">
-                                        <div class="g-recaptcha" data-sitekey="6Ld-fNcoAAAAAOS824_2sZOSzTMzy1xDo5CkBsoN" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
-                                        </div>
+                                    <div class="d-none" id="recaptcha">
+                                        <div class="g-recaptcha text-center1 mb-2" data-sitekey="6Ld-fNcoAAAAAOS824_2sZOSzTMzy1xDo5CkBsoN" style="width:100%;"></div>
                                     </div>
                                     
                                     <span style='color:red;'>
@@ -202,7 +208,7 @@
                                     }
                                     ?>
                                     </span>
-
+                                    <br>
                                 
                                     <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Login</button>
 
@@ -219,57 +225,13 @@
 
         <!-- javascript -->
         <script>
-            // vue to show message on username
-            const appUsername = Vue.createApp({
-                data(){
-                    return {username1: ""}
-                },
-                methods: {
-                    usernameCheck() {
-                    if(this.username1.length > 0 && this.username1.length < 8){
-                        return true
-                    }
-                    }
-                }
-                }).mount('#appUsername');
 
-            // vue to show message on password
-            const appPassword = Vue.createApp({
-                data(){
-                return {password1: ""}
-                },
-                methods: {
-                passwordCheck() {
-                    if(this.password1.length > 0 && this.password1.length < 8){
-                    return true
-                    }
-                }
-                }
-            }).mount('#appPassword');
+            // show recaptcha if the user fails to login 3 times
+            var failedLogin = <?php echo $_SESSION['failedLogin']; ?>;
+            if(failedLogin >= 3){
+                document.getElementById("recaptcha").setAttribute("class", "");
+            }
 
-            // function to validate form inputs
-            function validateForm() {
-                          
-              var msg = "";
-              var check = true;
-              var username = document.getElementById("username1").value;
-              var password = document.getElementById("password1").value;
-
-              if(username.length == 0 || /^\s*$/.test(username)){
-                  check = false;
-                  msg += "Username cannot be empty or contain spaces\n";
-              }
-              if(password.length == 0){
-                  check = false;
-                  msg += "Password must not be empty\n";
-              }
-                  
-              if(!check){
-                  alert(msg);
-              }
-
-           return check;
-           }
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

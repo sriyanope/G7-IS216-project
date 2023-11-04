@@ -16,6 +16,7 @@
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
             <link rel="stylesheet" href="progressBar.css">
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
            
             <!-- styling -->
             <style>
@@ -93,6 +94,10 @@
                     width: 50%;
                 }
 
+                #map {
+                    height: 60vh;
+                }
+
             </style>
 
             <!-- title -->
@@ -144,42 +149,14 @@
                     <div class="col-1"></div> 
                     <div class="col-10">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
+                        
+                        <!-- map -->
+                        <h2><b>Location</b></h2>
+                        <div id="map"></div>
+
                     </div> 
                 </div>
-
-
-            <!-- carousel -->
-            <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
-
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img class="d-block w-100" src="../public/images/randomGarden.jpeg" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="../public/images/EventImage.jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="../public/images/randomGarden.jpeg" alt="Third slide">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </div> 
-            </div>
-
+                
             <!-- view your participants -->
             <div class="row"> 
                 <div class="col-1"></div> 
@@ -292,107 +269,6 @@
                 </div>
             </div> -->
 
-            <!-- about the group -->
-
-            <!-- <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
-
-                    <h3 class="pt-4"><b>About The Group</b></h3>
-
-                </div>
-            </div>
-
-            <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-5">
-
-                    <h5 class="pt-2">Gender Ratio</h5>
-
-                </div>
-                <div class="col-5">
-
-                    <h5 class="pt-2">Age</h5>
-
-                </div>
-            </div>
-
-            <div class="row pt-3"> 
-                <div class="col-1"></div> 
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <div style="display: inline-block;">Female</div>
-                </div>
-                <div class="col-3" style="display: flex; align-items: center;">
-                    <span class="percentageBar" style="display: inline-block; width: 74%;"></span>
-                </div>
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <span style="display: inline-block; align-items: left;">54%</span>
-                </div>
-
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <div style="display: inline-block;">18 - 35 y/o</div>
-                </div>
-                <div class="col-3" style="display: flex; align-items: center;">
-                    <span class="percentageBar" style="display: inline-block; width: 23%;"></span>
-                </div>
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <span style="display: inline-block; align-items: left;">23%</span>
-                </div>
-
-            </div>
-
-            <div class="row pt-3"> 
-                <div class="col-1"></div> 
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <div style="display: inline-block;">Male</div>
-                </div>
-                <div class="col-3" style="display: flex; align-items: center;">
-                    <span class="percentageBar" style="display: inline-block; width: 54%;"></span>
-                </div>
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <span style="display: inline-block; align-items: left;">46%</span>
-                </div>
-
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <div style="display: inline-block;">36 - 44 y/o</div>
-                </div>
-                <div class="col-3" style="display: flex; align-items: center;">
-                    <span class="percentageBar" style="display: inline-block; width: 15%;"></span>
-                </div>
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <span style="display: inline-block; align-items: left;">15%</span>
-                </div>
-            </div>
-
-            <div class="row pt-3"> 
-                <div class="col-5"></div>
-
-                <div class="col-1"></div> 
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <div style="display: inline-block;">45 - 65 y/o</div>
-                </div>
-                <div class="col-3" style="display: flex; align-items: center;">
-                    <span class="percentageBar" style="display: inline-block; width: 46%;"></span>
-                </div>
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <span style="display: inline-block; align-items: left;">46%</span>
-                </div>
-            </div>
-
-            <div class="row pt-3"> 
-                <div class="col-5"></div>
-
-                <div class="col-1"></div> 
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <div style="display: inline-block;">above 65y/o</div>
-                </div>
-                <div class="col-3" style="display: flex; align-items: center;">
-                    <span class="percentageBar" style="display: inline-block; width: 15%;"></span>
-                </div>
-                <div class="col-1" style="display: flex; align-items: center;">
-                    <span style="display: inline-block; align-items: left;">15%</span>
-                </div>
-            </div> -->
 
             <!-- Edit this event -->
             <div class="row"> 
@@ -519,6 +395,26 @@
 
                     percent = (filled/slots)*100;
                     document.getElementById("progressBar").setAttribute("style", `width: ${percent}%`);
+
+                    // retrieve garden details and show google map
+                    url = "MySQL/GardenPageInfo.php?type=getGarden&gardenId=" + gardenId;
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            lat = Number(data.garden[0].latitude);
+                            lng = Number(data.garden[0].longitude);
+                            initMap(lat, lng);
+
+
+                            })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -592,6 +488,22 @@
                         console.error('Error:', error);
                     });
                 }
+
+                // function to initialise map
+                function initMap(lat, lng) {
+                    lat = Number(lat);
+                    lng = Number(lng);
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        center: { lat: lat, lng: lng },
+                        zoom: 17,
+                        mapId: "40c99f5bd3e0f892"
+                    });
+                    
+                    var marker = new google.maps.Marker({
+                        position: { lat: Number(lat), lng: Number(lng) },
+                        map
+                    });
+                    }
 
             </script>
 

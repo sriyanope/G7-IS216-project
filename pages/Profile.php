@@ -19,6 +19,12 @@
 
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
             <!-- styling -->
             <style>
@@ -93,6 +99,13 @@
                   width: 100%;
               }
 
+              .notification {
+                position: fixed;
+                bottom: 0;
+                right:0;
+                z-index: 100;
+              }
+
             </style>
 
             <!-- title -->
@@ -165,6 +178,7 @@
                 console.log(data.user)
                 document.getElementById("fullName").innerText = data.user[0].fullName;
                 document.getElementById("email").innerText = data.user[0].email;
+                document.getElementById("copyButton").setAttribute("data-value", data.user[0].email);
                 document.getElementById("bio").innerText = data.user[0].bio;
 
                 if(data.user[0].instagram !== null && data.user[0].instagram.length > 0){
@@ -191,7 +205,7 @@
           <div class="container-fluid">
             <div class="row">
                 <div class="col text-center mt-4">
-                        <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px;" src="../public/ProfileIcon.jpg"> 
+                        <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px; margin-bottom:20px;" src="ProfileImage/1.png"> 
                 </div>
             </div>
             <div class="row">
@@ -219,6 +233,9 @@
                 document.getElementById("editBtn").setAttribute("class", "btn btn-success mx-2 d-none");
                 document.getElementById("signOutBtn").setAttribute("class", "btn btn-success d-none");
               }
+
+
+
             </script>
             
             <div class="row text-center">
@@ -227,7 +244,8 @@
             <div class="row text-center">
                 <div class="col text-center mb-3">
 
-                    <button type="button" class=" btn bg-dark text-white mx-2" >
+
+                    <button type="button" class=" btn bg-dark text-white mx-2" id="copyButton">
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
 
                     <a href="#" id="instagram" style="text-decoration:none;">
@@ -256,11 +274,57 @@
             </div>
             
 
+            <!-- Notification -->
+            <div id="notification" class="notification"></div>
+
             
             
           </div>
 
     
+          <script>
+
+              // function to display an alert and automatically dismiss it after 5 seconds
+              function displayAlert(message, type) {
+                const notification = document.getElementById("notification");
+                const alert = document.createElement("div");
+                alert.className = `alert alert-${type} alert-dismissible fade show`;
+                alert.innerHTML = `${message}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>`;
+                notification.appendChild(alert);
+                setTimeout(function() {
+                  alert.style.display = "none";
+                }, 5000);
+              }
+
+              // function to copy value
+              function copyButtonValue() {
+                // Get the button element by its ID
+                const button = document.getElementById("copyButton");
+
+                if (button) {
+                  const valueToCopy = button.getAttribute("data-value");
+                  const tempInput = document.createElement("input");
+                  document.body.appendChild(tempInput);
+                  tempInput.setAttribute("value", valueToCopy);
+                  tempInput.select();
+                  document.execCommand("copy");
+                  document.body.removeChild(tempInput);
+                  displayAlert("Email copied to clipboard", "warning");
+                }
+              }
+
+              const copyButton = document.getElementById("copyButton");
+
+              if (copyButton) {
+                copyButton.addEventListener("click", copyButtonValue);
+              }
+
+
+
+          </script>
 
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
         </body>

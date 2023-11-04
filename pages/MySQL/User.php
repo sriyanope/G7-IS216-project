@@ -20,6 +20,9 @@
         $instagram = $_GET['instagram'];
         $telegram = $_GET['telegram'];
         updateUser($username, $fullName, $email, $bio, $instagram, $telegram);
+    }else if($type = "updatePhoto"){
+        $photo = $_GET['photo'];
+        updatePhoto($photo, $username);
     }
 
     function getUser($username) {
@@ -67,6 +70,22 @@
         $stmt = null;
         $pdo = null;
 
+    }
+
+    function updatePhoto($photo, $username){
+        $sql = "update users set profilePhoto = :photo where username = :username;";
+
+        $connMgr = new ConnectionManager();
+        $pdo = $connMgr->getConnection();
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $status = $stmt->execute();
+        
+        $stmt = null;
+        $pdo = null;
     }
 
 ?>
