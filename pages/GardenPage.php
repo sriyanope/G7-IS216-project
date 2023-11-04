@@ -174,7 +174,6 @@
                         
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    
-                                <label for="notes" class="form-label">Notes</label>
                                 <textarea name="notes" class="form-control" rows="4" cols="50" id="note"></textarea>
                               </div>
                               <!-- <div class="input-group mb-3">
