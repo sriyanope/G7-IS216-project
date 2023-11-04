@@ -68,6 +68,10 @@ if (copyButton) {
 
 <br><br><br>
 
+<script>
 
+
+
+</script>
 
 </html>
