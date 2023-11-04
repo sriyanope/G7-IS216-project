@@ -210,14 +210,14 @@
             </div>
             <div class="row">
                 <div class="col text-center">
-                  <a href="ProfileEdit.php">
+                  <a href="ProfileEdit.php" style="text-decoration:none;">
                     <button type="button" class="btn btn-success mx-2" href="ProfileEdit.html" id="editBtn">
                         <img src="../public/images/edit.png" class="editProfileimg"> 
                         Edit Profile
                     </button>
                   </a>
                     
-                  <a href="LogIn.php">
+                  <a href="LogIn.php" style="text-decoration:none;">
                   <button type="button" class="btn btn-success" id='signOutBtn'>
                         <img src="../public/images/logout.png" class="editProfileimg">
                         Sign Out
@@ -244,16 +244,17 @@
             <div class="row text-center">
                 <div class="col text-center mb-3">
 
+
                     <button type="button" class=" btn bg-dark text-white mx-2" id="copyButton">
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
 
-                    <a href="#" id="instagram">
-                    <button type="button" class=" btn bg-dark text-white mx-2">
+                    <a href="#" id="instagram" style="text-decoration:none;">
+                    <button type="button" class=" btn bg-dark text-white mx-2" >
                         <img src="../public/images/instagram.png" class="editProfileimg"> 
                         Instagram
                     </button>
                     </a>
-                    <a href="#" id="telegram">
+                    <a href="#" id="telegram" style="text-decoration:none;">
                     <button type="button" class=" btn bg-dark text-white mx-2">
                         <img src="../public/images/telegram.png" class="editProfileimg"> 
                         Telegram
@@ -272,8 +273,10 @@
                 </div>
             </div>
             
+
             <!-- Notification -->
             <div id="notification" class="notification"></div>
+
             
             
           </div>
