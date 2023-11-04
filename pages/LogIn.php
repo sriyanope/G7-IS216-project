@@ -126,7 +126,11 @@
                             header("location: LandingPage.html");
                             exit;
                         } else {
-                            $_SESSION['error'] = "Wrong Username or Password, please try again.";
+                            if(isset($_SESSION['errors'])){
+                                $_SESSION['error'] .= "<br>Wrong Username or Password, please try again.";                                
+                            }else{
+                                $_SESSION['error'] = "Wrong Username or Password, please try again.";
+                            }
                             $_SESSION['failedLogin'] += 1;
                         }
                     }

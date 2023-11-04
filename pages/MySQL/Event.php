@@ -205,6 +205,11 @@
             deletedEventParticipants($eventId, $username, $reason);
         }
 
+        $sql = "delete from usersaved where eventId = :eventId;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->execute();
+
         $sql = "delete from userevent where eventId = :eventId;";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);

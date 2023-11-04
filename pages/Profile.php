@@ -205,7 +205,7 @@
           <div class="container-fluid">
             <div class="row">
                 <div class="col text-center mt-4">
-                        <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px; margin-bottom:20px;" src="../public/ProfileIcon.jpg"> 
+                        <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px; margin-bottom:20px;" src="ProfileImage/1.png"> 
                 </div>
             </div>
             <div class="row">
@@ -244,7 +244,7 @@
             <div class="row text-center">
                 <div class="col text-center mb-3">
 
-                    <button type="button" class=" btn bg-dark text-white mx-2" >
+                    <button type="button" class=" btn bg-dark text-white mx-2" id="copyButton">
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
 
                     <a href="#" id="instagram">
@@ -272,7 +272,8 @@
                 </div>
             </div>
             
-
+            <!-- Notification -->
+            <div id="notification" class="notification"></div>
             
             
           </div>

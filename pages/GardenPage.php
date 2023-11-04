@@ -176,10 +176,6 @@
                               <div class="mb-3">                    
                                 <textarea name="notes" class="form-control" rows="4" cols="50" id="note"></textarea>
                               </div>
-                              <!-- <div class="input-group mb-3">
-                                <label class="form-label pe-3 mt-3" for="UploadGardenPicture">Add Pictures</label><br>
-                                <input type="file" class="form-control d-block mt-3" id="UploadGardenPicture">
-                              </div> -->
                             <button type="button" name="submit" class="btn text-white mb-5 mt-3" onclick="updateNote()">Update Note</button>
                           </form>
                     </div> 
