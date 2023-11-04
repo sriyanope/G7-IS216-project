@@ -179,7 +179,7 @@
                     let noOfSlots = Number(event.noOfSlots);
                     let filled = Number(event.filled);
                     let about = event.about;
-                    let image = event.image;
+                    let photo = event.photo;
                     let review = event.review;
                     let comment = event.comment;
                     let username = event.username;
@@ -198,12 +198,12 @@
                     startTime = convertTo12HourFormat(startTime);
                     endTime = convertTo12HourFormat(endTime);
                     
-                    let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + image + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
+                    let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + photo + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
 
                     output += `<div class="col">
                         <div class="card h-100">
                             <a href="javascript:void(0);" onclick='viewOrgEvent("${v}")' class="text-decoration-none text-dark">
-                            <img class="card-img-top" src="../public/images/EventImage.jpg">
+                            <img class="card-img-top" src="${photo}">
                             <div class="card-body">
                                 <h4>${eventTitle}</h4>
                                 <p class="card-text">

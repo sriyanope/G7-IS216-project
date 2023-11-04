@@ -341,7 +341,7 @@
           </div>
           <div class="col-7 mx-auto">
             <div class="input-group">
-              <input class="form-control border-end-0 border rounded-pill" type="search" id="search" placeholder="Search" onkeyup="filter(this.value)">
+              <input class="form-control border-end-0 border rounded-pill" type="text" id="search" placeholder="Search" onkeyup="filter(this.value)">
               <span class="input-group-append">
                       <i class="fa fa-search"></i>
                   </button>

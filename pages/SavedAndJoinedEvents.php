@@ -14,6 +14,14 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
+            <!-- jQuery library -->
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+            <!-- Popper JS -->
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <!-- Latest compiled JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Latest compiled and minified CSS -->
+             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
            
             <!-- styling -->
             <style>
@@ -60,6 +68,13 @@
                     padding-top: 22%;
                     padding-bottom: 22%;
                     text-align: center;
+                }
+
+                .notification {
+                    position: fixed;
+                    bottom: 0;
+                    right:0;
+                    z-index: 100;
                 }
 
             </style>
@@ -129,7 +144,11 @@
                             </div>
                         </div>
                     </div>
-                </div>                                  
+                </div>
+                
+                <!-- Notification -->
+                <div id="notification" class="notification"></div>   
+
             </div>
 
 
@@ -232,7 +251,7 @@
                                 let noOfSlots = Number(event.noOfSlots);
                                 let filled = Number(event.filled);
                                 let about = event.about;
-                                let image = event.image;
+                                let photo = event.photo;
                                 let username = event.username;
                                 let gardenId = event.gardenId;
                                 let gardenName = event.gardenName;
@@ -249,7 +268,7 @@
                                 startTime = convertTo12HourFormat(startTime);
                                 endTime = convertTo12HourFormat(endTime);
 
-                                let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + image + "aaaaa" + username + "aaaaa" + gardenId;
+                                let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + photo + "aaaaa" + username + "aaaaa" + gardenId;
 
                                 if(savedList.indexOf(eventId) == -1){
                                     btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
@@ -259,7 +278,7 @@
 
                                 output += `<div class="col">
                                     <div class="card h-100">
-                                    <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
+                                    <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="${photo}"></a>
                                     <div class="card-body">
                                         <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
                                         <h4>${eventTitle}</h4>
@@ -303,7 +322,7 @@
                             noOfSlots: Number(event[6]),
                             filled: Number(event[7]),
                             about: event[8],
-                            image: event[9],
+                            photo: event[9],
                             username: event[10],
                             gardenId: event[11],
                             gardenName: event[12]
@@ -324,6 +343,7 @@
                         .then(data => {
                             this1.setAttribute("onclick", "unsave(this, this.value)");
                             this1.innerText = "Unsave";
+                            displayAlert("Event added to saved list", "warning");
                         })
                         .catch(error => {
                             console.error('Error:', error);
@@ -344,10 +364,26 @@
                         .then(data => {
                             this1.setAttribute("onclick", "save(this, this.value)");
                             this1.innerText = "Save";
+                            displayAlert("Event removed from saved list", "warning");
                         })
                         .catch(error => {
                             console.error('Error:', error);
                         });
+                    }
+
+                    // function to display an alert and automatically dismiss it after 5 seconds
+                    function displayAlert(message, type) {
+                        const notification = document.getElementById("notification");
+                        const alert = document.createElement("div");
+                        alert.className = `alert alert-${type} alert-dismissible fade show`;
+                        alert.innerHTML = `${message}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>`;
+                        notification.appendChild(alert);
+                        setTimeout(function() {
+                            alert.style.display = "none";
+                        }, 5000);
                     }
 
                     loadEvents()

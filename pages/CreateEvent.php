@@ -76,13 +76,28 @@
           if(isset($_POST['submit'])){
             $eventTitle = $_POST['eventTitle'];
             $category = $_POST['category'];
+
+            if($category == "Workshop"){
+              $photo = "EventImage/Workshop.png";
+            }else if($category == "Cleanup"){
+              $photo = "EventImage/Cleanup.png";
+            }else if($category == "Education"){
+              $photo = "EventImage/Education.png";
+            }else if($category == "Harvest"){
+              $photo = "EventImage/Harvest.png";
+            }else if($category == "Leisure"){
+              $photo = "EventImage/Leisure.png";
+            }else if($category == "Others"){
+              $photo = "EventImage/Others.png";
+            }
+
             $eventDate = $_POST['eventDate'];
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
             $noOfSlots = $_POST['noOfSlots'];
             $about = $_POST['about'];
          
-            $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, createdDate, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, CURDATE(), :username, :gardenId);";
+            $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, photo, createdDate, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :photo, CURDATE(), :username, :gardenId);";
 
             $connMgr = new ConnectionManager();
             $pdo = $connMgr->getConnection();
@@ -95,6 +110,7 @@
             $stmt->bindParam(':endTime', $endTime, PDO::PARAM_STR);
             $stmt->bindParam(':noOfSlots', $noOfSlots, PDO::PARAM_INT);
             $stmt->bindParam(':about', $about, PDO::PARAM_STR);
+            $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->bindParam(':gardenId', $gardenId, PDO::PARAM_INT);
 
@@ -108,51 +124,56 @@
           }
         ?>
 
-<script>
-  function validateForm() {
-    var msg = "";
-    var check = true;
-    var eventTitle = document.getElementById("eventTitle").value;
-    var category = document.getElementById("category").value;
-    var eventDate = document.getElementById("eventDate").value;
-    var startTime = document.getElementById("startTime").value;
-    var endTime = document.getElementById("endTime").value;
-    var noOfSlots = document.getElementById("noOfSlots").value;
-    var about = document.getElementById("about").value;
-    var photos = document.getElementById("UploadEventPicture").value;
+        <script>
 
-    // Check if any fields are empty
-    if (!eventTitle || !category || !eventDate || !startTime || !endTime || !noOfSlots || !about || !photos) {
-      check = false;
-      msg += "Please fill in all fields.\n";
-    }
+          function validateForm() {
+            var msg = "";
+            var check = true;
 
-    const date1 = new Date(eventDate + "T" + startTime);
-    const date2 = new Date(eventDate + "T" + endTime);
+            // Check if any fields are empty
+            if (!document.getElementById("eventTitle").value || !document.getElementById("category").value || !document.getElementById("eventDate").value || !document.getElementById("startTime").value || !document.getElementById("endTime").value || !document.getElementById("noOfSlots").value || !document.getElementById("about").value) {
+              check = false;
+              msg += "Please fill in all fields.\n";
+            }
 
-    // Verify if the start time is more recent than the end time
-    if (date1.getTime() >= date2.getTime()) {
-      check = false;
-      msg += "End Time must be after Start Time.\n";
-    }
+            // create a new Date object
+            var today = new Date();
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const selectedEventDate = new Date(eventDate);
+            // get the individual components of the date (year, month, day)
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1; // Note that months are zero-based (0 for January)
+            var day = today.getDate();
 
-    // Verify if the event date is not earlier than today
-    if (selectedEventDate.getTime() < today.getTime()) {
-      check = false;
-      msg += "Event date cannot be earlier than today.\n";
-    }
+            // format the date as a string (e.g., "YYYY-MM-DD")
+            var formattedDate = year + "-" + (month < 10 ? "0" : "") + month + "-" + (day < 10 ? "0" : "") + day;
 
-    if (!check) {
-      alert(msg);
-    }
+            // verify if the event date is not earlier than today
+            if (document.getElementById("eventDate").value <= formattedDate) {
+              check = false;
+              msg += "Event date cannot be earlier than today.\n";
+            }
 
-    return check;
-  }
-</script>
+            // verify if the start time is more recent than the end time
+            var startTime = document.getElementById("eventDate").value + " " + document.getElementById("startTime").value;
+            var endTime = document.getElementById("eventDate").value + " " + document.getElementById("endTime").value;
+
+            // Compare the Date objects to check if start time is earlier than end time
+            if (startTime >= endTime) {
+              check = false;
+              msg += "End Time must be after Start Time.\n";
+            }
+
+            if (!check) {
+              alert(msg);
+            }else{
+              alert("Good");
+            }
+
+            return false;
+
+          }
+
+        </script>
 
         <body>
             <!-- nav bar -->
@@ -201,16 +222,16 @@
                   <label for="category" class="form-label">Event Category</label>
                   <select class="form-select" aria-label="Default select example" name="category">
                       <option value="Workshop">Workshop</option>
-                      <option value="Garden Workday">Garden Workday</option>
+                      <option value="Cleanup">Cleanup</option>
                       <option value="Education">Education</option>
                       <option value="Harvest">Harvest</option>
                       <option value="Leisure">Leisure</option>
-                      <option value="Leisure">Others</option>
+                      <option value="Others">Others</option>
                     </select>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="eventDate" id="eventDate" class="form-label">Date</label>
+                    <label for="eventDate" class="form-label">Date</label>
                     <input type="date" class="form-control" name="eventDate" id="eventDate">
                   </div>
                   <div class="mb-3">
