@@ -22,6 +22,8 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <!-- Latest compiled JavaScript -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- font awesome icons -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
       
       <title>Find a Garden</title>
 
@@ -318,16 +320,17 @@
         <div class="row p-5">
           <div class="col"></div>
           <div class="col-3 mx-auto">
-            <h2><b>Find a Garden</b></h2>
+            <h2>
+              
+              <b>Find a Garden</b>
+            </h2>
 
           </div>
           <div class="col-7 mx-auto">
             <div class="input-group">
               <input class="form-control border-end-0 border rounded-pill" type="text" id="search" placeholder="Search" onkeyup="filter(this.value)">
-              <span class="input-group-append">
-                      <i class="fa fa-search"></i>
-                  </button>
-              </span>
+              
+              
             </div>
           </div>
           <div class="col"></div>
@@ -382,7 +385,13 @@
           <!-- saved gardens -->
           <div id="savedGardenDiv">
             <div class="row mt-5">
-              <h4>Saved Gardens</h4>
+              <div class="col-1">
+                <img src="../public/images/BookmarkNone.png" style="height:40px;width:40px;">
+              </div>
+              <div class="col-11 pt-1">
+                <h4>Saved Gardens</h4>
+              </div>
+              
             </div>
 
             <div class="row bg-light mt-2 mb-5 border">

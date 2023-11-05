@@ -132,55 +132,35 @@
             </nav>
 
             <!-- content -->
-            <div class="container-fluid">
+            <div class="container px-5">
                 <div class="row pt-5"> 
-                    <div class="col-1"></div> 
+                    <!-- <div class="col-1"></div>  -->
                     <div class="col-10">
                         <h2><b><span id="gardenName"></span></b></h2>
                     </div> 
                 </div>
 
                 <div class="row"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
+                    <!-- <div class="col-1"></div>  -->
+                    <div class="col-md-5">
                         <p><img src="../public/images/location pin.svg"><span id="address"></span>
                         </p>
                         <h3><b>Location</b></h3>
                         <div id="map"></div>
                     </div> 
-                </div>
-
-                <!-- notes -->
-
-                <div class="row"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-                        <hr>
-                    </div> 
-                </div>
-
-                <div class="row pt-1"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
+                    <div class="col-md-5 mt-5">
                         <h3><b>My Notes</b></h3>
-                    </div> 
-                </div>
-
-                <!-- form -->
-
-                <div class="row pt-2"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
-                        
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    
                                 <textarea name="notes" class="form-control" rows="4" cols="50" id="note"></textarea>
                               </div>
-                            <button type="button" name="submit" class="btn text-white mb-5 mt-3" onclick="updateNote()">Update Note</button>
-                          </form>
+                            <button type="button" name="submit" class="btn btn-success text-white mb-5 mt-3" onclick="updateNote()">Update Note</button>
+                        </form>
                     </div> 
-
                 </div>
+
+
+                
             </div>
 
 
