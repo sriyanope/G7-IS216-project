@@ -70,70 +70,11 @@
           z-index: 100;
         }
 
-
-        .form-control {
-              outline: 0 !important;
-              border-color: initial;
-              box-shadow: none;
-                    }
-
-          .filter-container {
-            background-color: #f6f8e0;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            color: #547D2E;
-            text-align: center;
-            max-width: 100px;
-            margin; 0 auto;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-          }
-
-          .form-check-input {
-            display: none;
-          }
-
-          .form-check-label {
-            display: inline-block;
-            font-weight: 600;
-            font-size: 10px;
-            cursor: pointer;
-            margin: 5px;
-            position: relative;
-            transition: color 0.3s ease, transform 0.3s ease;
-          }
-
-          .form-check-label::before {
-            content: "\2713";
+        .bookmark-container {
             position: absolute;
-            left: -30px;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-          }
-
-          .form-check-input:checked + .form-check-label::before {
-            opacity: 1;
-            transform: scale(1);
-          }
-
-          .form-check-label:hover {
-            color: #B7CF9B;
-            transform: scale(1.1);
-          }
-          
-          .filterHead {
-          font-weight: 600;
-          font-size: 12px; 
-          color: black;
-          margin-bottom: 10px;
-          text-align: center; 
-          text-transform: uppercase; 
-          letter-spacing: 2px; 
-          }
+            bottom: 10px;
+            right: 10px;
+        }
 
       </style>
   
@@ -357,32 +298,33 @@
           <div class="col-3" id="resultCount"></div>
         </div>
 
-      <div class="row">
-        <div class="col-2">
-          <div class="filter-container">
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
-              <label class="form-check-label">North</label>
+        <div class="row">
+
+          <div class="col-2">
+            <div class="bg-light">
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
+                <label class="form-check-label">North</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
+                <label class="form-check-label">North-East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
+                <label class="form-check-label">Central</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
+                <label class="form-check-label">East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
+                <label class="form-check-label">West</label>
+              </div>
             </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
-              <label class="form-check-label">North-East</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
-              <label class="form-check-label">Central</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
-              <label class="form-check-label">East</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
-              <label class="form-check-label">West</label>
-            </div>
+
           </div>
-        </div>
-      </div>
 
           <!-- garden list -->
           <div class="col-5">
@@ -444,10 +386,10 @@
                     let address = garden.address;
                     let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
 
-                    if(savedList.indexOf(gardenName) == -1){
-                      btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
-                    }else{
-                      btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                    if (savedList.indexOf(gardenName) == -1) {
+                        btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='save(this, this.getAttribute("data-value"))'>`
+                    } else {
+                        btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
                     }
 
                     output += `<div class="card border">
@@ -455,13 +397,14 @@
                           <div class="card-body">
                             <h5 class="card-title">${gardenName}</h5>
                             <p class="card-text">Address: ${address}</p>
-                            </a>
-                            <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Show Map</button>
-                            ${btn}
+                            <br>
                           </div>
-
-                      </div>
-                      `;
+                        </a>
+                        <div class="bookmark-container">
+                        <img src="../public/images/map.png" style='height:40px;width:40px;' class='bookmark-icon' data-value="${v}" onclick='showGarden(this.getAttribute("data-value"))'>    
+                        ${btn}
+                        </div>
+                    </div>`;
                   }
                   document.getElementById("gardens").innerHTML = output;
                   })
@@ -596,7 +539,8 @@
             })
             .then(data => {
               showSavedGarden();
-              this1.setAttribute("onclick", "unsave(this, this.value)");
+              this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
+              this1.setAttribute("src", "../public/images/Bookmarked.png");
               this1.innerText = "Unsave";
               message = garden.split("aaaaa")[1];
               displayAlert(message + " <b>Saved</b>", "warning");
@@ -620,7 +564,8 @@
             })
             .then(data => {
               showSavedGarden();
-              this1.setAttribute("onclick", "save(this, this.value)");
+              this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
+              this1.setAttribute("src", "../public/images/BookmarkNone.png");
               this1.innerText = "Save";
               message = garden.split("aaaaa")[1];
               displayAlert(message + " <b>Unsaved</b>", "warning");

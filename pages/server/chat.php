@@ -6,7 +6,7 @@ const FILENAME = "chat.json";
 $json_str = file_get_contents(FILENAME);
 
 if (isset($_GET['text'])) {
-    $nickname = $_GET['nickname'] ?? 'Unknown';
+    $username = $_GET['username'] ?? 'Unknown';
     $text = $_GET['text'];
     $eventId = $_GET['eventId'];
 
@@ -17,7 +17,7 @@ if (isset($_GET['text'])) {
     }
 
     $messages[$eventId][] = array(
-        "who" => $nickname,
+        "who" => $username,
         "text" => $text
     );
 
