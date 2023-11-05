@@ -211,33 +211,76 @@
 
       <!-- content -->
       <div class="row">
-        <div class="col-2 filterHead">Filter By Region:</div>
+        <div class="col-2 filterHead">Date:</div>
         <div class="col-3" id="resultCount"></div>
       </div>
 
       <div class="row">
         <!-- filter-->
         <div class="col-2">
-          <div class="bg-light filter-container">
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
-              <label class="form-check-label" for="north-checkbox">North</label>
+          <div class="row">
+            <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
+          </div>
+          
+          <div class="row">
+            <div class="filterHead mt-4">Category:</div>
+          </div>
+
+          <div class="row">
+          <div class="bg-light filter-container" id="category-checkbox">
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="Workshop" onclick="filter(this.value)" id="workshop-checkbox">
+                <label class="form-check-label" for="workshop-checkbox">Workshop</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="Cleanup" onclick="filter(this.value)" id="cleanup-checkbox">
+                <label class="form-check-label" for="cleanup-checkbox">Cleanup</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="Education" onclick="filter(this.value)" id="education-checkbox">
+                <label class="form-check-label" for="education-checkbox">Education</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="Harvest" onclick="filter(this.value)" id="harvest-checkbox">
+                <label class="form-check-label" for="harvest-checkbox">Harvest</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="Leisure" onclick="filter(this.value)" id="leisure-checkbox">
+                <label class="form-check-label" for="leisure-checkbox">Leisure</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="Others" onclick="filter(this.value)" id="others-checkbox">
+                <label class="form-check-label" for="others-checkbox">Others</label>
+              </div>
             </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
-              <label class="form-check-label" for="north-east-checkbox">North-East</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
-              <label class="form-check-label" for="central-checkbox">Central</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
-              <label class="form-check-label" for="east-checkbox">East</label>
-            </div>
-            <div class="form-check m-3">
-              <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
-              <label class="form-check-label" for="west-checkbox">West</label>
+          </div>
+
+          <div class="row">
+            <div class="filterHead mt-4">Location:</div>
+          </div>
+
+          <div class="row">
+          <div class="bg-light filter-container" id="region-checkbox">
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
+                <label class="form-check-label" for="north-checkbox">North</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
+                <label class="form-check-label" for="north-east-checkbox">North-East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
+                <label class="form-check-label" for="central-checkbox">Central</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
+                <label class="form-check-label" for="east-checkbox">East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
+                <label class="form-check-label" for="west-checkbox">West</label>
+              </div>
             </div>
           </div>
         </div>
@@ -269,14 +312,22 @@
 
         // function to update event list when user uses the filter or types in the search bar
         function filter() {
-          const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-          let selectedRegions = Array.from(checkboxes).map(checkbox => checkbox.value);
+          const checkboxesRegion = document.getElementById("region-checkbox").querySelectorAll('input[type="checkbox"]:checked');
+          let selectedRegions = Array.from(checkboxesRegion).map(checkbox => checkbox.value);
           if(selectedRegions.length == 0){
             selectedRegions = ['north', 'north-east', 'central', 'east', 'west'];
           }
+
+          const checkboxesCategory = document.getElementById("category-checkbox").querySelectorAll('input[type="checkbox"]:checked');
+          let selectedcategories = Array.from(checkboxesCategory).map(checkbox => checkbox.value);
+          if(selectedcategories.length == 0){
+            selectedcategories = ['Workshop', 'Cleanup', 'Education', 'Harvest', 'Leisure', 'Others'];
+          }
+          
+          eventDate = document.getElementById("eventDate").value;
           searchKey = document.getElementById("search").value;
 
-          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions;
+          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate;
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -285,6 +336,7 @@
                 return response.json();
             })
             .then(data => {
+
                 showEventList(data);
             })
             .catch(error => {
@@ -406,7 +458,7 @@
         }
 
         // initialise the page with all events
-        url = "MySQL/Event.php?type=getAllEvents&key=&regions=north,north-east,central,east,west";
+        url = "MySQL/Event.php?type=getAllEvents&key=&regions=north,north-east,central,east,west&categories=Workshop,Cleanup,Education,Harvest,Leisure,Others&eventDate=";
         fetch(url)
           .then(response => {
               if (!response.ok) {

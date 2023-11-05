@@ -37,7 +37,14 @@
 
     function getAllEvents() {
         $key = '%'.$_GET['key'].'%';
+        $eventDate = $_GET['eventDate'];
+        $e = "";
+        if(strlen($eventDate) > 0){
+            $e = "and eventDate = '" . $eventDate . "'";
+        }
+
         $regions = $_GET['regions'];
+        $categories = $_GET['categories'];
         
         $r = "";
         $regions = explode(",", $regions);
@@ -46,7 +53,14 @@
         }
         $r = substr($r, 0, -3);
 
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) order by createdDate desc;";
+        $c = "";
+        $categories = explode(",", $categories);
+        foreach($categories as $category){
+            $c = $c . " category = '$category' OR";
+        }
+        $c = substr($c, 0, -3);
+
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $e order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
