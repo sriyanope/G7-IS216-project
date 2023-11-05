@@ -11,9 +11,11 @@
     $username = $_SESSION['username'];
 
     if($type == "joined"){
-        getJoinedEvents($username);
+        $pastEvents = $_GET['pastEvents'];
+        getJoinedEvents($username, $pastEvents);
     }else if($type == "saved"){
-        getSavedEvents($username);
+        $pastEvents = $_GET['pastEvents'];
+        getSavedEvents($username, $pastEvents);
     }else if($type == "add"){
         $eventId = $_GET['eventId'];
         add($eventId, $username);
@@ -22,8 +24,13 @@
         delete($eventId, $username);
     }
 
-    function getJoinedEvents($username) {
-        $sql = "select * from userevent u join event e join garden g on u.eventId = e.eventId and e.gardenId = g.gardenId where u.username = :username;";
+    function getJoinedEvents($username, $pastEvents) {
+        if($pastEvents == "1"){
+            $p = "and eventDate < CURDATE()";
+        }else{
+            $p = "and eventDate >= CURDATE()";
+        }
+        $sql = "select * from userevent u join event e join garden g on u.eventId = e.eventId and e.gardenId = g.gardenId where u.username = :username $p;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -46,8 +53,13 @@
 
     }
 
-    function getSavedEvents($username) {
-        $sql = "select * from usersaved u join event e join garden g on u.eventId = e.eventId and e.gardenId = g.gardenId where u.username = :username;";
+    function getSavedEvents($username, $pastEvents) {
+        if($pastEvents == "1"){
+            $p = "and eventDate < CURDATE()";
+        }else{
+            $p = "and eventDate >= CURDATE()";
+        }
+        $sql = "select * from usersaved u join event e join garden g on u.eventId = e.eventId and e.gardenId = g.gardenId where u.username = :username $p;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();

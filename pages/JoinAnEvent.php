@@ -213,6 +213,17 @@
       <div class="row">
         <div class="col-2 filterHead">Date:</div>
         <div class="col-3" id="resultCount"></div>
+        <div class="col-5"></div>
+
+        <!-- past events -->
+        <div class="col-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
+            <label class="form-check-label" for="pastEventsCheckbox">
+                Show Past Events
+            </label>
+          </div>
+        </div>
       </div>
 
       <div class="row">
@@ -312,6 +323,12 @@
 
         // function to update event list when user uses the filter or types in the search bar
         function filter() {
+          if(document.getElementById("pastEventsCheckbox").checked){
+            pastEvents = "1";
+          }else{
+            pastEvents = "0";
+          }
+
           const checkboxesRegion = document.getElementById("region-checkbox").querySelectorAll('input[type="checkbox"]:checked');
           let selectedRegions = Array.from(checkboxesRegion).map(checkbox => checkbox.value);
           if(selectedRegions.length == 0){
@@ -327,7 +344,7 @@
           eventDate = document.getElementById("eventDate").value;
           searchKey = document.getElementById("search").value;
 
-          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate;
+          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&pastEvents=" + pastEvents;
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -372,8 +389,12 @@
 
         // function to show event list
         function showEventList(obj) {
+          if(document.getElementById("pastEventsCheckbox").checked){
+              url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=1";
+          }else{
+              url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=0";
+          }
           document.getElementById("resultCount").innerText = obj.event.length + " results";
-          url = "MySQL/SavedJoinedEvents.php?type=saved";
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -457,22 +478,6 @@
 
         }
 
-        // initialise the page with all events
-        url = "MySQL/Event.php?type=getAllEvents&key=&regions=north,north-east,central,east,west&categories=Workshop,Cleanup,Education,Harvest,Leisure,Others&eventDate=";
-        fetch(url)
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          })
-          .then(data => {
-            showEventList(data);
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
-
           function retrieveEventDetails(event) {
               if(typeof event === 'string'){
                 event = event.split("aaaaa");
@@ -551,6 +556,8 @@
                 alert.style.display = "none";
             }, 5000);
           }
+
+          filter();
 
       </script>
 
