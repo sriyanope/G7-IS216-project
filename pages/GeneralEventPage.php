@@ -236,7 +236,7 @@
                       <!-- google map -->
                       
                       <h2><b>Location</b></h2>
-                      <div id="map">this is where the map is</div>
+                      <div id="map"></div>
 
                       
 
@@ -252,9 +252,9 @@
                                 <table class='table'>
                                     <tbody>
                                         <tr class="d-none">
-                                            <th scope='row' style='width: 100px;'>Nickname</th>
+                                            <th scope='row' style='width: 100px;border:none;'>Nickname:</th>
                                             <td>
-                                                <input id='nickname'>
+                                                <input id='nickname'> <!-- this part is not displaying for some reason, need to continue debugging-->
                                                 <span id='nickname-error' class="text-danger"></span>
                                             </td>
                                         </tr>
