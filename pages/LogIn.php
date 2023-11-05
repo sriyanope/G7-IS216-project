@@ -209,8 +209,12 @@
                                     ?>
                                     </span>
                                     <br>
-                                
-                                    <button class="btn text-white btn-lg btn-block px-5" name="submit" type="submit">Login</button>
+                                    
+                                    <!-- to redirect to landing page -->
+                        
+                                    <button class="btn btn-success text-white btn-lg btn-block px-5" name="submit" type="submit" style="text-decoration:none;">Login</button>
+                                    
+                                    
 
                                     <div class="pt-3">Don't have an account? 
                                         <a href='SignUp.php' style="text-decoration: underline; color: black">Create an Account</a>
