@@ -63,7 +63,7 @@
             color: #547D2E;
             text-align: center;
             max-width: 300px;
-            margin; 0 auto;
+            margin: 0, auto;
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -133,6 +133,7 @@
           .redirectButton:focus-visible{
             transform: translateY(-0.75rem);
           }
+          
           
 
         </style>
