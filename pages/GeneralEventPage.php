@@ -257,13 +257,6 @@
                             <div>
                                 <table class='table'>
                                     <tbody>
-                                        <tr class="d-none">
-                                            <th scope='row' style='width: 100px;border:none;'>Nickname:</th>
-                                            <td>
-                                                <input id='nickname'> <!-- this part is not displaying for some reason, need to continue debugging-->
-                                                <span id='nickname-error' class="text-danger"></span>
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <th scope='row'>Have questions about the event? Ask our friendly community here!</th>
                                             <td class='font-italic'>
@@ -497,19 +490,17 @@
 
 <script>
 
-        var nicknameInput = document.getElementById('nickname');
-        nicknameInput.addEventListener('keyup', checkNickname());
+        var username = <?php echo $_SESSION['username']; ?>;
 
         var textInput = document.getElementById('text');
-        textInput.addEventListener('keyup', doText(eventId));
+        textInput.addEventListener('keyup', doText);
 
         var btnSend = document.getElementById('btnSend');
-        btnSend.addEventListener('click', doSend());
+        btnSend.addEventListener('click', doSend);
 
         var numChars = document.getElementById('num-chars');
 
         function htmlEntities(str) {
-            console.log("html entities has been removed");
             return String(str)
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
@@ -517,54 +508,42 @@
                 .replace(/"/g, '&quot;');
         }
 
-        function process(nickname, text) {
-            console.log("process has started");
+        function process(username, text) {
             eventId = <?php echo $_GET['eventId']; ?>;
-            uname = <?php echo $_SESSION['username']; ?>;
-            let gotoURL = "server/chat.php?eventId=1"
+            let gotoURL = "server/chat.php?eventId=eventId";
             // this function process can be invoked with and without arguments.
             // When there is no argument passed in, we have no parameters to send to the API.
             let getParameters = {};
             // If there are arguments passed in (i.e. parameter text has value), prepare the GET parameters to be sent to the API.
             if (typeof text !== "undefined") {
-                getParameters.nickname = uname;
+                getParameters.username = username;
                 getParameters.text = text;
-                getParameters.eventId = eventId;
             }
+            
 
             axios.get(gotoURL, {
                 params: getParameters,
             })
             .then (response => {
                 let rows = '';
-                let obj = response.data[eventId];
+                let obj = response.data.eventId
                 for (msg of obj) {
-                    rows = rows + '<tr>'
-                        + '<td scope="row">' + msg.who + '</td>'
+                    rows = '<tr>'
+                        + '<th scope="row">' + msg.who + '</th>'
                         + '<td>' + htmlEntities(msg.text) + '</td>'
-                        + '</tr>';
+                        + '</tr>' + rows;
                 }
                 document.getElementById('tbody').innerHTML = rows;
                 
             })
             .catch(error => {
-
+                output.innerHTML = "Error: " + error.message;
+                console.log(error.message)
             });
         }
 
-        function checkNickname() {
-            console.log("nickname");
-            nickname = nicknameInput.value;
-            let errorMsg = document.getElementById('nickname-error');
-            if (nickname.length < 3) {
-                errorMsg.innerText = "Must be at least 3 characters";
-            } else {
-                errorMsg.innerText = "";
-            }
-        }
-
         function doText(event) {
-            console.log("doText is successfull");
+
             if (event.code === 'Enter') {
                 doSend();
             }
@@ -572,19 +551,16 @@
         }
 
         function doSend() {
-            console.log("msg has been sent");
-            let nickname = nicknameInput.value;
-            process(nickname, textInput.value);
+            let username = <?php echo $_SESSION['username']; ?>;
+            process(username, textInput.value);
             textInput.value = '';
             numChars.innerHTML = 0;
         }
 
-        nicknameInput.value = 'anonymous' + Math.floor(Math.random() * 100000);
-
         process();
         
         // pull messages every 1 second
-        window.setInterval(process, 1000);
+        // window.setInterval(process, 1000);
 
     </script>
 
