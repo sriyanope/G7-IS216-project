@@ -76,6 +76,26 @@
             right: 10px;
         }
 
+        .scroll-to-top-button {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 99;
+          background-color: #547D2E;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .scroll-to-top-button img {
+          display: block;
+          margin: 0 auto;
+        }
+
       </style>
   
       <?php
@@ -184,10 +204,31 @@
 
         <!-- Notification -->
         <div id="notification" class="notification"></div>
+
+        <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
+
       
 <!--Put in landing pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-->
 
 <script>
+
+    const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+    // Show the button when the user scrolls down 200 pixels
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollToTopButton.style.display = 'block';
+      } else {
+        scrollToTopButton.style.display = 'none';
+      }
+    };
+
+    // Scroll to the top of the page when the button is clicked
+    scrollToTopButton.addEventListener('click', function() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    });
+
 
   function removeNotification(){
     url = "MySQL/Notification.php?type=removeNotification";
@@ -355,6 +396,8 @@
       </div>
 
       </div>
+      
+      <div class="container m-5"></div>
 
       <!-- javascript -->
       <script>
@@ -393,18 +436,19 @@
                     }
 
                     output += `<div class="card border">
-                        <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
-                          <div class="card-body">
-                            <h5 class="card-title">${gardenName}</h5>
-                            <p class="card-text">Address: ${address}</p>
-                            <br>
-                          </div>
-                        </a>
-                        <div class="bookmark-container">
-                        <img src="../public/images/map.png" style='height:40px;width:40px;' class='bookmark-icon' data-value="${v}" onclick='showGarden(this.getAttribute("data-value"))'>    
-                        ${btn}
-                        </div>
-                    </div>`;
+                              <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
+                                <div class="card-body">
+                                  <h5 class="card-title">${gardenName}</h5>
+                                  <p class="card-text" style="font-weight: normal;">Address: ${address}</p>
+                                  <p style="font-weight: normal;">Region: ${region}</p>
+                                </div>
+                              </a>
+                              <div class="bookmark-container">
+                                <img src="../public/images/map.png" style='height:40px;width:40px;' class='bookmark-icon' data-value="${v}" onclick='showGarden(this.getAttribute("data-value"))'>    
+                                ${btn}
+                              </div>
+                            </div>
+                            `;
                   }
                   document.getElementById("gardens").innerHTML = output;
                   })
