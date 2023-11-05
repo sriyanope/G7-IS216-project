@@ -14,6 +14,14 @@
         <link rel="stylesheet" href="../style.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+              <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+      <!-- jQuery library -->
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+      <!-- Popper JS -->
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- styling -->
         <style>
@@ -310,7 +318,7 @@
                   let noOfSlots = Number(event.noOfSlots);
                   let filled = Number(event.filled);
                   let about = event.about;
-                  let image = event.image;
+                  let photo = event.photo;
                   let username = event.username;
                   let gardenId = event.gardenId;
                   let gardenName = event.gardenName;
@@ -327,7 +335,7 @@
                   startTime = convertTo12HourFormat(startTime);
                   endTime = convertTo12HourFormat(endTime);
 
-                  let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + image + "aaaaa" + username + "aaaaa" + gardenId;
+                  let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + photo + "aaaaa" + username + "aaaaa" + gardenId;
 
                   if(savedList.indexOf(eventId) == -1){
                     btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
@@ -337,7 +345,7 @@
 
                   output += `<div class="col">
                     <div class="card h-100">
-                      <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="../public/images/EventImage.jpg"></a>
+                      <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="${photo}"></a>
                       <div class="card-body">
                         <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
                           <h4>${eventTitle}</h4>
@@ -397,7 +405,7 @@
                   noOfSlots: Number(event[6]),
                   filled: Number(event[7]),
                   about: event[8],
-                  image: event[9],
+                  photo: event[9],
                   username: event[10],
                   gardenId: event[11],
                   gardenName: event[12]
