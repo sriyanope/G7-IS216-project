@@ -1,0 +1,187 @@
+<!doctype html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet" integrity="...PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
+            <!-- CSS stylesheet -->
+            <!-- <link rel="stylesheet" href="../style.css"> -->
+            <link rel="stylesheet" href="LandingPage.css">
+
+            <title>Home</title>
+            
+        </head>
+        <body>
+          <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
+
+            <div class="container-fluid m-0" style="flex-wrap: wrap; margin: 0;">
+              <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+              <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+              <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item ms-auto mt-1">
+                    <a class="nav-link mx-2 disabled" href="#"><i class="about"></i> About</a>
+                  </li>
+                  <li class="nav-item ms-auto mt-1">
+                    <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                  </li>
+                  <li class="nav-item ms-auto mt-1">
+                    <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                  </li>
+                  <li class="nav-item ms-auto mt-1">
+                    <a href="Profile.php"><button class="btn text-white" href="#">
+                        <img src="../icons.png" width="30">
+                        My Profile</button></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <section class="p-5 exploreMore">
+            <div class="exploreMoreText">
+              <div id="msg1">Looking For A Community Garden Near You?</div>
+              <div id="msg2">Introducing</div>
+              <div id="msg3">ECOmmunity</div>
+              <button>Explore</button>
+              <div id="character">
+                <!-- <img src="../public/images/6360237.jpg" style="height: 300px;"/> -->
+              </div>
+            </div>
+          </section>
+          <section class="aboutUs">
+            <div class="aboutUsText">
+              <h1 class="text-shadow: 5px 5px;"><b>About Us</b></h1>
+              <p>A hub for gardening enthusiasts, environmentalists, and individuals interested in making a positive impact, we aim to aid a ground-up approach in protecting our environment.
+                Join or host sustainable events for our community or simply enjoy some personal gardening at one of the many community gardens in Singapore.
+                </p>
+              <button><a href="JoinAnEvent.php">Join an Event</a></button>
+              <button><a href="FindAGarden.php" class="FaGarden"><i class="ri-search-line"></i> Find a Garden</a></button>
+            </div>
+          </section>
+          <section class="Facts pt-5 pb-5">
+            <div class="mw-100 col-12 text-center">
+              <h1><span class="auto-type"></span></h1>
+            </div>
+            <div class="box factBox">
+              <i></i>
+              <div class="factText">
+                <img src="../public/images/garden-pot.jpg"/> 
+                <p>Singapore's Health Promotion Board recommends gardening as a physical activity that helps to improve flexibility, strength, 
+                  and mental well-being among Singaporeans.
+                </p>
+              </div>
+            </div>
+            <div class="box factBox">
+              <i></i>
+              <div class="factText">
+                <img src="../public/images/hand-tomatoes.jpg"/> 
+                <p>Over 90% of Singapore's food supply comes from other countries. This reliance on imports contributes to food security challenges.
+                </p>
+              </div>
+            </div>
+            <div class="box factBox">
+              <i></i>
+              <div class="factText">
+                <img src="../public/images/watering-plant.jpg"/> 
+                <p>Sustainability events are part of a broader global movement to address environmental challenges.
+                  They align with international goals such as the United Nations sustainable Development Goals (SDGs).
+                </p>
+              </div>
+            </div>
+          </section>
+          <section id="Testimonials">
+            <div class="row m-0">
+              <div class="col TestimonialsDe5ription">
+                <p class="lead TestimonialsTitle text-center">Testimonials</p>
+                <h1 class="fw-bold">Read What Others Have To Say</h1>
+              </div>
+              <div class="col col-xs-12 carousel carousel-dark slide" id="carouselExampleControls" data-bs-ride="carousel">
+              <!-- BS carousel: start --> 
+                  <div class="carousel-inner"> 
+                      <div class="carousel-item active text-center"> 
+                        <div class="row d-block w-100">
+                          <img class="rounded-circle" src="../public/images/hand-tomatoes.jpg" style="height: 70px; width: auto;"> 
+                          <div class="carouText">
+                            <h2>Rafiq</h2>
+                            <p>“Being a part of this community has been so rewarding and eventful! I have learned so much from my time at community events such as the beeswax wrap workshop. 
+                              Gardening with like-minded people has also felt so relaxing, loving this space!”</p>
+                          </div>
+                        </div>
+                      </div> 
+                      <div class="carousel-item text-center"> 
+                        <div class="row d-block w-100">
+                          <img class="rounded-circle" src="../public/images/hand-tomatoes.jpg" style="height: 70px; width: auto;"> 
+                          <div class="carouText">
+                            <h2>Rafiq</h2>
+                            <p>“ Being a part of evfervferverv community has been so rewarding and eventful! I have learned so much from my time at community events such as the beeswax wrap workshop. 
+                              Gardening with like-minded people has also felt so relaxing, loving this space!”</p>
+                          </div>
+                        </div>
+                      </div> 
+                      <div class="carousel-item text-center"> 
+                        <div class="row d-block w-100">
+                          <img class="rounded-circle" src="../public/images/hand-tomatoes.jpg" style="height: 70px; width: auto;"> 
+                          <div class="carouText">
+                            <h2>Rafiq</h2>
+                            <p>“ Being a part of this community has been so rewarding and eventful! I have learned so much from my time at community events such as the beeswax wrap workshop. 
+                              Gardening with like-minded people has also felt so relaxing, loving this space!”</p>
+                          </div>
+                        </div>
+                      </div> 
+                  </div> 
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"> 
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+                      <span class="visually-hidden">Previous</span> 
+                  </button> 
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">  
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+                      <span class="visually-hidden">Next</span> 
+                  </button> 
+              </div> 
+                 <!-- BS carousel: end --> 
+                
+              </div>
+            </div>
+
+          </section>
+          <section id="Partners"></section>
+
+          <script src="https://unpkg.com/scrollreveal"></script>
+          <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+          <script>
+            
+            // const sr = ScrollReveal({
+            //   distance: '65px',
+            //   duration: 2600,
+            //   delay:450,
+            //   reset:true
+            // });
+            // sr.reveal('.exploreMoreText', {delay:200, origin:'left'})
+            // sr.reveal('.aboutUsText', {delay:200, origin:'right'})
+
+            // var typed = new Typed(".auto-type", {
+            //   strings: ["Did You Know ?", "Did You Know ?"],
+            //   typeSpeed: 150,
+            //   backSpeed: 150,
+            //   loop: true
+            // })
+
+          </script>
+          
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="...HUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        </body>
+    </html>
