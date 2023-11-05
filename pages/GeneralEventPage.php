@@ -231,47 +231,52 @@
 
             <div class="row pt-3"> 
                 <div class="col-1"></div> 
-                <div class="col-10">
+                <div class="col-5">
 
                       <!-- google map -->
+                      
                       <h2><b>Location</b></h2>
-                      <div id="map"></div>
+                      <div id="map">this is where the map is</div>
 
-                      <h2 class='my-5'><b>Comments</b></h2>
-                      <table class='table mt-3'>
-                            <tbody id='tbody'></tbody>
-                        </table>
+                      
 
-                        <div>
-                            <table class='table'>
-                                <tbody>
-                                    <tr class="d-none">
-                                        <th scope='row' style='width: 100px'>Nickname</th>
-                                        <td>
-                                            <input id='nickname'>
-                                            <span id='nickname-error' class="text-danger"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope='row'>Send a Message!</th>
-                                        <td class='font-italic'>
-                                            <input id='text' class="w-75" type="text" maxlength='100'>
-                                            <button id='btnSend' class='btn btn-primary'>SEND</button>
-
-                                            <br>
-                                            <span id='num-chars'>0</span> / 100
-                                        </td>
-                                    </tr>
-                                </tbody>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                    <h2 class='mt-2'><b>Comment Section</b></h2>
+                        <table class='table mt-3'>
+                                <tbody id='tbody'></tbody>
                             </table>
 
-                            <p id='output'></p>
-                        </div>
+                            <div>
+                                <table class='table'>
+                                    <tbody>
+                                        <tr class="d-none">
+                                            <th scope='row' style='width: 100px;'>Nickname</th>
+                                            <td>
+                                                <input id='nickname'>
+                                                <span id='nickname-error' class="text-danger"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope='row'>Have questions about the event? Ask our friendly community here!</th>
+                                            <td class='font-italic'>
+                                                <input id='text' class="w-75" type="text" maxlength='100' style="background-color:#bad9b2">
+                                                <button id='btnSend' class='btn btn-success mt-3'>POST!</button>
 
-                      </div>
-                    </div>
+                                                <br>
+                                                <span id='num-chars'>0</span> / 100
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <p id='output'></p>
+                            </div>
                 </div>
+                <div class="col-1"></div>
             </div>
+             
 
             <!-- Notification -->
             <div id="notification" class="notification"></div>
@@ -306,7 +311,7 @@
                     document.getElementById("profileLabel").setAttribute("href", profileLink);
 
                     if(orgUsername == data.event[0].username){
-                        document.getElementById("joinBtn").setAttribute("class", "btn text-white d-none");
+                        document.getElementById("joinBtn").setAttribute("class", "btn btn-success text-white d-none");
                     }
                     
                     
@@ -487,17 +492,18 @@
 <script>
 
         var nicknameInput = document.getElementById('nickname');
-        nicknameInput.addEventListener('keyup', checkNickname);
+        nicknameInput.addEventListener('keyup', checkNickname());
 
         var textInput = document.getElementById('text');
-        textInput.addEventListener('keyup', doText);
+        textInput.addEventListener('keyup', doText(eventId));
 
         var btnSend = document.getElementById('btnSend');
-        btnSend.addEventListener('click', doSend);
+        btnSend.addEventListener('click', doSend());
 
         var numChars = document.getElementById('num-chars');
 
         function htmlEntities(str) {
+            console.log("html entities has been removed");
             return String(str)
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
@@ -506,6 +512,7 @@
         }
 
         function process(nickname, text) {
+            console.log("process has started");
             eventId = <?php echo $_GET['eventId']; ?>;
             uname = <?php echo $_SESSION['username']; ?>;
             let gotoURL = "server/chat.php?eventId=1"
@@ -540,6 +547,7 @@
         }
 
         function checkNickname() {
+            console.log("nickname");
             nickname = nicknameInput.value;
             let errorMsg = document.getElementById('nickname-error');
             if (nickname.length < 3) {
@@ -550,7 +558,7 @@
         }
 
         function doText(event) {
-
+            console.log("doText is successfull");
             if (event.code === 'Enter') {
                 doSend();
             }
@@ -558,6 +566,7 @@
         }
 
         function doSend() {
+            console.log("msg has been sent");
             let nickname = nicknameInput.value;
             process(nickname, textInput.value);
             textInput.value = '';

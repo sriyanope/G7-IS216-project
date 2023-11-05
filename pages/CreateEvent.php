@@ -116,11 +116,13 @@
 
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
-            
-            $stmt = null;
-            $pdo = null;
 
-            header("location: MyEvents.php");
+            if ($stmt){
+              $stmt = null;
+              $pdo = null;
+              header("location: MyEvents.php");
+            }
+            
           }
         ?>
 
