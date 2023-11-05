@@ -117,6 +117,15 @@
                     <h1><b>My Created Events</b></h1>
                 </div>
             
+                <!-- past events -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Past Events
+                    </label>
+                </div>
+                
+                
                 <div class="row px-3 mx-5">
                     <div class="album ">
                         <div class="container">
@@ -224,21 +233,28 @@
                     document.getElementById("events").innerHTML = output;
             }
 
-            // initialise the page
-            url = "MySQL/Event.php?type=myEvents";
-            fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+            function pastEvents(){
+                if(document.getElementById("pastEventsCheckbox").checked){
+                    url = "MySQL/Event.php?type=myEvents&pastEvents=1";
+                }else{
+                    url = "MySQL/Event.php?type=myEvents&pastEvents=0";
                 }
-                return response.json();
-            })
-            .then(data => {
-                showEvents(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    showEvents(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+            pastEvents()
 
             </script>
 

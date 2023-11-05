@@ -13,7 +13,8 @@
     if($type == "getAllEvents"){
         getAllEvents();
     }else if($type == "myEvents"){
-        myEvents($username);
+        $pastEvents = $_GET['pastEvents'];
+        myEvents($username, $pastEvents);
     }else if($type == "getEventByEventId"){
         $eventId = $_GET['eventId'];
         getEventByEventId($eventId);
@@ -43,6 +44,13 @@
             $e = "and eventDate = '" . $eventDate . "'";
         }
 
+        $pastEvents = $_GET['pastEvents'];
+        if($pastEvents == "1"){
+            $p = "and eventDate < CURDATE()";
+        }else{
+            $p = "and eventDate >= CURDATE()";
+        }
+
         $regions = $_GET['regions'];
         $categories = $_GET['categories'];
         
@@ -60,7 +68,7 @@
         }
         $c = substr($c, 0, -3);
 
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $e order by createdDate desc;";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $e $p order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -83,8 +91,13 @@
     }
 
 
-    function myEvents($username1) {
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where username = :username order by createdDate desc;";
+    function myEvents($username1, $pastEvents) {
+        if($pastEvents == "1"){
+            $p = "and eventDate < CURDATE()";
+        }else{
+            $p = "and eventDate >= CURDATE()";
+        }
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where username = :username $p order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();

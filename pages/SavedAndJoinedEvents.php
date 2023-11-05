@@ -115,25 +115,28 @@
               </div>
             </nav>
 
-            <!-- if no events -->
-            <div class="container-fluid bggreen d-none" id="noEvent">
-                <div class="row noEventCentre">
-                    <h2><b>You have not created any events!</b></h2>
-                    <h6>Want to host an event?
-                    <a href='EventLocation.php' style="text-decoration: underline; color: black">Create your own!</a>
-                    </h6>
-                </div>
-            </div>
-            
             <!-- if there are events-->
             <div class="container-fluid bggreen" id="yesEvent">
                 <div class="row pt-5 pb-4 mx-auto">
                     <h1><b>My Events</b></h1>
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onchange="loadEvents()">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Saved</label>
+                <div>
+                    <span class="form-check form-switch">
+                        <span>Saved</span>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onchange="loadEvents()">
+                        <span>Joined</span>
+                    </span>
                 </div>
+
+
+                <!-- past events -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Past Events
+                    </label>
+                </div>
+
                 <div class="col-3" id="resultCount"></div>
                 <div class="row px-3 mx-5">
                     <div class="album ">
@@ -159,7 +162,12 @@
                 function loadEvents() {
                     var switchCheckbox = document.getElementById("flexSwitchCheckDefault");
                     if (switchCheckbox.checked) {
-                        url = "MySQL/SavedJoinedEvents.php?type=joined";
+                        if(document.getElementById("pastEventsCheckbox").checked){
+                            url = "MySQL/SavedJoinedEvents.php?type=joined&pastEvents=1";
+                        }else{
+                            url = "MySQL/SavedJoinedEvents.php?type=joined&pastEvents=0";
+                        }
+
                         fetch(url)
                             .then(response => {
                                 if (!response.ok) {
@@ -175,7 +183,11 @@
                             });
                         switchState = true;
                     } else {
-                        url = "MySQL/SavedJoinedEvents.php?type=saved";
+                        if(document.getElementById("pastEventsCheckbox").checked){
+                            url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=1";
+                        }else{
+                            url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=0";
+                        }
                         fetch(url)
                             .then(response => {
                                 if (!response.ok) {
@@ -222,8 +234,13 @@
 
                     // function to show event list
                     function showEventList(obj) {
+                        if(document.getElementById("pastEventsCheckbox").checked){
+                            url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=1";
+                        }else{
+                            url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=0";
+                        }
                         document.getElementById("resultCount").innerText = obj.event.length + " results";
-                        url = "MySQL/SavedJoinedEvents.php?type=saved";
+
                         fetch(url)
                             .then(response => {
                                 if (!response.ok) {

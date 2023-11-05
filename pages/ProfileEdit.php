@@ -186,14 +186,14 @@
                             </div>
                             <div class="modal-body">
                                 <div class="image-container justify-content-center">
-                                    <img src="ProfileImage\1.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\2.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\3.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\4.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\5.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\6.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\7.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
-                                    <img src="ProfileImage\8.png" alt="" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\1.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\2.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\3.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\4.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\5.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\6.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\7.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
+                                    <img src="ProfileImage\8.png" style="margin-bottom:10px" onclick="updateProfilePhoto(this.src)" data-dismiss="modal">
                                 </div>
                             </div>
                             <div class="modal-footer">
