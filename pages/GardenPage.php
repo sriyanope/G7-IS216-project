@@ -145,24 +145,24 @@
                     <div class="col-10">
                         <p><img src="../public/images/location pin.svg"><span id="address"></span>
                         </p>
-                        <h2><b>Location</b></h2>
+                        <h3><b>Location</b></h3>
                         <div id="map"></div>
                     </div> 
                 </div>
 
                 <!-- notes -->
 
-                <div class="row pt-5"> 
+                <div class="row"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
                         <hr>
                     </div> 
                 </div>
 
-                <div class="row pt-2"> 
+                <div class="row pt-1"> 
                     <div class="col-1"></div> 
                     <div class="col-10">
-                        <h2><b>My Notes</b></h2>
+                        <h3><b>My Notes</b></h3>
                     </div> 
                 </div>
 
@@ -183,12 +183,13 @@
                 </div>
             </div>
 
+
             <!-- Notification -->
             <div id="notification" class="notification"></div>
 
             <!-- get garden id -->
             <?php $gardenId = $_GET['gardenId']; ?>;
-            
+
             <script>
 
                 // function to initialise map
@@ -219,7 +220,7 @@
                         return response.json();
                     })
                     .then(data => {
-                        document.getElementById("gardenName").innerText = data.garden[0].gardenName;
+                        document.getElementById("gardenName").innerText = data.garden[0].gardenName + ` (${data.garden[0].region})`;
                         document.getElementById("address").innerText = data.garden[0].address;
                         lat = Number(data.garden[0].latitude);
                         lng = Number(data.garden[0].longitude);

@@ -134,7 +134,26 @@
             transform: translateY(-0.75rem);
           }
           
-          
+
+          .scroll-to-top-button {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 99;
+          background-color: #547D2E;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .scroll-to-top-button img {
+          display: block;
+          margin: 0 auto;
+        }
 
         </style>
 
@@ -192,19 +211,22 @@
         <div class='col-4'><p class="text-center pb-4">Already created an event? <a href="MyEvents.php" style='color:black;'><br>Check them out!</a></p></div>
         <div class='col-4'><p class="text-center pb-4">Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a></p></div>        -->
         <div class="col-4 pb-4">
+          <a href="EventLocation.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
-            Want to create your event? <a href="EventLocation.php" style='color:black;'><br>Create them here!</a>
-          </button>
+            Want to create your event? <br> <span style="font-weight:bold;color:black;font-size:medium">Create them here!</span>
+          </button></a>
         </div>
         <div class="col-4 pb-4">
+          <a href="MyEvents.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
-            Already created an event? <a href="MyEvents.php" style='color:black;'><br>Check them out!</a>
-          </button>
+            Already created an event? <br> <span style="font-weight:bold;color:black;font-size:medium">Check them out!</span>
+          </button></a>
         </div>
         <div class="col-4 pb-4">
+        <a href="SavedAndJoinedEvents.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
-            Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a>
-          </button>
+            Already joined or saved an event? <br><span style="font-weight:bold;color:black;font-size:medium">View them here!</span>
+          </button></a>
         </div>
 
       
@@ -214,10 +236,10 @@
       <div class="row">
         <div class="col-2 filterHead">Date:</div>
         <div class="col-3" id="resultCount"></div>
-        <div class="col-5"></div>
+        <div class="col-4"></div>
 
         <!-- past events -->
-        <div class="col-2">
+        <div class="col-3">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
             <label class="form-check-label" for="pastEventsCheckbox">
@@ -318,9 +340,30 @@
 
     <!-- Notification -->
     <div id="notification" class="notification"></div>
-      
+
+    <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
+
+    <div class="container m-5"></div>
+
       <!-- javascript -->
       <script>
+
+        const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+        // Show the button when the user scrolls down 200 pixels
+        window.onscroll = function() {
+          if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollToTopButton.style.display = 'block';
+          } else {
+            scrollToTopButton.style.display = 'none';
+          }
+        };
+
+        // Scroll to the top of the page when the button is clicked
+        scrollToTopButton.addEventListener('click', function() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+        });
 
         // function to update event list when user uses the filter or types in the search bar
         function filter() {
@@ -443,9 +486,10 @@
                   let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + photo + "aaaaa" + username + "aaaaa" + gardenId;
 
                   if(savedList.indexOf(eventId) == -1){
-                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
+                    btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='save(this, this.getAttribute("data-value"))'>`
+                    
                   }else{
-                    btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                    btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
                   }
 
                   output += `<div class="col">
@@ -513,8 +557,8 @@
                   return response;
               })
               .then(data => {
-                this1.setAttribute("onclick", "unsave(this, this.value)");
-                this1.innerText = "Unsave";
+                this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
+                this1.setAttribute("src", "../public/images/Bookmarked.png");
                 displayAlert("Event added to saved list", "warning");
               })
               .catch(error => {
@@ -534,8 +578,8 @@
                   return response;
               })
               .then(data => {
-                this1.setAttribute("onclick", "save(this, this.value)");
-                this1.innerText = "Save";
+                this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
+                this1.setAttribute("src", "../public/images/BookmarkNone.png");
                 displayAlert("Event removed from saved list", "warning");
               })
               .catch(error => {
