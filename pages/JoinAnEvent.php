@@ -119,6 +119,20 @@
               right:0;
               z-index: 100;
           }
+
+          .redirectButton{
+            /* padding: 1em 2em; */
+            border:0;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 500ms;
+          }
+
+          .redirectButton:hover,
+          .redirectButton:focus-visible{
+            transform: translateY(-0.75rem);
+          }
           
 
         </style>
@@ -173,10 +187,27 @@
         </div>
 
       <div class="row">
-        <div class='col-4'><p class="text-center pb-4">Want to create you event? <a href="EventLocation.php" style='color:black;'><br>Create them here!</a></p></div>
+        <!-- <div class='col-4'><p class="text-center pb-4">Want to create you event? <a href="EventLocation.php" style='color:black;'><br>Create them here!</a></p></div>
         <div class='col-4'><p class="text-center pb-4">Already created an event? <a href="MyEvents.php" style='color:black;'><br>Check them out!</a></p></div>
-        <div class='col-4'><p class="text-center pb-4">Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a></p></div>       
+        <div class='col-4'><p class="text-center pb-4">Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a></p></div>        -->
+        <div class="col-4 pb-4">
+          <button type="button" class="btn btn-success redirectButton">
+            Want to create your event? <a href="EventLocation.php" style='color:black;'><br>Create them here!</a>
+          </button>
         </div>
+        <div class="col-4 pb-4">
+          <button type="button" class="btn btn-success redirectButton">
+            Already created an event? <a href="MyEvents.php" style='color:black;'><br>Check them out!</a>
+          </button>
+        </div>
+        <div class="col-4 pb-4">
+          <button type="button" class="btn btn-success redirectButton">
+            Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a>
+          </button>
+        </div>
+
+      
+      </div>
 
       <!-- content -->
       <div class="row">
