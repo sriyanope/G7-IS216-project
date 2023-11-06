@@ -164,7 +164,7 @@
                                 <a class="nav-link mx-2" href="#"><i class="findAGarden"></i> Find A Garden</a>
                             </li>
                             <li class="nav-item ms-auto mt-1">
-                                <a href="#"><button class="btn text-white" href="#">
+                                <a href="#"><button class="btn btn-success text-white" href="#">
                                 <img src="../icons.png" width="30">
                                 My Profile</button></a>
                             </li>
