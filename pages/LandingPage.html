@@ -17,7 +17,40 @@
             <!-- CSS stylesheet -->
             <!-- <link rel="stylesheet" href="../style.css"> -->
             <link rel="stylesheet" href="LandingPage.css">
+            <!-- jQuery library -->
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+            <!-- Popper JS -->
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <!-- Latest compiled JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- font awesome icons -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
+            <style>
+
+              .scroll-to-top-button {
+                  display: none;
+                  position: fixed;
+                  bottom: 20px;
+                  right: 20px;
+                  z-index: 99;
+                  background-color: #547D2E;
+                  border: none;
+                  border-radius: 50%;
+                  width: 60px;
+                  height: 60px;
+                  cursor: pointer;
+                  padding: 0;
+                }
+
+                .scroll-to-top-button img {
+                  display: block;
+                  margin: 0 auto;
+                }
+
+            </style>
             <title>Home</title>
             
         </head>
@@ -209,6 +242,39 @@
             <div class="row">
               <img src="../public/images/Frame 3.png"/>
             </div>
+
+            <!-- Notification -->
+            <div id="notification" class="notification"></div>
+
+            <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button> 
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success d-none" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">
+              Notification
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick='removeNotification()'>
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <span id='notificationModal'></span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick='removeNotification()'>Got it!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
           </section>
 
           <script src="https://unpkg.com/scrollreveal"></script>
@@ -239,7 +305,82 @@
             })
 
           </script>
+
+      
+        <!--Put in landing pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-->
+
+        <script>
+
+            const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+            // Show the button when the user scrolls down 200 pixels
+            window.onscroll = function() {
+              if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopButton.style.display = 'block';
+              } else {
+                scrollToTopButton.style.display = 'none';
+              }
+            };
+
+            // Scroll to the top of the page when the button is clicked
+            scrollToTopButton.addEventListener('click', function() {
+              document.body.scrollTop = 0; // For Safari
+              document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+            });
+
+
+          function removeNotification(){
+            url = "MySQL/Notification.php?type=removeNotification";
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response;
+              })
+              .then(data => {
+                
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+          }
+
+          url = "MySQL/Notification.php?type=deletedEventNotification";
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+              output = "";
+              for(notif of data.notification){
+                eventTitle = notif.eventTitle;
+                reason = notif.reason;
+                output += `
+                      <strong>${eventTitle}</strong> has been deleted with the following reason: ${reason}<br>
+                    `
+              }
+              document.getElementById("notificationModal").innerHTML = output;
+
+              // Get a reference to the button element by its ID
+              const myButton = document.getElementById('notificationBtn');
+
+              // Check if the button element exists
+              if (myButton && data.notification.length > 0) {
+                // Trigger a click event on the button
+                myButton.click();
+              }
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        </script>
           
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="...HUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
         </body>
     </html>

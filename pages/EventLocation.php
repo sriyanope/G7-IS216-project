@@ -193,55 +193,6 @@
         <!-- Notification -->
         <div id="notification" class="notification"></div>
       
-<!--Put in landing pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-->
-
-<script>
-
-  function removeNotification(){
-    url = "MySQL/Notification.php?type=removeNotification";
-    fetch(url)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response;
-      })
-      .then(data => {
-        
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
-  }
-
-  url = "MySQL/Notification.php?type=deletedEventNotification";
-  fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-      output = "";
-      for(notif of data.notification){
-        eventTitle = notif.eventTitle;
-        reason = notif.reason;
-        output += `<div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Notification: </strong> ${eventTitle} has been deleted with the following reason:
-                ${reason}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick='removeNotification()'></button>
-            </div>`
-      }
-      document.getElementById("notification").innerHTML = output;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
-</script>
-
-<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
 
       <!-- content -->
       <div class="container">
@@ -265,12 +216,13 @@
 
         <!-- filter -->
         <div class="row">
+          <div class="col-1"></div>
           <div class="col-2">Filter By Region:</div>
           <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
-
+        <div class="col-1"></div>
           <div class="col-2">
             <div class="bg-light">
               <div class="form-check m-3">
@@ -298,12 +250,12 @@
           </div>
 
           <!-- garden list -->
-          <div class="col-5">
+          <div class="col-4">
             <div class="bg-light" id="gardens"></div>
           </div>
 
           <!-- google map -->
-          <div class="col-5">
+          <div class="col-4">
             <div class="bg-light">
               <div id="map"></div>
               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
