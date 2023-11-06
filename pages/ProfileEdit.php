@@ -170,7 +170,7 @@
                         
                     </div>
                     <div class="text-center mt-2">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">Change Profile Photo</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">Change Profile Photo</button>
                     </div>
                 </div>
            
