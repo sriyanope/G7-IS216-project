@@ -152,7 +152,7 @@
                         <h3><b>My Notes</b></h3>
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    
-                                <textarea name="notes" class="form-control" rows="4" cols="50" id="note"></textarea>
+                                <textarea name="notes" class="form-control" rows="14" cols="50" id="note"></textarea>
                               </div>
                             <button type="button" name="submit" class="btn btn-success text-white mb-5 mt-3" onclick="updateNote()">Update Note</button>
                         </form>

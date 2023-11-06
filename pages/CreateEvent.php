@@ -227,7 +227,10 @@
             </nav>
 
               <!-- start the form for creating event -->
-              <div class="container-fluid">
+              <div class="container">
+                <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
                 <div class="p-5 mb-5 ">
 
               <h3 class="text-center"><strong>Create An Event</strong></h3>
@@ -271,6 +274,8 @@
                   </div>
                 <button type="submit" name="submit" class="btn btn-success text-white">Create Event</button>
               </form>
+              </div>
+              </div>
               </div>
               </div>
 

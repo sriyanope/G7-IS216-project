@@ -153,30 +153,32 @@
             </nav>
 
             <!-- content -->
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row pt-5"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
+                    <div class="col">
                         <h2><b id="eventTitleLabel"></b></h2>
                     </div> 
                 </div>
 
                 <div class="row"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
+                    <div class="col">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
-                        <p>Category: <span id="categoryLabel"></span></p>
+                    
+                        <!-- google map -->                      
+                        <h3><b>Location</b></h3>
+                        <div id="map"></div>
                     </div> 
                 </div>
 
-            <!-- host -->
-            <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-4">
+                <!-- host -->
+                <div class="row"> 
+                    <div class="col">
 
-                    <!-- host name -->
-                    <h3 class="pt-4"><b>Event host:
-                        <a href="#" id="profileLabel" style="text-decoration:none;color:black;"><span style="color:#54493B" id="fullNameLabel"></span></a>
+                        <!-- host name -->
+                        <h3 class="pt-4">Event host:
+                            <a href="#" id="profileLabel" style="text-decoration: none; color: black; font-size: 1.5rem; font-weight: bold;"><span id="fullNameLabel"></span></a>
+                        </h3>
+
                         <!-- progress bar -->
                         <div class="container">
                             <i class="fas fa-3x fa-battery-full icon"></i>
@@ -186,29 +188,27 @@
                             <div class="loader" style="--n: 1; --f: 0;"></div>
                             </div>
                         </div>
+                        
                         <!-- filled -->
                         <h6 class="pt-2" style="color: #f3c623;" id="slotsLabel"></h6>
 
                         <!-- join -->
                         <div style="color:red;" id='fullLabel'></div>
                         <button type="submit" class="btn text-white" id="joinBtn" onclick="joinEvent()" style="width:100px;">Join</button>
-                    </b></h3>
-
+                    
+                    </div>
                 </div>
-            </div>
 
             <!-- hr -->
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-5 pt-3">
+                <div class="col pt-3">
                     <hr>
                 </div>
             </div>
 
             <!-- about this event -->
-            <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-5">
+            <div class="row">
+                <div class="col">
 
                     <h3 class="pt-4"><b>About This Event</b></h3>
 
@@ -216,65 +216,46 @@
             </div>
 
             <!-- para about -->
-            <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-5">
+            <div class="row">
+                <div class="col">
 
-                    <p id="aboutLabel"></p>
+                    <textarea id="aboutLabel" class="form-control" rows="4" cols="50" disabled></textarea>
 
                 </div>
             </div>
 
             <!-- hr -->
             <div class="row">
-                <div class="col-1"></div>
                 <div class="col-5 pt-3">
                     <hr>
                 </div>
             </div>
 
-            <!-- edit form -->
+            <!-- comment -->
+            <div class="row pt-3">
+                <div class="col">
+                    <h3 class='mt-2'><b>Comment Section</b></h3>
+                    <table class='table mt-3' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
+                        <tbody id='tbody'></tbody>
+                    </table>
 
-            <div class="row pt-3"> 
-                <div class="col-1"></div> 
-                <div class="col-5">
-
-                      <!-- google map -->
-                      
-                      <h2><b>Location</b></h2>
-                      <div id="map"></div>
-
-                      
-
+                    <div class="comment-form">
+                        <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #ffffff;">
+                            <tbody>
+                                <tr>
+                                    <td class='font-italic'>
+                                        <div class="form-group d-flex">
+                                            <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
+                                            <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     
                 </div>
-                <div class="col-1"></div>
-                <div class="col-4">
-                    <h2 class='mt-2'><b>Comment Section</b></h2>
-                        <table class='table mt-3'>
-                                <tbody id='tbody'></tbody>
-                            </table>
-
-                            <div>
-                                <table class='table'>
-                                    <tbody>
-                                        <tr>
-                                            <th scope='row'>Have questions about the event? Ask our friendly community here!</th>
-                                            <td class='font-italic'>
-                                                <input id='text' class="w-75" type="text" maxlength='100' style="background-color:#bad9b2">
-                                                <button id='btnSend' class='btn btn-success mt-3'>POST!</button>
-
-                                                <br>
-                                                <span id='num-chars'>0</span> / 100
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                </div>
-                <div class="col-1"></div>
             </div>
-             
 
             <!-- Notification -->
             <div id="notification" class="notification"></div>
@@ -300,10 +281,9 @@
                     return response.json();
                 })
                 .then(data => {
-                    document.getElementById("eventTitleLabel").innerText = data.event[0].eventTitle;
+                    document.getElementById("eventTitleLabel").innerText = `${data.event[0].eventTitle} (${data.event[0].category})`;
                     document.getElementById("locationDateTimeLabel").innerHTML = data.event[0].gardenName + "<br>" + convertDateFormat(data.event[0].eventDate) + " • " + convertTo12HourFormat(data.event[0].startTime) + " - " + convertTo12HourFormat(data.event[0].endTime);
                     document.getElementById("fullNameLabel").innerText = data.event[0].fullName;
-                    document.getElementById("categoryLabel").innerText = data.event[0].category;
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
                     document.getElementById("aboutLabel").innerText = data.event[0].about;
@@ -499,8 +479,6 @@
         var btnSend = document.getElementById('btnSend');
         btnSend.addEventListener('click', doSend);
 
-        var numChars = document.getElementById('num-chars');
-
         function htmlEntities(str) {
             return String(str)
                 .replace(/&/g, '&amp;')
@@ -529,10 +507,10 @@
                 let rows = '';
                 let obj = response.data.eventId
                 for (msg of obj) {
-                    rows = '<tr>'
-                        + '<th scope="row">' + msg.who + '</th>'
-                        + '<td>' + htmlEntities(msg.text) + '</td>'
-                        + '</tr>' + rows;
+                    rows = rows + '<tr>'
+                        + '<th scope="row" class="col-3">' + msg.who + '</th>'
+                        + '<td class="col-7">' + htmlEntities(msg.text) + '</td>'
+                        + '</tr>';
                 }
                 document.getElementById('tbody').innerHTML = rows;
                 
@@ -546,14 +524,12 @@
             if (event.code === 'Enter') {
                 doSend();
             }
-            numChars.innerHTML = textInput.value.length;
         }
 
         function doSend() {
             let username = <?php echo $_SESSION['username']; ?>;
             process(username, textInput.value);
             textInput.value = '';
-            numChars.innerHTML = 0;
         }
 
         process();

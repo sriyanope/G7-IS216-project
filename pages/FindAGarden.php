@@ -210,110 +210,6 @@
         <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
 
       
-<!--Put in landing pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-->
-
-<script>
-
-    const scrollToTopButton = document.getElementById('scrollToTopButton');
-
-    // Show the button when the user scrolls down 200 pixels
-    window.onscroll = function() {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollToTopButton.style.display = 'block';
-      } else {
-        scrollToTopButton.style.display = 'none';
-      }
-    };
-
-    // Scroll to the top of the page when the button is clicked
-    scrollToTopButton.addEventListener('click', function() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-    });
-
-
-  function removeNotification(){
-    url = "MySQL/Notification.php?type=removeNotification";
-    fetch(url)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          return response;
-      })
-      .then(data => {
-        
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
-  }
-
-  url = "MySQL/Notification.php?type=deletedEventNotification";
-  fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-      output = "";
-      for(notif of data.notification){
-        eventTitle = notif.eventTitle;
-        reason = notif.reason;
-        output += `
-              <strong>${eventTitle}</strong> has been deleted with the following reason: ${reason}<br>
-            `
-      }
-      document.getElementById("notificationModal").innerHTML = output;
-
-      // Get a reference to the button element by its ID
-      const myButton = document.getElementById('notificationBtn');
-
-      // Check if the button element exists
-      if (myButton) {
-        // Trigger a click event on the button
-        myButton.click();
-      }
-
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
-</script>
-
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-success d-none" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <span id='notificationModal'></span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick='removeNotification()'>Got it!</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
-
       <!-- content -->
       <div class="container">
         <!-- search textbox -->
@@ -627,6 +523,23 @@
                 console.error('Error:', error);
             });
         }
+
+        const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+        // Show the button when the user scrolls down 200 pixels
+        window.onscroll = function() {
+          if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollToTopButton.style.display = 'block';
+          } else {
+            scrollToTopButton.style.display = 'none';
+          }
+        };
+
+        // Scroll to the top of the page when the button is clicked
+        scrollToTopButton.addEventListener('click', function() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+        });
 
 
 
