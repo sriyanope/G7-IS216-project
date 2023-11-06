@@ -275,7 +275,7 @@
                 <div class="col-1"></div> 
                 <div class="col-10">
 
-                    <h3 class="pt-4"><b>Event Details</b></h3>
+                    <h3 class="pt-4"><b>About this Event</b></h3>
                 </div>
             </div>
 
@@ -284,44 +284,12 @@
             <div class="row pt-3"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
-
-                    <form id="CreateEventDetails" method="post">
-                        <div class="mb-3">
-                          <label for="EventTitle" class="form-label">Event Title</label>
-                          <input type="text" class="form-control" id="eventTitle" aria-describedby="EventTitle" disabled>
-                        </div>
-                        <div class="mb-3">
-                          <label for="category" class="form-label">Category</label>
-                          <input type="text" class="form-control" id="category" aria-describedby="category" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label for="Date" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="eventDate" disabled>
-                          </div>
-                          <div class="mb-3">
-                            <label for="Timing" class="form-label">Start Time</label>
-                            <input type="time" class="form-control" id="startTime" disabled>
-                          </div>
-                          <div class="mb-3">
-                            <label for="Timing" class="form-label">End Time</label>
-                            <input type="time" class="form-control" id="endTime" disabled>
-                          </div>
-                          <div class="mb-3">
-                            <label for="noOfSlots" class="form-label">No. of Slots</label>
-                            <input type="number" class="form-control" id="noOfSlots"  min=0 max=50 disabled>
-                          </div>
-                          <div class="mb-3">
-                            <label for="location" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="location" disabled>
-                          </div>
-                          <div class="mb-3">                    
-                            <label for="AboutThisEvent" class="form-label">About This Event</label>
+                  
                             <textarea id="about" class="form-control" rows="4" cols="50" disabled></textarea>
-                          </div>
                         
                         
                           <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                        <button type="button" class="btn btn-success my-4" data-toggle="modal" data-target="#exampleModalLong">
                             Delete Event
                         </button>
                         
@@ -350,7 +318,7 @@
                             </div>
                             </div>
                         </div>
-                      </form>
+
                       </div>
                       </div>
                     
@@ -377,12 +345,7 @@
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     
                     let eventId = data.event[0].eventId;
-                    document.getElementById("eventTitle").value = data.event[0].eventTitle;
-                    document.getElementById("category").value = data.event[0].category;
-                    document.getElementById("eventDate").value = data.event[0].eventDate;
-                    document.getElementById("startTime").value = data.event[0].startTime;
-                    document.getElementById("endTime").value = data.event[0].endTime;
-                    document.getElementById("noOfSlots").value = Number(data.event[0].noOfSlots);
+
                     let filled = Number(data.event[0].filled);
                     let slots = Number(data.event[0].noOfSlots);
                     document.getElementById("about").value = data.event[0].about;
@@ -391,7 +354,6 @@
                     let comment = data.event[0].comment;
                     let username = data.event[0].username;
                     let gardenId = data.event[0].gardenId;
-                    document.getElementById("location").value = data.event[0].gardenName;
 
                     percent = (filled/slots)*100;
                     document.getElementById("progressBar").setAttribute("style", `width: ${percent}%`);
@@ -509,6 +471,8 @@
 
 
             </div>
+
+
 
 
 

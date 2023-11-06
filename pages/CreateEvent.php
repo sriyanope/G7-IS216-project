@@ -128,54 +128,71 @@
 
         <script>
 
-          function validateForm() {
-            var msg = "";
-            var check = true;
+            function validateForm() {
+              var msg = "";
+              var check = true;
 
-            // Check if any fields are empty
-            if (!document.getElementById("eventTitle").value || !document.getElementById("category").value || !document.getElementById("eventDate").value || !document.getElementById("startTime").value || !document.getElementById("endTime").value || !document.getElementById("noOfSlots").value || !document.getElementById("about").value) {
-              check = false;
-              msg += "Please fill in all fields.\n";
+              var eventTitle = document.getElementById("eventTitle").value;
+              var eventDate = document.getElementById("eventDate").value;
+              var startTime = document.getElementById("startTime").value;
+              var endTime = document.getElementById("endTime").value;
+              var noOfSlots = document.getElementById("noOfSlots").value;
+              var about = document.getElementById("about").value;
+
+              if (eventTitle.length === 0) {
+                check = false;
+                msg += "Please fill in the Event Title.\n";
+              }
+
+              if (eventDate.length === 0) {
+                check = false;
+                msg += "Please select an Event Date.\n";
+              } else {
+                // Create a new Date object for today
+                var today = new Date();
+                // Create a Date object for the selected event date
+                var selectedDate = new Date(eventDate);
+
+                // Verify if the event date is earlier than today
+                if (selectedDate <= today) {
+                  check = false;
+                  msg += "Event date cannot be earlier than today.\n";
+                }
+              }
+
+              if (startTime.length === 0 || endTime.length === 0) {
+                check = false;
+                msg += "Please fill in both Start Time and End Time.\n";
+              } else {
+                // Verify if the start time is more recent than the end time
+                var startTimeDate = new Date(eventDate + " " + startTime);
+                var endTimeDate = new Date(eventDate + " " + endTime);
+
+                if (startTimeDate >= endTimeDate) {
+                  check = false;
+                  msg += "End Time must be after Start Time.\n";
+                }
+              }
+
+              if (noOfSlots.length === 0) {
+                check = false;
+                msg += "Please specify the number of slots.\n";
+              }
+
+              if (about.length === 0) {
+                check = false;
+                msg += "Please provide information about the event.\n";
+              }
+
+              if (!check) {
+                alert(msg);
+              }
+
+              return check;
             }
-
-            // create a new Date object
-            var today = new Date();
-
-            // get the individual components of the date (year, month, day)
-            var year = today.getFullYear();
-            var month = today.getMonth() + 1; // Note that months are zero-based (0 for January)
-            var day = today.getDate();
-
-            // format the date as a string (e.g., "YYYY-MM-DD")
-            var formattedDate = year + "-" + (month < 10 ? "0" : "") + month + "-" + (day < 10 ? "0" : "") + day;
-
-            // verify if the event date is not earlier than today
-            if (document.getElementById("eventDate").value <= formattedDate) {
-              check = false;
-              msg += "Event date cannot be earlier than today.\n";
-            }
-
-            // verify if the start time is more recent than the end time
-            var startTime = document.getElementById("eventDate").value + " " + document.getElementById("startTime").value;
-            var endTime = document.getElementById("eventDate").value + " " + document.getElementById("endTime").value;
-
-            // Compare the Date objects to check if start time is earlier than end time
-            if (startTime >= endTime) {
-              check = false;
-              msg += "End Time must be after Start Time.\n";
-            }
-
-            if (!check) {
-              alert(msg);
-            }else{
-              alert("Good");
-            }
-
-            return false;
-
-          }
 
         </script>
+
 
         <body>
             <!-- nav bar -->
@@ -252,24 +269,10 @@
                     <label for="about" class="form-label">About This Event</label>
                     <textarea id="about" name="about" class="form-control" rows="4" cols="50"></textarea>
                   </div>
-                <button type="submit" name="submit" class="btn text-white">Create Event</button>
+                <button type="submit" name="submit" class="btn btn-success text-white">Create Event</button>
               </form>
               </div>
               </div>
-
-            <script>
-               function required(inputText){
-                // verify if any fields are empty 
-                  if (inputText.value.length == 0)
-                    { 
-                      alert("Please fill in all fields");  	
-                      return false; 
-                    }  	
-                    return true; 
-               } 
-              </script>
-
-
 
 
 
