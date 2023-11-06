@@ -95,7 +95,7 @@
             </style>
 
             <!-- title -->
-            <title>Garden Page</title>
+            <title>Garden</title>
             
         </head>
 
@@ -135,20 +135,20 @@
             <div class="container px-5">
                 <div class="row pt-5"> 
                     <!-- <div class="col-1"></div>  -->
-                    <div class="col-10">
+                    <div class="col">
                         <h2><b><span id="gardenName"></span></b></h2>
                     </div> 
+                    <p><img src="../public/images/location pin.svg"><span id="address"></span>
+                        </p>
                 </div>
 
                 <div class="row"> 
                     <!-- <div class="col-1"></div>  -->
-                    <div class="col-md-5">
-                        <p><img src="../public/images/location pin.svg"><span id="address"></span>
-                        </p>
+                    <div class="col-md-6">
                         <h3><b>Location</b></h3>
                         <div id="map"></div>
                     </div> 
-                    <div class="col-md-5 mt-5">
+                    <div class="col-md-6 mt-6">
                         <h3><b>My Notes</b></h3>
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    

@@ -117,7 +117,7 @@
             </style>
 
             <!-- title -->
-            <title>An Event</title>
+            <title>Event</title>
             
         </head>
         <body>
@@ -270,7 +270,6 @@
                                     </tbody>
                                 </table>
 
-                                <p id='output'></p>
                             </div>
                 </div>
                 <div class="col-1"></div>
@@ -290,6 +289,8 @@
 
                 eventId = <?php echo $_GET['eventId']; ?>;
                 orgUsername = <?php echo $_SESSION['username']; ?>;
+                pastEvents = <?php echo $_GET['pastEvents']; ?>;
+
                 url = "MySQL/Event.php?type=getEventByEventId&eventId=" + eventId;
                 fetch(url)
                 .then(response => {
@@ -309,7 +310,7 @@
                     profileLink = "Profile.php?username1=" + data.event[0].username;
                     document.getElementById("profileLabel").setAttribute("href", profileLink);
 
-                    if(orgUsername == data.event[0].username){
+                    if(orgUsername == data.event[0].username || pastEvents == "1"){
                         document.getElementById("joinBtn").setAttribute("class", "btn btn-success text-white d-none");
                     }
                     
@@ -537,8 +538,6 @@
                 
             })
             .catch(error => {
-                output.innerHTML = "Error: " + error.message;
-                console.log(error.message)
             });
         }
 
@@ -560,7 +559,7 @@
         process();
         
         // pull messages every 1 second
-        // window.setInterval(process, 1000);
+        window.setInterval(process, 1000);
 
     </script>
 

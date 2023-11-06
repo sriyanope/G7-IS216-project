@@ -11,7 +11,7 @@
       <!-- CSS stylesheet -->
       <link rel="stylesheet" href="../style.css">
       
-      <title>Find a Garden</title>
+      <title>Event Location</title>
 
       <!-- styling -->
       <style>
@@ -247,20 +247,20 @@
       <div class="container">
         <!-- search textbox -->
         <div class="row p-5">
-          <div class="col-1"></div>
-          <div class="col-4 mx-auto">
+          <div class="col"></div>
+          <div class="col-3 mx-auto">
             <h2><b>Select a Location</b></h2>
           </div>
-          <div class="col-6 mx-auto">
+          <div class="col-7 mx-auto">
             <div class="input-group">
-              <input class="form-control border-end-0 border rounded-pill" type="search" id="search" placeholder="Search" onkeyup="filter(this.value)">
+              <input class="form-control border-end-0 border rounded-pill" type="text" id="search" placeholder="Search" onkeyup="filter(this.value)">
               <span class="input-group-append">
                       <i class="fa fa-search"></i>
                   </button>
               </span>
             </div>
           </div>
-          <div class="col-1"></div>
+          <div class="col"></div>
         </div>
 
         <!-- filter -->
@@ -352,7 +352,7 @@
             
             let v = gardenID + "aaaaa" + gardenName + "aaaaa" + latitude + "aaaaa" + longitude + "aaaaa" + region + "aaaaa" + address;
 
-            output += `<div class="card border">
+            output += `<div class="card border style="height:200x"">
                     <a href="javascript:void(0);" onclick='select("${v}")' class="text-decoration-none text-dark">
                       <div class="card-body">
                         <h5 class="card-title">${gardenName}</h5>

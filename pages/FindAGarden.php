@@ -287,7 +287,7 @@
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">
+<button type="button" class="btn btn-success d-none" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">
   Launch demo modal
 </button>
 
@@ -305,7 +305,7 @@
         <span id='notificationModal'></span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick='removeNotification()'>Got it!</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick='removeNotification()'>Got it!</button>
       </div>
     </div>
   </div>
@@ -386,7 +386,7 @@
           <div id="savedGardenDiv">
             <div class="row mt-5">
               <div class="col-1">
-                <img src="../public/images/BookmarkNone.png" style="height:40px;width:40px;">
+                <img src="../public/images/Bookmarked.png" style="height:40px;width:40px;">
               </div>
               <div class="col-11 pt-1">
                 <h4>Saved Gardens</h4>
@@ -444,7 +444,7 @@
                         btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
                     }
 
-                    output += `<div class="card border">
+                    output += `<div class="card border" style="height:200x">
                               <a href="javascript:void(0);" onclick='selectedGarden("${v}")' class="text-decoration-none text-dark">
                                 <div class="card-body">
                                   <h5 class="card-title">${gardenName}</h5>
@@ -479,7 +479,7 @@
                         <div class="card-body">
                           <h5 class="card-title">${gardenName}</h5>
                           <p class="card-text">Address: ${address}</p>
-                          <button type="button" class="btn btn-primary" value="${v}" onclick='showGarden(this.value)'>Show Map</button>
+                          <button type="button" class="btn btn-success" value="${v}" onclick='showGarden(this.value)'>Show Map</button>
                         </div>
 
                     </div>

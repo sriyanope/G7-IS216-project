@@ -1,7 +1,6 @@
 <html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <title>Join an Event</title>
          <!-- google font API -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,6 +156,8 @@
 
         </style>
 
+        <title>Join an Event</title>
+
     </head>
     <body>
       <!-- nav bar-->
@@ -213,7 +214,7 @@
         <div class="col-4 pb-4">
           <a href="EventLocation.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
-            Want to create your event? <br> <span style="font-weight:bold;color:black;font-size:medium">Create them here!</span>
+            Want to create your event? <br> <span style="font-weight:bold;color:black;font-size:medium">Create them!</span>
           </button></a>
         </div>
         <div class="col-4 pb-4">
@@ -225,7 +226,7 @@
         <div class="col-4 pb-4">
         <a href="SavedAndJoinedEvents.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
-            Already joined or saved an event? <br><span style="font-weight:bold;color:black;font-size:medium">View them here!</span>
+            Joined or saved an event? <br><span style="font-weight:bold;color:black;font-size:medium">View them here!</span>
           </button></a>
         </div>
 
@@ -492,11 +493,17 @@
                     btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
                   }
 
+                  if(document.getElementById("pastEventsCheckbox").checked){
+                    pastEvents = "1";
+                  }else{
+                    pastEvents = "0";
+                  }
+
                   output += `<div class="col">
                     <div class="card h-100">
-                      <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="${photo}"></a>
+                      <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}"><img class="card-img-top" src="${photo}"></a>
                       <div class="card-body">
-                        <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
+                        <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}" class="text-decoration-none text-dark">
                           <h4>${eventTitle}</h4>
                           <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
                           <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
