@@ -114,8 +114,9 @@ body {
     color: white;
   }
   .exploreMore button:hover {
-    background: transparent;
-    border: 1px solid white;
+    background: #547D2E;
+    opacity: 0.4;
+    border: 1px solid black;
     transform: translateX(8px);
 
   }
@@ -161,9 +162,11 @@ body {
     margin: 10px;
   }
   .aboutUsText button:hover {
-    background: transparent;
-    border: 1px solid white;
+    background-color: #547D2E;
+    opacity: 0.4;
+    border: 1px solid black;
     transform: translateX(8px);
+
   }
   .aboutUsText a {
     color: white;

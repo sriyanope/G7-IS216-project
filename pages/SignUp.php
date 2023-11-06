@@ -90,8 +90,8 @@
                   } 
                   catch (PDOException $e) {
                       if ($e->errorInfo[1] === 1062) {
-                          return false;
                           $_SESSION["error"] = "Username already existed";
+                          return false;
                       } else {
                           error_log("Database Error: " . $e->getMessage());
                           return false;
