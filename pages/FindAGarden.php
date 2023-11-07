@@ -406,6 +406,7 @@
             })
             .then(data => {
                 showGardenList(data);
+                searchKey = "";
             })
             .catch(error => {
                 console.error('Error:', error);
