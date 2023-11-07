@@ -69,6 +69,7 @@
             
         </head>
         <body>
+            <div id="preloader"></div>
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
@@ -257,6 +258,13 @@
             pastEvents()
 
             </script>
+
+        <script>
+          var loader = document.getElementById("preloader");
+          window.addEventListener("load", function(){
+            loader.style.display = "none";
+          })
+        </script>
 
 
 

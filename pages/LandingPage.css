@@ -166,6 +166,7 @@ body {
     opacity: 0.4;
     border: 1px solid black;
     transform: translateX(8px);
+    color:white;
 
   }
   .aboutUsText a {
@@ -298,3 +299,13 @@ body {
 .Partners {
   padding: 3%;
 }
+
+#preloader{
+  background: #d0e2bc url("../public/loader.gif") no-repeat center center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index:100;
+
+}
+
