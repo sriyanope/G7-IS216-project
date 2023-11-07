@@ -196,10 +196,10 @@
       <div class="container">
         <div class="row p-5">
           <div class="col"></div>
-          <div class="col-3 mx-auto">
+          <div class="col-md-3 mx-auto">
             <h2><b>Join an Event</b></h2>
           </div>
-          <div class="col-7 mx-auto">
+          <div class="col-md-7 mx-auto">
             <form class="d-flex">
               <input class="form-control border-end-0 border rounded-pill" type="search" id="search" placeholder="Search" onkeyup="filter(this.value)">
             </form>
@@ -209,27 +209,75 @@
         </div>
 
       <div class="row">
-        <!-- <div class='col-4'><p class="text-center pb-4">Want to create you event? <a href="EventLocation.php" style='color:black;'><br>Create them here!</a></p></div>
-        <div class='col-4'><p class="text-center pb-4">Already created an event? <a href="MyEvents.php" style='color:black;'><br>Check them out!</a></p></div>
-        <div class='col-4'><p class="text-center pb-4">Already joined or saved an event? <a href="SavedAndJoinedEvents.php" style='color:black;'><br>View them here!</a></p></div>        -->
-        <div class="col-4 pb-4">
+       <!-- Create event (only seen larger than md screen) -->
+        <div class="col-4 pb-4 d-none d-md-block">
           <a href="EventLocation.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
             Want to create your event? <br> <span style="font-weight:bold;color:black;font-size:medium">Create them!</span>
           </button></a>
         </div>
-        <div class="col-4 pb-4">
+        <!-- End of create event (only seen larger than md screen) -->
+
+        <!-- Icon button for create event, for screen md or less -->
+        <div class="col-4 pb-4 d-md-none">
+          <a href="EventLocation.php" style='color:black;'>
+          <button type="button" class="btn btn-success redirectButton">
+            <div class="col">
+              <img src="../public/images/magic.png" width="50px" height="50px">
+            </div>
+            <div class="col pb-1">
+              <span style="font-weight:bold;color:black;font-size:medium;position:relative;flex-wrap:wrap;margin:auto;">Create an event</span>
+            </div>
+          </button></a>
+        </div>
+        <!-- End of Icon button for create event, for screen md or less -->
+
+        <!-- See your created event (only seen larger than md screen) -->
+        <div class="col-4 pb-4 d-none d-md-block">
           <a href="MyEvents.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
             Already created an event? <br> <span style="font-weight:bold;color:black;font-size:medium">Check them out!</span>
           </button></a>
         </div>
-        <div class="col-4 pb-4">
+        <!-- End of see your created event (only seen larger than md screen) -->
+
+        <!-- Icon button for seeing your created event, for screen md or less -->
+        <div class="col-4 pb-4 d-md-none">
+          <a href="EventLocation.php" style='color:black;'>
+          <button type="button" class="btn btn-success redirectButton">
+            <div class="col pt-2">
+              <img src="../public/images/file.png" width="40px" height="40px">
+            </div>
+            <div class="col pt-1 pb-1">
+              <span style="font-weight:bold;color:black;font-size:medium;position:relative;text-align:left;">Manage your events</span>
+            </div>
+          </button></a>
+        </div>
+        
+        <!-- End of Icon button for seeing your created event, for screen md or less -->
+
+        <!-- View your atteneded/joined event (only seen larger than md screen) -->
+        <div class="col-4 pb-4 d-none d-md-block">
         <a href="SavedAndJoinedEvents.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
             Joined or saved an event? <br><span style="font-weight:bold;color:black;font-size:medium">View them here!</span>
           </button></a>
         </div>
+        <!-- End of view your atteneded/joined event (only seen larger than md screen) -->
+
+        <!-- Icon button for viewing your joined events, for screen md or less -->
+        <div class="col-4 pb-4 d-md-none">
+          <a href="EventLocation.php" style='color:black;'>
+          <button type="button" class="btn btn-success redirectButton">
+            <div class="col pt-1">
+              <img src="../public/images/team.png" width="45px" height="45px">
+            </div>
+            <div class="col pt-1 pb-1">
+              <span style="font-weight:bold;color:black;font-size:medium;position:relative;text-align:left;">View joined events</span>
+            </div>
+          </button></a>
+        </div>
+        <!-- End of Icon button for viewing your joined events, for screen md or less -->
 
       
       </div>
