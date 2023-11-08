@@ -310,7 +310,7 @@
                     }
 
                 // Function to unsave garden
-                function unsave(this1, garden){
+                function unsave(this1){
                     gardenId = <?php echo $_GET['gardenId']; ?>;
                     username = <?php echo $_SESSION['username']; ?>;
                     url = "MySQL/SavedGarden.php?type=delete&gardenId=" + gardenId + "&username=" + username;

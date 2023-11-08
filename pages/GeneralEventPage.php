@@ -114,6 +114,12 @@
                     z-index: 100;
                 }
 
+                .table-wrap {
+                    min-height: 300px;
+                    max-height: 300px;
+                    overflow-y: scroll;
+                }
+
             </style>
 
             <!-- title -->
@@ -161,8 +167,9 @@
                     <div class="col">
                         <h2><b id="eventTitleLabel"></b></h2>
                     </div> 
-                </div>
 
+                </div>
+                <span id="bookmark"></span>
                 <div class="row"> 
                     <div class="col">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
@@ -193,7 +200,7 @@
                         </div>
                         
                         <!-- filled -->
-                        <h6 class="pt-2" style="color: #f3c623;" id="slotsLabel"></h6>
+                        <h6 class="pt-2" id="slotsLabel"></h6>
 
                         <!-- join -->
                         <div style="color:red;" id='fullLabel'></div>
@@ -238,15 +245,25 @@
             <div class="row pt-3">
                 <div class="col">
                     <h3 class='mt-2'><b>Comment Section</b></h3>
-                    <table class='table mt-3' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
+                    <div style="border:1px solid grey">
+                    <table class='table m-0' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
+                        <tr>
+                            <th class="col-2">Name</th>
+                            <th class="col-2">Timestamp</th>
+                            <th class="col-8">Comment</th>
+                        </tr>
+                    </table>
+                    <div class="table-wrap" style="border:1px solid grey">
+                    <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
                         <tbody id='tbody'></tbody>
                     </table>
+                    </div>
 
                     <div class="comment-form">
                         <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #ffffff;">
                             <tbody>
                                 <tr>
-                                    <td class='font-italic'>
+                                    <td class='font-italic' style="border:1px solid grey">
                                         <div class="form-group d-flex">
                                             <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
                                             <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
@@ -255,6 +272,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                      
                 </div>
@@ -307,6 +325,34 @@
                     console.error('Error:', error);
                 });
 
+                // bookmark button
+                eventId = <?php echo $_GET['eventId']; ?>;
+                username = <?php echo $_SESSION['username']; ?>;
+                pastEvents = <?php echo $_GET['pastEvents']; ?>;
+                url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=" + pastEvents;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    savedList = [];
+                    for(event of data.event){
+                        savedList.push(event.eventId);
+                    }
+
+                        if (savedList.indexOf(String(eventId)) == -1) {
+                            btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' id="btn" class='bookmark-icon' onclick='save(this)'>`
+                        } else {
+                            btn = `<img src="../public/images/Bookmarked.png" style='height:40px' id="btn" class='bookmark-icon' onclick='unsave(this)'>`
+                        }
+                    document.getElementById("bookmark").innerHTML = btn;
+                    })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
                 // show join button if the user has not joined the event
                 url = "MySQL/Event.php?type=checkJoinedEvent&eventId=" + eventId;
@@ -371,6 +417,46 @@
                     });
                     }
                 
+                function save(this1){
+                    let eventId = <?php echo $_GET['eventId']; ?>;
+                    url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response;
+                    })
+                    .then(data => {
+                        this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
+                        this1.setAttribute("src", "../public/images/Bookmarked.png");
+                        displayAlert("Event added to saved list", "warning");
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                function unsave(this1){
+                    let eventId = <?php echo $_GET['eventId']; ?>;
+                    url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response;
+                    })
+                    .then(data => {
+                        this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
+                        this1.setAttribute("src", "../public/images/BookmarkNone.png");
+                        displayAlert("Event removed from saved list", "warning");
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
                 // function to update MySQL on joining event
                 function joinEvent() {
                     url = "MySQL/Event.php?type=joinEvent&eventId=" + eventId;
@@ -511,8 +597,9 @@
                 let obj = response.data.eventId
                 for (msg of obj) {
                     rows = rows + '<tr>'
-                        + '<th scope="row" class="col-3">' + msg.who + '</th>'
-                        + '<td class="col-7">' + htmlEntities(msg.text) + '</td>'
+                        + '<th scope="row" class="col-2">' + msg.who + '</th>'
+                        + '<td class="col-2">' + msg.timestamp + '</td>'
+                        + '<td class="col-8">' + htmlEntities(msg.text) + '</td>'
                         + '</tr>';
                 }
                 document.getElementById('tbody').innerHTML = rows;
@@ -523,8 +610,8 @@
         }
 
         function doText(event) {
-
-            if (event.code === 'Enter') {
+            console.log(textInput.value.length > 0)
+            if (event.code === 'Enter' && textInput.value.length > 0) {
                 doSend();
             }
         }
