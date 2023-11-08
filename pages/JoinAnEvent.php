@@ -292,13 +292,14 @@
 
         <!-- past events -->
         <div class="col-3">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
-            <label class="form-check-label" for="pastEventsCheckbox">
-                Show Past Events
-            </label>
-          </div>
-        </div>
+          
+            <div style="display: flex; align-items: center;">
+                  <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
+                  <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px; ">
+                      Include Past Events
+                  </label>
+            </div>
+         
       </div>
 
       <div class="row">

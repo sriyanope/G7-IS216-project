@@ -121,11 +121,16 @@
                 </div>
             
                 <!-- past events -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Past Events
-                    </label>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-4">
+                        <div class="form-check" style="display: flex; align-items: center;">
+                            <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
+                            <label class="form-check-label ps-2" for="flexCheckDefault" style="font-weight: bold; font-size: 20px; ">
+                                Past Events
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 
                 

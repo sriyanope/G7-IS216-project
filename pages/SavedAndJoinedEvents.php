@@ -214,19 +214,19 @@
             </nav>
 
             <!-- if there are events-->
-            <div class="container-fluid bggreen" id="yesEvent">
+            <div class="container bggreen" id="yesEvent">
                 <div class="row pt-5 pb-4 mx-auto">
                     <h1><b>My Events</b></h1>
                 </div>
                 <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-8">
+                        <div class="col-8 col-sm-5">
                              <span class="switch">
                             <input type="checkbox" id="flexSwitchCheckDefault" onchange="loadEvents()" >
                             <label for="flexSwitchCheckDefault"></label>
                             </span>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3 col-sm-1">
                             <!-- past events -->
                             <div class="form-check" style="display: flex; align-items: center;">
                                 <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
@@ -237,20 +237,19 @@
                         </div>  
                 </div>
 
-                <div class="row">
+                <div class="row pt-3 ps-3">
                     <!-- results -->
-                    <div class="col"></div>
-                    <div class="col" id="resultCount"></div>
+                    <div class="col-1"></div>
+                    <div class="col-11" id="resultCount"></div>
                 </div>
 
                 <div class="row px-3 mx-5">
-                    <div class="col">
+                    <div class="col-2"></div>
                     <div class="album ">
                         <div class="col-2"></div>
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
                         <div id="events"></div>
                         </div>
-                    </div>
                     </div>
                 </div>
 
