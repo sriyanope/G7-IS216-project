@@ -157,6 +157,16 @@
           margin: 0 auto;
         }
 
+        .title-style{
+          text-overflow:ellipsis;
+          overflow:hidden;
+          white-space:nowrap;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+
+        }
+
         </style>
 
         <title>Join an Event</title>
@@ -559,9 +569,9 @@
                       <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}"><img class="card-img-top" src="${photo}"></a>
                       <div class="card-body">
                         <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}" class="text-decoration-none text-dark">
-                          <h4>${eventTitle}</h4>
+                          <h4 class='title-style'>${eventTitle}</h4>
                           <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
-                          <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
+                          <p><span class='title-style'><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</span></p>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
                           ${slots}
