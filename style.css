@@ -83,7 +83,7 @@
 }
 
 #preloader{
-    background: #d0e2bc url("public/loader.gif") no-repeat center center;
+    background: #d0e2bc url("public/earth.gif") no-repeat center center;
     height: 100vh;
     width: 100%;
     position: fixed;
