@@ -58,7 +58,6 @@
                 }
 
                 .bggreen {
-                    background-color: #B7CF9B;
                     display: flex;
                     flex-direction: column;
                     min-height: 100vh;
@@ -76,6 +75,102 @@
                     right:0;
                     z-index: 100;
                 }
+
+                .switch {
+                    background: #B7CF9B;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    position: relative;
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 25px;
+                }
+
+                .switch input {
+                    appearance: none;
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 25px;
+                    background: #547D2E;
+                    outline: none;
+
+                }
+
+                .switch input::before,
+                .switch input::after {
+                    z-index:2;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-weight: bolder;
+
+                }
+
+                .switch input::before {
+                    content: "Joined";
+                    left: 20px;
+                    color: white;
+                }
+
+                .switch input::after {
+                    content: "Saved";
+                    right: 20px;
+                    color: white;
+                }
+
+                 .switch input:checked{
+                    background: #B7CF9B;
+                 }
+
+                .switch label {
+                    z-index: 1;
+                    position: absolute;
+                    top: 10px;
+                    bottom: 1px;
+                    border-radius: 20px;
+                }
+
+                .switch input {
+                    transition: 0.25s;
+                }
+
+                .switch input:checked::after,
+                .switch input:checked::before{
+                    color: black;
+                    transition: color 0.5s;
+                }
+
+                .switch input:checked+label {
+                    left: 10px;
+                    right: 120px;
+                    background: #547D2E;
+                    transition: left 0.5s, right 0.4s 0.2s;
+                }
+
+                .switch input:not(:checked){
+                    background: #547D2E;
+                    transition: background 0.4s;
+                }
+
+                .switch input:not(:checked)::before{
+                    color: black;
+                    transition: color 0.5s;
+                }
+
+                .switch input:not(:checked)::after{
+                    color: white;
+                    transition: color 0.5s 0.2s;
+                }
+
+                .switch input:not(:checked) +label{
+                    left: 120px;
+                    right: 10px;
+                    background: #B7CF9B;
+                    transition: left 0.4s 0.2s, right 0.5s, background 0.35s;
+                }
+                
 
             </style>
 
@@ -123,34 +218,43 @@
                 <div class="row pt-5 pb-4 mx-auto">
                     <h1><b>My Events</b></h1>
                 </div>
-                <div>
-                    <span class="form-check form-switch">
-                        <span>Saved</span>
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onchange="loadEvents()">
-                        <span>Joined</span>
-                    </span>
-                </div>
-
-
-                <!-- past events -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Past Events
-                    </label>
-                </div>
-
-                <div class="col-3" id="resultCount"></div>
-                <div class="row px-3 mx-5">
-                    <div class="album ">
-                        <div class="container">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
-
-                            <div id="events"></div>
+                <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-8">
+                             <span class="switch">
+                            <input type="checkbox" id="flexSwitchCheckDefault" onchange="loadEvents()" >
+                            <label for="flexSwitchCheckDefault"></label>
+                            </span>
+                        </div>
+                        <div class="col-2">
+                            <!-- past events -->
+                            <div class="form-check" style="display: flex; align-items: center;">
+                                <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
+                                <label class="form-check-label" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px;">
+                                    Past Events
+                                </label>
                             </div>
+                        </div>  
+                </div>
+
+                <div class="row">
+                    <!-- results -->
+                    <div class="col"></div>
+                    <div class="col" id="resultCount"></div>
+                </div>
+
+                <div class="row px-3 mx-5">
+                    <div class="col">
+                    <div class="album ">
+                        <div class="col-2"></div>
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
+                        <div id="events"></div>
                         </div>
                     </div>
+                    </div>
                 </div>
+
+            </div>
                 
                 <!-- Notification -->
                 <div id="notification" class="notification"></div>   

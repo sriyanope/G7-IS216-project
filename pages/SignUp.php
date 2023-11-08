@@ -346,10 +346,18 @@
 
                           if (!check) {
                               alert(msg);
+
+                              document.getElementById("username1").value = username;
+                              document.getElementById("name1").value = fullName;
+                              document.getElementById("gender1").value = gender;
+                              document.getElementById("email1").value = email;
+                              document.getElementById("password1").value = password1;
+                              document.getElementById("password2").value = password2;
                           }
 
                           return check;
                       }
+
 
                       </script>
           
