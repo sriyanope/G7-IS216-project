@@ -299,7 +299,7 @@
 
       <!-- content -->
       <div class="row">
-        <div class="col-2 filterHead">Date From:</div>
+        <div class="col-2 filterHead">Filter results via:</div>
         <div class="col-3" id="resultCount"></div>
         <div class="col-4"></div>
 
@@ -314,10 +314,123 @@
             </div>
          
       </div>
-
+      <!-- accordion filter -->
       <div class="row">
-        <!-- filter-->
         <div class="col-2">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Event Date Range
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="row filterHead text-center m-auto">Start Date:</div>
+                  <div class="row">
+                    <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
+                  </div>
+
+                  <div class="row filterHead text-center pt-2 m-auto">End Date:</div>
+                  <div class="row">
+                    <input type="date" class="form-control" name="eventDateTo" id="eventDateTo" onchange="filter(this.value)">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Event Category
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="row">
+                    <div class="bg-light filter-container" id="category-checkbox">
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="Workshop" onclick="filter(this.value)" id="workshop-checkbox">
+                        <label class="form-check-label" for="workshop-checkbox">Workshop</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="Cleanup" onclick="filter(this.value)" id="cleanup-checkbox">
+                        <label class="form-check-label" for="cleanup-checkbox">Cleanup</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="Education" onclick="filter(this.value)" id="education-checkbox">
+                        <label class="form-check-label" for="education-checkbox">Education</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="Harvest" onclick="filter(this.value)" id="harvest-checkbox">
+                        <label class="form-check-label" for="harvest-checkbox">Harvest</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="Leisure" onclick="filter(this.value)" id="leisure-checkbox">
+                        <label class="form-check-label" for="leisure-checkbox">Leisure</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="Others" onclick="filter(this.value)" id="others-checkbox">
+                        <label class="form-check-label" for="others-checkbox">Others</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Location
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="row">
+                    <div class="bg-light filter-container" id="region-checkbox">
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
+                        <label class="form-check-label" for="north-checkbox">North</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
+                        <label class="form-check-label" for="north-east-checkbox">North-East</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
+                        <label class="form-check-label" for="central-checkbox">Central</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
+                        <label class="form-check-label" for="east-checkbox">East</label>
+                      </div>
+                      <div class="form-check m-3">
+                        <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
+                        <label class="form-check-label" for="west-checkbox">West</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                  <!-- event list -->
+        <div class="col-10">
+          <div class="bg-light">
+            <div class="album py-3 bg-light">
+              <!--div class="album py-5 bg-light"-->
+                <div class="container">
+                  <!-- change here -->
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
+                  <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- filter-->
+        <!-- <div class="col-2">
           <div class="row">
             <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
           </div>
@@ -371,7 +484,7 @@
                 <label class="form-check-label" for="north-checkbox">North</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
+               <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
                 <label class="form-check-label" for="north-east-checkbox">North-East</label>
               </div>
               <div class="form-check m-3">
@@ -388,26 +501,26 @@
               </div>
             </div>
           </div>
-        </div>
-
-          <!-- event list -->
+        </div> -->
+<!-- 
+          event list
           <div class="col-10">
-            <div class="bg-light">
+            <div class="bg-light"> -->
 
-              <div class="album py-3 bg-light">
+              <!-- <div class="album py-3 bg-light"> -->
                 <!--div class="album py-5 bg-light"-->
-                  <div class="container">
+                  <!-- <div class="container"> -->
                     <!-- change here -->
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
+                    <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events"> -->
                     <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
-                    </div>
+                    <!-- </div>
                   </div>
                 </div>
             </div>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Notification -->
     <div id="notification" class="notification"></div>
