@@ -291,7 +291,9 @@
     </head>
 
     <body>
-      <div id="preloader"></div>
+        <div id="preloader">
+          <p>Loading...</p>
+        </div>
       <!-- nav bar -->
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
