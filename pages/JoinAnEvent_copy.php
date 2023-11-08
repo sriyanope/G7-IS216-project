@@ -1,8 +1,11 @@
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
          <!-- google font API -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
@@ -21,9 +24,7 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
       <!-- Latest compiled JavaScript -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!-- styling -->
-        <style>
+      <style>
           a {
               font-size:14px;
               font-weight:700
@@ -155,45 +156,40 @@
         }
 
         </style>
-
-        <title>Join an Event</title>
-
     </head>
-    <body>
-            <div id="preloader">
-        <p>Loading...</p>
+<body>
+  <div id="preloader">
+    <p>Loading...</p>
+  </div>
+  <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm ">
+
+    <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
+      <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+      <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+      <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item ms-auto mt-1">
+            <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+          </li>
+          <li class="nav-item ms-auto mt-1">
+            <a class="nav-link mx-2 disabled" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+          </li>
+          <li class="nav-item ms-auto mt-1">
+            <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+          </li>
+          <li class="nav-item ms-auto mt-1">
+            <a href="Profile.php"><button class="btn btn-success text-white">
+                <img src="../icons.png" width="30">
+                My Profile</button></a>
+          </li>
+        </ul>
       </div>
-      <!-- nav bar-->
-      <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm ">
-
-        <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
-          <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-          <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-          <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item ms-auto mt-1">
-                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
-              </li>
-              <li class="nav-item ms-auto mt-1">
-                <a class="nav-link mx-2 disabled" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-              </li>
-              <li class="nav-item ms-auto mt-1">
-                <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-              </li>
-              <li class="nav-item ms-auto mt-1">
-                <a href="Profile.php"><button class="btn btn-success text-white">
-                    <img src="../icons.png" width="30">
-                    My Profile</button></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>    
-
+    </div>
+  </nav>
       <!-- search bar -->
       <div class="container">
         <div class="row p-5">
@@ -397,281 +393,277 @@
 
     <div class="container m-5"></div>
 
-      <!-- javascript -->
-      <script>
+  <script>
 
-        const scrollToTopButton = document.getElementById('scrollToTopButton');
+      const scrollToTopButton = document.getElementById('scrollToTopButton');
 
-        // Show the button when the user scrolls down 200 pixels
-        window.onscroll = function() {
-          if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-            scrollToTopButton.style.display = 'block';
-          } else {
-            scrollToTopButton.style.display = 'none';
-          }
-        };
+      // Show the button when the user scrolls down 200 pixels
+      window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+          scrollToTopButton.style.display = 'block';
+        } else {
+          scrollToTopButton.style.display = 'none';
+        }
+      };
 
-        // Scroll to the top of the page when the button is clicked
-        scrollToTopButton.addEventListener('click', function() {
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-        });
+      // Scroll to the top of the page when the button is clicked
+      scrollToTopButton.addEventListener('click', function() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+      });
 
-        // function to update event list when user uses the filter or types in the search bar
-        function filter() {
-          if(document.getElementById("pastEventsCheckbox").checked){
-            pastEvents = "1";
-          }else{
-            pastEvents = "0";
-          }
-
-          const checkboxesRegion = document.getElementById("region-checkbox").querySelectorAll('input[type="checkbox"]:checked');
-          let selectedRegions = Array.from(checkboxesRegion).map(checkbox => checkbox.value);
-          if(selectedRegions.length == 0){
-            selectedRegions = ['north', 'north-east', 'central', 'east', 'west'];
-          }
-
-          const checkboxesCategory = document.getElementById("category-checkbox").querySelectorAll('input[type="checkbox"]:checked');
-          let selectedcategories = Array.from(checkboxesCategory).map(checkbox => checkbox.value);
-          if(selectedcategories.length == 0){
-            selectedcategories = ['Workshop', 'Cleanup', 'Education', 'Harvest', 'Leisure', 'Others'];
-          }
-          
-          eventDate = document.getElementById("eventDate").value;
-          searchKey = document.getElementById("search").value;
-
-          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&pastEvents=" + pastEvents;
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-
-                showEventList(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+      // function to update event list when user uses the filter or types in the search bar
+      function filter() {
+        if(document.getElementById("pastEventsCheckbox").checked){
+          pastEvents = "1";
+        }else{
+          pastEvents = "0";
         }
 
-        // function to convert to 12 hour format
-        function convertTo12HourFormat(time24) {
-            const [hours, minutes] = time24.split(':');
-            let period = 'AM';
-            let hours12 = parseInt(hours);
-
-            if (hours12 >= 12) {
-                period = 'PM';
-                if (hours12 > 12) {
-                    hours12 -= 12;
-                }
-            }
-            return `${hours12}:${minutes} ${period}`;
+        const checkboxesRegion = document.getElementById("region-checkbox").querySelectorAll('input[type="checkbox"]:checked');
+        let selectedRegions = Array.from(checkboxesRegion).map(checkbox => checkbox.value);
+        if(selectedRegions.length == 0){
+          selectedRegions = ['north', 'north-east', 'central', 'east', 'west'];
         }
 
-        // function to convert dd-mm-yyyy date format
-        function convertDateFormat(inputDate) {
-            const parts = inputDate.split("-");
-            if (parts.length === 3) {
-                const [year, month, day] = parts;
-                const outputDate = `${day}-${month}-${year}`;
-                return outputDate;
-            }
-            return "Invalid Date";
+        const checkboxesCategory = document.getElementById("category-checkbox").querySelectorAll('input[type="checkbox"]:checked');
+        let selectedcategories = Array.from(checkboxesCategory).map(checkbox => checkbox.value);
+        if(selectedcategories.length == 0){
+          selectedcategories = ['Workshop', 'Cleanup', 'Education', 'Harvest', 'Leisure', 'Others'];
         }
+        
+        eventDate = document.getElementById("eventDate").value;
+        searchKey = document.getElementById("search").value;
 
-        // function to show event list
-        function showEventList(obj) {
-          if(document.getElementById("pastEventsCheckbox").checked){
-              url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=1";
-          }else{
-              url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=0";
+        url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&pastEvents=" + pastEvents;
+        fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+
+              showEventList(data);
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+      }
+
+      // function to convert to 12 hour format
+      function convertTo12HourFormat(time24) {
+          const [hours, minutes] = time24.split(':');
+          let period = 'AM';
+          let hours12 = parseInt(hours);
+
+          if (hours12 >= 12) {
+              period = 'PM';
+              if (hours12 > 12) {
+                  hours12 -= 12;
+              }
           }
-          document.getElementById("resultCount").innerText = obj.event.length + " results";
-          fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-              savedList = [];
-                for(event of data.event){
-                  savedList.push(event.eventId);
-                }
+          return `${hours12}:${minutes} ${period}`;
+      }
 
-                if(obj.event.length == 0){
-                  document.getElementById("events").innerHTML = "<div class='col'><h3 class='d-flex justify-content-center'>No result</h3></div>";
-                }else{
-                  var output = "";
-                for(event of obj.event){
-                  let eventId = event.eventId;
-                  let eventTitle = event.eventTitle;
-                  let category = event.category;
-                  let eventDate = event.eventDate;
-                  let startTime = event.startTime;
-                  let endTime = event.endTime;
-                  let noOfSlots = Number(event.noOfSlots);
-                  let filled = Number(event.filled);
-                  let about = event.about;
-                  let photo = event.photo;
-                  let username = event.username;
-                  let gardenId = event.gardenId;
-                  let gardenName = event.gardenName;
+      // function to convert dd-mm-yyyy date format
+      function convertDateFormat(inputDate) {
+          const parts = inputDate.split("-");
+          if (parts.length === 3) {
+              const [year, month, day] = parts;
+              const outputDate = `${day}-${month}-${year}`;
+              return outputDate;
+          }
+          return "Invalid Date";
+      }
 
-                  if(filled >= noOfSlots - 3){
-                    slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
-                  }else if(filled < (noOfSlots/2)){
-                    slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
-                  }else{
-                    slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
-                  }
-                  
-                  eventDate = convertDateFormat(eventDate);
-                  startTime = convertTo12HourFormat(startTime);
-                  endTime = convertTo12HourFormat(endTime);
-
-                  let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + photo + "aaaaa" + username + "aaaaa" + gardenId;
-
-                  if(savedList.indexOf(eventId) == -1){
-                    btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='save(this, this.getAttribute("data-value"))'>`
-                    
-                  }else{
-                    btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
-                  }
-
-                  if(document.getElementById("pastEventsCheckbox").checked){
-                    pastEvents = "1";
-                  }else{
-                    pastEvents = "0";
-                  }
-
-                  output += `<div class="col">
-                    <div class="card h-100">
-                      <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}"><img class="card-img-top" src="${photo}"></a>
-                      <div class="card-body">
-                        <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}" class="text-decoration-none text-dark">
-                          <h4>${eventTitle}</h4>
-                          <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
-                          <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
-                        </a>
-                        <div class="d-flex justify-content-between align-items-center">
-                          ${slots}
-                          ${btn}
-                        </div>
-                      </div>
-                    </div>
-                  </div>`
-                }
-                document.getElementById("events").innerHTML = output;
-                }
-
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
-
-
-
-
+      // function to show event list
+      function showEventList(obj) {
+        if(document.getElementById("pastEventsCheckbox").checked){
+            url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=1";
+        }else{
+            url = "MySQL/SavedJoinedEvents.php?type=saved&pastEvents=0";
         }
-
-          function retrieveEventDetails(event) {
-              if(typeof event === 'string'){
-                event = event.split("aaaaa");
+        document.getElementById("resultCount").innerText = obj.event.length + " results";
+        fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+            savedList = [];
+              for(event of data.event){
+                savedList.push(event.eventId);
               }
 
-                return {
-                  eventId: event[0],
-                  eventTitle: event[1],
-                  category: event[2],
-                  eventDate: event[3],
-                  startTime: event[4],
-                  endTime: event[5],
-                  noOfSlots: Number(event[6]),
-                  filled: Number(event[7]),
-                  about: event[8],
-                  photo: event[9],
-                  username: event[10],
-                  gardenId: event[11],
-                  gardenName: event[12]
-                };
+              if(obj.event.length == 0){
+                document.getElementById("events").innerHTML = "<div class='col'><h3 class='d-flex justify-content-center'>No result</h3></div>";
+              }else{
+                var output = "";
+              for(event of obj.event){
+                let eventId = event.eventId;
+                let eventTitle = event.eventTitle;
+                let category = event.category;
+                let eventDate = event.eventDate;
+                let startTime = event.startTime;
+                let endTime = event.endTime;
+                let noOfSlots = Number(event.noOfSlots);
+                let filled = Number(event.filled);
+                let about = event.about;
+                let photo = event.photo;
+                let username = event.username;
+                let gardenId = event.gardenId;
+                let gardenName = event.gardenName;
+
+                if(filled >= noOfSlots - 3){
+                  slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                }else if(filled < (noOfSlots/2)){
+                  slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                }else{
+                  slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                }
+                
+                eventDate = convertDateFormat(eventDate);
+                startTime = convertTo12HourFormat(startTime);
+                endTime = convertTo12HourFormat(endTime);
+
+                let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + photo + "aaaaa" + username + "aaaaa" + gardenId;
+
+                if(savedList.indexOf(eventId) == -1){
+                  btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='save(this, this.getAttribute("data-value"))'>`
+                  
+                }else{
+                  btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
+                }
+
+                if(document.getElementById("pastEventsCheckbox").checked){
+                  pastEvents = "1";
+                }else{
+                  pastEvents = "0";
+                }
+
+                output += `<div class="col">
+                  <div class="card h-100">
+                    <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}"><img class="card-img-top" src="${photo}"></a>
+                    <div class="card-body">
+                      <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}" class="text-decoration-none text-dark">
+                        <h4>${eventTitle}</h4>
+                        <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
+                        <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
+                      </a>
+                      <div class="d-flex justify-content-between align-items-center">
+                        ${slots}
+                        ${btn}
+                      </div>
+                    </div>
+                  </div>
+                </div>`
+              }
+              document.getElementById("events").innerHTML = output;
+              }
+
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+
+
+
+
+
+      }
+
+        function retrieveEventDetails(event) {
+            if(typeof event === 'string'){
+              event = event.split("aaaaa");
             }
 
-          function save(this1, event){
-            let eventObj = retrieveEventDetails(event);
-            let eventId = eventObj.eventId;
-            url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
-            fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response;
-              })
-              .then(data => {
-                this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
-                this1.setAttribute("src", "../public/images/Bookmarked.png");
-                displayAlert("Event added to saved list", "warning");
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
+              return {
+                eventId: event[0],
+                eventTitle: event[1],
+                category: event[2],
+                eventDate: event[3],
+                startTime: event[4],
+                endTime: event[5],
+                noOfSlots: Number(event[6]),
+                filled: Number(event[7]),
+                about: event[8],
+                photo: event[9],
+                username: event[10],
+                gardenId: event[11],
+                gardenName: event[12]
+              };
           }
 
-          function unsave(this1, event){
-            let eventObj = retrieveEventDetails(event);
-            let eventId = eventObj.eventId;
-            url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
-            fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response;
-              })
-              .then(data => {
-                this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
-                this1.setAttribute("src", "../public/images/BookmarkNone.png");
-                displayAlert("Event removed from saved list", "warning");
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
-          }
+        function save(this1, event){
+          let eventObj = retrieveEventDetails(event);
+          let eventId = eventObj.eventId;
+          url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
+            })
+            .then(data => {
+              this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
+              this1.setAttribute("src", "../public/images/Bookmarked.png");
+              displayAlert("Event added to saved list", "warning");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
 
-          // function to display an alert and automatically dismiss it after 5 seconds
-          function displayAlert(message, type) {
-            const notification = document.getElementById("notification");
-            const alert = document.createElement("div");
-            alert.className = `alert alert-${type} alert-dismissible fade show`;
-            alert.innerHTML = `${message}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>`;
-            notification.appendChild(alert);
-            setTimeout(function() {
-                alert.style.display = "none";
-            }, 5000);
-          }
+        function unsave(this1, event){
+          let eventObj = retrieveEventDetails(event);
+          let eventId = eventObj.eventId;
+          url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
+            })
+            .then(data => {
+              this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
+              this1.setAttribute("src", "../public/images/BookmarkNone.png");
+              displayAlert("Event removed from saved list", "warning");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
 
-          filter();
+        // function to display an alert and automatically dismiss it after 5 seconds
+        function displayAlert(message, type) {
+          const notification = document.getElementById("notification");
+          const alert = document.createElement("div");
+          alert.className = `alert alert-${type} alert-dismissible fade show`;
+          alert.innerHTML = `${message}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>`;
+          notification.appendChild(alert);
+          setTimeout(function() {
+              alert.style.display = "none";
+          }, 5000);
+        }
 
-      </script>
-      <script>
+        filter();
+
+    </script>
+  <script>
           var loader = document.getElementById("preloader");
           window.addEventListener("load", function(){
             loader.style.display = "none";
           })
       </script>
-
-      <!-- Bootstrap JS bundle to be placed before the closing </body> tag -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-      
-    </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+</body>
 </html>
