@@ -197,7 +197,7 @@
             <div class="row"> 
                 <div class="col-1"></div> 
                 <div class="col-10">
-                    <h6 class="pt-2" style="color: #f3c623;"><span id="slotsLabel"></span></h6>
+                    <h6 class="pt-2"><span id="slotsLabel"></span></h6>
                 </div>
             </div>
 
@@ -383,7 +383,7 @@
                 })
                 .then(data => {
                     document.getElementById("eventTitleLabel").innerText = `${data.event[0].eventTitle} (${data.event[0].category})`;
-                    document.getElementById("locationDateTimeLabel").innerHTML = data.event[0].gardenName + "<br>" + convertDateFormat(data.event[0].eventDate) + " • " + convertTo12HourFormat(data.event[0].startTime) + " - " + convertTo12HourFormat(data.event[0].endTime);
+                    document.getElementById("locationDateTimeLabel").innerHTML = data.event[0].gardenName + "<br><p style='margin:3px;'><img src='../public/images/calendar.png' width='20px' height='20px'><span> " + convertDateFormat(data.event[0].eventDate) + "</span></p>" + "<p><img src='../public/images/clock.png' width='20px' height='20px'><span> " + convertTo12HourFormat(data.event[0].startTime) + " - " + convertTo12HourFormat(data.event[0].endTime) + "</span></p>";
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     
                     let eventId = data.event[0].eventId;
