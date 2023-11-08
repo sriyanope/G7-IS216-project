@@ -263,11 +263,11 @@
                                             <div class="col">
                                                 <li>
                                                     <img src="../public/images/instagram.png" class="social-img">
-                                                    <div class="col-5 d-inline-block m-auto">
+                                                    <div class="col-9 d-inline-block m-auto">
                                                         <label for="instagram"></label>
                                                         <input
                                                             type="text"
-                                                            class="form-control d-inline-block mx-auto"
+                                                            class="form-control d-inline-block mx-auto col-xs-4"
                                                             name="instagram" placeholder="https://instagram.com/username"
                                                             id="instagram"/> 
                                                     </div>
@@ -279,7 +279,7 @@
                                     
                                         <li>
                                             <img src="../public/images/telegram.png" class="social-img">
-                                            <div class="col-5 d-inline-block m-auto">
+                                            <div class="col-9 d-inline-block m-auto">
                                                 <label for="telegram"></label>
                                                 <input
                                                     type="text"

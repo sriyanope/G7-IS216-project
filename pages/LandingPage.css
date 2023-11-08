@@ -91,18 +91,30 @@ body {
   } */
 
   .msg1 {
-    font-size: 2em;
+    font-size: 4vh;
     /* z-index: 9; */
   }
   .msg2 {
-    font-size: 1.3em;
+    font-size: 2vh;
     /* z-index: 9; */
   }
   .msg3 {
-    font-size: 2em;
+    font-size: 5vh;
     font-weight: bold;
+    /* color: transparent;
+    -webkit-text-stroke: 1px #c3c3c3;
+    background: url(../public/images/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation: back 20s linear infinite; */
+    
     /* z-index: 9; */
   }
+  /* @keyframes back {
+    100%{
+      background-position: 2000px 0;
+    }
+  } */
   .exploreMore button {
     display: inline-block;
     background-color: #547D2E;
@@ -112,6 +124,7 @@ body {
     transition: all .55s ease;
     margin: 10px;
     color: white;
+    font-weight: bold;
   }
   .exploreMore button:hover {
     background: #547D2E;
@@ -167,9 +180,12 @@ body {
     border: 1px solid black;
     transform: translateX(8px);
     color:white;
-
   }
   .aboutUsText a {
+    color: white;
+    text-decoration:none
+  }
+  .aboutUsText a:hover {
     color: white;
     text-decoration:none
   }
