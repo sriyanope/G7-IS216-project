@@ -265,7 +265,7 @@
                                             <div class="col">
                                                 <li>
                                                     <img src="../public/images/instagram.png" class="social-img">
-                                                    <div class="col-5 d-inline-block m-auto">
+                                                    <div class="col-9 d-inline-block m-auto">
                                                         <label for="instagram"></label>
                                                         <input
                                                             type="text"
@@ -281,7 +281,7 @@
                                     
                                         <li>
                                             <img src="../public/images/telegram.png" class="social-img">
-                                            <div class="col-5 d-inline-block m-auto">
+                                            <div class="col-9 d-inline-block m-auto">
                                                 <label for="telegram"></label>
                                                 <input
                                                     type="text"
