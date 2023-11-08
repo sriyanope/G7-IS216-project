@@ -354,7 +354,7 @@
 
         <!-- filter -->
         <div class="row">
-          <div class="col-2 filterHead mt-4">Filter By Region:</div>
+          <div class="col-2 filterHead mt-1">Filter By Region:</div>
           <div class="col-3" id="resultCount"></div>
         </div>
 

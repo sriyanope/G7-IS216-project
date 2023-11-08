@@ -257,25 +257,34 @@
         </div>
         </nav>
 
+
         <!-- Notification -->
         <div id="notification" class="notification"></div>
-      
 
+        <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
+
+      
       <!-- content -->
       <div class="container">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+
         <!-- search textbox -->
         <div class="row p-5">
           <div class="col"></div>
           <div class="col-3 mx-auto">
-            <h2><b>Select a Location</b></h2>
+            <h2>
+              
+              <b>Find a Garden</b>
+            </h2>
+
           </div>
           <div class="col-7 mx-auto">
             <div class="input-group">
               <input class="form-control border-end-0 border rounded-pill" type="text" id="search" placeholder="Search" onkeyup="filter(this.value)">
-              <span class="input-group-append">
-                      <i class="fa fa-search"></i>
-                  </button>
-              </span>
+              
+              
             </div>
           </div>
           <div class="col"></div>
@@ -283,12 +292,12 @@
 
         <!-- filter -->
         <div class="row">
-          <div class="col-2 filterHead mt-4">Filter By Region:</div>
+          <div class="col-2 filterHead mt-1">Filter By Region:</div>
           <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
-        <div class="col-4">
+        <div class="col-2">
             <div class="bg-light filter-container" id="region-checkbox">
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
@@ -314,24 +323,26 @@
         </div>
 
           <!-- garden list -->
-          <div class="col-4">
+          <div class="col-5">
             <div class="bg-light" id="gardens"></div>
           </div>
 
           <!-- google map -->
-          <div class="col-4">
+          <div class="col-5">
             <div class="bg-light">
               <div id="map"></div>
               <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
             </div>
+
+        </div> 
+      </div>
+
+            </div>
+            <div class="col-1"></div>
           </div>
-          
-          <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
 
       </div>
-
-      </div>
-
+      
       <div class="container m-5"></div>
 
       <!-- javascript -->
