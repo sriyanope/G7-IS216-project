@@ -29,6 +29,8 @@
 
       <!-- styling -->
       <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
         #map {
             width: 100%;
             aspect-ratio: 1/1;
@@ -36,7 +38,7 @@
 
         a {
             font-size:14px;
-            font-weight:700
+            color: #547D2E
             }
         .superNav {
             font-size:13px;
@@ -64,6 +66,70 @@
         .btn{
             background-color: #547D2E;
         }
+
+        .form-control {
+              outline: 0 !important;
+              border-color: initial;
+              box-shadow: none;
+                    }
+
+          .filter-container {
+            background-color: #f6f8e0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: #547D2E;
+            text-align: center;
+            max-width: 300px;
+            margin: 0, auto;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+          }
+
+          .form-check-input {
+            display: none;
+          }
+
+          .form-check-label {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            position: relative;
+            transition: color 0.3s ease, transform 0.3s ease;
+          }
+
+          .form-check-label::before {
+            content: "\2713";
+            position: absolute;
+            left: -30px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+
+          .form-check-input:checked + .form-check-label::before {
+            opacity: 1;
+            transform: scale(1);
+          }
+
+          .form-check-label:hover {
+            color: #B7CF9B;
+            transform: scale(1.1);
+          }
+          
+          .filterHead {
+          font-weight: 600;
+          font-size: 12px; 
+          color: black;
+          margin-bottom: 10px;
+          text-align: center; 
+          text-transform: uppercase; 
+          letter-spacing: 2px; 
+          }
 
         .notification {
           position: fixed;
@@ -96,6 +162,57 @@
         .scroll-to-top-button img {
           display: block;
           margin: 0 auto;
+        }
+
+        .savedBox {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          display: flex;
+          min-height: 100px;
+        }
+        .list {
+          position: relative;
+        }
+        .list ul {
+          position: relative;
+        }
+        .list ul li {
+          position: relative;
+          left: 0;
+          color: #547D2E;
+          list-style: none;
+          margin: 4px 0;
+          border-left: 2px solid #B7CF9B;
+          transition: 0.5s;
+          cursor: pointer;
+        }
+        .list ul li:hover {
+          left: 10px;
+        }
+        .list ul li span {
+          position: relative;
+          padding: 8px;
+          padding-left: 12px;
+          display: inline-block;
+          z-index: 1;
+          transition: 0.5s;
+        }
+        .list ul li:hover span {
+          color: #F6F8E0;
+        }
+        .list ul li:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: #547D2E;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: 0.5s;
+        }
+        .list ul li:hover:before {
+          transform: scaleX(1);
         }
 
       </style>
@@ -174,7 +291,9 @@
     </head>
 
     <body>
-      <div id="preloader"></div>
+        <div id="preloader">
+          <p>Loading...</p>
+        </div>
       <!-- nav bar -->
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
@@ -235,37 +354,35 @@
 
         <!-- filter -->
         <div class="row">
-          <div class="col-2">Filter By Region:</div>
+          <div class="col-2 filterHead mt-4">Filter By Region:</div>
           <div class="col-3" id="resultCount"></div>
         </div>
 
         <div class="row">
-
-          <div class="col-2">
-            <div class="bg-light">
+        <div class="col-2">
+            <div class="bg-light filter-container" id="region-checkbox">
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)">
-                <label class="form-check-label">North</label>
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
+                <label class="form-check-label" for="north-checkbox">North</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)">
-                <label class="form-check-label">North-East</label>
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
+                <label class="form-check-label" for="north-east-checkbox">North-East</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)">
-                <label class="form-check-label">Central</label>
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
+                <label class="form-check-label" for="central-checkbox">Central</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)">
-                <label class="form-check-label">East</label>
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
+                <label class="form-check-label" for="east-checkbox">East</label>
               </div>
               <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)">
-                <label class="form-check-label">West</label>
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
+                <label class="form-check-label" for="west-checkbox">West</label>
               </div>
             </div>
-
-          </div>
+        </div>
 
           <!-- garden list -->
           <div class="col-5">
@@ -283,7 +400,7 @@
           <div id="savedGardenDiv">
             <div class="row mt-5">
               <div class="col-1">
-                <img src="../public/images/Bookmarked.png" style="height:40px;width:40px;">
+                <img src="../public/images/Bookmarked.png" style="height:30px;width:30px;">
               </div>
               <div class="col-11 pt-1">
                 <h4>Saved Gardens</h4>
@@ -292,7 +409,7 @@
             </div>
 
             <div class="row bg-light mt-2 mb-5 border">
-              <div class="col pt-3">
+              <div class="col pt-3 list savedBox">
                 <ul id="savedGardens"></ul>
               </div>
             </div>
@@ -406,6 +523,7 @@
             })
             .then(data => {
                 showGardenList(data);
+                searchKey = "";
             })
             .catch(error => {
                 console.error('Error:', error);

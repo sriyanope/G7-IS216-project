@@ -69,7 +69,9 @@
             
         </head>
         <body>
-            <div id="preloader"></div>
+                  <div id="preloader">
+        <p>Loading...</p>
+      </div>
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
