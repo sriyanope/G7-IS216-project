@@ -151,17 +151,15 @@
             </nav>
 
             <!-- content -->
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row pt-5"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
+                    <div class="col">
                         <h2><b id="eventTitleLabel"></b></h2>
                     </div> 
                 </div>
 
                 <div class="row"> 
-                    <div class="col-1"></div> 
-                    <div class="col-10">
+                    <div class="col">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
                         
                         <!-- map -->
@@ -173,8 +171,7 @@
                 
             <!-- view your participants -->
             <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
+                <div class="col">
 
                     <h3 class="pt-4"><b>View Your Participants</b></h3>
 
@@ -183,8 +180,7 @@
 
             <!-- progress bar -->
             <div class="row"> 
-                <div class="col-1"></div>
-                    <div class="col-3">
+                    <div class="col-5">
                         <div class="progress">
                         <div class="progress-bar bg-warning" id="progressBar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -195,15 +191,13 @@
 
             <!-- filled -->
             <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
+                <div class="col">
                     <h6 class="pt-2"><span id="slotsLabel"></span></h6>
                 </div>
             </div>
 
             <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
+                <div class="col">
                 <h4>Participants</h4>
                 <div class="row bg-light mt-2 mb-5 border">
                     <div class="col pt-3">
@@ -285,8 +279,7 @@
 
             <!-- Edit this event -->
             <div class="row"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
+                <div class="col">
 
                     <h3 class="pt-4"><b>About this Event</b></h3>
                     <textarea id="about" class="form-control" rows="4" cols="50" disabled></textarea>
@@ -297,8 +290,7 @@
 
             <!-- comment -->
             <div class="row pt-3"> 
-                <div class="col-1"></div>
-                <div class="col-10">
+                <div class="col">
                     <h3 class='mt-2'><b>Comment Section</b></h3>
                     <table class='table mt-3' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
                         <tbody id='tbody'></tbody>
@@ -324,8 +316,7 @@
             </div>
 
             <div class="row pt-3"> 
-                <div class="col-1"></div> 
-                <div class="col-10">
+                <div class="col">
                   
 
                         

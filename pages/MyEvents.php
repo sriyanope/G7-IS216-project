@@ -102,17 +102,6 @@
                 </div>
               </div>
             </nav>
-
-            <!-- if no events -->
-
-            <div class="container-fluid bggreen d-none" id="noEvent">
-                <div class="row noEventCentre">
-                    <h2><b>You have not created any events!</b></h2>
-                    <h6>Want to host an event?
-                    <a href='EventLocation.php' style="text-decoration: underline; color: black">Create your own!</a>
-                    </h6>
-                </div>
-            </div>
             
             <!-- if there are events-->
             <div class="container-fluid bggreen" id="yesEvent">
@@ -181,10 +170,6 @@
 
             // display the list of events
             function showEvents(obj){
-                if(obj.event.length == 0){
-                    document.getElementById("noEvent").setAttribute("class", "container-fluid bggreen");
-                    document.getElementById("yesEvent").setAttribute("class", "container-fluid bggreen d-none");
-                }
                 output = "";
                 for(event of obj.event){
                     let eventId = event.eventId;
