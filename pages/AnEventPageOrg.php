@@ -108,6 +108,12 @@
                     height: 60vh;
                 }
 
+                .table-wrap {
+                    min-height: 300px;
+                    max-height: 300px;
+                    overflow-y: scroll;
+                }
+
             </style>
 
             <!-- title -->
@@ -200,7 +206,7 @@
                 <div class="col">
                 <h4>Participants</h4>
                 <div class="row bg-light mt-2 mb-5 border">
-                    <div class="col pt-3">
+                    <div class="col">
                     <ul id="participants"></ul>
                     </div>
                 </div>
@@ -289,18 +295,28 @@
 
 
             <!-- comment -->
-            <div class="row pt-3"> 
+            <div class="row pt-3">
                 <div class="col">
                     <h3 class='mt-2'><b>Comment Section</b></h3>
-                    <table class='table mt-3' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
+                    <div style="border:1px solid grey">
+                    <table class='table m-0' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
+                        <tr>
+                            <th class="col-2">Name</th>
+                            <th class="col-2">Timestamp</th>
+                            <th class="col-8">Comment</th>
+                        </tr>
+                    </table>
+                    <div class="table-wrap" style="border:1px solid grey">
+                    <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
                         <tbody id='tbody'></tbody>
                     </table>
+                    </div>
 
                     <div class="comment-form">
                         <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #ffffff;">
                             <tbody>
                                 <tr>
-                                    <td class='font-italic'>
+                                    <td class='font-italic' style="border:1px solid grey">
                                         <div class="form-group d-flex">
                                             <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
                                             <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
@@ -309,11 +325,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                     </div>
-                     
-                </div>
-                <div class="col-1"></div>
-            </div>
 
             <div class="row pt-3"> 
                 <div class="col">
@@ -540,7 +553,8 @@
                             for (msg of obj) {
                                 rows = rows + '<tr>'
                                     + '<th scope="row" class="col-3">' + msg.who + '</th>'
-                                    + '<td class="col-7">' + htmlEntities(msg.text) + '</td>'
+                                    + '<td class="col-3">' + msg.timestamp + '</td>'
+                                    + '<td class="col-6">' + htmlEntities(msg.text) + '</td>'
                                     + '</tr>';
                             }
                             document.getElementById('tbody').innerHTML = rows;
@@ -559,8 +573,22 @@
 
                     function doSend() {
                         let username = <?php echo $_SESSION['username']; ?>;
-                        process(username, textInput.value);
-                        textInput.value = '';
+                        url = "MySQL/User.php?type=getUser&username=" + username;
+                        fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            process(data.user[0].fullName, textInput.value);
+                            textInput.value = '';
+
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                     }
 
                     process();

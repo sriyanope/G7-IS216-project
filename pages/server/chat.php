@@ -5,10 +5,13 @@ const FILENAME = "chat.json";
 
 $json_str = file_get_contents(FILENAME);
 
-if (isset($_GET['text'])) {
+date_default_timezone_set('Asia/Hong_Kong');
+
+if (isset($_GET['text']) and strlen($_GET['text']) > 0) {
     $username = $_GET['username'] ?? 'Unknown';
     $text = $_GET['text'];
     $eventId = $_GET['eventId'];
+    $timestamp = date('d-m-Y H:i:s');;
 
     $messages = json_decode($json_str, true); // Convert to an associative array
 
@@ -18,13 +21,9 @@ if (isset($_GET['text'])) {
 
     $messages[$eventId][] = array(
         "who" => $username,
-        "text" => $text
+        "text" => $text,
+        "timestamp" => $timestamp
     );
-
-    // Keep latest 20 messages only for each event
-    while (count($messages[$eventId]) > 20) {
-        array_shift($messages[$eventId]);
-    }
 
     $json_str = json_encode($messages, JSON_PRETTY_PRINT);
 

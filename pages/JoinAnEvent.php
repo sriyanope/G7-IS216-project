@@ -573,9 +573,9 @@
 
                   output += `<div class="col">
                     <div class="card h-100">
-                      <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}"><img class="card-img-top" src="${photo}"></a>
+                      <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}&gardenId=${gardenId}"><img class="card-img-top" src="${photo}"></a>
                       <div class="card-body">
-                        <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}" class="text-decoration-none text-dark">
+                        <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}&gardenId=${gardenId}" class="text-decoration-none text-dark">
                           <h4 class='title-style'>${eventTitle}</h4>
                           <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
                           <p><span class='title-style'><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</span></p>
