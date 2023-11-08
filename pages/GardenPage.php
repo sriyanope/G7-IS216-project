@@ -141,8 +141,7 @@
                     <div class="col">
                         <h2><b><span id="gardenName"></span></b></h2>
                     </div> 
-                    <p><img src="../public/images/location pin.svg"><span id="address"></span>
-                        </p>
+                    <p><img src="../public/images/location pin.svg"><span id="address"></span></p>
                 </div>
 
                 <div class="row"> 
@@ -153,6 +152,7 @@
                     </div> 
                     <div class="col-md-6 mt-6">
                         <h3><b>My Notes</b></h3>
+                        <span id="bookmark"></span>
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    
                                 <textarea name="notes" class="form-control" rows="14" cols="50" id="note"></textarea>
@@ -174,6 +174,33 @@
             <?php $gardenId = $_GET['gardenId']; ?>;
 
             <script>
+            gardenId = <?php echo $_GET['gardenId']; ?>;
+            username = <?php echo $_SESSION['username']; ?>;
+            url = "MySQL/SavedGarden.php?type=show&username=" + username;
+            fetch(url)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                savedList = [];
+                for(garden of data.garden){
+                    savedList.push(garden.gardenID);
+                  }
+                  console.log(gardenId);
+                  console.log(savedList);
+                    if (savedList.indexOf(String(gardenId)) == -1) {
+                        btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' id="btn" class='bookmark-icon' onclick='save(this)'>`
+                    } else {
+                        btn = `<img src="../public/images/Bookmarked.png" style='height:40px' id="btn" class='bookmark-icon' onclick='unsave(this)'>`
+                    }
+                  document.getElementById("bookmark").innerHTML = btn;
+                  })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
 
                 // function to initialise map
                 function initMap(lat, lng) {
@@ -250,11 +277,60 @@
                         .then(data => {
                             getNote();
                             displayAlert("Notes updated successfully", "warning");
+                            if(note.length > 0){
+                                save(document.getElementById("btn"));
+                            }
                         })
                         .catch(error => {
                             console.error('Error:', error);
                         });
                 }
+
+                // Function to save garden
+                function save(this1){
+                    gardenId = <?php echo $_GET['gardenId']; ?>;
+                    username = <?php echo $_SESSION['username']; ?>;
+                    url = "MySQL/SavedGarden.php?type=add&gardenId=" + gardenId + "&username=" + username;
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response;
+                        })
+                        .then(data => {
+                        this1.setAttribute("onclick", "unsave(this)");
+                        this1.setAttribute("src", "../public/images/Bookmarked.png");
+                        this1.innerText = "Unsave";
+                        displayAlert("Garden has been <b>Saved</b>", "warning");
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+
+                // Function to unsave garden
+                function unsave(this1, garden){
+                    gardenId = <?php echo $_GET['gardenId']; ?>;
+                    username = <?php echo $_SESSION['username']; ?>;
+                    url = "MySQL/SavedGarden.php?type=delete&gardenId=" + gardenId + "&username=" + username;
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response;
+                        })
+                        .then(data => {
+                        this1.setAttribute("onclick", "save(this)");
+                        this1.setAttribute("src", "../public/images/BookmarkNone.png");
+                        this1.innerText = "Save";
+                        displayAlert("Garden has been <b>unsaved</b>", "warning");
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
 
                 // function to display an alert and automatically dismiss it after 5 seconds
                 function displayAlert(message, type) {

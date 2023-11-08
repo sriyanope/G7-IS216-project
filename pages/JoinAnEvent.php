@@ -299,7 +299,7 @@
 
       <!-- content -->
       <div class="row">
-        <div class="col-2 filterHead">Date:</div>
+        <div class="col-2 filterHead">Date From:</div>
         <div class="col-3" id="resultCount"></div>
         <div class="col-4"></div>
 
@@ -320,6 +320,11 @@
         <div class="col-2">
           <div class="row">
             <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
+          </div>
+
+          <div class="row filterHead">Date To:</div>
+          <div class="row">
+            <input type="date" class="form-control" name="eventDateTo" id="eventDateTo" onchange="filter(this.value)">
           </div>
           
           <div class="row">
@@ -452,9 +457,11 @@
           }
           
           eventDate = document.getElementById("eventDate").value;
+          eventDateTo = document.getElementById("eventDateTo").value;
           searchKey = document.getElementById("search").value;
 
-          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&pastEvents=" + pastEvents;
+          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&eventDateTo=" + eventDateTo + "&pastEvents=" + pastEvents;
+          console.log(url)
           fetch(url)
             .then(response => {
                 if (!response.ok) {

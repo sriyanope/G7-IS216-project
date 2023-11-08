@@ -39,9 +39,15 @@
     function getAllEvents() {
         $key = '%'.$_GET['key'].'%';
         $eventDate = $_GET['eventDate'];
-        $e = "";
+        $eventDateTo = $_GET['eventDateTo'];
+        $dateFrom = "";
         if(strlen($eventDate) > 0){
-            $e = "and eventDate = '" . $eventDate . "'";
+            $dateFrom = "and eventDate >= '" . $eventDate . "'";
+        }
+
+        $dateTo = "";
+        if(strlen($eventDateTo) > 0){
+            $dateTo = "and eventDate <= '" . $eventDateTo . "'";
         }
 
         $pastEvents = $_GET['pastEvents'];
@@ -68,7 +74,7 @@
         }
         $c = substr($c, 0, -3);
 
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $e $p order by createdDate desc;";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $dateFrom $dateTo $p order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
