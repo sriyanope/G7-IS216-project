@@ -207,13 +207,15 @@
                           <span v-if="confirmPasswordCheck()" style="color:red;">Confirm Password does not match with Password</span>
                         </div>
 
+                        <span style="color:red;">
                         <?php 
                           if(isset($_SESSION['error'])){
                             echo $_SESSION['error'];
                             unset($_SESSION['error']);
                           }
                         ?>
-
+                        </span>
+                        <br><br>
                         <button class="btn btn-success text-white btn-lg btn-block px-5" name="submit" type="submit">Sign Up</button>
             
                         <div class="pt-3">Already have an account? 
@@ -222,6 +224,8 @@
                       </form>
 
                       <script>
+
+                        
 
                         // vue for input requirements
                         const appUsername = Vue.createApp({
@@ -292,52 +296,59 @@
 
                         // function to validate form
                         function validateForm() {
-                            
-                            var msg = "";
-                            var check = true;
-                            var username = document.getElementById("username1").value;
-                            var fullName = document.getElementById("name1").value;
-                            var gender = document.getElementById("gender1").value;
-                            var email = document.getElementById("email1").value;
-                            var password1 = document.getElementById("password1").value;
-                            var password2 = document.getElementById("password2").value;
+                          var msg = "";
+                          var check = true;
+                          var username = document.getElementById("username1").value;
+                          var fullName = document.getElementById("name1").value;
+                          var gender = document.getElementById("gender1").value;
+                          var email = document.getElementById("email1").value;
+                          var password1 = document.getElementById("password1").value;
+                          var password2 = document.getElementById("password2").value;
 
+                          // Check if username is not empty and at least 8 characters
+                          if (username.length === 0 || /^\s*$/.test(username) || username.length < 8) {
+                              check = false;
+                              msg += "Username cannot be empty, contain spaces, or be less than 8 characters\n";
+                          }
 
-                            if(username.length == 0 || /^\s*$/.test(username)){
-                                check = false;
-                                msg += "Username cannot be empty or contain spaces\n";
-                            }
-                            if(fullName.length < 3){
-                                check = false;
-                                msg += "Full Name cannot contain less than 3 characters\n";
-                            }
-                            if(gender == "Gender"){
-                                check = false;
-                                msg += "Please select a gender\n";
-                            }
-                            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                            if(!emailPattern.test(email)){
-                                check = false;
-                                msg += "Email is not valid\n";
-                            }
-                            if(password1.length == 0){
-                                check = false;
-                                msg += "Password must not be empty\n";
-                            }
-                            if(password2.length == 0){
-                                check = false;
-                                msg += "Confirm Password must not be empty\n";
-                            }
-                            if(password1 != password2){
-                                check = false;
-                                msg += "Password and conform password does not match";
-                            }
-                              
-                            if(!check){
-                                alert(msg);
-                            }
-                            return check;
-                        }
+                          // Check if full name is at least 3 characters
+                          if (fullName.length < 3) {
+                              check = false;
+                              msg += "Full Name cannot contain less than 3 characters\n";
+                          }
+
+                          // Check if gender is specified
+                          if (gender === "Gender") {
+                              check = false;
+                              msg += "Please select a gender\n";
+                          }
+
+                          // Check if email is valid
+                          const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                          if (!emailPattern.test(email)) {
+                              check = false;
+                              msg += "Email is not valid\n";
+                          }
+
+                          // Check if password is at least 8 characters
+                          if (password1.length < 8) {
+                              check = false;
+                              msg += "Password must be at least 8 characters\n";
+                          }
+
+                          // Check if password and confirm password match
+                          if (password1 !== password2) {
+                              check = false;
+                              msg += "Password and confirm password do not match\n";
+                          }
+
+                          if (!check) {
+                              alert(msg);
+                          }
+
+                          return check;
+                      }
+
                       </script>
           
           

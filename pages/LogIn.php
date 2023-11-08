@@ -127,7 +127,7 @@
                             exit;
                         } else {
                             if(isset($_SESSION['errors'])){
-                                $_SESSION['error'] .= "<br>Wrong Username or Password, please try again.";                                
+                                $_SESSION['error'] .= "<br>Wrong Username or Password, please try again.";
                             }else{
                                 $_SESSION['error'] = "Wrong Username or Password, please try again.";
                             }
@@ -209,7 +209,7 @@
                                     }
                                     ?>
                                     </span>
-                                    <br>
+                                    <br><br>
                                     
                                     <!-- to redirect to landing page -->
                         
