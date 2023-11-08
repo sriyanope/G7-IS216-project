@@ -29,6 +29,8 @@
 
       <!-- styling -->
       <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
         #map {
             width: 100%;
             aspect-ratio: 1/1;
@@ -36,7 +38,7 @@
 
         a {
             font-size:14px;
-            font-weight:700
+            color: #547D2E
             }
         .superNav {
             font-size:13px;
@@ -160,6 +162,57 @@
         .scroll-to-top-button img {
           display: block;
           margin: 0 auto;
+        }
+
+        .savedBox {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          display: flex;
+          min-height: 100px;
+        }
+        .list {
+          position: relative;
+        }
+        .list ul {
+          position: relative;
+        }
+        .list ul li {
+          position: relative;
+          left: 0;
+          color: #547D2E;
+          list-style: none;
+          margin: 4px 0;
+          border-left: 2px solid #B7CF9B;
+          transition: 0.5s;
+          cursor: pointer;
+        }
+        .list ul li:hover {
+          left: 10px;
+        }
+        .list ul li span {
+          position: relative;
+          padding: 8px;
+          padding-left: 12px;
+          display: inline-block;
+          z-index: 1;
+          transition: 0.5s;
+        }
+        .list ul li:hover span {
+          color: #F6F8E0;
+        }
+        .list ul li:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: #547D2E;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: 0.5s;
+        }
+        .list ul li:hover:before {
+          transform: scaleX(1);
         }
 
       </style>
@@ -345,7 +398,7 @@
           <div id="savedGardenDiv">
             <div class="row mt-5">
               <div class="col-1">
-                <img src="../public/images/Bookmarked.png" style="height:40px;width:40px;">
+                <img src="../public/images/Bookmarked.png" style="height:30px;width:30px;">
               </div>
               <div class="col-11 pt-1">
                 <h4>Saved Gardens</h4>
@@ -354,7 +407,7 @@
             </div>
 
             <div class="row bg-light mt-2 mb-5 border">
-              <div class="col pt-3">
+              <div class="col pt-3 list savedBox">
                 <ul id="savedGardens"></ul>
               </div>
             </div>
