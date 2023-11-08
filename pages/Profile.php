@@ -113,9 +113,9 @@
             
         </head>
         <body>
-                  <div id="preloader">
-        <p>Loading...</p>
-      </div>
+            <div id="preloader">
+              <p>Loading...</p>
+            </div>
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
               <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
@@ -328,10 +328,12 @@
 
           </script>
           <script>
-            var loader = document.getElementById("preloader");
-            window.addEventListener("load", function(){
+          var loader = document.getElementById("preloader");
+          window.addEventListener("load", function(){
+            setTimeout(() => {
               loader.style.display = "none";
-            })
+            }, 1500);
+          });
           </script>
 
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

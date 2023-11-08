@@ -687,8 +687,10 @@
       <script>
           var loader = document.getElementById("preloader");
           window.addEventListener("load", function(){
-            loader.style.display = "none";
-          })
+            setTimeout(() => {
+              loader.style.display = "none";
+            }, 1500);
+          });
       </script>
 
       <!-- Bootstrap JS bundle to be placed before the closing </body> tag -->

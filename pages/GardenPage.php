@@ -354,8 +354,10 @@
         <script>
           var loader = document.getElementById("preloader");
           window.addEventListener("load", function(){
-            loader.style.display = "none";
-          })
+            setTimeout(() => {
+              loader.style.display = "none";
+            }, 1500);
+          });
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
