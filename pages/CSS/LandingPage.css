@@ -53,6 +53,19 @@ body {
     font-family: monospace;
     font-size: 65px;
   } */
+  @media screen and (min-width: 1024px) {
+    .transexploreMore {
+      top: 10vh;
+      margin: auto;
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    .transexploreMore {
+      top: 20vh;
+      /* margin: auto; */
+  
+    }
+  }
   .exploreMore {
     /* background-image: url("../public/images/landingpage.png"); */
     height:100vh;
@@ -123,9 +136,13 @@ body {
   .transexploreMore {
     position: absolute;
     z-index: 1;
-    top: 17vh;
     margin-right: 1vh;
     text-wrap: wrap;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
   }
 
   .aboutUs {
