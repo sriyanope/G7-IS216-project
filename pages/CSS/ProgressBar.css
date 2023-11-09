@@ -1,1 +1,58 @@
+.container {
+    width: 400px;
+    position: relative;
+    margin: 0px; /* Add this to reset the margin */
+    margin-top: 10px;
 
+}
+
+.progress2 {
+    background-color: #fff2c3;
+}
+
+.progress-bar2 {
+    height: 10px; 
+    transition: 0.4s linear;
+    transition-property: width, background-color;
+    width: 73%; 
+}
+
+.progress-moved .progress-bar2 {
+    background-color: #f3c623;
+    animation: progress 5s 1;
+}
+
+@keyframes progress {
+    0% {
+        width: 0%;
+        background: #f9bcca;
+    }
+
+    
+    73% { 
+        width: 73%;
+        background: #f3c623;
+    }
+
+    100% {
+        width: 73%; 
+        background: #f3c623;
+    }
+}
+
+.icon {
+    color: #f3c623;
+    animation: icon 5s 1;
+    background-color: transparent;
+    padding-bottom: 20px;
+}
+
+@keyframes icon {
+    0% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
+} 
