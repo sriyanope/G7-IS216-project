@@ -8,7 +8,6 @@
     );
 
     $username = $_SESSION['username'];
-
     $type = $_GET['type'];
 
     if($type == "deletedEventNotification"){
@@ -16,6 +15,7 @@
     }else if($type == "removeNotification"){
         removeNotification($username);
     }
+
 
     function deletedEventNotification($username) {
         $sql = "select * from deletedEvent where username = :username;";
@@ -42,6 +42,7 @@
 
     }
 
+    
     function removeNotification($username) {
         $sql = "delete from deletedEvent where username = :username;";
 

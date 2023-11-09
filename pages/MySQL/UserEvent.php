@@ -9,6 +9,7 @@
 
     $eventId = $_GET['eventId'];
 
+    
     function getParticipants($eventId) {
         $sql = "select * from userevent ue join users u where ue.username = u.username and eventId = :eventId;"; 
 

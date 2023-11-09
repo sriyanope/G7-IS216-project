@@ -339,7 +339,6 @@
                       Include Fully Filled
                   </label>
             </div>
-          </div>  
         </div>
 
         <!-- past events -->
@@ -351,7 +350,6 @@
                   </label>
             </div>
         </div>
-      <!-- accordion filter -->
       <div class="row">
         <div class="col-2 d-none d-lg-block">
           <div class="accordion" id="accordionExample">
@@ -600,8 +598,6 @@
           }else{
             full = "0";
           }
-
-
           const checkboxesRegion = document.getElementById("region-checkbox").querySelectorAll('input[type="checkbox"]:checked');
           let selectedRegions = Array.from(checkboxesRegion).map(checkbox => checkbox.value);
           if(selectedRegions.length == 0){
@@ -842,6 +838,9 @@
           // pull messages every 1 second
           window.setInterval(filter, 3000);
 
+          // pull messages every 1 second
+          window.setInterval(filter, 3000);
+          
       </script>
       <script>
           var loader = document.getElementById("preloader");

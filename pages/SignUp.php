@@ -18,6 +18,16 @@
             <script src="https://unpkg.com/vue@next"></script>
             <!-- font awesome cdn -->
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></link>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+            <!-- jQuery library -->
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+            <!-- Popper JS -->
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <!-- Latest compiled JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- font awesome icons -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 
             <!-- styling -->
             <style>
@@ -64,7 +74,7 @@
             <?php
 
               session_start();
-         
+              
               spl_autoload_register(
                   function($class){
                       require_once "MySQL/$class.php";
@@ -164,6 +174,8 @@
             </nav>  
                     
           <!-- content -->
+
+
           <section class="vh-100" style="background-color: #B7CF9B;">
               <div class="container py-2 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -174,19 +186,19 @@
                       <h3 class="mt-1">Create An Account</h3>
                       <div class="mb-5">Create an account to enjoy all the features like joining events and finding community gardens near you!</div>
 
-                      <form method="post" onsubmit="return validateForm()">
+                      <form method="post">
                         <div class="form-outline mb-4" id="appUsername">
-                          <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username" v-model="username1">
+                          <input type="username" class="form-control inputstl" name="username1" id="username1" placeholder="Enter a Username" onkeyup="validateForm()" v-model="username1">
                           <span v-if="usernameCheck()" style="color:red;">Username has to be at least 8 characters</span>
                         </div>
 
                         <div class="form-outline mb-4" id="appFullName">
-                          <input type="name" class="form-control inputstl" name="name1" id="name1" placeholder="Enter Your Full Name" v-model="fullName1">
+                          <input type="name" class="form-control inputstl" name="name1" id="name1" placeholder="Enter Your Full Name" onkeyup="validateForm()" v-model="fullName1">
                           <span v-if="fullNameCheck()" style="color:red;">Full Name has to be at least 3 characters and does not contain spaces only</span>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <select class="form-control inputstl" name="gender1" id="gender1">
+                          <select class="form-control inputstl" name="gender1" onkeyup="validateForm()" id="gender1">
                             <option disabled selected>Gender</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -194,18 +206,18 @@
                         </div>
 
                         <div class="form-outline mb-4" id="appEmail">
-                          <input type="text" class="form-control inputstl" name="email1" id="email1" placeholder="Enter Email" v-model="email1">
+                          <input type="text" class="form-control inputstl" name="email1" id="email1" placeholder="Enter Email" onkeyup="validateForm()" v-model="email1">
                           <span v-if="emailCheck()" style="color:red;" style="color:red;">Enter a valid email</span>
                           </dv>
                         </div>
 
                         <div class="form-outline mb-4" id="appPassword">
-                          <input type="password" class="form-control inputstl" name="password1" id="password1" placeholder="Enter Password" v-model="password1">
+                          <input type="password" class="form-control inputstl" name="password1" id="password1" placeholder="Enter Password" onkeyup="validateForm()" v-model="password1">
                           <span v-if="passwordCheck()" style="color:red;">Password has to be at least 8 characters</span>
                         </div>
 
                         <div class="form-outline mb-4" id="appConfirmPassword">
-                          <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" v-model="confirmPassword1" onpaste="return false;">
+                          <input type="password" class="form-control inputstl" name="password2" id="password2" placeholder="Confirm Password" onkeyup="validateForm()" v-model="confirmPassword1" onpaste="return false;">
                           <span v-if="confirmPasswordCheck()" style="color:red;">Confirm Password does not match with Password</span>
                         </div>
 
@@ -218,7 +230,7 @@
                         ?>
                         </span>
                         <br><br>
-                        <button class="btn btn-success text-white btn-lg btn-block px-5" name="submit" type="submit">Sign Up</button>
+                        <button class="btn btn-secondary text-white btn-lg btn-block px-5 disabled" name="submit" id="submit" type="submit">Sign Up</button>
             
                         <div class="pt-3">Already have an account? 
                             <a href='LogIn.php' style="text-decoration: underline; color: black">Log In</a>
@@ -295,7 +307,7 @@
                             }
                           }).mount('#appConfirmPassword');
 
-
+                          
                         // function to validate form
                         function validateForm() {
                           var msg = "";
@@ -310,51 +322,54 @@
                           // Check if username is not empty and at least 8 characters
                           if (username.length === 0 || /^\s*$/.test(username) || username.length < 8) {
                               check = false;
-                              msg += "Username cannot be empty, contain spaces, or be less than 8 characters\n";
+                              msg += "Username cannot be empty, contain spaces, or be less than 8 characters<br>";
                           }
 
                           // Check if full name is at least 3 characters
                           if (fullName.length < 3) {
                               check = false;
-                              msg += "Full Name cannot contain less than 3 characters\n";
+                              msg += "Full Name cannot contain less than 3 characters<br>";
                           }
 
                           // Check if gender is specified
                           if (gender === "Gender") {
                               check = false;
-                              msg += "Please select a gender\n";
+                              msg += "Please select a gender<br>";
                           }
 
                           // Check if email is valid
                           const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
                           if (!emailPattern.test(email)) {
                               check = false;
-                              msg += "Email is not valid\n";
+                              msg += "Email is not valid<br>";
                           }
 
                           // Check if password is at least 8 characters
                           if (password1.length < 8) {
                               check = false;
-                              msg += "Password must be at least 8 characters\n";
+                              msg += "Password must be at least 8 characters<br>";
                           }
 
                           // Check if password and confirm password match
                           if (password1 !== password2) {
                               check = false;
-                              msg += "Password and confirm password do not match\n";
+                              msg += "Password and confirm password do not match<br>";
                           }
 
                           if (!check) {
-                              alert(msg);
+                              document.getElementById("submit").setAttribute("class", "btn btn-secondary text-white btn-lg btn-block px-5 disabled")
 
+                              
                               document.getElementById("username1").value = username;
                               document.getElementById("name1").value = fullName;
                               document.getElementById("gender1").value = gender;
                               document.getElementById("email1").value = email;
                               document.getElementById("password1").value = password1;
                               document.getElementById("password2").value = password2;
-                          }
+                              return false;
 
+                          }
+                          document.getElementById("submit").setAttribute("class", "btn btn-success text-white btn-lg btn-block px-5")
                           return check;
                       }
 

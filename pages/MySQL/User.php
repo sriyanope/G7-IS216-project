@@ -25,6 +25,7 @@
         updatePhoto($photo, $username);
     }
 
+
     function getUser($username) {
         $sql = "select * from users where username = :username;"; 
 
@@ -71,6 +72,7 @@
         $pdo = null;
 
     }
+
 
     function updatePhoto($photo, $username){
         $sql = "update users set profilePhoto = :photo where username = :username;";

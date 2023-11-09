@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     spl_autoload_register(
         function ($class){
@@ -53,4 +54,5 @@
             echo 'Error during file upload: ' . $file['error'];
         }
     }
+    
 ?>

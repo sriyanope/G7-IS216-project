@@ -50,10 +50,7 @@
         echo json_encode($result);
 
     }
-
-
-
-
+    
 
     function add($gardenId, $username){
         $sql = "insert into usergarden values (:gardenId, :username, '');";
@@ -106,6 +103,5 @@
         $stmt = null;
         $pdo = null;
     }
-
 
 ?>

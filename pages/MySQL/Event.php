@@ -18,23 +18,24 @@
     }else if($type == "getEventByEventId"){
         $eventId = $_GET['eventId'];
         getEventByEventId($eventId);
-     }else if($type == "joinEvent"){
+    }else if($type == "joinEvent"){
         $eventId = $_GET['eventId'];
         joinEvent($eventId, $username);
-     }else if($type == "deleteEvent"){
+    }else if($type == "deleteEvent"){
         $eventId = $_GET['eventId'];
         $deleteReason = $_GET['deleteReason'];
         deleteEvent($eventId, $deleteReason);
-     }else if($type == "leaveEvent"){
+    }else if($type == "leaveEvent"){
         $eventId = $_GET['eventId'];
         leaveEvent($eventId, $username);
-     }else if($type == "checkJoinedEvent"){
+    }else if($type == "checkJoinedEvent"){
         $eventId = $_GET['eventId'];
         checkJoinedEvent($eventId, $username);
-     }else if($type == "getFilled"){
+    }else if($type == "getFilled"){
         $eventId = $_GET['eventId'];
         getFilled($eventId);
-     }
+    }
+
 
     function getAllEvents() {
         $key = '%'.$_GET['key'].'%';
@@ -57,6 +58,12 @@
             $p = "and eventDate >= CURDATE()";
         }
 
+        $full = $_GET['full'];
+        $fullSql = "";
+        if($full == "0"){
+            $fullSql = " and filled <> noOfSlots ";
+        }
+
         $regions = $_GET['regions'];
         $categories = $_GET['categories'];
         
@@ -74,7 +81,7 @@
         }
         $c = substr($c, 0, -3);
 
-        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $dateFrom $dateTo $p order by createdDate desc;";
+        $sql = "select * from event e join garden g on e.gardenID = g.gardenID where eventTitle like :key and ($r) and ($c) $dateFrom $dateTo $p $fullSql order by createdDate desc;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -125,6 +132,7 @@
         echo json_encode($result);
     }
 
+
     function getEventByEventId($eventId1) {
         $sql = "select * from users u join event e join garden g on e.gardenID = g.gardenID where eventId = :eventId1;";
 
@@ -147,6 +155,7 @@
         $pdo = null;
         echo json_encode($result);
     }
+
 
     function updateEvent($eventTitle, $category, $eventDate, $startTime, $endTime, $noOfSlots, $about, $eventId) {
         $sql = "update event set eventTitle = :eventTitle, category = :category, eventDate = :eventDate, startTime = :startTime, endTime = :endTime, noOfSlots = :noOfSlots, gardenId = :gardenId, about = :about where eventId = eventId;";
@@ -171,6 +180,7 @@
         $pdo = null;
         
     }
+
 
     function checkJoinedEvent($eventId, $username){
         $connMgr = new ConnectionManager();
@@ -197,6 +207,7 @@
         echo json_encode($result);
     }
 
+
     function joinEvent($eventId, $username){
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -222,6 +233,7 @@
         $stmt = null;
         $pdo = null;
     }
+    
 
     function deleteEvent($eventId, $reason){
         $connMgr = new ConnectionManager();
@@ -258,6 +270,7 @@
         $pdo = null;
     }
 
+
     function deletedEventParticipants($eventId, $username, $reason){
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -284,6 +297,7 @@
         $pdo = null;
     }
 
+
     function leaveEvent($eventId, $username){
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
@@ -309,6 +323,7 @@
         $stmt = null;
         $pdo = null;
     }
+
 
     function getFilled($eventId) {
         $sql = "select * from event where eventId = :eventId;";

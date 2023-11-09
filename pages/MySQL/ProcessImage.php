@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     spl_autoload_register(
         function ($class){
@@ -7,9 +8,6 @@
     );
     
     $username = $_SESSION['username'];
-        // Check if the file upload was successful and there are no errors
-
-
     $tempDestination = substr($destination, 3);
     $sql = "update users set profilePhoto = :tempDestination where username = :username;";
 

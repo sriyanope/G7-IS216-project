@@ -24,6 +24,7 @@
         delete($eventId, $username);
     }
 
+
     function getJoinedEvents($username, $pastEvents) {
         if($pastEvents == "1"){
             $p = "and eventDate < CURDATE()";
@@ -53,6 +54,7 @@
 
     }
 
+
     function getSavedEvents($username, $pastEvents) {
         if($pastEvents == "1"){
             $p = "and eventDate < CURDATE()";
@@ -81,6 +83,7 @@
         echo json_encode($result);
     }
 
+
     function add($eventId, $username){
         $sql = "insert into usersaved values (:eventId, :username);";
 
@@ -96,6 +99,7 @@
         $stmt = null;
         $pdo = null;
     }
+
 
     function delete($eventId, $username){
         
@@ -113,6 +117,5 @@
         $stmt = null;
         $pdo = null;
     }
-
 
 ?>

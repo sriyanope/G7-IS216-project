@@ -394,16 +394,22 @@
                                 let v = eventId + "aaaaa" + eventTitle + "aaaaa" + category + "aaaaa" + eventDate + "aaaaa" + startTime + "aaaaa" + endTime + "aaaaa" + noOfSlots + "aaaaa" + filled + "aaaaa" + about + "aaaaa" + photo + "aaaaa" + username + "aaaaa" + gardenId;
 
                                 if(savedList.indexOf(eventId) == -1){
-                                    btn = `<button type="button" class="btn btn-primary" id='saveBtn' value="${v}" onclick='save(this, this.value)'>Save</button>`
+                                    btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='save(this, this.getAttribute("data-value"))'>`
                                 }else{
-                                    btn = `<button type="button" class="btn btn-primary" id='unsaveBtn' value="${v}" onclick='unsave(this, this.value)'>Unsave</button>`
+                                btn = `<img src="../public/images/Bookmarked.png" style='height:40px' class='bookmark-icon' data-value="${v}" onclick='unsave(this, this.getAttribute("data-value"))'>`
+                                }
+
+                                if(document.getElementById("pastEventsCheckbox").checked){
+                                    pastEvents = "1";
+                                }else{
+                                    pastEvents = "0";
                                 }
 
                                 output += `<div class="col">
                                     <div class="card h-100">
-                                    <a href="GeneralEventPage.php?eventId=${eventId}"><img class="card-img-top" src="${photo}"></a>
+                                    <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}"><img class="card-img-top" src="${photo}"></a>
                                     <div class="card-body">
-                                        <a href="GeneralEventPage.php?eventId=${eventId}" class="text-decoration-none text-dark">
+                                        <a href="GeneralEventPage.php?eventId=${eventId}&pastEvents=${pastEvents}" class="text-decoration-none text-dark">
                                         <h4>${eventTitle}</h4>
                                         <p class="card-text"><img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}</p>
                                         <p><img src="../public/images/location pin.svg" class="pe-1">${gardenName}</p>
@@ -464,8 +470,8 @@
                             return response;
                         })
                         .then(data => {
-                            this1.setAttribute("onclick", "unsave(this, this.value)");
-                            this1.innerText = "Unsave";
+                            this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
+                            this1.setAttribute("src", "../public/images/Bookmarked.png");
                             displayAlert("Event added to saved list", "warning");
                         })
                         .catch(error => {
@@ -485,8 +491,8 @@
                             return response;
                         })
                         .then(data => {
-                            this1.setAttribute("onclick", "save(this, this.value)");
-                            this1.innerText = "Save";
+                            this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
+                            this1.setAttribute("src", "../public/images/BookmarkNone.png");
                             displayAlert("Event removed from saved list", "warning");
                         })
                         .catch(error => {
@@ -510,7 +516,7 @@
                     }
 
                     loadEvents()
-                    
+
             </script>
             <script>
                 var loader = document.getElementById("preloader");
