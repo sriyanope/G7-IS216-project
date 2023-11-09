@@ -330,9 +330,16 @@
       <div class="row">
         <div class="col-2 filterHead d-none d-lg-block">Filter results via:</div>
         <div class="col-3" id="resultCount"></div>
-        <div class="col-4">
-          
-          
+        <div class="col-1"></div>
+          <!-- past events -->
+          <div class="col-3">
+            <div style="display: flex; align-items: center;">
+                  <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
+                  <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 20px; ">
+                      Include Fully Filled
+                  </label>
+            </div>
+          </div>  
         </div>
 
         <!-- past events -->
@@ -343,8 +350,7 @@
                       Include Past Events
                   </label>
             </div>
-         
-      </div>
+        </div>
       <!-- accordion filter -->
       <div class="row">
         <div class="col-2 d-none d-lg-block">
@@ -582,11 +588,19 @@
 
         // function to update event list when user uses the filter or types in the search bar
         function filter() {
+          console.log("AA")
           if(document.getElementById("pastEventsCheckbox").checked){
             pastEvents = "1";
           }else{
             pastEvents = "0";
           }
+
+          if(document.getElementById("fullCheckbox").checked){
+            full = "1";
+          }else{
+            full = "0";
+          }
+
 
           const checkboxesRegion = document.getElementById("region-checkbox").querySelectorAll('input[type="checkbox"]:checked');
           let selectedRegions = Array.from(checkboxesRegion).map(checkbox => checkbox.value);
@@ -604,8 +618,7 @@
           eventDateTo = document.getElementById("eventDateTo").value;
           searchKey = document.getElementById("search").value;
 
-          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&eventDateTo=" + eventDateTo + "&pastEvents=" + pastEvents;
-          console.log(url)
+          url = "MySQL/Event.php?type=getAllEvents&key=" + searchKey + "&regions=" + selectedRegions + "&categories=" + selectedcategories + "&eventDate=" + eventDate + "&eventDateTo=" + eventDateTo + "&pastEvents=" + pastEvents + "&full=" + full;
           fetch(url)
             .then(response => {
                 if (!response.ok) {
@@ -826,6 +839,8 @@
           }
 
           filter();
+          // pull messages every 1 second
+          window.setInterval(filter, 3000);
 
       </script>
       <script>
