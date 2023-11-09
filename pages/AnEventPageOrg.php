@@ -2,7 +2,7 @@
     <html lang="en">
 
         <?php
-          require_once "MySQL/Protect.php";
+            require_once "MySQL/Protect.php";
         ?>
 
         <head>
@@ -11,7 +11,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-             <!-- google font API -->
+            <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
@@ -36,7 +36,7 @@
             <!-- styling -->
             <style>
 
-               a {
+                a {
                     font-size:14px;
                     font-weight:700;
                     color: black;
@@ -120,10 +120,10 @@
                     overflow-y: scroll;
                 }
                 .nav-link {
-                  transition: all o.2s;
+                    transition: all o.2s;
                 }
                 .nav-link:hover {
-                  border-bottom: 2px solid #547D2E;
+                    border-bottom: 2px solid #547D2E;
                 }
 
             </style>
