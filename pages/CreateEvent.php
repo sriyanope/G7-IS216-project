@@ -19,7 +19,12 @@
            
             <!-- styling -->
             <style>
-
+              .nav-link {
+                  transition: all o.2s;
+                }
+                .nav-link:hover {
+                  border-bottom: 2px solid #547D2E;
+                }
                a {
                     font-size:14px;
                     font-weight:700;

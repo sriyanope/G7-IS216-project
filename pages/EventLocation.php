@@ -15,6 +15,7 @@
 
       <!-- styling -->
       <style>
+        
         #map {
             width: 100%;
             aspect-ratio: 1/1;
@@ -147,7 +148,12 @@
           display: block;
           margin: 0 auto;
         }
-
+        .nav-link {
+                  transition: all o.2s;
+                }
+        .nav-link:hover {
+          border-bottom: 2px solid #547D2E;
+        }
       </style>
   
       <?php
