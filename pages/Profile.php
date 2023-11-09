@@ -91,13 +91,14 @@
                 .bio{
                     color: grey;
                     border-radius: 10px;
+                    text-align:left;
                 }
             
                 textarea {
                   -webkit-box-sizing: border-box;
                   -moz-box-sizing: border-box;
                   box-sizing: border-box;
-
+  
                   width: 100%;
               }
 
@@ -108,7 +109,12 @@
                 z-index: 100;
                 width: 30%;
               }
-
+              .nav-link {
+                  transition: all o.2s;
+                }
+              .nav-link:hover {
+                border-bottom: 2px solid #547D2E;
+              }
             </style>
 
             <!-- title -->
@@ -216,14 +222,14 @@
             <div class="row">
                 <div class="col text-center">
                   <a href="ProfileEdit.php" style="text-decoration:none;">
-                    <button type="button" class="btn btn-success mx-2" href="ProfileEdit.html" id="editBtn">
+                    <button type="button" class="btn btn-success  m-1" href="ProfileEdit.html" id="editBtn" style="border-color: white;">
                         <img src="../public/images/edit.png" class="editProfileimg"> 
                         Edit Profile
                     </button>
                   </a>
                     
                   <a href="LogIn.php" style="text-decoration:none;">
-                  <button type="button" class="btn btn-success" id='signOutBtn'>
+                  <button type="button" class="btn btn-success  m-1" id='signOutBtn' style="border-color: white;">
                         <img src="../public/images/logout.png" class="editProfileimg">
                         Sign Out
                     </button>
@@ -235,8 +241,8 @@
 
               // if the profile page does not belong to the user, hide the edit and sign out button
               if(checkOwnProfile == 0){
-                document.getElementById("editBtn").setAttribute("class", "btn btn-success mx-2 d-none");
-                document.getElementById("signOutBtn").setAttribute("class", "btn btn-success d-none");
+                document.getElementById("editBtn").setAttribute("class", "btn btn-success m-1 d-none");
+                document.getElementById("signOutBtn").setAttribute("class", "btn btn-success m-1 d-none");
               }
 
 
@@ -248,19 +254,16 @@
             </div>
             <div class="row text-center">
                 <div class="col text-center mb-3">
-
-
-                    <button type="button" class=" btn bg-dark text-white mx-2" id="copyButton">
+                    <button type="button" class=" btn bg-dark text-white m-1" id="copyButton">
                         <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
-
                     <a href="#" id="instagram" style="text-decoration:none;">
-                    <button type="button" class=" btn bg-dark text-white mx-2" >
+                    <button type="button" class=" btn bg-dark text-white m-1" >
                         <img src="../public/images/instagram.png" class="editProfileimg"> 
                         Instagram
                     </button>
                     </a>
                     <a href="#" id="telegram" style="text-decoration:none;">
-                    <button type="button" class=" btn bg-dark text-white mx-2">
+                    <button type="button" class=" btn bg-dark text-white m-1">
                         <img src="../public/images/telegram.png" class="editProfileimg"> 
                         Telegram
                     </button>
@@ -272,12 +275,9 @@
                     <h3 class="featureTitle">Bio:</h3>
                 </div>
                 <div class="col-md-4 offset-md-4">
-                    <textarea disabled rows="5" cols="30" class="bio text-center" id="bio">
-                    get to know more about me
-                    </textarea>
+                    <textarea disabled rows="5" cols="30" class="bio px-3" id="bio" >I love to garden and explore the various community gardens in Singapore. Do contact me via email to keep in touch!</textarea>
                 </div>
             </div>
-            
 
             <!-- Notification -->
             <div id="notification" class="notification"></div>
@@ -335,7 +335,7 @@
           window.addEventListener("load", function(){
             setTimeout(() => {
               loader.style.display = "none";
-            }, 1500);
+            }, 1000);
           });
           </script>
 

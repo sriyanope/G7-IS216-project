@@ -221,6 +221,12 @@
         .list ul li:hover:before {
           transform: scaleX(1);
         }
+        .nav-link {
+                  transition: all o.2s;
+                }
+        .nav-link:hover {
+          border-bottom: 2px solid #547D2E;
+        }
 
       </style>
   

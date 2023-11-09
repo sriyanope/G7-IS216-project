@@ -61,12 +61,13 @@
             padding: 5px;
             color: #547D2E;
             text-align: center;
-            max-width: 300px;
+            max-width: 120px;
             margin: 0, auto;
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
+            overflow:auto;
           }
 
           .form-check-input {
@@ -117,6 +118,7 @@
               bottom: 0;
               right:0;
               z-index: 100;
+              width: 30%;
           }
 
           .redirectButton{
@@ -194,6 +196,20 @@
           transition: .5s !important;
           align-items: center;
         }
+
+        .button-container{
+          display: flex;
+        }
+
+        .event-options-container{
+          display:flex;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .collapse {
+                transition-property: height, visibility;
+                transition-duration: .35s;
+            }
+        }
         
 
         </style>
@@ -207,7 +223,6 @@
       </div>
       <!-- nav bar-->
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm ">
-
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
           <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
           <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
@@ -328,30 +343,174 @@
 
       <!-- content -->
       <div class="row">
-        <div class="col-2 filterHead d-none d-lg-block">Filter results via:</div>
-        <div class="col-3" id="resultCount"></div>
-        <div class="col-1"></div>
-          <!-- past events -->
-          <div class="col-3">
-            <div style="display: flex; align-items: center;">
+        <div class="col-md-6">
+          <div class="button-container">
+            <p class="filterHead pe-2">Filter:</p>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+              Date
+            </button>
+            <div class="collapse" id="collapseExample1">
+              <div class="card card-body">
+              <div class="row filterHead text-center m-auto">Start Date:</div>
+                  <div class="row">
+                    <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
+                  </div>
+
+                  <div class="row filterHead text-center pt-2 m-auto">End Date:</div>
+                  <div class="row">
+                    <input type="date" class="form-control" name="eventDateTo" id="eventDateTo" onchange="filter(this.value)">
+                  </div>
+              </div>
+            </div>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+              Category
+            </button>
+            <div class="collapse" id="collapseExample2">
+              <div class="card card-body">
+              <div class="row">
+                  <div class="filter-container" id="category-checkbox">
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="Workshop" onclick="filter(this.value)" id="workshop-checkbox">
+                      <label class="form-check-label" for="workshop-checkbox">Workshop</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="Cleanup" onclick="filter(this.value)" id="cleanup-checkbox">
+                      <label class="form-check-label" for="cleanup-checkbox">Cleanup</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="Education" onclick="filter(this.value)" id="education-checkbox">
+                      <label class="form-check-label" for="education-checkbox">Education</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="Harvest" onclick="filter(this.value)" id="harvest-checkbox">
+                      <label class="form-check-label" for="harvest-checkbox">Harvest</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="Leisure" onclick="filter(this.value)" id="leisure-checkbox">
+                      <label class="form-check-label" for="leisure-checkbox">Leisure</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="Others" onclick="filter(this.value)" id="others-checkbox">
+                      <label class="form-check-label" for="others-checkbox">Others</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+              Location
+            </button>
+            <div class="collapse" id="collapseExample3">
+              <div class="card card-body">
+                <div class="row">
+                  <div class="filter-container" id="region-checkbox">
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
+                      <label class="form-check-label" for="north-checkbox">North</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
+                      <label class="form-check-label" for="north-east-checkbox">North-East</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
+                      <label class="form-check-label" for="central-checkbox">Central</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
+                      <label class="form-check-label" for="east-checkbox">East</label>
+                    </div>
+                    <div class="form-check m-1">
+                      <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
+                      <label class="form-check-label" for="west-checkbox">West</label>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+              Event Options
+            </button>
+            <div class="collapse" id="collapseExample4">
+              <div class="card card-body">
+                <div style="display: flex; align-items: center;">
                   <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
                   <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 20px; ">
-                      Include Fully Filled
+                    Include Fully Filled
                   </label>
-            </div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
+                  <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px; ">
+                      Include Past Events
+                  </label>
+                </div>
+              </div>
+            </div> -->
+   
+            
+            
+
+          </div>
         </div>
 
+          <!-- past events -->
+        <!-- <div class="col-2">
+          <div style="display: flex; align-items: center;">
+            <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
+            <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 20px; ">
+                Include Fully Filled
+            </label>
+          </div>
+        </div> -->
+
         <!-- past events -->
-        <div class="col-3">
+        <!-- <div class="col-2">
             <div style="display: flex; align-items: center;">
                   <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
                   <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px; ">
                       Include Past Events
                   </label>
             </div>
+        </div> -->
+        <div class="col-md-3 col" style="text-align:right;">
+              <div style="padding-right:10px;">
+                  <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
+                    <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 15px; ">
+                      Include Fully Filled
+                    </label>
+              </div>
         </div>
+        <div class="col-md-3 col" style="text-align:left;">
+          <div style="padding-right:10px;">
+              <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
+              <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 15px; ">
+                  Show Past Events
+              </label>
+          </div>
+        </div>
+      </div> 
       <div class="row">
-        <div class="col-2 d-none d-lg-block">
+        <div id="resultCount" style="padding-top:10px;font-style:italic;color:darkgreen;"></div>
+        <div class="col">
+          <div class="bg-light">
+            <div class="album py-3 bg-light">
+              <!--div class="album py-5 bg-light"-->
+                <div class="container">
+                  <!-- change here -->
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
+                  <!-- div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" -->
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+
+      <!-- accordion filter -->
+      <!-- <div class="row"> -->
+        <!-- <div class="col-2 d-none d-lg-block">
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
@@ -448,21 +607,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
                   <!-- event list -->
-        <div class="col-10">
-          <div class="bg-light">
-            <div class="album py-3 bg-light">
-              <!--div class="album py-5 bg-light"-->
-                <div class="container">
-                  <!-- change here -->
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
-                  <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
+        
         
         <!-- filter-->
         <!-- <div class="col-2">
@@ -849,7 +996,13 @@
               loader.style.display = "none";
             }, 1500);
           });
+          $(document).ready(function(){
+            $('.btn').click(function(){
+              $('.collapse').collapse('hide');
+            });
+          });
       </script>
+
 
       <!-- Bootstrap JS bundle to be placed before the closing </body> tag -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

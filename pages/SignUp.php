@@ -31,6 +31,7 @@
 
             <!-- styling -->
             <style>
+
               a {
                   font-size:14px;
                   font-weight:700
@@ -65,6 +66,12 @@
               .bggreen {
                   background-color: #B7CF9B;
               }
+              .nav-link {
+                  transition: all o.2s;
+                }
+                .nav-link:hover {
+                  border-bottom: 2px solid #547D2E;
+                }
 
             </style>
 
@@ -138,7 +145,7 @@
               ?>
 
         </head>
-        <body>
+        <body style="background-color: #B7CF9B;">
                   <div id="preloader">
         <p>Loading...</p>
       </div>
@@ -155,13 +162,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2 disabled" href="#"><i class="about"></i> About</a>
+                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="#"><i class="events"></i> Events</a>
+                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="#"><i class="findAGarden"></i> Find A Garden</a>
+                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a href="#"><button class="btn btn-success text-white py-2" href="#">
@@ -175,11 +182,11 @@
           <!-- content -->
 
 
-          <section class="vh-100" style="background-color: #B7CF9B;">
+          <section class="vh-100">
               <div class="container py-2 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                   <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem; margin-bottom:5px;">
                       <div class="card-body p-5 text-center">
           
                       <h3 class="mt-1">Create An Account</h3>
