@@ -151,8 +151,7 @@
                         <div id="map"></div>
                     </div> 
                     <div class="col-md-6 mt-6">
-                        <h3><b>My Notes</b></h3>
-                        <span id="bookmark"></span>
+                        <h3><b>My Notes</b><span id="bookmark"></span></h3>
                         <form id="EditNotes" method="post">
                               <div class="mb-3">                    
                                 <textarea name="notes" class="form-control" rows="14" cols="50" id="note"></textarea>

@@ -164,16 +164,14 @@
             <!-- content -->
             <div class="container">
                 <div class="row pt-5"> 
-                    <div class="col">
-                        <h2><b id="eventTitleLabel"></b></h2>
-                    </div> 
-
+                <div class="col">
+                <h2><b id="eventTitleLabel"></b><span id="bookmark"></span></h2>
                 </div>
-                <span id="bookmark"></span>
+                
                 <div class="row"> 
                     <div class="col">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
-                    
+           
                         <!-- google map -->                      
                         <h3><b>Location</b></h3>
                         <div id="map"></div>
