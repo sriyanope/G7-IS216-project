@@ -670,6 +670,10 @@
         if(username != "nonUser"){
           showSavedGarden();
         }
+
+        // pull messages every 1 second
+        window.setInterval(filter, 2000);
+        window.setInterval(showSavedGarden, 2000);
         
       </script>
       <script>

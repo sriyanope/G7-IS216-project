@@ -1,7 +1,10 @@
 <!doctype html>
     <html lang="en">
+
         <?php session_start(); ?>
+
         <head>
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -27,9 +30,10 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
             <!-- Axios -->
             <script src="https://unpkg.com/axios/dist/axios.js"></script>
-           
+
             <!-- styling -->
             <style>
+
                a {
                     font-size:14px;
                     font-weight:700;
@@ -48,11 +52,11 @@
                     }
                     }
 
-                    @media screen and (max-width: 308px) { 
+                @media screen and (max-width: 308px) { 
 
-                      .logo { display: none; }  
+                .logo { display: none; }  
 
-                      }
+                }
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -120,40 +124,41 @@
             <title>My Event</title>
             
         </head>
+
         <body>
+
             <div id="preloader">
                 <p>Loading..</p>
             </div>
 
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
-
-              <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
+                <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
                 <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
                 <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
                 <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-                  <ul class="navbar-nav ms-auto">
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a href="Profile.php"><button class="btn btn-success text-white" href="#">
-                          <img src="../icons.png" width="30">
-                          My Profile</button></a>
-                    </li>
-                  </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ms-auto mt-1">
+                        <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                        </li>
+                        <li class="nav-item ms-auto mt-1">
+                        <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                        </li>
+                        <li class="nav-item ms-auto mt-1">
+                        <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                        </li>
+                        <li class="nav-item ms-auto mt-1">
+                        <a href="Profile.php"><button class="btn btn-success text-white" href="#">
+                            <img src="../icons.png" width="30">
+                            My Profile</button></a>
+                        </li>
+                    </ul>
                 </div>
-              </div>
+                </div>
             </nav>
 
             <!-- content -->
@@ -171,170 +176,91 @@
                         <!-- map -->
                         <h3><b>Location</b></h3>
                         <div id="map"></div>
-
                     </div> 
                 </div>
                 
-            <!-- view your participants -->
-            <div class="row"> 
-                <div class="col">
-
-                    <h3 class="pt-4"><b>View Your Participants</b></h3>
-
-                </div>
-            </div>
-
-            <!-- progress bar -->
-            <div class="row"> 
-                    <div class="col-5">
-                        <div class="progress">
-                        <div class="progress-bar bg-warning" id="progressBar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                <div class="col-1"></div>
-            </div>
-
-
-            <!-- filled -->
-            <div class="row"> 
-                <div class="col">
-                    <h6 class="pt-2"><span id="slotsLabel"></span></h6>
-                </div>
-            </div>
-
-            <div class="row"> 
-                <div class="col">
-                <h4>Participants</h4>
-                <div class="row bg-light mt-2 mb-5 border">
+                <!-- view your participants -->
+                <div class="row"> 
                     <div class="col">
-                    <ul id="participants"></ul>
+                        <h3 class="pt-4"><b>View Your Participants</b></h3>
                     </div>
                 </div>
+
+                <!-- progress bar -->
+                <div class="row"> 
+                        <div class="col-5">
+                            <div class="progress">
+                            <div class="progress-bar bg-warning" id="progressBar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    <div class="col-1"></div>
                 </div>
-            </div>
 
-
-
-            <!-- participants -->
-            <!-- <div class="row pt-4">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <div class="rectangle shadow-sm" style="max-height: 300px; overflow: auto;">
-
-                    
-                        <div class="row pt-4">
-                            <div class="col text-center">
-                                    <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                    <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <div class="col text-center">
-                                    <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                    <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <div class="col text-center">
-                                    <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                    <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                            <div class="col text-center">
-                                <img src="../public/images/defaultProfile.jpg" style="height: 100px;">
-                                <div>John</div>
-                            </div>
-                        </div>
-
-
+                <!-- filled -->
+                <div class="row"> 
+                    <div class="col">
+                        <h6 class="pt-2"><span id="slotsLabel"></span></h6>
                     </div>
                 </div>
-            </div> -->
 
-
-            <!-- Edit this event -->
-            <div class="row"> 
-                <div class="col">
-
-                    <h3 class="pt-4"><b>About this Event</b></h3>
-                    <textarea id="about" class="form-control" rows="4" cols="50" disabled></textarea>
-                </div>
-            </div>
-
-
-
-            <!-- comment -->
-            <div class="row pt-3">
-                <div class="col">
-                    <h3 class='mt-2'><b>Comment Section</b></h3>
-                    <div style="border:1px solid grey">
-                    <table class='table m-0' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
-                        <tr>
-                            <th class="col-2">Name</th>
-                            <th class="col-2">Timestamp</th>
-                            <th class="col-8">Comment</th>
-                        </tr>
-                    </table>
-                    <div class="table-wrap" style="border:1px solid grey">
-                    <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
-                        <tbody id='tbody'></tbody>
-                    </table>
+                <div class="row"> 
+                    <div class="col">
+                    <h4>Participants</h4>
+                    <div class="row bg-light mt-2 mb-5 border">
+                        <div class="col">
+                        <ul id="participants"></ul>
+                        </div>
                     </div>
+                    </div>
+                </div>
 
-                    <div class="comment-form">
-                        <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #ffffff;">
-                            <tbody>
+                <!-- Edit this event -->
+                <div class="row"> 
+                    <div class="col">
+                        <h3 class="pt-4"><b>About this Event</b></h3>
+                        <textarea id="about" class="form-control" rows="4" cols="50" disabled></textarea>
+                    </div>
+                </div>
+
+                <!-- comment -->
+                <div class="row pt-3">
+                    <div class="col">
+                        <h3 class='mt-2'><b>Comment Section</b></h3>
+                        <div style="border:1px solid grey">
+                            <table class='table m-0' style="border: 1px solid #e0e0e0;">
                                 <tr>
-                                    <td class='font-italic' style="border:1px solid grey">
-                                        <div class="form-group d-flex">
-                                            <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
-                                            <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
-                                        </div>
-                                    </td>
+                                    <th class="col-2">Name</th>
+                                    <th class="col-2">Timestamp</th>
+                                    <th class="col-8">Comment</th>
                                 </tr>
-                            </tbody>
-                        </table>
+                            </table>
+                            <div class="table-wrap" style="border:1px solid grey">
+                                <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
+                                    <tbody id='tbody'></tbody>
+                                </table>
+                            </div>
+
+                            <div class="comment-form">
+                                <table class='table' style="border: 1px solid #e0e0e0;">
+                                    <tbody>
+                                        <tr>
+                                            <td class='font-italic' style="border:1px solid grey">
+                                                <div class="form-group d-flex">
+                                                    <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
+                                                    <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-            <div class="row pt-3"> 
-                <div class="col">
-                  
-
-                        
-                        
-                          <!-- Button trigger modal -->
+                <div class="row pt-3"> 
+                    <div class="col">
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success mb-4" data-toggle="modal" data-target="#exampleModalLong">
                             Delete Event
                         </button>
@@ -342,32 +268,29 @@
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Delete Event</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Event</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 <div class="modal-body">
-                                Are you sure that you want to delete?  This action is irreversible.
+                                    Are you sure that you want to delete?  This action is irreversible.
                                 </div>
+                                
                                 <div class="form-group mx-3">
                                     <label for="exampleInputEmail1">Reason for deleting event</label>
                                     <textarea class="form-control" rows="3" id="deleteReason"></textarea>
                                 </div>
 
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="deleteEvent()">Proceed</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="deleteEvent()">Proceed</button>
                                 </div>
                             </div>
-                            </div>
                         </div>
-
-                      </div>
-                      </div>
-                    
+                    </div>
                 </div>
             </div>
 
@@ -391,7 +314,6 @@
                     document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
                     
                     let eventId = data.event[0].eventId;
-
                     let filled = Number(data.event[0].filled);
                     let slots = Number(data.event[0].noOfSlots);
                     document.getElementById("about").value = data.event[0].about;
@@ -511,110 +433,104 @@
                         position: { lat: Number(lat), lng: Number(lng) },
                         map
                     });
+                }
+
+                // handling comments
+                var username = <?php echo $_SESSION['username']; ?>;
+
+                var textInput = document.getElementById('text');
+                textInput.addEventListener('keyup', doText);
+
+                var btnSend = document.getElementById('btnSend');
+                btnSend.addEventListener('click', doSend);
+
+                function htmlEntities(str) {
+                    return String(str)
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;')
+                        .replace(/"/g, '&quot;');
+                }
+
+                function process(username, text) {
+                    eventId = <?php echo $_GET['eventId']; ?>;
+                    let gotoURL = "server/chat.php?eventId=eventId";
+                    let getParameters = {};
+                    if (typeof text !== "undefined") {
+                        getParameters.username = username;
+                        getParameters.text = text;
                     }
-
-
-                    // handling comments
-                    var username = <?php echo $_SESSION['username']; ?>;
-
-                    var textInput = document.getElementById('text');
-                    textInput.addEventListener('keyup', doText);
-
-                    var btnSend = document.getElementById('btnSend');
-                    btnSend.addEventListener('click', doSend);
-
-                    function htmlEntities(str) {
-                        return String(str)
-                            .replace(/&/g, '&amp;')
-                            .replace(/</g, '&lt;')
-                            .replace(/>/g, '&gt;')
-                            .replace(/"/g, '&quot;');
-                    }
-
-                    function process(username, text) {
-                        eventId = <?php echo $_GET['eventId']; ?>;
-                        let gotoURL = "server/chat.php?eventId=eventId";
-                        // this function process can be invoked with and without arguments.
-                        // When there is no argument passed in, we have no parameters to send to the API.
-                        let getParameters = {};
-                        // If there are arguments passed in (i.e. parameter text has value), prepare the GET parameters to be sent to the API.
-                        if (typeof text !== "undefined") {
-                            getParameters.username = username;
-                            getParameters.text = text;
+                    
+                    axios.get(gotoURL, {
+                        params: getParameters,
+                    })
+                    .then (response => {
+                        let rows = '';
+                        let obj = response.data.eventId
+                        for (msg of obj) {
+                            rows = rows + '<tr>'
+                                + '<th scope="row" class="col-2">' + msg.who + '</th>'
+                                + '<td class="col-2">' + msg.timestamp + '</td>'
+                                + '<td class="col-8">' + htmlEntities(msg.text) + '</td>'
+                                + '</tr>';
                         }
+                        document.getElementById('tbody').innerHTML = rows;
                         
+                    })
+                    .catch(error => {
+                    });
+                }
 
-                        axios.get(gotoURL, {
-                            params: getParameters,
-                        })
-                        .then (response => {
-                            let rows = '';
-                            let obj = response.data.eventId
-                            for (msg of obj) {
-                                rows = rows + '<tr>'
-                                    + '<th scope="row" class="col-3">' + msg.who + '</th>'
-                                    + '<td class="col-3">' + msg.timestamp + '</td>'
-                                    + '<td class="col-6">' + htmlEntities(msg.text) + '</td>'
-                                    + '</tr>';
-                            }
-                            document.getElementById('tbody').innerHTML = rows;
-                            
-                        })
-                        .catch(error => {
-                        });
+                function doText(event) {
+
+                    if (event.code === 'Enter') {
+                        doSend();
                     }
+                }
 
-                    function doText(event) {
-
-                        if (event.code === 'Enter') {
-                            doSend();
+                function doSend() {
+                    let username = <?php echo $_SESSION['username']; ?>;
+                    url = "MySQL/User.php?type=getUser&username=" + username;
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
                         }
-                    }
+                        return response.json();
+                    })
+                    .then(data => {
+                        process(data.user[0].fullName, textInput.value);
+                        textInput.value = '';
 
-                    function doSend() {
-                        let username = <?php echo $_SESSION['username']; ?>;
-                        url = "MySQL/User.php?type=getUser&username=" + username;
-                        fetch(url)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            process(data.user[0].fullName, textInput.value);
-                            textInput.value = '';
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
 
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                    }
+                process();
 
-                    process();
-
-                    // pull messages every 1 second
-                    window.setInterval(process, 1000);
+                // pull messages every 1 second
+                window.setInterval(process, 1000);
 
             </script>
 
 
-            </div>
+            <script>
 
-        <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1500);
-          });
-        </script>
+                var loader = document.getElementById("preloader");
+                window.addEventListener("load", function(){
+                    setTimeout(() => {
+                    loader.style.display = "none";
+                    }, 1500);
+                });
 
+            </script>
 
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-      </body>
+        </body>
     </html>

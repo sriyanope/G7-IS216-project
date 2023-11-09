@@ -22,6 +22,6 @@
             $pdo = null;
             return json_encode($result);
         }
-}
+    }
 
 ?>

@@ -14,9 +14,12 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
+            <!--Vue-->
+            <script src="https://unpkg.com/vue@next"></script>
            
             <!-- styling -->
             <style>
+
                a {
                     font-size:14px;
                     font-weight:700;
@@ -29,29 +32,28 @@
                     outline:none !important;
                     box-shadow: none !important;
                     }
-                    @media screen and (max-width:900px){
-                .centerOnMobile {
+                  
+                 @media screen and (max-width:900px){
+                  .centerOnMobile {
                         text-align:center;
                     }
-                    }
+                  }
 
-                    @media screen and (max-width: 308px) { 
+                  @media screen and (max-width: 308px) { 
+                    .logo { display: none; }  
+                  }
 
-                      .logo { display: none; }  
+                  .navbar {
+                      background-color: #F6F8E0;
+                  }
 
-                      }
+                  .btn{
+                      background-color: #547D2E;
+                  }
 
-                .navbar {
-                    background-color: #F6F8E0;
-                }
-
-                .btn{
-                    background-color: #547D2E;
-                }
-
-                .bggreen {
-                    background-color: #B7CF9B;
-                }
+                  .bggreen {
+                      background-color: #B7CF9B;
+                  }
 
             </style>
 
@@ -96,7 +98,7 @@
             $endTime = $_POST['endTime'];
             $noOfSlots = $_POST['noOfSlots'];
             $about = $_POST['about'];
-         
+
             $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, photo, createdDate, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :photo, CURDATE(), :username, :gardenId);";
 
             $connMgr = new ConnectionManager();
@@ -124,6 +126,7 @@
             }
             
           }
+
         ?>
 
         <script>
@@ -139,14 +142,12 @@
               var noOfSlots = document.getElementById("noOfSlots").value;
               var about = document.getElementById("about").value;
 
-              if (eventTitle.length === 0) {
+              if (eventTitle.length < 5) {
                 check = false;
-                msg += "Please fill in the Event Title.\n";
               }
 
               if (eventDate.length === 0) {
                 check = false;
-                msg += "Please select an Event Date.\n";
               } else {
                 // Create a new Date object for today
                 var today = new Date();
@@ -156,13 +157,11 @@
                 // Verify if the event date is earlier than today
                 if (selectedDate <= today) {
                   check = false;
-                  msg += "Event date cannot be earlier than today.\n";
                 }
               }
 
               if (startTime.length === 0 || endTime.length === 0) {
                 check = false;
-                msg += "Please fill in both Start Time and End Time.\n";
               } else {
                 // Verify if the start time is more recent than the end time
                 var startTimeDate = new Date(eventDate + " " + startTime);
@@ -170,34 +169,35 @@
 
                 if (startTimeDate >= endTimeDate) {
                   check = false;
-                  msg += "End Time must be after Start Time.\n";
                 }
               }
 
               if (noOfSlots.length === 0) {
                 check = false;
-                msg += "Please specify the number of slots.\n";
               }
 
-              if (about.length === 0) {
+              if (about.length < 10) {
                 check = false;
-                msg += "Please provide information about the event.\n";
               }
 
               if (!check) {
-                alert(msg);
+                document.getElementById("submit").setAttribute("class", "btn btn-secondary text-white disabled");
+                return false;
               }
 
-              return check;
+                document.getElementById("submit").setAttribute("class", "btn btn-success text-white");
+                return true;
             }
 
         </script>
 
 
         <body>
+
             <div id="preloader">
               <p>Loading...</p>
             </div>
+
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
@@ -229,69 +229,142 @@
               </div>
             </nav>
 
-              <!-- start the form for creating event -->
-              <div class="container">
-                <div class="row">
+            <!-- start the form for creating event -->
+            <div class="container">
+              <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                <div class="p-5 mb-5 ">
+                  <div class="p-5 mb-5 ">
 
-              <h3 class="text-center"><strong>Create An Event</strong></h3>
-              <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.php">Join an Event!</a></p>
-              <form id="CreateEventDetails" method="post" onsubmit="return validateForm()">
-                <div class="mb-3">
-                  <label for="eventTitle" class="form-label">Event Title</label>
-                  <input type="text" class="form-control" name="eventTitle" id="eventTitle" aria-describedby="eventTitle">
+                    <h3 class="text-center"><strong>Create An Event</strong></h3>
+                    <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.php">Join an Event!</a></p>
+                    <form id="CreateEventDetails" method="post">
+                      <div class="mb-3" id="appEventTitle">
+                        <label for="eventTitle" class="form-label">Event Title</label>
+                        <input type="text" class="form-control" name="eventTitle" id="eventTitle" aria-describedby="eventTitle" onkeyup="validateForm()" v-model="eventTitle">
+                        <span v-if="eventTitleCheck()" style="color:red;">Event title has to be at least 5 characters</span>
+                      </div>
+                      <div class="mb-3" id="appCategory">
+                        <label for="category" class="form-label">Event Category</label>
+                        <select class="form-select" aria-label="Default select example" name="category" onkeyup="validateForm()" v-model="category">
+                            <option value="Workshop">Workshop</option>
+                            <option value="Cleanup">Cleanup</option>
+                            <option value="Education">Education</option>
+                            <option value="Harvest">Harvest</option>
+                            <option value="Leisure">Leisure</option>
+                            <option value="Others">Others</option>
+                          </select>
+                      </div>
+                      
+                      <div class="mb-3" id="appEventDate">
+                        <label for="eventDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" name="eventDate" id="eventDate" onkeyup="validateForm()" v-model="eventDate">
+                        <span v-if="eventDateCheck()" style="color:red;">Event date has to be after today</span>
+                      </div>
+                      <div class="mb-3" id="appStartTime">
+                        <label for="startTime" id="starttiming" class="form-label">Start Time</label>
+                        <input type="time" class="form-control" name="startTime" id="startTime" onkeyup="validateForm()" v-model="startTime">
+                      </div>
+                      <div class="mb-3" id="appEndTime">
+                        <label for="endTime" id="endtiming" class="form-label">End Time</label>
+                        <input type="time" class="form-control" name="endTime" id="endTime" onkeyup="validateForm()" v-model="endTime">
+                        <span v-if="endTimeCheck()" style="color:red;">End time cannot be earlier than start time</span>
+                      </div>
+                      <div class="mb-3" id="appSlots">
+                        <label for="noOfSlots" class="form-label">No. of slots</label>
+                        <input type="number" class="form-control" name="noOfSlots" id="noOfSlots" min=0 max=50 onkeyup="validateForm()" v-model="slots">
+                      </div>
+                      <div class="mb-3" id="appAbout">
+                        <label for="about" class="form-label">About This Event</label>
+                        <textarea id="about" name="about" class="form-control" rows="4" cols="50" onkeyup="validateForm()" v-model="about"></textarea>
+                        <span v-if="aboutCheck()" style="color:red;">About has to be at least 10 characters</span>
+                      </div>
+                      <button type="submit" name="submit" id="submit" class="btn btn-secondary text-white disabled">Create Event</button>
+                    </form>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="category" class="form-label">Event Category</label>
-                  <select class="form-select" aria-label="Default select example" name="category">
-                      <option value="Workshop">Workshop</option>
-                      <option value="Cleanup">Cleanup</option>
-                      <option value="Education">Education</option>
-                      <option value="Harvest">Harvest</option>
-                      <option value="Leisure">Leisure</option>
-                      <option value="Others">Others</option>
-                    </select>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="eventDate" class="form-label">Date</label>
-                    <input type="date" class="form-control" name="eventDate" id="eventDate">
-                  </div>
-                  <div class="mb-3">
-                    <label for="startTime" id="starttiming" class="form-label">Start Time</label>
-                    <input type="time" class="form-control" name="startTime" id="startTime">
-                  </div>
-                  <div class="mb-3">
-                    <label for="endTime" id="endtiming" class="form-label">End Time</label>
-                    <input type="time" class="form-control" name="endTime" id="endTime">
-                  </div>
-                  <div class="mb-3">
-                    <label for="noOfSlots" class="form-label">No. of slots</label>
-                    <input type="number" class="form-control" name="noOfSlots" id="noOfSlots" min=0 max=50>
-                  </div>
-                  <div class="mb-3">                    
-                    <label for="about" class="form-label">About This Event</label>
-                    <textarea id="about" name="about" class="form-control" rows="4" cols="50"></textarea>
-                  </div>
-                <button type="submit" name="submit" class="btn btn-success text-white">Create Event</button>
-              </form>
               </div>
-              </div>
-              </div>
-              </div>
+            </div>
 
+            <script>
 
+              const appEventTitle = Vue.createApp({
+                data(){
+                  return {eventTitle: ""}
+                },
+                methods: {
+                  eventTitleCheck() {
+                    if(this.eventTitle.length > 0 && this.eventTitle.length < 5){
+                      return true
+                    }
+                  }
+                }
+              }).mount('#appEventTitle');
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-        <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1500);
-          });
-        </script>
-      </body>
+              const appEventDate = Vue.createApp({
+                data(){
+                  return {eventDate: ""}
+                },
+                methods: {
+                  eventDateCheck() {
+                    // Create a new Date object for today
+                    var today = new Date();
+                    // Create a Date object for the selected event date
+                    var selectedDate = new Date(this.eventDate);
+
+                    // Verify if the event date is earlier than today
+                    if (selectedDate <= today) {
+                      return true;
+                    }
+                  }
+                }
+              }).mount('#appEventDate');
+
+              const appEndTime = Vue.createApp({
+                data(){
+                  return {endTime: ""}
+                },
+                methods: {
+                  endTimeCheck() {
+                    var eventDate = document.getElementById("eventDate").value;
+                    var startTime = document.getElementById("startTime").value;
+                    // Verify if the start time is more recent than the end time
+                    var startTimeDate = new Date(eventDate + " " + startTime);
+                    var endTimeDate = new Date(eventDate + " " + this.endTime);
+                    if (startTimeDate >= endTimeDate) {
+                      return true;
+                    }
+                  }
+                }
+              }).mount('#appEndTime');
+
+              const appAbout = Vue.createApp({
+                data(){
+                  return {about: ""}
+                },
+                methods: {
+                  aboutCheck() {
+                    if(this.about.length > 0 && this.about.length < 10){
+                      return true
+                    }
+                  }
+                }
+              }).mount('#appAbout');
+
+            </script>
+
+            <script>
+
+              var loader = document.getElementById("preloader");
+              window.addEventListener("load", function(){
+                setTimeout(() => {
+                  loader.style.display = "none";
+                }, 1500);
+              });
+
+            </script>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+
+        </body>
     </html>

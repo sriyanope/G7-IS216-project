@@ -427,6 +427,8 @@
         }
 
         filter();
+
+        window.setInterval(filter, 2000);
         
       </script>
         <script>

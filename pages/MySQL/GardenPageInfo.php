@@ -96,7 +96,6 @@
             $stmt = null;
             $pdo = null;
         }
-
     }
 
 
