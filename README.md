@@ -16,9 +16,9 @@ About Our Project:
 ### Back-end Development (pls edit the below!)
 | Library   | Description                           | Link                                   |
 | --------- | ------------------------------------- | -------------------------------------- |
-| Bootstrap | Carousell, Nav Bar, Search bar, Form Control, Grid, Flex Utilities| [Bootstrap](https://getbootstrap.com/) |
-| ScrollReveal.js | animating elements | [ScrollReveal.js](https://scrollrevealjs.org/)   |
-| Typed.js | typing animation | [Typed.js](https://github.com/mattboldt/typed.js) |
+| PHP | Retrieval of data from database to display on the website| insert PHP link |
+| MySQL | Database to store user data | mysql link here   |
+| JavaScript | Facilitate CSS animations alongside connecting data retrieved from MySQL/PHP to frontend | js link here |
 
 ### Version Control
 
@@ -34,6 +34,14 @@ About Our Project:
 | -------------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
 | Google Maps API | Show Maps Location | [Google Maps API](https://developers.google.com/maps) |
 
+### Beyond The Lab (BTL) 
+
+| Library / Tool       | Description                                          | Link                                                         |
+| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
+| OWASP ZAP tool | Aids in conducting automated/manual security scans to note of potential XSS/SQL injection attacks | OWASP link |
+| Git/Github | Allows us to collaborate and note our project's progress through a centralised version control system | Git + Github link |
+| Selenium | Automated/Manual User Testing Tool | Selenium link |
+| AWS S3/EC2 | Assists in seamless deployment of our web app project | AWS S3/EC2 project |
 
 <!-- # relevant information to add to documentation for project
 
