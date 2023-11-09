@@ -119,6 +119,50 @@
                     max-height: 300px;
                     overflow-y: scroll;
                 }
+                .comment-container {
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    margin-top: 20px;
+                }
+
+                .comment-table {
+                    background-color: #f9f9f9;
+                }
+
+                .comment-table th,
+                .comment-table td {
+                    text-align: center;
+                }
+
+                .comment-form {
+                    background-color: #ffffff;
+                    border-top: 1px solid #ddd;
+                    padding: 10px;
+                }
+
+                .comment-form input,
+                .comment-form button {
+                    height: 40px;
+                }
+
+                .comment-form button {
+                    min-width: 80px;
+                }
+
+                .comment-header {
+                    background-color: #F6F8E0;
+                    padding: 10px;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
+
+                @media (max-width: 768px) {
+                    .comment-table th,
+                    .comment-table td {
+                        text-align: left;
+                    }
+                }
 
             </style>
 
@@ -165,9 +209,8 @@
             <div class="container">
                 <div class="row pt-5"> 
                 <div class="col">
-                <h2><b id="eventTitleLabel"></b><span id="bookmark"></span></h2>
+                    <h2><b id="eventTitleLabel"></b> <span id="bookmark"></span></h2>
                 </div>
-                
                 <div class="row"> 
                     <div class="col">
                         <p><img src="../public/images/location pin.svg"><span id="locationDateTimeLabel"></span></p>
@@ -242,39 +285,36 @@
             <!-- comment -->
             <div class="row pt-3">
                 <div class="col">
-                    <h3 class='mt-2'><b>Comment Section</b></h3>
-                    <div style="border:1px solid grey">
-                    <table class='table m-0' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
-                        <tr>
-                            <th class="col-2">Name</th>
-                            <th class="col-2">Timestamp</th>
-                            <th class="col-8">Comment</th>
-                        </tr>
-                    </table>
-                    <div class="table-wrap" style="border:1px solid grey">
-                    <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
-                        <tbody id='tbody'></tbody>
-                    </table>
-                    </div>
+                    <h3 class="mt-2"><b>Comment Section</b></h3>
+                    <div class="comment-container">
+                        <div class="comment-table">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="col-3" style="background-color: #e6eedd">Name</th>
+                                        <th scope="col" class="col-2" style="background-color: #e6eedd">Timestamp</th>
+                                        <th scope="col" class="col-7" style="background-color: #e6eedd">Comment</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody"></tbody>
+                            </table>
+                        </div>
 
-                    <div class="comment-form">
-                        <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #ffffff;">
-                            <tbody>
-                                <tr>
-                                    <td class='font-italic' style="border:1px solid grey">
-                                        <div class="form-group d-flex">
-                                            <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
-                                            <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="comment-form">
+                            <div class="form-group d-flex">
+                                <input id="text" class="form-control flex-grow-1" type="text" placeholder="Add a Comment">
+                                <button id="btnSend" class="btn btn-success ml-3">Post</button>
+                            </div>
                         </div>
                     </div>
-                     
                 </div>
             </div>
+
+
+
+
+
+
 
             <!-- Notification -->
             <div id="notification" class="notification"></div>
