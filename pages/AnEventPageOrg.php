@@ -1,7 +1,9 @@
 <!doctype html>
     <html lang="en">
 
-        <?php session_start(); ?>
+        <?php
+          require_once "MySQL/Protect.php";
+        ?>
 
         <head>
 
@@ -18,7 +20,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
-            <link rel="stylesheet" href="progressBar.css">
+            <link rel="stylesheet" href="CSS/progressBar.css">
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -229,40 +231,33 @@
                 </div>
 
                 <!-- comment -->
-                <div class="row pt-3">
-                    <div class="col">
-                        <h3 class='mt-2'><b>Comment Section</b></h3>
-                        <div style="border:1px solid grey">
-                            <table class='table m-0' style="border: 1px solid #e0e0e0;">
-                                <tr>
-                                    <th class="col-2">Name</th>
-                                    <th class="col-2">Timestamp</th>
-                                    <th class="col-8">Comment</th>
-                                </tr>
+            <!-- comment -->
+            <div class="row pt-3">
+                <div class="col">
+                    <h3 class="mt-2"><b>Comment Section</b></h3>
+                    <div class="comment-container">
+                        <div class="comment-table table-wrap">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="col-3" style="background-color: #e6eedd">Name</th>
+                                        <th scope="col" class="col-2" style="background-color: #e6eedd">Timestamp</th>
+                                        <th scope="col" class="col-7" style="background-color: #e6eedd">Comment</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody"></tbody>
                             </table>
-                            <div class="table-wrap" style="border:1px solid grey">
-                                <table class='table' style="border: 1px solid #e0e0e0; border-radius: 5px; background-color: #f9f9f9;">
-                                    <tbody id='tbody'></tbody>
-                                </table>
-                            </div>
+                        </div>
 
-                            <div class="comment-form">
-                                <table class='table' style="border: 1px solid #e0e0e0;">
-                                    <tbody>
-                                        <tr>
-                                            <td class='font-italic' style="border:1px solid grey">
-                                                <div class="form-group d-flex">
-                                                    <input id='text' class="w-80 form-control" type="text" style="border: 1px solid #e0e0e0;" placeholder="Input Comment">
-                                                    <button id='btnSend' class='btn btn-success ml-3'>POST!</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="comment-form">
+                            <div class="form-group d-flex">
+                                <input id="text" class="form-control flex-grow-1" type="text" placeholder="Add a Comment">
+                                <button id="btnSend" class="btn btn-success ml-3">Post</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
                 <div class="row pt-3"> 
                     <div class="col">
@@ -460,25 +455,28 @@
 
                 function process(username, text) {
                     eventId = <?php echo $_GET['eventId']; ?>;
-                    let gotoURL = "server/chat.php?eventId=eventId";
+                    let gotoURL = "MySQL/chat.php?eventId=" + eventId;
+                    // this function process can be invoked with and without arguments.
+                    // When there is no argument passed in, we have no parameters to send to the API.
                     let getParameters = {};
+                    // If there are arguments passed in (i.e. parameter text has value), prepare the GET parameters to be sent to the API.
                     if (typeof text !== "undefined") {
                         getParameters.username = username;
                         getParameters.text = text;
                     }
-                    
+
                     axios.get(gotoURL, {
                         params: getParameters,
                     })
                     .then (response => {
                         let rows = '';
-                        let obj = response.data.eventId
+                        let obj = response.data.comment
                         for (msg of obj) {
-                            rows = rows + '<tr>'
-                                + '<th scope="row" class="col-2">' + msg.who + '</th>'
+                            rows = '<tr>'
+                                + '<th scope="row" class="col-2">' + msg.username + '</th>'
                                 + '<td class="col-2">' + msg.timestamp + '</td>'
                                 + '<td class="col-8">' + htmlEntities(msg.text) + '</td>'
-                                + '</tr>';
+                                + '</tr>' + rows;
                         }
                         document.getElementById('tbody').innerHTML = rows;
                         
@@ -488,7 +486,6 @@
                 }
 
                 function doText(event) {
-
                     if (event.code === 'Enter') {
                         doSend();
                     }
@@ -496,22 +493,8 @@
 
                 function doSend() {
                     let username = <?php echo $_SESSION['username']; ?>;
-                    url = "MySQL/User.php?type=getUser&username=" + username;
-                    fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        process(data.user[0].fullName, textInput.value);
-                        textInput.value = '';
-
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                    process(username, textInput.value);
+                    textInput.value = '';
                 }
 
                 process();

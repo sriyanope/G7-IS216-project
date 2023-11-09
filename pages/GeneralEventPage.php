@@ -1,7 +1,9 @@
 <!doctype html>
     <html lang="en">
         <head>
-            <?php session_start(); ?>
+            <?php
+                require_once "MySQL/Protect.php";
+            ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -15,8 +17,6 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
-            <link rel="stylesheet" href="organiserView/progressBar.css">
-            <link rel="stylesheet" href="starRating.css">
             <!-- Axios -->
             <script src="https://unpkg.com/axios/dist/axios.js"></script>
             <!-- Latest compiled and minified CSS -->
@@ -112,6 +112,7 @@
                     bottom: 0;
                     right:0;
                     z-index: 100;
+                    width: 30%;
                 }
 
                 .table-wrap {
@@ -234,16 +235,6 @@
                         <h3 class="pt-4">Event host:
                             <a href="#" id="profileLabel" style="text-decoration: none; color: black; font-size: 1.5rem; font-weight: bold;"><span id="fullNameLabel"></span></a>
                         </h3>
-
-                        <!-- progress bar -->
-                        <div class="container">
-                            <i class="fas fa-3x fa-battery-full icon"></i>
-                            
-                            <div class="progress2 progress-moved">
-                            <div class="progress-bar2"></div>
-                            <div class="loader" style="--n: 1; --f: 0;"></div>
-                            </div>
-                        </div>
                         
                         <!-- filled -->
                         <h6 class="pt-2" id="slotsLabel"></h6>
@@ -292,7 +283,7 @@
                 <div class="col">
                     <h3 class="mt-2"><b>Comment Section</b></h3>
                     <div class="comment-container">
-                        <div class="comment-table">
+                        <div class="comment-table table-wrap">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -348,7 +339,7 @@
                     document.getElementById("eventTitleLabel").innerText = `${data.event[0].eventTitle} (${data.event[0].category})`;
                     document.getElementById("locationDateTimeLabel").innerHTML = data.event[0].gardenName + "<br><p style='margin:3px;'><img src='../public/images/calendar.png' width='20px' height='20px'><span> " + convertDateFormat(data.event[0].eventDate) + "</span></p>" + "<p><img src='../public/images/clock.png' width='20px' height='20px'><span> " + convertTo12HourFormat(data.event[0].startTime) + " - " + convertTo12HourFormat(data.event[0].endTime) + "</span></p>";
                     document.getElementById("fullNameLabel").innerText = data.event[0].fullName;
-                    document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots;
+                    document.getElementById("slotsLabel").innerText = data.event[0].filled + "/" + data.event[0].noOfSlots + " filled";
                     checkFullSlots(data.event[0].filled, data.event[0].noOfSlots);
                     document.getElementById("aboutLabel").innerText = data.event[0].about;
                     profileLink = "Profile.php?username1=" + data.event[0].username;
@@ -569,37 +560,24 @@
                 }
 
                 // function to display an alert and automatically dismiss it after 5 seconds
-                    function displayAlert(message, type) {
-                    const notification = document.getElementById("notification");
-                    const alert = document.createElement("div");
-                    alert.className = `alert alert-${type} alert-dismissible fade show`;
-                    alert.innerHTML = `${message}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>`;
-                    notification.appendChild(alert);
-                    setTimeout(function() {
-                        alert.style.display = "none";
-                    }, 5000);
+                function displayAlert(message, type) {
+                const notification = document.getElementById("notification");
+                const alert = document.createElement("div");
+                alert.className = `alert alert-${type} alert-dismissible fade show`;
+                alert.innerHTML = `${message}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>`;
+                notification.appendChild(alert);
+                setTimeout(function() {
+                    alert.style.display = "none";
+                }, 5000);
                 }
 
 
             </script>
             
         </div>
-
-            <script>
-
-                // progress bar
-                CSS.registerProperty({
-                    name: "--p",
-                    syntax: "<integer>",
-                    initialValue: 0,
-                    inherits: true,
-                });
-
-            </script>
-
 
 <script>
 
@@ -621,7 +599,7 @@
 
         function process(username, text) {
             eventId = <?php echo $_GET['eventId']; ?>;
-            let gotoURL = "server/chat.php?eventId=eventId";
+            let gotoURL = "MySQL/chat.php?eventId=" + eventId;
             // this function process can be invoked with and without arguments.
             // When there is no argument passed in, we have no parameters to send to the API.
             let getParameters = {};
@@ -630,20 +608,19 @@
                 getParameters.username = username;
                 getParameters.text = text;
             }
-            
 
             axios.get(gotoURL, {
                 params: getParameters,
             })
             .then (response => {
                 let rows = '';
-                let obj = response.data.eventId
+                let obj = response.data.comment
                 for (msg of obj) {
-                    rows = rows + '<tr>'
-                        + '<th scope="row" class="col-2">' + msg.who + '</th>'
+                    rows = '<tr>'
+                        + '<th scope="row" class="col-2">' + msg.username + '</th>'
                         + '<td class="col-2">' + msg.timestamp + '</td>'
                         + '<td class="col-8">' + htmlEntities(msg.text) + '</td>'
-                        + '</tr>';
+                        + '</tr>' + rows;
                 }
                 document.getElementById('tbody').innerHTML = rows;
                 
@@ -653,8 +630,7 @@
         }
 
         function doText(event) {
-            console.log(textInput.value.length > 0)
-            if (event.code === 'Enter' && textInput.value.length > 0) {
+            if (event.code === 'Enter') {
                 doSend();
             }
         }

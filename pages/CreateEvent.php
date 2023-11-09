@@ -1,11 +1,15 @@
 <!doctype html>
     <html lang="en">
         <head>
+
+            <?php
+              require_once "MySQL/Protect.php";
+            ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-             <!-- google font API -->
+            <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
@@ -16,7 +20,6 @@
             <link rel="stylesheet" href="../style.css">
             <!--Vue-->
             <script src="https://unpkg.com/vue@next"></script>
-           
             <!-- styling -->
             <style>
               .nav-link {
@@ -60,6 +63,11 @@
                       background-color: #B7CF9B;
                   }
 
+                  .required::after {
+                    content: ' *';
+                    color: red;
+                  }
+
             </style>
 
             <!-- title -->
@@ -69,7 +77,6 @@
 
         <?php
           // create event into MySQL
-          session_start();
           $username = $_SESSION['username'];
           
           spl_autoload_register(
@@ -245,12 +252,12 @@
                     <p class="text-center pb-4">Need some inspiration before starting your own? <a href="JoinAnEvent.php">Join an Event!</a></p>
                     <form id="CreateEventDetails" method="post">
                       <div class="mb-3" id="appEventTitle">
-                        <label for="eventTitle" class="form-label">Event Title</label>
+                        <label for="eventTitle" class="form-label required">Event Title</label>
                         <input type="text" class="form-control" name="eventTitle" id="eventTitle" aria-describedby="eventTitle" onkeyup="validateForm()" v-model="eventTitle">
                         <span v-if="eventTitleCheck()" style="color:red;">Event title has to be at least 5 characters</span>
                       </div>
                       <div class="mb-3" id="appCategory">
-                        <label for="category" class="form-label">Event Category</label>
+                        <label for="category" class="form-label required">Event Category</label>
                         <select class="form-select" aria-label="Default select example" name="category" onkeyup="validateForm()" v-model="category">
                             <option value="Workshop">Workshop</option>
                             <option value="Cleanup">Cleanup</option>
@@ -262,25 +269,25 @@
                       </div>
                       
                       <div class="mb-3" id="appEventDate">
-                        <label for="eventDate" class="form-label">Date</label>
+                        <label for="eventDate" class="form-label required">Date</label>
                         <input type="date" class="form-control" name="eventDate" id="eventDate" onkeyup="validateForm()" v-model="eventDate">
                         <span v-if="eventDateCheck()" style="color:red;">Event date has to be after today</span>
                       </div>
                       <div class="mb-3" id="appStartTime">
-                        <label for="startTime" id="starttiming" class="form-label">Start Time</label>
+                        <label for="startTime" id="starttiming" class="form-label required">Start Time</label>
                         <input type="time" class="form-control" name="startTime" id="startTime" onkeyup="validateForm()" v-model="startTime">
                       </div>
                       <div class="mb-3" id="appEndTime">
-                        <label for="endTime" id="endtiming" class="form-label">End Time</label>
+                        <label for="endTime" id="endtiming" class="form-label required">End Time</label>
                         <input type="time" class="form-control" name="endTime" id="endTime" onkeyup="validateForm()" v-model="endTime">
                         <span v-if="endTimeCheck()" style="color:red;">End time cannot be earlier than start time</span>
                       </div>
                       <div class="mb-3" id="appSlots">
-                        <label for="noOfSlots" class="form-label">No. of slots</label>
+                        <label for="noOfSlots" class="form-label required">No. of slots</label>
                         <input type="number" class="form-control" name="noOfSlots" id="noOfSlots" min=0 max=50 onkeyup="validateForm()" v-model="slots">
                       </div>
                       <div class="mb-3" id="appAbout">
-                        <label for="about" class="form-label">About This Event</label>
+                        <label for="about" class="form-label required">About This Event</label>
                         <textarea id="about" name="about" class="form-control" rows="4" cols="50" onkeyup="validateForm()" v-model="about"></textarea>
                         <span v-if="aboutCheck()" style="color:red;">About has to be at least 10 characters</span>
                       </div>

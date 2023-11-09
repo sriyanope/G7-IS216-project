@@ -1,6 +1,8 @@
 <html>
-  <?php session_start(); ?>
   <head>
+      <?php
+          require_once "MySQL/Protect.php";
+      ?>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,6 +123,7 @@
           bottom: 0;
           right:0;
           z-index: 100;
+          width: 30%;
         }
 
         .bookmark-container {

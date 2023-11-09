@@ -1,6 +1,9 @@
 <html>
-  <?php session_start(); ?>
-  <head>    
+
+  <head>
+      <?php
+          require_once "MySQL/Protect.php";
+      ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -139,6 +142,7 @@
           bottom: 0;
           right:0;
           z-index: 100;
+          width: 30%;
         }
 
         .bookmark-container {
@@ -364,7 +368,7 @@
         <!-- filter -->
         <div class="row">
           <div class="col-2 filterHead mt-1">Filter By Region:</div>
-          <div class="col-3" id="resultCount"></div>
+          <div class="col-3" id="resultCount" style="font-style:italic;color:darkgreen"></div>
         </div>
 
         <div class="row">
