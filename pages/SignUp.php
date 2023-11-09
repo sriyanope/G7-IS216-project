@@ -165,7 +165,6 @@
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a href="#"><button class="btn btn-success text-white py-2" href="#">
-                          <!-- <img src="../icons.png" width="30"> -->
                           Sign Up/Login</button></a>
                     </li>
                   </ul>

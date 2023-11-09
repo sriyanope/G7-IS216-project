@@ -1,7 +1,9 @@
 <!doctype html>
-    <?php session_start(); ?>
     <html lang="en">
         <head>
+            <?php
+                require_once "MySQL/Protect.php";
+            ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -15,7 +17,6 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
-            <link rel="stylesheet" href="myPictures.css">
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
@@ -90,6 +91,7 @@
                     bottom: 0;
                     right:0;
                     z-index: 100;
+                    width: 30%;
                 }
 
             </style>

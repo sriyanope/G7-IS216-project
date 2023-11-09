@@ -1,6 +1,9 @@
 <!doctype html>
     <html lang="en">
         <head>
+            <?php
+                require_once "MySQL/Protect.php";
+            ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -73,6 +76,7 @@
                     bottom: 0;
                     right:0;
                     z-index: 100;
+                    width: 30%;
                 }
 
                 .switch {
@@ -261,7 +265,7 @@
 
                 <div class="row pt-3 ps-3">
                     <!-- results -->
-                    <div class="col-11" id="resultCount"></div>
+                    <div class="col-11" id="resultCount" style="font-style:italic;color:darkgreen"></div>
                 </div>
 
                 <div class="row pt-3">

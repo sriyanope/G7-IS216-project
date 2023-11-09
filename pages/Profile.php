@@ -1,6 +1,8 @@
 <!doctype html>
     <html lang="en">
-    <?php session_start(); ?>
+    <?php
+          require_once "MySQL/Protect.php";
+      ?>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -104,6 +106,7 @@
                 bottom: 0;
                 right:0;
                 z-index: 100;
+                width: 30%;
               }
 
             </style>
