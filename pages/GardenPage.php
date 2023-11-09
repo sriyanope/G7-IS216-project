@@ -91,6 +91,12 @@
                     right:0;
                     z-index: 100;
                 }
+                .nav-link {
+                  transition: all o.2s;
+                }
+                .nav-link:hover {
+                    border-bottom: 2px solid #547D2E;
+                    }
 
             </style>
 
@@ -116,7 +122,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
+                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>

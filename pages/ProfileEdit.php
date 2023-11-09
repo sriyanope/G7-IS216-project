@@ -122,7 +122,12 @@
                     width: 150px;
                     margin-right: 10px;
                 }
-
+                .nav-link {
+                  transition: all o.2s;
+                }
+        .nav-link:hover {
+          border-bottom: 2px solid #547D2E;
+        }
                 
             </style>
 
