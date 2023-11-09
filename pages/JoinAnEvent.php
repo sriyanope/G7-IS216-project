@@ -58,10 +58,8 @@
                     }
 
           .filter-container {
-            background-color: #f6f8e0;
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 5px;
             color: #547D2E;
             text-align: center;
             max-width: 300px;
@@ -107,7 +105,7 @@
           
           .filterHead {
           font-weight: 600;
-          font-size: 12px; 
+          font-size: 11px; 
           color: black;
           margin-bottom: 10px;
           text-align: center; 
@@ -165,6 +163,37 @@
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
 
+        }
+
+        .accordion{
+          max-width: 600px !important;
+          /* margin: 50px auto; */
+          box-shadow: 0 2px 25px 0 rgba(110, 130, 208, .38) !important;
+        }
+
+        .accordion-button{
+          background-color: #547D2E !important;
+          color: #fff !important;
+          position: relative;
+          box-shadow: none !important;
+        }
+
+        .accordion-button:active, .accordion-button:focus{
+          border: none !important;
+
+        }
+
+        .accordion-button:hover{
+          background:#3A833A  !important;
+        }
+
+        .accordion-button::after{
+          content: "";
+          background-image: url("../public/images/down-arrow.png") !important;
+          transform: scale(1.2);
+          border-radius: 3px;
+          transition: .5s !important;
+          align-items: center;
         }
 
         </style>
@@ -299,13 +328,15 @@
 
       <!-- content -->
       <div class="row">
-        <div class="col-2 filterHead">Filter results via:</div>
+        <div class="col-2 filterHead d-none d-lg-block">Filter results via:</div>
         <div class="col-3" id="resultCount"></div>
-        <div class="col-4"></div>
+        <div class="col-4">
+          
+          
+        </div>
 
         <!-- past events -->
         <div class="col-3">
-          
             <div style="display: flex; align-items: center;">
                   <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
                   <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px; ">
@@ -316,15 +347,15 @@
       </div>
       <!-- accordion filter -->
       <div class="row">
-        <div class="col-2">
+        <div class="col-2 d-none d-lg-block">
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   Event Date Range
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <div class="row filterHead text-center m-auto">Start Date:</div>
                   <div class="row">
@@ -347,28 +378,28 @@
               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <div class="row">
-                    <div class="bg-light filter-container" id="category-checkbox">
-                      <div class="form-check m-3">
+                    <div class="filter-container" id="category-checkbox">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="Workshop" onclick="filter(this.value)" id="workshop-checkbox">
                         <label class="form-check-label" for="workshop-checkbox">Workshop</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="Cleanup" onclick="filter(this.value)" id="cleanup-checkbox">
                         <label class="form-check-label" for="cleanup-checkbox">Cleanup</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="Education" onclick="filter(this.value)" id="education-checkbox">
                         <label class="form-check-label" for="education-checkbox">Education</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="Harvest" onclick="filter(this.value)" id="harvest-checkbox">
                         <label class="form-check-label" for="harvest-checkbox">Harvest</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="Leisure" onclick="filter(this.value)" id="leisure-checkbox">
                         <label class="form-check-label" for="leisure-checkbox">Leisure</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="Others" onclick="filter(this.value)" id="others-checkbox">
                         <label class="form-check-label" for="others-checkbox">Others</label>
                       </div>
@@ -386,24 +417,24 @@
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <div class="row">
-                    <div class="bg-light filter-container" id="region-checkbox">
-                      <div class="form-check m-3">
+                    <div class="filter-container" id="region-checkbox">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
                         <label class="form-check-label" for="north-checkbox">North</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
                         <label class="form-check-label" for="north-east-checkbox">North-East</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
                         <label class="form-check-label" for="central-checkbox">Central</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
                         <label class="form-check-label" for="east-checkbox">East</label>
                       </div>
-                      <div class="form-check m-3">
+                      <div class="form-check m-1">
                         <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
                         <label class="form-check-label" for="west-checkbox">West</label>
                       </div>
