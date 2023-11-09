@@ -134,7 +134,7 @@
 
 
     function getEventByEventId($eventId1) {
-        $sql = "select * from users u join event e join garden g on e.gardenID = g.gardenID where eventId = :eventId1;";
+        $sql = "select * from users u join event e join garden g on u.username = e.username and e.gardenID = g.gardenID where eventId = :eventId1;";
 
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
