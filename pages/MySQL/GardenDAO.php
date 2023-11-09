@@ -1,7 +1,7 @@
 <?php
 
     class GardenDAO {
-       
+
         public function getGardens() {
             $sql = "select * from garden order by gardenName"; 
 

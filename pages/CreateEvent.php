@@ -22,51 +22,52 @@
             <script src="https://unpkg.com/vue@next"></script>
             <!-- styling -->
             <style>
+              
               .nav-link {
                   transition: all o.2s;
+              }
+              .nav-link:hover {
+                border-bottom: 2px solid #547D2E;
+              }
+              a {
+                  font-size:14px;
+                  font-weight:700;
+                  color: black;
+                  }
+              .superNav {
+                  font-size:13px;
+                  }
+              .form-control {
+                  outline:none !important;
+                  box-shadow: none !important;
+                  }
+                
+                @media screen and (max-width:900px){
+                .centerOnMobile {
+                      text-align:center;
+                  }
                 }
-                .nav-link:hover {
-                  border-bottom: 2px solid #547D2E;
+
+                @media screen and (max-width: 308px) { 
+                  .logo { display: none; }  
                 }
-               a {
-                    font-size:14px;
-                    font-weight:700;
-                    color: black;
-                    }
-                .superNav {
-                    font-size:13px;
-                    }
-                .form-control {
-                    outline:none !important;
-                    box-shadow: none !important;
-                    }
-                  
-                 @media screen and (max-width:900px){
-                  .centerOnMobile {
-                        text-align:center;
-                    }
-                  }
 
-                  @media screen and (max-width: 308px) { 
-                    .logo { display: none; }  
-                  }
+                .navbar {
+                    background-color: #F6F8E0;
+                }
 
-                  .navbar {
-                      background-color: #F6F8E0;
-                  }
+                .btn{
+                    background-color: #547D2E;
+                }
 
-                  .btn{
-                      background-color: #547D2E;
-                  }
+                .bggreen {
+                    background-color: #B7CF9B;
+                }
 
-                  .bggreen {
-                      background-color: #B7CF9B;
-                  }
-
-                  .required::after {
-                    content: ' *';
-                    color: red;
-                  }
+                .required::after {
+                  content: ' *';
+                  color: red;
+                }
 
             </style>
 

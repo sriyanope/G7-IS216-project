@@ -1,6 +1,7 @@
 <!doctype html>
     <html lang="en">
         <head>
+
             <?php
                 require_once "MySQL/Protect.php";
             ?>
@@ -8,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-             <!-- google font API -->
+            <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
@@ -23,66 +24,63 @@
             <!-- styling -->
             <style>
                 a {
-                     font-size:14px;
-                     font-weight:700;
-                     color: black;
-                     }
-                 .superNav {
-                     font-size:13px;
-                     }
-                 .form-control {
-                     outline:none !important;
-                     box-shadow: none !important;
-                     }
-                     @media screen and (max-width:900px){
-                 .centerOnMobile {
-                         text-align:center;
-                     }
-                     }
- 
-                     @media screen and (max-width: 308px) { 
- 
-                       .logo { display: none; }  
- 
-                       }
- 
-                 .navbar {
-                     background-color: #F6F8E0;
-                 }
- 
-                 .btn{
-                     background-color: #547D2E;
-                 }
- 
-                 .bggreen {
-                     background-color: #B7CF9B;
-                     display: flex;
-                     flex-direction: column;
-                     min-height: 100vh;
-                 }
- 
-                 .noEventCentre {
-                     padding-top: 22%;
-                     padding-bottom: 22%;
-                     text-align: center;
-                 }
- 
-                 .carousel-control-prev, .carousel-control-next {
-                     background-color: rgba(0, 0, 0, 0.5);
-                     width: 3rem;
-                     height: 3rem;
-                     border-radius: 50%;
-                     opacity: 1;
-                     top: 50%;
-                     transform: translateY(-50%);
-                 }
- 
-                 .carousel-control-prev-icon, .carousel-control-next-icon {
-                     color: white;
-                     font-size: 1.5rem;
-                 }
+                    font-size:14px;
+                    font-weight:700;
+                    color: black;
+                }
+                .superNav {
+                    font-size:13px;
+                    }
+                .form-control {
+                    outline:none !important;
+                    box-shadow: none !important;
+                    }
+                    @media screen and (max-width:900px){
+                .centerOnMobile {
+                        text-align:center;
+                    }}
 
-                 #map {
+                @media screen and (max-width: 308px) { 
+                    .logo { display: none; }  
+                }
+
+                .navbar {
+                    background-color: #F6F8E0;
+                }
+
+                .btn{
+                    background-color: #547D2E;
+                }
+
+                .bggreen {
+                    background-color: #B7CF9B;
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 100vh;
+                }
+
+                .noEventCentre {
+                    padding-top: 22%;
+                    padding-bottom: 22%;
+                    text-align: center;
+                }
+
+                .carousel-control-prev, .carousel-control-next {
+                    background-color: rgba(0, 0, 0, 0.5);
+                    width: 3rem;
+                    height: 3rem;
+                    border-radius: 50%;
+                    opacity: 1;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                .carousel-control-prev-icon, .carousel-control-next-icon {
+                    color: white;
+                    font-size: 1.5rem;
+                }
+
+                #map {
                     height: 60vh;
                 }
 
@@ -94,7 +92,7 @@
                     width: 30%;
                 }
                 .nav-link {
-                  transition: all o.2s;
+                    transition: all o.2s;
                 }
                 .nav-link:hover {
                     border-bottom: 2px solid #547D2E;
@@ -108,38 +106,40 @@
         </head>
 
         <body>
-                  <div id="preloader">
-        <p>Loading...</p>
-      </div>
+
+            <div id="preloader">
+                <p>Loading...</p>
+            </div>
+            
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
 
-              <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
-                <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-                <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
+                    <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                    <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                    <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 
-                <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-                  <ul class="navbar-nav ms-auto">
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a href="Profile.php"><button class="btn btn-success text-white" href="#">
-                          <img src="../icons.png" width="30">
-                          My Profile</button></a>
-                    </li>
-                  </ul>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a href="Profile.php"><button class="btn btn-success text-white" href="#">
+                                <img src="../icons.png" width="30">
+                                My Profile</button></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </nav>
 
             <!-- content -->
@@ -161,16 +161,13 @@
                     <div class="col-md-6 mt-6">
                         <h3><b>My Notes</b><span id="bookmark"></span></h3>
                         <form id="EditNotes" method="post">
-                              <div class="mb-3">                    
+                            <div class="mb-3">                    
                                 <textarea name="notes" class="form-control" rows="14" cols="50" id="note"></textarea>
-                              </div>
+                            </div>
                             <button type="button" name="submit" class="btn btn-success text-white mb-5 mt-3" onclick="updateNote()">Update Note</button>
                         </form>
                     </div> 
                 </div>
-
-
-                
             </div>
 
 
@@ -181,33 +178,34 @@
             <?php $gardenId = $_GET['gardenId']; ?>;
 
             <script>
-            gardenId = <?php echo $_GET['gardenId']; ?>;
-            username = <?php echo $_SESSION['username']; ?>;
-            url = "MySQL/SavedGarden.php?type=show&username=" + username;
-            fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response.json();
-              })
-              .then(data => {
-                savedList = [];
-                for(garden of data.garden){
-                    savedList.push(garden.gardenID);
-                  }
-                  console.log(gardenId);
-                  console.log(savedList);
-                    if (savedList.indexOf(String(gardenId)) == -1) {
-                        btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' id="btn" class='bookmark-icon' onclick='save(this)'>`
-                    } else {
-                        btn = `<img src="../public/images/Bookmarked.png" style='height:40px' id="btn" class='bookmark-icon' onclick='unsave(this)'>`
+                
+                gardenId = <?php echo $_GET['gardenId']; ?>;
+                username = <?php echo $_SESSION['username']; ?>;
+                url = "MySQL/SavedGarden.php?type=show&username=" + username;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                  document.getElementById("bookmark").innerHTML = btn;
-                  })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
+                    return response.json();
+                })
+                .then(data => {
+                    savedList = [];
+                    for(garden of data.garden){
+                        savedList.push(garden.gardenID);
+                    }
+                    console.log(gardenId);
+                    console.log(savedList);
+                        if (savedList.indexOf(String(gardenId)) == -1) {
+                            btn = `<img src="../public/images/BookmarkNone.png" style='height:40px' id="btn" class='bookmark-icon' onclick='save(this)'>`
+                        } else {
+                            btn = `<img src="../public/images/Bookmarked.png" style='height:40px' id="btn" class='bookmark-icon' onclick='unsave(this)'>`
+                        }
+                    document.getElementById("bookmark").innerHTML = btn;
+                    })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
                 // function to initialise map
                 function initMap(lat, lng) {
@@ -223,7 +221,7 @@
                         position: { lat: Number(lat), lng: Number(lng) },
                         map
                     });
-                    }
+                }
 
                 // retrieve garden details and show google map
                 var username = <?php echo $_SESSION['username']; ?>;
@@ -314,7 +312,7 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-                    }
+                }
 
                 // Function to unsave garden
                 function unsave(this1){
@@ -337,36 +335,40 @@
                         .catch(error => {
                             console.error('Error:', error);
                         });
-                    }
+                }
 
                 // function to display an alert and automatically dismiss it after 5 seconds
                 function displayAlert(message, type) {
-                const notification = document.getElementById("notification");
-                const alert = document.createElement("div");
-                alert.className = `alert alert-${type} alert-dismissible fade show`;
-                alert.innerHTML = `${message}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>`;
-                notification.appendChild(alert);
-                setTimeout(function() {
-                    alert.style.display = "none";
-                }, 5000);
+                    const notification = document.getElementById("notification");
+                    const alert = document.createElement("div");
+                    alert.className = `alert alert-${type} alert-dismissible fade show`;
+                    alert.innerHTML = `${message}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>`;
+                    notification.appendChild(alert);
+                    setTimeout(function() {
+                        alert.style.display = "none";
+                    }, 5000);
                 }
 
                 getNote();
 
             </script>
 
-        <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1500);
-          });
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-      </body>
+            <script>
+
+                var loader = document.getElementById("preloader");
+                window.addEventListener("load", function(){
+                    setTimeout(() => {
+                    loader.style.display = "none";
+                    }, 1500);
+                });
+
+            </script>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+        
+        </body>
     </html>
