@@ -157,7 +157,7 @@
         }
 
         .title-style{
-          text-overflow:ellipsis;
+          text-overflow: ellipsis;
           overflow:hidden;
           white-space:nowrap;
           display: -webkit-box;

@@ -89,9 +89,17 @@
                 .nav-link {
                   transition: all o.2s;
                 }
-        .nav-link:hover {
-          border-bottom: 2px solid #547D2E;
-        }
+                .nav-link:hover {
+                border-bottom: 2px solid #547D2E;
+                }
+                .title-style{
+                    text-overflow: ellipsis;
+                    overflow:hidden;
+                    white-space:nowrap;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                }
                 
             </style>
 
@@ -238,11 +246,11 @@
                             <a href="javascript:void(0);" onclick='viewOrgEvent("${v}")' class="text-decoration-none text-dark">
                             <img class="card-img-top" src="${photo}">
                             <div class="card-body">
-                                <h4>${eventTitle}</h4>
+                                <h4 class='title-style'>${eventTitle}</h4>
                                 <p class="card-text">
                                 <img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}
                                 </p>
-                                <p>
+                                <p class='title-style'>
                                 <img src="../public/images/location pin.svg" class="pe-1">${gardenName}
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
