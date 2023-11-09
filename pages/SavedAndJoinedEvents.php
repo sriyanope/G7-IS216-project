@@ -27,7 +27,6 @@
             <style>
                a {
                     font-size:14px;
-                    font-weight:700;
                     color: black;
                     }
                 .superNav {
@@ -170,6 +169,27 @@
                     background: #B7CF9B;
                     transition: left 0.4s 0.2s, right 0.5s, background 0.35s;
                 }
+            
+                .custom-checkbox input[type="checkbox"] {
+                    outline: 2px solid black;
+                    background-color: white; 
+                }
+
+                .custom-checkbox input[type="checkbox"]:focus {
+                    outline: none;
+                }
+
+                .custom-checkbox input[type="checkbox"]:checked {
+                    outline: 2px solid #B7CF9B;
+                    background-color: #B7CF9B; 
+                }
+
+                .custom-checkbox-label {
+                    font-weight: bold;
+                    font-size: 20px;
+                    margin-left: 10px; 
+                }
+
                 
 
             </style>
@@ -219,32 +239,32 @@
                     <h1><b>My Events</b></h1>
                 </div>
                 <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-8 col-sm-5">
-                             <span class="switch">
-                            <input type="checkbox" id="flexSwitchCheckDefault" onchange="loadEvents()" >
+                    <div class="col-12 col-sm-5 d-flex align-items-center">
+                        <div class="switch">
+                            <input type="checkbox" id="flexSwitchCheckDefault" onchange="loadEvents()">
                             <label for="flexSwitchCheckDefault"></label>
-                            </span>
                         </div>
-                        <div class="col-3 col-sm-1">
-                            <!-- past events -->
-                            <div class="form-check" style="display: flex; align-items: center;">
-                                <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
-                                <label class="form-check-label" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px;">
-                                    Past Events
-                                </label>
-                            </div>
-                        </div>  
+
+                        <!-- past events -->
+                        <div class="custom-checkbox ml-5">
+                            <input class="form-check-input custom-checkbox" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
+                            <label class="form-check-label custom-checkbox-label" for="pastEventsCheckbox">
+                                Include Past Events
+                            </label>
+                        </div>
+                    </div>
                 </div>
+
+                
+
+
 
                 <div class="row pt-3 ps-3">
                     <!-- results -->
-                    <div class="col-1"></div>
                     <div class="col-11" id="resultCount"></div>
                 </div>
 
-                <div class="row px-3 mx-5">
-                    <div class="col-2"></div>
+                <div class="row pt-3">
                     <div class="album ">
                         <div class="col-2"></div>
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">

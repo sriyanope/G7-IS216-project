@@ -29,7 +29,6 @@
         <style>
           a {
               font-size:14px;
-              font-weight:700
               }
           .superNav {
               font-size:13px;
@@ -195,6 +194,7 @@
           transition: .5s !important;
           align-items: center;
         }
+        
 
         </style>
 

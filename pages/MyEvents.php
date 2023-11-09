@@ -19,7 +19,6 @@
             <style>
                a {
                     font-size:14px;
-                    font-weight:700;
                     color: black;
                     }
                 .superNav {
@@ -50,7 +49,6 @@
                 }
 
                 .bggreen {
-                    background-color: #B7CF9B;
                     display: flex;
                     flex-direction: column;
                     min-height: 100vh;
@@ -61,7 +59,32 @@
                     padding-bottom: 22%;
                     text-align: center;
                 }
+                .custom-checkbox {
+                    display: flex;
+                    align-items: center;
+                }
 
+                .custom-checkbox input[type="checkbox"] {
+                    outline: 2px solid black;
+                    background-color: white; 
+                }
+
+                .custom-checkbox input[type="checkbox"]:focus {
+                    outline: none;
+                }
+
+                .custom-checkbox input[type="checkbox"]:checked {
+                    outline: 2px solid #B7CF9B;
+                    background-color: #B7CF9B; 
+                }
+
+                .custom-checkbox-label {
+                    font-weight: bold;
+                    font-size: 20px;
+                    margin-left: 10px; 
+                }
+
+                
             </style>
 
             <!-- title -->
@@ -104,23 +127,23 @@
             </nav>
             
             <!-- if there are events-->
-            <div class="container-fluid bggreen" id="yesEvent">
+            <div class="container bggreen" id="yesEvent">
                 <div class="row pt-5 pb-4 mx-auto">
                     <h1><b>My Created Events</b></h1>
                 </div>
             
                 <!-- past events -->
-                <div class="row">
-                    <div class="col-9"></div>
-                    <div class="col-4">
-                        <div class="form-check" style="display: flex; align-items: center;">
-                            <input class="form-check-input" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
-                            <label class="form-check-label ps-2" for="flexCheckDefault" style="font-weight: bold; font-size: 20px; ">
-                                Past Events
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                <div class="row pb-4">
+    <div class="col-1"></div>
+    <div class="col-4">
+        <div class="custom-checkbox">
+            <input class="form-check-input custom-checkbox" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
+            <label class="form-check-label custom-checkbox-label" for="flexCheckDefault">
+                Include Past Events
+            </label>
+        </div>
+    </div>
+</div>
                 
                 
                 <div class="row px-3 mx-5">
