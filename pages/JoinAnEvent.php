@@ -118,6 +118,7 @@
               bottom: 0;
               right:0;
               z-index: 100;
+              width: 30%;
           }
 
           .redirectButton{
@@ -484,7 +485,7 @@
           <div style="padding-right:10px;">
               <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
               <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 15px; ">
-                  Include Past Events
+                  Show Past Events
               </label>
           </div>
         </div>
