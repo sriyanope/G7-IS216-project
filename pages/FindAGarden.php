@@ -278,7 +278,7 @@
                   });
                   map.setCenter({ lat: location.latitude, lng: location.longitude });
   
-                  // Clear existing markers and add the new one
+                  // clear existing map markers and add the new one
                   clearOverlays();
                   markersArray.push(marker);
           }
@@ -311,6 +311,7 @@
 
     <body>
 
+      <!-- loading page -->
       <div id="preloader">
         <p>Loading...</p>
       </div>
@@ -319,7 +320,7 @@
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
           <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-          <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+          <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
           <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -327,7 +328,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item ms-auto mt-1">
-                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
               </li>
               <li class="nav-item ms-auto mt-1">
                 <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -345,9 +346,10 @@
         </div>
       </nav>
 
-      <!-- Notification -->
+      <!-- notification -->
       <div id="notification" class="notification"></div>
 
+      <!-- button to go to top of the page -->
       <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
 
       
@@ -372,8 +374,7 @@
           <div class="col"></div>
         </div>
 
-
-
+        <!-- filter -->
         <div class="row">
           <div class="col-4 col-lg-2">
             <div class="col-2 filterHead">Region:</div>
@@ -694,7 +695,7 @@
           window.addEventListener("load", function(){
             setTimeout(() => {
               loader.style.display = "none";
-            }, 1500);
+            }, 800);
           });
           
         </script>

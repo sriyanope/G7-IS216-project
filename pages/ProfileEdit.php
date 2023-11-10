@@ -1,9 +1,10 @@
 <!doctype html>
     <html lang="en">
-    <?php
-          require_once "MySQL/Protect.php";
-      ?>
         <head>
+            
+            <?php
+                require_once "MySQL/Protect.php";
+            ?>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -41,17 +42,16 @@
                     outline:none !important;
                     box-shadow: none !important;
                     }
-                    @media screen and (max-width:900px){
-                .centerOnMobile {
+                
+                @media screen and (max-width:900px){
+                    .centerOnMobile {
                         text-align:center
-                    }
-                    }
+                }}
 
-                    @media screen and (max-width: 331px) { 
-                        .logo { 
-                            display: none;
-                        }
-                    }
+                @media screen and (max-width: 331px) { 
+                    .logo { 
+                        display: none;
+                }}
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -83,7 +83,7 @@
                     width:25px;
                     height:25px;
                 }
-               
+
                 .featureTitle{
                     font-family: 'Orelega One', sans-serif;
                     margin-top: 40px;
@@ -125,11 +125,12 @@
                     margin-right: 10px;
                 }
                 .nav-link {
-                  transition: all o.2s;
+                    transition: all o.2s;
                 }
-        .nav-link:hover {
-          border-bottom: 2px solid #547D2E;
-        }
+
+                .nav-link:hover {
+                    border-bottom: 2px solid #547D2E;
+                }
                 
             </style>
 
@@ -138,37 +139,40 @@
             
         </head>
         <body>
-                  <div id="preloader">
-        <p>Loading...</p>
-      </div>
+
+            <!-- loading page -->
+            <div id="preloader">
+                <p>Loading...</p>
+            </div>
+            
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
-              <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
-                <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-                <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
+                    <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                    <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
+                    <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 
-                <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-                  <ul class="navbar-nav ms-auto">
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a href="Profile.php"><button class="btn btn-success text-white" href="#">
-                          <img src="../icons.png" width="30">
-                          <span id="profileBtnText">My Profile</span></button></a>
-                    </li>
-                  </ul>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a href="Profile.php"><button class="btn btn-success text-white" href="#">
+                                    <img src="../icons.png" width="30">
+                                <span id="profileBtnText">My Profile</span></button></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </nav>
 
             <!-- user profile -->
@@ -182,8 +186,8 @@
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">Change Profile Photo</button>
                     </div>
                 </div>
-           
-                <!-- Modal -->
+
+                <!-- modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -339,28 +343,28 @@
 
             url = "MySQL/User.php?type=getUser&username=" + username;
             fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response.json();
-              })
-              .then(data => {
-                document.getElementById("username").value = data.user[0].username;
-                document.getElementById("gender").value = data.user[0].gender;
-                document.getElementById("fullName").value = data.user[0].fullName;
-                document.getElementById("email").value = data.user[0].email;
-                document.getElementById("bio").value = data.user[0].bio;
-                document.getElementById("instagram").value = data.user[0].instagram;
-                document.getElementById("telegram").value = data.user[0].telegram;
-                document.getElementById("profilePhoto").setAttribute("src", data.user[0].profilePhoto);
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("username").value = data.user[0].username;
+                    document.getElementById("gender").value = data.user[0].gender;
+                    document.getElementById("fullName").value = data.user[0].fullName;
+                    document.getElementById("email").value = data.user[0].email;
+                    document.getElementById("bio").value = data.user[0].bio;
+                    document.getElementById("instagram").value = data.user[0].instagram;
+                    document.getElementById("telegram").value = data.user[0].telegram;
+                    document.getElementById("profilePhoto").setAttribute("src", data.user[0].profilePhoto);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
-              // function to update MySQL on edited profile information
-              function updateUserProfile() {
+            // function to update MySQL on edited profile information
+            function updateUserProfile() {
                 let fullName = document.getElementById("fullName").value;
                 let email = document.getElementById("email").value;
                 let bio = document.getElementById("bio").value;
@@ -397,12 +401,12 @@
 
                     window.location="Profile.php";
                 }
-
-              }
-
+            }
 
 
-              const appFullName = Vue.createApp({
+
+            // vue for input validation
+            const appFullName = Vue.createApp({
                 data(){
                     return {fullName1: ""}
                 },
@@ -446,13 +450,16 @@
                 }
 
         </script>
+
         <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1500);
-          });
+
+            var loader = document.getElementById("preloader");
+            window.addEventListener("load", function(){
+                setTimeout(() => {
+                loader.style.display = "none";
+                }, 800);
+            });
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
 

@@ -1,6 +1,7 @@
 <!doctype html>
     <html lang="en">
         <head>
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -28,6 +29,7 @@
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
+            <!-- styling -->
             <style>
 
               .scroll-to-top-button {
@@ -75,7 +77,6 @@
                   left: 0;
                   right: 0;
                   bottom: 50%;
-                    /* top:0; */
                   display: inline-block;
                   text-align: center;
                   margin-bottom: -5em;
@@ -84,22 +85,27 @@
                   padding-left: 12px;
                   font-family: 'Orelega One', serif;
                   color: rgb(51, 95, 51)
-                  /* Outfit', sans-serif; */
                 }
 
             </style>
+
+            <!-- title-->
             <title>Home</title>
             
         </head>
+
         <body>
+
+          <!-- loading page -->
           <div id="preloader">
             <p>Loading...</p>
           </div>
           
+          <!-- nav bar -->
           <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
             <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
               <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-              <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+              <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
               <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -107,7 +113,7 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item ms-auto mt-1">
-                    <a class="nav-link mx-2 disabled" href="LandingPage.html"><i class="about"></i> About</a>
+                    <a class="nav-link mx-2 disabled" href="index.html"><i class="about"></i> About</a>
                   </li>
                   <li class="nav-item ms-auto mt-1">
                     <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -123,25 +129,8 @@
                 </ul>
               </div>
             </div>
-            </nav>
-          <!-- <section class="p-5 exploreMore">
-            <div class="exploreMoreText">
-              <img src="../public/images/4.png"/>
-              <img src="../public/images/6.png"/>
-              <img src="../public/images/7.png"/>
-              <img src="../public/images/8.png"/>
-              <img src="../public/images/10.png"/>
-              <img src=""/>
-              <img src=""/>
-              <div id="msg1">Looking For A Community Garden Near You?</div>
-              <div id="msg2">Introducing</div>
-              <div id="msg3">ECOmmunity</div>
-              <button>Explore</button>
-              <div id="character">
-                <img src="../public/images/6360237.jpg" style="height: 300px;"/>
-              </div>
-            </div>
-          </section> -->
+          </nav>
+
           <section class="exploreMore" style="padding: 0%; text-align: center;">
             <img src="../public/images/127.png"/>
             <div class="transexploreMore">
@@ -253,17 +242,17 @@
               <img src="../public/images/Frame 3.png"/>
             </div>
 
-            <!-- Notification -->
+            <!-- notification -->
             <div id="notification" class="notification"></div>
 
             <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button> 
             
-            <!-- Button trigger modal -->
+            <!-- button trigger modal -->
             <button type="button" class="btn btn-success d-none" data-toggle="modal" data-target="#exampleModal" id="notificationBtn">
               Notification
             </button>
 
-            <!-- Modal -->
+            <!-- modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -282,9 +271,6 @@
                 </div>
               </div>
             </div>
-
-
-            <!--Trialllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll-->
           </section>
 
           <script src="https://unpkg.com/scrollreveal"></script>
@@ -297,10 +283,7 @@
               delay:450,
               reset:true
             });
-            sr.reveal('.transexploreMore', {delay:200, origin:'left'})
-            // sr.reveal('.msg2', {delay:200, origin:'left'})
-            // sr.reveal('.msg3', {delay:200, origin:'left'})
-            
+            sr.reveal('.transexploreMore', {delay:200, origin:'left'})            
             sr.reveal('.aboutUsText', {delay:200, origin:'top'})
             sr.reveal('.transfacts', {delay:200, origin:'left'})
             sr.reveal('.transfacts1', {delay:500, origin:'bottom'})
@@ -316,8 +299,6 @@
 
           </script>
 
-      
-        <!--Put in landing pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-->
 
         <script>
 
@@ -391,15 +372,18 @@
 
         </script>
           
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
         <script>
+        
           var loader = document.getElementById("preloader");
           window.addEventListener("load", function(){
             setTimeout(() => {
               loader.style.display = "none";
-            }, 1000);
+            }, 800);
           });
+        
         </script>
-        </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>   
+      </body>
 
     </html>

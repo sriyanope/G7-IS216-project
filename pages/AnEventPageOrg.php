@@ -135,6 +135,7 @@
 
         <body>
 
+            <!-- loading screen -->
             <div id="preloader">
                 <p>Loading..</p>
             </div>
@@ -143,7 +144,7 @@
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
                 <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
                 <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
                 <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -151,7 +152,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item ms-auto mt-1">
-                        <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                        <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
                         </li>
                         <li class="nav-item ms-auto mt-1">
                         <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -211,6 +212,7 @@
                     </div>
                 </div>
 
+                <!-- participants -->
                 <div class="row"> 
                     <div class="col">
                     <h4>Participants</h4>
@@ -222,7 +224,7 @@
                     </div>
                 </div>
 
-                <!-- Edit this event -->
+                <!-- about this event -->
                 <div class="row"> 
                     <div class="col">
                         <h3 class="pt-4"><b>About this Event</b></h3>
@@ -230,7 +232,6 @@
                     </div>
                 </div>
 
-                <!-- comment -->
             <!-- comment -->
             <div class="row pt-3">
                 <div class="col">
@@ -261,6 +262,7 @@
 
                 <div class="row pt-3"> 
                     <div class="col">
+
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success mb-4" data-toggle="modal" data-target="#exampleModalLong">
                             Delete Event
@@ -456,10 +458,7 @@
                 function process(username, text) {
                     eventId = <?php echo $_GET['eventId']; ?>;
                     let gotoURL = "MySQL/chat.php?eventId=" + eventId;
-                    // this function process can be invoked with and without arguments.
-                    // When there is no argument passed in, we have no parameters to send to the API.
                     let getParameters = {};
-                    // If there are arguments passed in (i.e. parameter text has value), prepare the GET parameters to be sent to the API.
                     if (typeof text !== "undefined") {
                         getParameters.username = username;
                         getParameters.text = text;
@@ -504,14 +503,13 @@
 
             </script>
 
-
             <script>
 
                 var loader = document.getElementById("preloader");
                 window.addEventListener("load", function(){
                     setTimeout(() => {
                     loader.style.display = "none";
-                    }, 1500);
+                    }, 800);
                 });
 
             </script>

@@ -8,7 +8,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-             <!-- google font API -->
+            <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
@@ -17,10 +17,10 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
             <link rel="stylesheet" href="../style.css">
-           
+
             <!-- styling -->
             <style>
-               a {
+                a {
                     font-size:14px;
                     color: black;
                     }
@@ -33,15 +33,12 @@
                     }
                     @media screen and (max-width:900px){
                 .centerOnMobile {
-                        text-align:center;
-                    }
-                    }
+                    text-align:center;
+                }}
 
-                    @media screen and (max-width: 308px) { 
-
-                      .logo { display: none; }  
-
-                      }
+                @media screen and (max-width: 308px) { 
+                    .logo { display: none; }
+                }
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -87,7 +84,7 @@
                     margin-left: 10px; 
                 }
                 .nav-link {
-                  transition: all o.2s;
+                    transition: all o.2s;
                 }
                 .nav-link:hover {
                 border-bottom: 2px solid #547D2E;
@@ -128,41 +125,42 @@
             
         </head>
         <body>
-                  <div id="preloader">
-        <p>Loading...</p>
-      </div>
+            
+            <!-- loading page -->
+            <div id="preloader">
+                <p>Loading...</p>
+            </div>
+            
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
-
-              <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
-                <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
-                <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
+                    <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                    <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
+                    <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 
-                <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
-                  <ul class="navbar-nav ms-auto">
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
-                    </li>
-                    <li class="nav-item ms-auto mt-1">
-                      <a href="Profile.php"><button class="btn btn-success text-white" href="#">
-                          <img src="../icons.png" width="30">
-                          My Profile</button></a>
-                    </li>
-                  </ul>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a class="nav-link mx-2" href="FindAGarden.php"><i class="findAGarden"></i> Find A Garden</a>
+                            </li>
+                            <li class="nav-item ms-auto mt-1">
+                                <a href="Profile.php"><button class="btn btn-success text-white" href="#">
+                                <img src="../icons.png" width="30">
+                                My Profile</button></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </nav>
             
-            <!-- if there are events-->
             <div class="container bggreen" id="yesEvent">
                 <div class="row pt-5 pb-4 mx-auto">
                     <h1><b>My Created Events</b></h1>
@@ -175,13 +173,13 @@
                         <div class="custom-checkbox">
                             <input class="form-check-input custom-checkbox" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
                             <label class="form-check-label custom-checkbox-label" for="flexCheckDefault">
-                                Include Past Events
+                                Show Past Events
                             </label>
                         </div>
                     </div>
                 </div>
                 
-                
+                <!-- list of events -->
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-10 album">
@@ -193,14 +191,17 @@
                 </div>                                 
             </div>
 
+            <!-- button to go to the top of the page -->
             <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
+
+            <div class="container mb-3"></div>
 
             <!-- javascript -->
             <script>
 
+                // code for the button to go to the top of the page
                 const scrollToTopButton = document.getElementById('scrollToTopButton');
 
-                // Show the button when the user scrolls down 200 pixels
                 window.onscroll = function() {
                 if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                     scrollToTopButton.style.display = 'block';
@@ -208,11 +209,9 @@
                     scrollToTopButton.style.display = 'none';
                 }
                 };
-
-                // Scroll to the top of the page when the button is clicked
                 scrollToTopButton.addEventListener('click', function() {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
                 });
 
                 // function to head to the event page
@@ -248,101 +247,104 @@
                     return "Invalid Date";
                 }
 
-            // display the list of events
-            function showEvents(obj){
-                output = "";
-                for(event of obj.event){
-                    let eventId = event.eventId;
-                    let eventTitle = event.eventTitle;
-                    let category = event.category;
-                    let eventDate = event.eventDate;
-                    let startTime = event.startTime;
-                    let endTime = event.endTime;
-                    let noOfSlots = Number(event.noOfSlots);
-                    let filled = Number(event.filled);
-                    let about = event.about;
-                    let photo = event.photo;
-                    let review = event.review;
-                    let comment = event.comment;
-                    let username = event.username;
-                    let gardenId = event.gardenId;
-                    let gardenName = event.gardenName;
+                // display the list of events
+                function showEvents(obj){
+                    output = "";
+                    for(event of obj.event){
+                        let eventId = event.eventId;
+                        let eventTitle = event.eventTitle;
+                        let category = event.category;
+                        let eventDate = event.eventDate;
+                        let startTime = event.startTime;
+                        let endTime = event.endTime;
+                        let noOfSlots = Number(event.noOfSlots);
+                        let filled = Number(event.filled);
+                        let about = event.about;
+                        let photo = event.photo;
+                        let review = event.review;
+                        let comment = event.comment;
+                        let username = event.username;
+                        let gardenId = event.gardenId;
+                        let gardenName = event.gardenName;
 
-                    if(filled < (noOfSlots/2)){
-                        slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
-                        }else if(filled == noOfSlots){
-                        slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
-                        }else{
-                        slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
-                        }
+                        if(filled < (noOfSlots/2)){
+                            slots = "<span style='color:green'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                            }else if(filled == noOfSlots){
+                            slots = "<span style='color:red'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                            }else{
+                            slots = "<span style='color:orange'>" + filled + "/" + noOfSlots + " slots filled</span>";
+                            }
+                            
+                        eventDate = convertDateFormat(eventDate);
+                        startTime = convertTo12HourFormat(startTime);
+                        endTime = convertTo12HourFormat(endTime);
                         
-                    eventDate = convertDateFormat(eventDate);
-                    startTime = convertTo12HourFormat(startTime);
-                    endTime = convertTo12HourFormat(endTime);
-                    
-                    let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + photo + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
+                        let v = eventId + "_" + eventTitle + "_" + category + "_" + eventDate + "_" + startTime + "_" + endTime + "_" + noOfSlots + "_" + filled + "_" + about + "_" + photo + "_" + review + "_" + comment + "_" + username + "_" + gardenId;
 
-                    output += `<div class="col">
-                        <div class="card h-100">
-                            <a href="javascript:void(0);" onclick='viewOrgEvent("${v}")' class="text-decoration-none text-dark">
-                            <img class="card-img-top" src="${photo}">
-                            <div class="card-body">
-                                <h4 class='title-style'>${eventTitle}</h4>
-                                <p class="card-text">
-                                <img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}
-                                </p>
-                                <p class='title-style'>
-                                <img src="../public/images/location pin.svg" class="pe-1">${gardenName}
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                ${slots}
+                        output += `<div class="col">
+                            <div class="card h-100">
+                                <a href="javascript:void(0);" onclick='viewOrgEvent("${v}")' class="text-decoration-none text-dark">
+                                <img class="card-img-top" src="${photo}">
+                                <div class="card-body">
+                                    <h4 class='title-style'>${eventTitle}</h4>
+                                    <p class="card-text">
+                                    <img src="../public/images/calendar.svg" class="pe-1">${eventDate}<br>${startTime}-${endTime}
+                                    </p>
+                                    <p class='title-style'>
+                                    <img src="../public/images/location pin.svg" class="pe-1">${gardenName}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    ${slots}
+                                    </div>
                                 </div>
+                                </a>
                             </div>
-                            </a>
-                        </div>
-                        </div>
-                        `;
+                            </div>
+                            `;
                     }
                     document.getElementById("events").innerHTML = output;
-            }
-
-            function pastEvents(){
-                if(document.getElementById("pastEventsCheckbox").checked){
-                    url = "MySQL/Event.php?type=myEvents&pastEvents=1";
-                }else{
-                    url = "MySQL/Event.php?type=myEvents&pastEvents=0";
                 }
-                fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    showEvents(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            }
 
-            pastEvents()
+                // function to show the events
+                function pastEvents(){
+                    if(document.getElementById("pastEventsCheckbox").checked){
+                        url = "MySQL/Event.php?type=myEvents&pastEvents=1";
+                    }else{
+                        url = "MySQL/Event.php?type=myEvents&pastEvents=0";
+                    }
+                    fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        showEvents(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                pastEvents()
 
             </script>
 
-        <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1500);
-          });
-        </script>
+            <script>
+
+                var loader = document.getElementById("preloader");
+                window.addEventListener("load", function(){
+                    setTimeout(() => {
+                    loader.style.display = "none";
+                    }, 800);
+                });
+
+            </script>
 
 
 
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-      </body>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+        </body>
     </html>

@@ -1,10 +1,14 @@
 <html>
     <head>
+
+      <?php
+        require_once "MySQL/Protect.php";
+      ?>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-         <!-- google font API -->
+        <!-- google font API -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <!-- <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet"> -->
@@ -33,18 +37,15 @@
           .superNav {
               font-size:13px;
               }
-          /* .form-control {
-              outline:none !important;
-              box-shadow: none !important;
-              } */
-              @media screen and (max-width:900px){
-                .centerOnMobile {
-                  text-align:center
-                }
-              }
-              @media screen and (max-width: 280px) { 
-                .logo { display: none; }  
-              }
+          
+          @media screen and (max-width:900px){
+            .centerOnMobile {
+              text-align:center
+          }}
+
+          @media screen and (max-width: 280px) { 
+            .logo { display: none; }  
+          }
 
           .btn{
               background-color: #547D2E;
@@ -67,7 +68,6 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            /* overflow:auto; */
           }
 
           .form-check-input {
@@ -122,7 +122,6 @@
           }
 
           .redirectButton{
-            /* padding: 1em 2em; */
             border:0;
             border-radius: 0.25rem;
             cursor: pointer;
@@ -149,61 +148,67 @@
           height: 60px;
           cursor: pointer;
           padding: 0;
-        }
+          }
 
-        .scroll-to-top-button img {
-          display: block;
-          margin: 0 auto;
-        }
+          .scroll-to-top-button img {
+            display: block;
+            margin: 0 auto;
+          }
 
-        .title-style{
-          text-overflow: ellipsis;
-          overflow:hidden;
-          white-space:nowrap;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
+          .title-style{
+            text-overflow: ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
 
-        }
+          }
 
-        .button-container{
-          display: flex;
-        }
+          .button-container{
+            display: flex;
+          }
 
-        .event-options-container{
-          display:flex;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .collapse {
-                transition-property: height, visibility;
-                transition-duration: .35s;
-            }
-        }
+          .event-options-container{
+            display:flex;
+          }
+          @media (prefers-reduced-motion: reduce) {
+              .collapse {
+                  transition-property: height, visibility;
+                  transition-duration: .35s;
+              }
+          }
 
-        .nav-link {
-                  transition: all o.2s;
-                }
-                .nav-link:hover {
-                  border-bottom: 2px solid #547D2E;
-                }
-        
-        strong {
-          font-weight: 900;
-        }
+          .nav-link {
+                    transition: all o.2s;
+                  }
+                  .nav-link:hover {
+                    border-bottom: 2px solid #547D2E;
+                  }
+          
+          strong {
+            font-weight: 900;
+          }
+
         </style>
 
+        <!-- title -->
         <title>Join an Event</title>
 
     </head>
+
     <body>
+
+      <!-- loading page -->
       <div id="preloader">
         <p>Loading...</p>
       </div>
+
       <!-- nav bar-->
       <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm ">
         <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
           <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-          <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+          <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
           <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -211,7 +216,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item ms-auto mt-1">
-                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
               </li>
               <li class="nav-item ms-auto mt-1">
                 <a class="nav-link mx-2 disabled" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -246,7 +251,7 @@
         </div>
 
       <div class="row">
-       <!-- Create event (only seen larger than md screen) -->
+        <!-- Create event (only seen larger than md screen) -->
         <div class="col-4 pb-4 d-none d-md-block">
           <a href="EventLocation.php" style='color:black;'>
           <button type="button" class="btn btn-success redirectButton">
@@ -280,7 +285,7 @@
 
         <!-- Icon button for seeing your created event, for screen md or less -->
         <div class="col-4 pb-4 d-md-none">
-          <a href="EventLocation.php" style='color:white;'>
+          <a href="MyEvents.php" style='color:white;'>
           <button type="button" class="btn btn-success redirectButton">
             <div class="col pt-2">
               <img src="../public/images/file.png" width="40px" height="40px">
@@ -304,7 +309,7 @@
 
         <!-- Icon button for viewing your joined events, for screen md or less -->
         <div class="col-4 pb-4 d-md-none">
-          <a href="EventLocation.php" style='color:white;'>
+          <a href="SavedAndJoinedEvents.php" style='color:white;'>
           <button type="button" class="btn btn-success redirectButton">
             <div class="col pt-1">
               <img src="../public/images/team.png" width="45px" height="45px">
@@ -321,6 +326,7 @@
 
       <!-- content -->
       <div class="row">
+        <!-- date range filter -->
         <div class="col-1"><p class="filterHead pe-2 float-start">Filter:</p></div>
         <div class="col-md-6 order-lg-1 order-5" style="display:inline-block;">
             <button style="border-color: white;position:relative;" class="btn btn-success " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
@@ -342,6 +348,8 @@
             <button style="border-color: white;position:relative;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
               Category
             </button>
+
+            <!-- event category filter -->
             <div class="collapse" id="collapseExample2">
               <div class="card card-body">
               <div class="row">
@@ -377,6 +385,8 @@
             <button style="border-color: white;left:169px;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
               Location
             </button>
+
+            <!-- region filter -->
             <div class="collapse" id="collapseExample3">
               <div class="card card-body">
                 <div class="row">
@@ -408,6 +418,7 @@
         </div>
         <div class="col-lg-2 order-lg-4 order-2 float-start" style="display:inline-block;">
               <div>
+                  <!-- shows events that has full slots -->
                   <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
                     <label class="" for="fullCheckbox" style="font-weight: bold; font-size: 15px; ">
                       Include Full Slots
@@ -416,6 +427,7 @@
         </div>
         <div class="col-lg-2 order-lg-5 order-1 float-start" style="display:inline-block;">
           <div>
+              <!-- show past events -->
               <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
               <label class="" for="pastEventsCheckbox" style="font-weight: bold; font-size: 15px; ">
                   Show Past Events
@@ -428,11 +440,8 @@
         <div class="col">
           <div class="bg-light">
             <div class="album py-3 bg-light">
-              <!--div class="album py-5 bg-light"-->
                 <div class="container">
-                  <!-- change here -->
                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
-                  <!-- div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" -->
                   </div>
                 </div>
             </div>
@@ -440,16 +449,18 @@
         </div>
       </div>
 
-    <!-- Notification -->
-    <div id="notification" class="notification"></div>
+      <!-- notification -->
+      <div id="notification" class="notification"></div>
 
-    <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
+      <!-- button to get to the top of the page -->
+      <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
 
-    <div class="container m-5"></div>
+      <div class="container m-5"></div>
 
       <!-- javascript -->
       <script>
 
+        // backend for button to top of the page
         const scrollToTopButton = document.getElementById('scrollToTopButton');
 
         // Show the button when the user scrolls down 200 pixels
@@ -460,11 +471,9 @@
             scrollToTopButton.style.display = 'none';
           }
         };
-
-        // Scroll to the top of the page when the button is clicked
         scrollToTopButton.addEventListener('click', function() {
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
         });
 
         // function to update event list when user uses the filter or types in the search bar
@@ -631,116 +640,112 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-
-
-
-
-
         }
 
-          function retrieveEventDetails(event) {
-              if(typeof event === 'string'){
-                event = event.split("aaaaa");
-              }
-
-                return {
-                  eventId: event[0],
-                  eventTitle: event[1],
-                  category: event[2],
-                  eventDate: event[3],
-                  startTime: event[4],
-                  endTime: event[5],
-                  noOfSlots: Number(event[6]),
-                  filled: Number(event[7]),
-                  about: event[8],
-                  photo: event[9],
-                  username: event[10],
-                  gardenId: event[11],
-                  gardenName: event[12]
-                };
+        function retrieveEventDetails(event) {
+            if(typeof event === 'string'){
+              event = event.split("aaaaa");
             }
+              return {
+                eventId: event[0],
+                eventTitle: event[1],
+                category: event[2],
+                eventDate: event[3],
+                startTime: event[4],
+                endTime: event[5],
+                noOfSlots: Number(event[6]),
+                filled: Number(event[7]),
+                about: event[8],
+                photo: event[9],
+                username: event[10],
+                gardenId: event[11],
+                gardenName: event[12]
+              };
+        }
 
-          function save(this1, event){
-            let eventObj = retrieveEventDetails(event);
-            let eventId = eventObj.eventId;
-            url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
-            fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response;
-              })
-              .then(data => {
-                this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
-                this1.setAttribute("src", "../public/images/Bookmarked.png");
-                displayAlert("Event added to saved list", "warning");
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
-          }
+        // function to save event
+        function save(this1, event){
+          let eventObj = retrieveEventDetails(event);
+          let eventId = eventObj.eventId;
+          url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
+            })
+            .then(data => {
+              this1.setAttribute("onclick", "unsave(this, this.getAttribute('data-value'))");
+              this1.setAttribute("src", "../public/images/Bookmarked.png");
+              displayAlert("Event added to saved list", "warning");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
 
-          function unsave(this1, event){
-            let eventObj = retrieveEventDetails(event);
-            let eventId = eventObj.eventId;
-            url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
-            fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response;
-              })
-              .then(data => {
-                this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
-                this1.setAttribute("src", "../public/images/BookmarkNone.png");
-                displayAlert("Event removed from saved list", "warning");
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
-          }
+        // function to unsave event
+        function unsave(this1, event){
+          let eventObj = retrieveEventDetails(event);
+          let eventId = eventObj.eventId;
+          url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
+          fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
+            })
+            .then(data => {
+              this1.setAttribute("onclick", "save(this, this.getAttribute('data-value'))");
+              this1.setAttribute("src", "../public/images/BookmarkNone.png");
+              displayAlert("Event removed from saved list", "warning");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
 
-          // function to display an alert and automatically dismiss it after 5 seconds
-          function displayAlert(message, type) {
-            const notification = document.getElementById("notification");
-            const alert = document.createElement("div");
-            alert.className = `alert alert-${type} alert-dismissible fade show`;
-            alert.innerHTML = `${message}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>`;
-            notification.appendChild(alert);
-            setTimeout(function() {
-                alert.style.display = "none";
-            }, 5000);
-          }
+        // function to display an alert and automatically dismiss it after 5 seconds
+        function displayAlert(message, type) {
+          const notification = document.getElementById("notification");
+          const alert = document.createElement("div");
+          alert.className = `alert alert-${type} alert-dismissible fade show`;
+          alert.innerHTML = `${message}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>`;
+          notification.appendChild(alert);
+          setTimeout(function() {
+              alert.style.display = "none";
+          }, 5000);
+        }
 
-          filter();
-          // pull messages every 1 second
-          window.setInterval(filter, 3000);
+        // populate the page
+        filter();
 
-          // pull messages every 1 second
-          window.setInterval(filter, 3000);
+        // runs the filter function every 3 seconds
+        window.setInterval(filter, 3000);
           
       </script>
+
       <script>
+
           var loader = document.getElementById("preloader");
           window.addEventListener("load", function(){
             setTimeout(() => {
               loader.style.display = "none";
-            }, 1500);
+            }, 800);
           });
           $(document).ready(function(){
             $('.btn').click(function(){
               $('.collapse').collapse('hide');
             });
           });
+
       </script>
 
-
-      <!-- Bootstrap JS bundle to be placed before the closing </body> tag -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
       
     </body>
