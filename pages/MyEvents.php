@@ -100,6 +100,26 @@
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
                 }
+
+                .scroll-to-top-button {
+                    display: none;
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 99;
+                    background-color: #547D2E;
+                    border: none;
+                    border-radius: 50%;
+                    width: 60px;
+                    height: 60px;
+                    cursor: pointer;
+                    padding: 0;
+                }
+
+                .scroll-to-top-button img {
+                    display: block;
+                    margin: 0 auto;
+                }
                 
             </style>
 
@@ -150,30 +170,51 @@
             
                 <!-- past events -->
                 <div class="row pb-4">
-    <div class="col-1"></div>
-    <div class="col-4">
-        <div class="custom-checkbox">
-            <input class="form-check-input custom-checkbox" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
-            <label class="form-check-label custom-checkbox-label" for="flexCheckDefault">
-                Include Past Events
-            </label>
-        </div>
-    </div>
-</div>
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <div class="custom-checkbox">
+                            <input class="form-check-input custom-checkbox" type="checkbox" value="" id="pastEventsCheckbox" onclick="pastEvents()">
+                            <label class="form-check-label custom-checkbox-label" for="flexCheckDefault">
+                                Include Past Events
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 
                 
-                <div class="row px-3 mx-5">
-                    <div class="album ">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10 album">
                         <div class="container">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events">
                             </div>
                         </div>
                     </div>
-                </div>                                  
+                </div>                                 
             </div>
+
+            <button id="scrollToTopButton" class="scroll-to-top-button"><img src="../public/images/arrowUp.png"></button>
 
             <!-- javascript -->
             <script>
+
+                const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+                // Show the button when the user scrolls down 200 pixels
+                window.onscroll = function() {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    scrollToTopButton.style.display = 'block';
+                } else {
+                    scrollToTopButton.style.display = 'none';
+                }
+                };
+
+                // Scroll to the top of the page when the button is clicked
+                scrollToTopButton.addEventListener('click', function() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+                });
+
                 // function to head to the event page
                 function viewOrgEvent(garden){
                     eventId = garden.split("_")[0];
