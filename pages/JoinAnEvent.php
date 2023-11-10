@@ -353,7 +353,7 @@
         <div class="col-md-6">
           <div class="button-container">
             <p class="filterHead pe-2">Filter:</p>
-            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+            <button style="border-color: white;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
               Date
             </button>
             <div class="collapse" id="collapseExample1">
@@ -369,7 +369,7 @@
                   </div>
               </div>
             </div>
-            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+            <button style="border-color: white;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
               Category
             </button>
             <div class="collapse" id="collapseExample2">
@@ -404,7 +404,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+            <button style="border-color: white;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
               Location
             </button>
             <div class="collapse" id="collapseExample3">
