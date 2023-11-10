@@ -89,7 +89,7 @@
                     bottom: 0;
                     right:0;
                     z-index: 100;
-                    width: 30%;
+                    width: 40%;
                 }
                 .nav-link {
                     transition: all o.2s;
@@ -154,7 +154,7 @@
 
                 <div class="row"> 
                     <!-- <div class="col-1"></div>  -->
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-5">
                         <h3><b>Location</b></h3>
                         <div id="map"></div>
                     </div> 

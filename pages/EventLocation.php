@@ -3,6 +3,10 @@
       <?php
           require_once "MySQL/Protect.php";
       ?>
+
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +23,7 @@
       <style>
         
         #map {
+            height: 470px;
             width: 100%;
             aspect-ratio: 1/1;
         }
@@ -65,7 +70,7 @@
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
           color: #547D2E;
           text-align: center;
-          max-width: 125px;
+          max-width: 150px;
           margin: 0, auto;
           display: flex; 
           flex-direction: column; 
@@ -122,7 +127,7 @@
           bottom: 0;
           right:0;
           z-index: 100;
-          width: 30%;
+          width: 40%;
         }
 
         .bookmark-container {
@@ -155,6 +160,11 @@
                 }
         .nav-link:hover {
           border-bottom: 2px solid #547D2E;
+        }
+
+        .wrap {
+          height:470px;
+          overflow-y:scroll;
         }
 
       </style>
@@ -274,78 +284,71 @@
 
       <!-- content -->
       <div class="container">
+        <!-- search textbox -->
+        <div class="row p-5">
+          <div class="col"></div>
           <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
+            <div class="col-12 col-sm-4 mx-auto">
+              <h2>
+                <b>Find a Garden</b>
+              </h2>
+            </div>
 
-              <!-- search textbox -->
-              <div class="row p-5">
-                <div class="col"></div>
-                <div class="col-3 mx-auto">
-                  <h2>
-                    <b>Find a Garden</b>
-                  </h2>
-
-                </div>
-                <div class="col-7 mx-auto">
-                  <div class="input-group">
-                    <input class="form-control border-end-0 border rounded-pill" type="text" id="search" placeholder="Search" onkeyup="filter(this.value)">
-                    
-                    
-                  </div>
-                </div>
-                <div class="col"></div>
-              </div>
-
-              <!-- filter -->
-              <div class="row">
-                <div class="col-2 filterHead mt-1">Filter By Region:</div>
-                <div class="col-3" id="resultCount"></div>
-              </div>
-
-              <div class="row">
-                <div class="col-2">
-                  <div class="bg-light filter-container" id="region-checkbox">
-                    <div class="form-check m-3">
-                      <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
-                      <label class="form-check-label fs-6" for="north-checkbox">North</label>
-                    </div>
-                    <div class="form-check m-3">
-                      <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
-                      <label class="form-check-label fs-6" for="north-east-checkbox">North-East</label>
-                    </div>
-                    <div class="form-check m-3">
-                      <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
-                      <label class="form-check-label fs-6" for="central-checkbox">Central</label>
-                    </div>
-                    <div class="form-check m-3">
-                      <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
-                      <label class="form-check-label fs-6" for="east-checkbox">East</label>
-                    </div>
-                    <div class="form-check m-3">
-                      <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
-                      <label class="form-check-label fs-6" for="west-checkbox">West</label>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- garden list -->
-                <div class="col-5">
-                  <div class="bg-light" id="gardens"></div>
-                </div>
-
-                <!-- google map -->
-                <div class="col-5">
-                  <div class="bg-light">
-                    <div id="map"></div>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
-                  </div>
-                </div> 
+            <div class="col-12 col-sm-8 mx-auto">
+              <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" id="search" placeholder="Search" onkeyup="filter(this.value)">
               </div>
             </div>
-            <div class="col-1"></div>
           </div>
+          <div class="col"></div>
         </div>
+
+
+
+        <div class="row">
+          <div class="col-4 col-lg-2">
+            <div class="col-2 filterHead">Region:</div>
+            <div class="bg-light filter-container" id="region-checkbox">
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
+                <label class="form-check-label" for="north-checkbox">North</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
+                <label class="form-check-label" for="north-east-checkbox">North-East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
+                <label class="form-check-label" for="central-checkbox">Central</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
+                <label class="form-check-label" for="east-checkbox">East</label>
+              </div>
+              <div class="form-check m-3">
+                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
+                <label class="form-check-label" for="west-checkbox">West</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- garden list -->
+          <div class="col-8 col-lg-5">
+            <div id="resultCount" style="font-style:italic;color:darkgreen"></div>
+            <div class="bg-light wrap" id="gardens"></div>
+          </div>
+
+          <!-- google map -->
+          <div class="col-12 col-lg-5">
+            <div class="col-2 filterHead" style="color:white">.</div>
+            <div class="bg-light">
+              <div id="map"></div>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlsN7cu3WF-W3FGrtJ7l9El4nKPAyN1r8&map_ids=40c99f5bd3e0f892&callback=initMap"></script>
+            </div>
+          </div>
+
+        </div>
+      </div>
       
         <div class="container m-5"></div>
 
