@@ -413,7 +413,7 @@
                         return response;
                     })
                     .then(data => {
-                        window.location="myEvents.php";
+                        window.location="MyEvents.php";
                     })
                     .catch(error => {
                         console.error('Error:', error);

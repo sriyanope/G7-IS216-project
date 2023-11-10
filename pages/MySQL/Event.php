@@ -212,7 +212,7 @@
         $connMgr = new ConnectionManager();
         $pdo = $connMgr->getConnection();
 
-        $sql = "insert into userevent values (:eventId, :username, '');";
+        $sql = "insert into userevent values (:eventId, :username);";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
