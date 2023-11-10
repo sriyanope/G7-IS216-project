@@ -218,7 +218,9 @@
                   border-bottom: 2px solid #547D2E;
                 }
         
-
+        strong {
+          font-weight: 900;
+        }
         </style>
 
         <title>Join an Event</title>
