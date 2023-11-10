@@ -13,7 +13,7 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@700&display=swap" rel="stylesheet">
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="../style.css">
+            <link rel="stylesheet" href="CSS/style.css">
             <!--reCAPTHA v2.0-->
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
             <!--Vue-->
@@ -153,7 +153,7 @@
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
                 <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
-                    <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                    <img src="../public/images/logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
                     <a class="navbar-brand me-auto" href="#"> <strong>ECOmmunity</strong></a>
                     <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -172,7 +172,6 @@
                             </li>
                             <li class="nav-item ms-auto mt-1">
                                 <a href="#"><button class="btn btn-success text-white py-2" href="#">
-                                <!-- <img src="../icons.png" width="30"> -->
                                 Sign Up/Login</button></a>
                             </li>
                         </ul>

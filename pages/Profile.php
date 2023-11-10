@@ -22,7 +22,7 @@
             <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Outfit:wght@600&display=swap" rel="stylesheet">
 
             <!-- CSS stylesheet -->
-            <link rel="stylesheet" href="../style.css">
+            <link rel="stylesheet" href="CSS/style.css">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -135,7 +135,7 @@
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
               <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
-                <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
+                <img src="../public/images/logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
                 <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
                 <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -154,7 +154,7 @@
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a href="Profile.php"><button class="btn btn-success text-white" href="#">
-                          <img src="../icons.png" width="30">
+                          <img src="../public/images/icons.png" width="30">
                           <span id="profileBtnText">My Profile</span></button></a>
                     </li>
                   </ul>
@@ -191,7 +191,6 @@
                     return response.json();
                 })
                 .then(data => {
-                  console.log(data.user)
                   document.getElementById("fullName").innerText = data.user[0].fullName;
                   document.getElementById("email").innerText = data.user[0].email;
                   document.getElementById("copyButton").setAttribute("data-value", data.user[0].email);
