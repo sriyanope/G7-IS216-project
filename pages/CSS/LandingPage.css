@@ -190,6 +190,10 @@ body {
     color: white;
     text-decoration:none
   }
+  .aboutUsText a:hover {
+    color: white;
+    text-decoration:none
+  }
   .aboutUsText a.FaGarden {
     vertical-align: middle;
     margin-right: 5px;
