@@ -2,24 +2,24 @@
 
 Group members: Yubin, Samyuktha, Sriya, Wen Xian
 
-## URL for deployed application
-http://13.215.200.46/pages/index.html  
+## Key information regarding the project
+**Deployment URL:** http://13.215.200.46/pages/index.html  
 
 The user accounts has been set up, with the following account details:  
 
-USER 1:
+**USER 1:**
 Username: 11111111
 Password: 11111111
 
-USER 2:
+**USER 2:**
 Username: 22222222
 Password: 22222222
 
-USER 3:
+**USER 3:**
 Username: 33333333
 Password: 33333333
 
-USER 4:
+**USER 4:**
 Username: 44444444
 Password: 44444444
 
