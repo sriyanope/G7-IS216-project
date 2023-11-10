@@ -67,7 +67,7 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            overflow:auto;
+            /* overflow:auto; */
           }
 
           .form-check-input {
@@ -79,7 +79,7 @@
             font-weight: 600;
             font-size: 18px;
             cursor: pointer;
-            margin: 10px;
+            margin: 5px;
             position: relative;
             transition: color 0.3s ease, transform 0.3s ease;
           }
@@ -166,37 +166,6 @@
 
         }
 
-        .accordion{
-          max-width: 600px !important;
-          /* margin: 50px auto; */
-          box-shadow: 0 2px 25px 0 rgba(110, 130, 208, .38) !important;
-        }
-
-        .accordion-button{
-          background-color: #547D2E !important;
-          color: #fff !important;
-          position: relative;
-          box-shadow: none !important;
-        }
-
-        .accordion-button:active, .accordion-button:focus{
-          border: none !important;
-
-        }
-
-        .accordion-button:hover{
-          background:#3A833A  !important;
-        }
-
-        .accordion-button::after{
-          content: "";
-          background-image: url("../public/images/down-arrow.png") !important;
-          transform: scale(1.2);
-          border-radius: 3px;
-          transition: .5s !important;
-          align-items: center;
-        }
-
         .button-container{
           display: flex;
         }
@@ -227,7 +196,7 @@
 
     </head>
     <body>
-            <div id="preloader">
+      <div id="preloader">
         <p>Loading...</p>
       </div>
       <!-- nav bar-->
@@ -304,7 +273,7 @@
         <div class="col-4 pb-4 d-none d-md-block">
           <a href="MyEvents.php" style='color:white;'>
           <button type="button" class="btn btn-success redirectButton">
-            Already created an event? <br> <span style="font-weight:bold;color:white;font-size:medium">Check them out!</span>
+            Already created an event? <br> <span style="font-weight:bold;color:white;font-size:medium;">Check them out!</span>
           </button></a>
         </div>
         <!-- End of see your created event (only seen larger than md screen) -->
@@ -328,7 +297,7 @@
         <div class="col-4 pb-4 d-none d-md-block">
         <a href="SavedAndJoinedEvents.php" style='color:white;'>
           <button type="button" class="btn btn-success redirectButton">
-            Joined or saved an event? <br><span style="font-weight:bold;color:white;font-size:medium">View them here!</span>
+            Joined or saved an event? <br><span style="font-weight:bold;color:white;font-size:medium;">View them here!</span>
           </button></a>
         </div>
         <!-- End of view your atteneded/joined event (only seen larger than md screen) -->
@@ -352,10 +321,9 @@
 
       <!-- content -->
       <div class="row">
-        <div class="col-md-6">
-          <div class="button-container">
-            <p class="filterHead pe-2">Filter:</p>
-            <button style="border-color: white;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+        <div class="col-1"><p class="filterHead pe-2 float-start">Filter:</p></div>
+        <div class="col-md-6 order-lg-1 order-5" style="display:inline-block;">
+            <button style="border-color: white;position:relative;" class="btn btn-success " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
               Date
             </button>
             <div class="collapse" id="collapseExample1">
@@ -371,7 +339,7 @@
                   </div>
               </div>
             </div>
-            <button style="border-color: white;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+            <button style="border-color: white;position:relative;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
               Category
             </button>
             <div class="collapse" id="collapseExample2">
@@ -406,7 +374,7 @@
                 </div>
               </div>
             </div>
-            <button style="border-color: white;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+            <button style="border-color: white;left:169px;" class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
               Location
             </button>
             <div class="collapse" id="collapseExample3">
@@ -437,63 +405,19 @@
                   </div>
               </div>
             </div>
-            <!-- <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
-              Event Options
-            </button>
-            <div class="collapse" id="collapseExample4">
-              <div class="card card-body">
-                <div style="display: flex; align-items: center;">
-                  <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
-                  <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 20px; ">
-                    Include Fully Filled
-                  </label>
-                </div>
-                <div style="display: flex; align-items: center;">
-                  <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
-                  <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px; ">
-                      Include Past Events
-                  </label>
-                </div>
-              </div>
-            </div> -->
-   
-            
-            
-
-          </div>
         </div>
-
-          <!-- past events -->
-        <!-- <div class="col-2">
-          <div style="display: flex; align-items: center;">
-            <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
-            <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 20px; ">
-                Include Fully Filled
-            </label>
-          </div>
-        </div> -->
-
-        <!-- past events -->
-        <!-- <div class="col-2">
-            <div style="display: flex; align-items: center;">
-                  <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
-                  <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 20px; ">
-                      Include Past Events
-                  </label>
-            </div>
-        </div> -->
-        <div class="col-md-3 col" style="text-align:right;">
-              <div style="padding-right:10px;">
+        <div class="col-lg-2 order-lg-4 order-2 float-start" style="display:inline-block;">
+              <div>
                   <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
-                    <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 15px; ">
+                    <label class="" for="fullCheckbox" style="font-weight: bold; font-size: 15px; ">
                       Include Full Slots
                     </label>
               </div>
         </div>
-        <div class="col-md-3 col" style="text-align:left;">
-          <div style="padding-right:10px;">
+        <div class="col-lg-2 order-lg-5 order-1 float-start" style="display:inline-block;">
+          <div>
               <input type="checkbox" value="" id="pastEventsCheckbox" onclick="filter(this.value)">
-              <label class="ps-2" for="pastEventsCheckbox" style="font-weight: bold; font-size: 15px; ">
+              <label class="" for="pastEventsCheckbox" style="font-weight: bold; font-size: 15px; ">
                   Show Past Events
               </label>
           </div>
@@ -515,203 +439,6 @@
           </div>
         </div>
       </div>
-        
-
-      <!-- accordion filter -->
-      <!-- <div class="row"> -->
-        <!-- <div class="col-2 d-none d-lg-block">
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  Event Date Range
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <div class="row filterHead text-center m-auto">Start Date:</div>
-                  <div class="row">
-                    <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
-                  </div>
-
-                  <div class="row filterHead text-center pt-2 m-auto">End Date:</div>
-                  <div class="row">
-                    <input type="date" class="form-control" name="eventDateTo" id="eventDateTo" onchange="filter(this.value)">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Event Category
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <div class="row">
-                    <div class="filter-container" id="category-checkbox">
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="Workshop" onclick="filter(this.value)" id="workshop-checkbox">
-                        <label class="form-check-label" for="workshop-checkbox">Workshop</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="Cleanup" onclick="filter(this.value)" id="cleanup-checkbox">
-                        <label class="form-check-label" for="cleanup-checkbox">Cleanup</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="Education" onclick="filter(this.value)" id="education-checkbox">
-                        <label class="form-check-label" for="education-checkbox">Education</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="Harvest" onclick="filter(this.value)" id="harvest-checkbox">
-                        <label class="form-check-label" for="harvest-checkbox">Harvest</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="Leisure" onclick="filter(this.value)" id="leisure-checkbox">
-                        <label class="form-check-label" for="leisure-checkbox">Leisure</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="Others" onclick="filter(this.value)" id="others-checkbox">
-                        <label class="form-check-label" for="others-checkbox">Others</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Location
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <div class="row">
-                    <div class="filter-container" id="region-checkbox">
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
-                        <label class="form-check-label" for="north-checkbox">North</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
-                        <label class="form-check-label" for="north-east-checkbox">North-East</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
-                        <label class="form-check-label" for="central-checkbox">Central</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
-                        <label class="form-check-label" for="east-checkbox">East</label>
-                      </div>
-                      <div class="form-check m-1">
-                        <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
-                        <label class="form-check-label" for="west-checkbox">West</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-                  <!-- event list -->
-        
-        
-        <!-- filter-->
-        <!-- <div class="col-2">
-          <div class="row">
-            <input type="date" class="form-control" name="eventDate" id="eventDate" onchange="filter(this.value)">
-          </div>
-
-          <div class="row filterHead">Date To:</div>
-          <div class="row">
-            <input type="date" class="form-control" name="eventDateTo" id="eventDateTo" onchange="filter(this.value)">
-          </div>
-          
-          <div class="row">
-            <div class="filterHead mt-4">Category:</div>
-          </div>
-
-          <div class="row">
-          <div class="bg-light filter-container" id="category-checkbox">
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="Workshop" onclick="filter(this.value)" id="workshop-checkbox">
-                <label class="form-check-label" for="workshop-checkbox">Workshop</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="Cleanup" onclick="filter(this.value)" id="cleanup-checkbox">
-                <label class="form-check-label" for="cleanup-checkbox">Cleanup</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="Education" onclick="filter(this.value)" id="education-checkbox">
-                <label class="form-check-label" for="education-checkbox">Education</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="Harvest" onclick="filter(this.value)" id="harvest-checkbox">
-                <label class="form-check-label" for="harvest-checkbox">Harvest</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="Leisure" onclick="filter(this.value)" id="leisure-checkbox">
-                <label class="form-check-label" for="leisure-checkbox">Leisure</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="Others" onclick="filter(this.value)" id="others-checkbox">
-                <label class="form-check-label" for="others-checkbox">Others</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="filterHead mt-4">Location:</div>
-          </div>
-
-          <div class="row">
-          <div class="bg-light filter-container" id="region-checkbox">
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
-                <label class="form-check-label" for="north-checkbox">North</label>
-              </div>
-              <div class="form-check m-3">
-               <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
-                <label class="form-check-label" for="north-east-checkbox">North-East</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
-                <label class="form-check-label" for="central-checkbox">Central</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
-                <label class="form-check-label" for="east-checkbox">East</label>
-              </div>
-              <div class="form-check m-3">
-                <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
-                <label class="form-check-label" for="west-checkbox">West</label>
-              </div>
-            </div>
-          </div>
-        </div> -->
-<!-- 
-          event list
-          <div class="col-10">
-            <div class="bg-light"> -->
-
-              <!-- <div class="album py-3 bg-light"> -->
-                <!--div class="album py-5 bg-light"-->
-                  <!-- <div class="container"> -->
-                    <!-- change here -->
-                    <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="events"> -->
-                    <!--div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"-->
-                    <!-- </div>
-                  </div>
-                </div>
-            </div>
-          </div> -->
-        <!-- </div>
-      </div>
-    </div> -->
 
     <!-- Notification -->
     <div id="notification" class="notification"></div>
