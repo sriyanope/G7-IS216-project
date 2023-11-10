@@ -20,6 +20,8 @@
             <link rel="stylesheet" href="CSS/style.css">
             <!--Vue-->
             <script src="https://unpkg.com/vue@next"></script>
+            <!-- Axios -->
+            <script src="https://unpkg.com/axios/dist/axios.js"></script>
             
             <!-- styling -->
             <style>
@@ -112,6 +114,7 @@
             $endTime = $_POST['endTime'];
             $noOfSlots = $_POST['noOfSlots'];
             $about = $_POST['about'];
+            $about = str_replace("'", '', $about);
 
             $sql = "insert into event (eventTitle, category, eventDate, startTime, endTime, noOfSlots, filled, about, photo, createdDate, username, gardenId) values (:eventTitle, :category, :eventDate, :startTime, :endTime, :noOfSlots, 0, :about, :photo, CURDATE(), :username, :gardenId);";
 
