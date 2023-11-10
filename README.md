@@ -2,7 +2,6 @@
 
 Group members: Yubin, Samyuktha, Sriya, Wen Xian
 
-
 ## URL for deployed application
 http://13.215.200.46/pages/index.html
 <br>
