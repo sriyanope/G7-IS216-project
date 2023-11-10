@@ -3,9 +3,10 @@
 Group members: Yubin, Samyuktha, Sriya, Wen Xian
 
 ## URL for deployed application
-http://13.215.200.46/pages/index.html
-<br>
-The user accounts has been set up, with the following account details:
+http://13.215.200.46/pages/index.html  
+
+The user accounts has been set up, with the following account details:  
+
 USER 1:
 Username: 11111111
 Password: 11111111
@@ -23,12 +24,12 @@ Username: 44444444
 Password: 44444444
 
 ## Setting up the application
-Prerequisites: WAMP/MAMP and MySQL installed and working.
+Prerequisites: WAMP (for windows) or MAMP (for macOS) with MySQL and MySQL workbench installed and working.
 
-1. Ensure WAMP/MAMP is active and MySQL is opened.
+1. Ensure WAMP/MAMP is active with MySQL is functioning (Ensure that your MySQL port is correct in MAMP - check by going to settings > ports > MySQL port).
 
-2. Save the files anywhere inside WAMP/MAMP www folder.
+2. Save the files within the root folder of your WAMP/MAMP (for WAMP - www, for MAMP - htdocs)
 
-3. In MySQL, run the "CreateDatabaseAndTable.sql" script to create the database, tables and insert the community gardens data needed for the application.
+3. In MySQL workbench, run the "CreateDatabaseAndTable.sql" script to create the database, tables and insert the community gardens data needed for the application.
 
-4. In the application folder, open the file "index.html" and it is ready to go.
+4. Under the root folder fo your WAMP/MAMP, open the file "index.html" and it is ready to go.
