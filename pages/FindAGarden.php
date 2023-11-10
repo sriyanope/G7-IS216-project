@@ -81,11 +81,11 @@
         .filter-container {
           background-color: #f6f8e0;
           border-radius: 10px;
-          padding: 20px;
+          padding: 5px;
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
           color: #547D2E;
           text-align: center;
-          max-width: 300px;
+          max-width: 125px;
           margin: 0, auto;
           display: flex; 
           flex-direction: column; 
@@ -373,26 +373,26 @@
 
         <div class="row">
           <div class="col-2">
-            <div class="bg-light filter-container" id="region-checkbox">
+            <div class="bg-light filter-container float-end" id="region-checkbox">
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="north" onclick="filter(this.value)" id="north-checkbox">
-                <label class="form-check-label" for="north-checkbox">North</label>
+                <label class="form-check-label fs-6" for="north-checkbox">North</label>
               </div>
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="north-east" onclick="filter(this.value)" id="north-east-checkbox">
-                <label class="form-check-label" for="north-east-checkbox">North-East</label>
+                <label class="form-check-label fs-6" for="north-east-checkbox">North-East</label>
               </div>
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="central" onclick="filter(this.value)" id="central-checkbox">
-                <label class="form-check-label" for="central-checkbox">Central</label>
+                <label class="form-check-label fs-6" for="central-checkbox">Central</label>
               </div>
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="east" onclick="filter(this.value)" id="east-checkbox">
-                <label class="form-check-label" for="east-checkbox">East</label>
+                <label class="form-check-label fs-6" for="east-checkbox">East</label>
               </div>
               <div class="form-check m-3">
                 <input class="form-check-input" type="checkbox" value="west" onclick="filter(this.value)" id="west-checkbox">
-                <label class="form-check-label" for="west-checkbox">West</label>
+                <label class="form-check-label fs-6" for="west-checkbox">West</label>
               </div>
             </div>
           </div>

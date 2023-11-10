@@ -210,6 +210,13 @@
                 transition-duration: .35s;
             }
         }
+
+        .nav-link {
+                  transition: all o.2s;
+                }
+                .nav-link:hover {
+                  border-bottom: 2px solid #547D2E;
+                }
         
 
         </style>
@@ -477,7 +484,7 @@
               <div style="padding-right:10px;">
                   <input type="checkbox" value="" id="fullCheckbox" onclick="filter(this.value)">
                     <label class="ps-2" for="fullCheckbox" style="font-weight: bold; font-size: 15px; ">
-                      Include Fully Filled
+                      Include Full Slots
                     </label>
               </div>
         </div>
