@@ -5,7 +5,7 @@ Group members: Yubin, Samyuktha, Sriya, Wen Xian
 
 ## URL for deployed application
 http://13.215.200.46/pages/index.html
-
+<br>
 The user accounts has been set up, with the following account details:
 USER 1:
 Username: 11111111
