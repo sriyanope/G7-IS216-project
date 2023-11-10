@@ -1,9 +1,7 @@
 <!doctype html>
     <html lang="en">
         <head>
-            <?php
-                require_once "MySQL/Protect.php";
-            ?>
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -191,7 +189,7 @@
                 .custom-checkbox-label {
                     font-weight: bold;
                     font-size: 20px;
-                    margin-left: 10px; 
+                    /* margin-left: 10px;  */
                 }
                 .nav-link {
                   transition: all o.2s;
@@ -256,19 +254,18 @@
                     <h1><b>My Events</b></h1>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-5 d-flex align-items-center">
+                    <div class="col-12">
                         <div class="switch">
                             <input type="checkbox" id="flexSwitchCheckDefault" onchange="loadEvents()">
                             <label for="flexSwitchCheckDefault"></label>
                         </div>
-
+                    </div>  
                         <!-- past events -->
-                        <div class="custom-checkbox ml-5">
-                            <input class="form-check-input custom-checkbox" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
-                            <label class="form-check-label custom-checkbox-label" for="pastEventsCheckbox">
-                                Include Past Events
-                            </label>
-                        </div>
+                    <div class="custom-checkbox col-12">
+                        <input class="form-check-input custom-checkbox mx-1 mt-2" type="checkbox" value="" id="pastEventsCheckbox" onclick="loadEvents()">
+                        <label class="form-check-label custom-checkbox-label px-4 m-auto" for="pastEventsCheckbox">
+                            Include Past Events
+                        </label>
                     </div>
                 </div>
 
