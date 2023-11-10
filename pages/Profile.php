@@ -1,9 +1,11 @@
 <!doctype html>
     <html lang="en">
-    <?php
-          require_once "MySQL/Protect.php";
-      ?>
         <head>
+
+            <?php
+              require_once "MySQL/Protect.php";
+            ?>
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
@@ -42,17 +44,16 @@
                     outline:none !important;
                     box-shadow: none !important;
                     }
-                    @media screen and (max-width:900px){
-                .centerOnMobile {
-                        text-align:center
-                    }
-                    }
+                
+                @media screen and (max-width:900px){
+                  .centerOnMobile {
+                    text-align:center
+                }}
 
-                    @media screen and (max-width: 280px) { 
-                      .logo {
-                        display: none;
-                      }
-                    }
+                @media screen and (max-width: 280px) { 
+                  .logo {
+                    display: none;
+                }}
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -98,38 +99,44 @@
                   -webkit-box-sizing: border-box;
                   -moz-box-sizing: border-box;
                   box-sizing: border-box;
-  
                   width: 100%;
-              }
-
-              .notification {
-                position: fixed;
-                bottom: 0;
-                right:0;
-                z-index: 100;
-                width: 40%;
-              }
-              .nav-link {
-                  transition: all o.2s;
                 }
-              .nav-link:hover {
-                border-bottom: 2px solid #547D2E;
-              }
+
+                .notification {
+                  position: fixed;
+                  bottom: 0;
+                  right:0;
+                  z-index: 100;
+                  width: 40%;
+                }
+
+                .nav-link {
+                    transition: all o.2s;
+                  }
+
+                .nav-link:hover {
+                  border-bottom: 2px solid #547D2E;
+                }
+
             </style>
 
             <!-- title -->
             <title>Profile</title>
             
         </head>
+
         <body>
+            
+            <!-- loading page -->
             <div id="preloader">
               <p>Loading...</p>
             </div>
+
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
               <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
                 <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
                 <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -137,7 +144,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                      <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -155,139 +162,136 @@
               </div>
             </nav>
 
-          <!-- javascript -->
-          <script>
-
-            // gets the username of the user
-            var username = <?php 
-            if(isset($_GET['username1'])){
-              echo $_GET['username1'];
-            }else{
-              echo $_SESSION['username'];
-            } ?>;
-
-            // checks if the profile page belongs to the user
-            var checkOwnProfile = <?php 
-              if((isset($_GET['username1']) and $_GET['username1'] == $_SESSION['username']) or !isset($_GET['username1'])){
-                echo 1;
-              }else{
-                echo 0;
-              } ?>;
-
-              console.log(checkOwnProfile)
-
-            // retrieve profile details and populate page
-            url = "MySQL/User.php?type=getUser&username=" + username;
-            fetch(url)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error('Network response was not ok');
-                  }
-                  return response.json();
-              })
-              .then(data => {
-                console.log(data.user)
-                document.getElementById("fullName").innerText = data.user[0].fullName;
-                document.getElementById("email").innerText = data.user[0].email;
-                document.getElementById("copyButton").setAttribute("data-value", data.user[0].email);
-                document.getElementById("bio").innerText = data.user[0].bio;
-
-                if(data.user[0].instagram !== null && data.user[0].instagram.length > 0){
-                  document.getElementById("instagram").href = data.user[0].instagram;
-                }else{
-                  document.getElementById("instagram").setAttribute("class", "d-none");
-                }
-
-                if(data.user[0].telegram !== null && data.user[0].telegram.length > 0){
-                  document.getElementById("telegram").href = "https://t.me/" + data.user[0].telegram;
-                }else{
-                  document.getElementById("telegram").setAttribute("class", "d-none");
-                }
-
-                document.getElementById("image").setAttribute("src", data.user[0].profilePhoto);
-
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
-
-          </script>
-          <!-- content  -->
-          <div class="container-fluid">
-            <div class="row">
-                <div class="col text-center mt-4">
-                        <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px; margin-bottom:20px;" src="ProfileImage/1.png"> 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                  <a href="ProfileEdit.php" style="text-decoration:none;">
-                    <button type="button" class="btn btn-success  m-1" href="ProfileEdit.html" id="editBtn" style="border-color: white;">
-                        <img src="../public/images/edit.png" class="editProfileimg"> 
-                        Edit Profile
-                    </button>
-                  </a>
-                    
-                  <a href="LogIn.php" style="text-decoration:none;">
-                  <button type="button" class="btn btn-success  m-1" id='signOutBtn' style="border-color: white;">
-                        <img src="../public/images/logout.png" class="editProfileimg">
-                        Sign Out
-                    </button>
-                  </a>
-                </div>
-            </div>
-
+            <!-- javascript -->
             <script>
 
-              // if the profile page does not belong to the user, hide the edit and sign out button
-              if(checkOwnProfile == 0){
-                document.getElementById("editBtn").setAttribute("class", "btn btn-success m-1 d-none");
-                document.getElementById("signOutBtn").setAttribute("class", "btn btn-success m-1 d-none");
-              }
+              // gets the username of the user
+              var username = <?php 
+              if(isset($_GET['username1'])){
+                echo $_GET['username1'];
+              }else{
+                echo $_SESSION['username'];
+              } ?>;
 
+              // checks if the profile page belongs to the user
+              var checkOwnProfile = <?php 
+                if((isset($_GET['username1']) and $_GET['username1'] == $_SESSION['username']) or !isset($_GET['username1'])){
+                  echo 1;
+                }else{
+                  echo 0;
+                } ?>;
 
+              // retrieve profile details and populate page
+              url = "MySQL/User.php?type=getUser&username=" + username;
+              fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                  console.log(data.user)
+                  document.getElementById("fullName").innerText = data.user[0].fullName;
+                  document.getElementById("email").innerText = data.user[0].email;
+                  document.getElementById("copyButton").setAttribute("data-value", data.user[0].email);
+                  document.getElementById("bio").innerText = data.user[0].bio;
+
+                  if(data.user[0].instagram !== null && data.user[0].instagram.length > 0){
+                    document.getElementById("instagram").href = data.user[0].instagram;
+                  }else{
+                    document.getElementById("instagram").setAttribute("class", "d-none");
+                  }
+
+                  if(data.user[0].telegram !== null && data.user[0].telegram.length > 0){
+                    document.getElementById("telegram").href = "https://t.me/" + data.user[0].telegram;
+                  }else{
+                    document.getElementById("telegram").setAttribute("class", "d-none");
+                  }
+
+                  document.getElementById("image").setAttribute("src", data.user[0].profilePhoto);
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
             </script>
             
-            <div class="row text-center">
-                <h1 class="profileName" id="fullName"></h1>
-            </div>
-            <div class="row text-center">
-                <div class="col text-center mb-3">
-                    <button type="button" class=" btn bg-dark text-white m-1" id="copyButton">
-                        <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
-                    <a href="#" id="instagram" style="text-decoration:none;">
-                    <button type="button" class=" btn bg-dark text-white m-1" >
-                        <img src="../public/images/instagram.png" class="editProfileimg"> 
-                        Instagram
-                    </button>
+            <!-- content  -->
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col text-center mt-4">
+                          <img class="profilePhotoFrame" id="image" style="width: 200px; height: 200px; margin-bottom:20px;" src="ProfileImage/1.png"> 
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col text-center">
+                    <a href="ProfileEdit.php" style="text-decoration:none;">
+                      <button type="button" class="btn btn-success  m-1" href="ProfileEdit.html" id="editBtn" style="border-color: white;">
+                          <img src="../public/images/edit.png" class="editProfileimg"> 
+                          Edit Profile
+                      </button>
                     </a>
-                    <a href="#" id="telegram" style="text-decoration:none;">
-                    <button type="button" class=" btn bg-dark text-white m-1">
-                        <img src="../public/images/telegram.png" class="editProfileimg"> 
-                        Telegram
-                    </button>
+                      
+                    <a href="LogIn.php" style="text-decoration:none;">
+                    <button type="button" class="btn btn-success  m-1" id='signOutBtn' style="border-color: white;">
+                          <img src="../public/images/logout.png" class="editProfileimg">
+                          Sign Out
+                      </button>
                     </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 offset-md-4">
-                    <h3 class="featureTitle">Bio:</h3>
-                </div>
-                <div class="col-md-4 offset-md-4">
-                    <textarea disabled rows="5" cols="30" class="bio px-3" id="bio" >I love to garden and explore the various community gardens in Singapore. Do contact me via email to keep in touch!</textarea>
-                </div>
-            </div>
+                  </div>
+              </div>
 
-            <!-- Notification -->
-            <div id="notification" class="notification"></div>
+              <script>
 
-            <div class="container m-5"></div>
-            
-          </div>
+                // if the profile page does not belong to the user, hide the edit and sign out button
+                if(checkOwnProfile == 0){
+                  document.getElementById("editBtn").setAttribute("class", "btn btn-success m-1 d-none");
+                  document.getElementById("signOutBtn").setAttribute("class", "btn btn-success m-1 d-none");
+                }
+
+              </script>
+              
+              <div class="row text-center">
+                  <h1 class="profileName" id="fullName"></h1>
+              </div>
+              <div class="row text-center">
+                  <div class="col text-center mb-3">
+                      <button type="button" class=" btn bg-dark text-white m-1" id="copyButton">
+                          <img src="../public/images/open-mail.png" class="editProfileimg"><span id="email"></span></button>
+                      <a href="#" id="instagram" style="text-decoration:none;">
+                      <button type="button" class=" btn bg-dark text-white m-1" >
+                          <img src="../public/images/instagram.png" class="editProfileimg"> 
+                          Instagram
+                      </button>
+                      </a>
+                      <a href="#" id="telegram" style="text-decoration:none;">
+                      <button type="button" class=" btn bg-dark text-white m-1">
+                          <img src="../public/images/telegram.png" class="editProfileimg"> 
+                          Telegram
+                      </button>
+                      </a>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-4 offset-md-4">
+                      <h3 class="featureTitle">Bio:</h3>
+                  </div>
+                  <div class="col-md-4 offset-md-4">
+                      <textarea disabled rows="5" cols="30" class="bio px-3" id="bio" >I love to garden and explore the various community gardens in Singapore. Do contact me via email to keep in touch!</textarea>
+                  </div>
+              </div>
+
+              <!-- notification -->
+              <div id="notification" class="notification"></div>
+
+              <div class="container m-5"></div>
+              
+            </div>
 
     
-          <script>
+            <script>
 
               // function to display an alert and automatically dismiss it after 5 seconds
               function displayAlert(message, type) {
@@ -330,13 +334,16 @@
 
 
           </script>
+          
           <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1000);
-          });
+          
+            var loader = document.getElementById("preloader");
+            window.addEventListener("load", function(){
+              setTimeout(() => {
+                loader.style.display = "none";
+              }, 800);
+            });
+
           </script>
 
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

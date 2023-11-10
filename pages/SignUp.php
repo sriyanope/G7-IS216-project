@@ -5,7 +5,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-             <!-- google font API -->
+            <!-- google font API -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit">
@@ -36,18 +36,20 @@
                   font-size:14px;
                   font-weight:700
                   }
+
               .superNav {
                   font-size:13px;
                   }
+
               .form-control {
                   outline:none !important;
                   box-shadow: none !important;
                   }
-                  @media screen and (max-width:900px){
-              .centerOnMobile {
-                      text-align:center
-                  }
-                  }
+              
+              @media screen and (max-width:900px){
+                .centerOnMobile {
+                  text-align:center
+              }}
 
               @media screen and (max-width: 280px) { 
                 .logo {
@@ -66,12 +68,14 @@
               .bggreen {
                   background-color: #B7CF9B;
               }
+
               .nav-link {
                   transition: all o.2s;
                 }
-                .nav-link:hover {
-                  border-bottom: 2px solid #547D2E;
-                }
+
+              .nav-link:hover {
+                border-bottom: 2px solid #547D2E;
+              }
 
             </style>
 
@@ -119,7 +123,7 @@
               }
 
 
-              // Get parameters passed from register.php
+              // get parameters passed from register.php
               if(isset($_POST['submit'])){
                 $username = $_POST["username1"];
                 $fullName = $_POST["name1"];
@@ -133,7 +137,7 @@
                 if($status){
                 
                     $_SESSION["username"] = $username;
-                    header("location: LandingPage.html");
+                    header("location: index.html");
                     exit;
                 }
                 else{
@@ -142,16 +146,19 @@
                 }
               }
 
-              ?>
+            ?>
 
         </head>
+        
         <body style="background-color: #B7CF9B;">
-                  <div id="preloader">
-        <p>Loading...</p>
-      </div>
+
+            <!-- loading page -->
+            <div id="preloader">
+              <p>Loading...</p>
+            </div>
+
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
-
               <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
                 <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
                 <a class="navbar-brand me-auto" href="#"> <strong>ECOmmunity</strong></a>
@@ -162,7 +169,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                      <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -180,8 +187,6 @@
             </nav>  
                     
           <!-- content -->
-
-
           <section class="vh-100">
               <div class="container py-2 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -391,13 +396,16 @@
           </section>
 
         </body>
+
         <script>
+
           var loader = document.getElementById("preloader");
           window.addEventListener("load", function(){
             setTimeout(() => {
               loader.style.display = "none";
-            }, 1500);
+            }, 800);
           });
+
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 

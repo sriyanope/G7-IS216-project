@@ -21,7 +21,8 @@
 
             <!-- styling -->
             <style>
-               a {
+                
+                a {
                     font-size:14px;
                     font-weight:700
                     }
@@ -34,15 +35,12 @@
                     }
                     @media screen and (max-width:900px){
                 .centerOnMobile {
-                        text-align:center
-                    }
-                    }
+                    text-align:center
+                }}
 
-                    @media screen and (max-width: 280px) { 
-
-                                        .logo { display: none; }  
-
-                                        }
+                @media screen and (max-width: 280px) { 
+                    .logo { display: none; }  
+                }
 
                 .navbar {
                     background-color: #F6F8E0;
@@ -63,15 +61,17 @@
                     margin-left: auto;
                 }
                 .nav-link {
-                  transition: all o.2s;
+                    transition: all o.2s;
                 }
                 .nav-link:hover {
-                  border-bottom: 2px solid #547D2E;
+                    border-bottom: 2px solid #547D2E;
                 }
+
             </style>
 
             <?php
 
+                // process log in details
                 session_start();
 
                 unset($_SESSION['username']);
@@ -92,21 +92,16 @@
 
                     $connMgr = new ConnectionManager();
                     $pdo = $connMgr->getConnection();
-                    
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    $stmt->execute();
+                    $result = "";
 
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-
-                        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                        $stmt->execute();
-                        $result = "";
-
-                        while($row = $stmt->fetch()) {
-                            $result = $row["password"];
-                        }
-
-                        return $result;
-
+                    while($row = $stmt->fetch()) {
+                        $result = $row["password"];
+                    }
+                    return $result;
                 }
 
                 // validates the user log in details
@@ -129,7 +124,7 @@
                         if (password_verify($password, $hashedPassword)) {
                             unset($_SESSION['failedLogin']);
                             $_SESSION['username'] = $username;
-                            header("location: LandingPage.html");
+                            header("location: index.html");
                             exit;
                         } else {
                             if(isset($_SESSION['errors'])){
@@ -149,9 +144,12 @@
 
         </head>
         <body>
-                  <div id="preloader">
-        <p>Loading...</p>
-      </div>
+            
+            <!-- loading page -->
+            <div id="preloader">
+                <p>Loading...</p>
+            </div>
+
             <!-- nav bar -->
             <nav class="navbg navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm">
                 <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
@@ -164,7 +162,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item ms-auto mt-1">
-                                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                                <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
                             </li>
                             <li class="nav-item ms-auto mt-1">
                                 <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -182,78 +180,79 @@
                 </div>
             </nav>
 
-        <!-- log in form -->
-        <section class="vh-100" style="background-color: #B7CF9B;">
-            <div class="container py-2 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
-            
-                                <h3 class="mt-1">Log In</h3>
-                                <div class="mb-5">Log in to enjoy all the features like joining events and finding community gardens near you!</div>
-                        
-                        
-                                <form method="post">
-                                    <div class="form-outline mb-4">
-                                        <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username"/>
+            <!-- log in form -->
+            <section class="vh-100" style="background-color: #B7CF9B;">
+                <div class="container py-2 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                                <div class="card-body p-5 text-center">
+                
+                                    <h3 class="mt-1">Log In</h3>
+                                    <div class="mb-5">Log in to enjoy all the features like joining events and finding community gardens near you!</div>
+                            
+                            
+                                    <form method="post">
+                                        <div class="form-outline mb-4">
+                                            <input type="name" name="username1" id="username1" class="form-control form-control-lg" placeholder="Username"/>
 
-                                    </div>
-                        
-                                    <div class="form-outline mb-4">
-                                        <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password"/>
+                                        </div>
+                            
+                                        <div class="form-outline mb-4">
+                                            <input type="password" name="password1" id="password1" class="form-control form-control-lg" placeholder="Password"/>
 
-                                    </div>
+                                        </div>
 
-                                    <div class="d-none" id="recaptcha">
-                                        <div class="g-recaptcha text-center1 mb-2" data-sitekey="6Ld-fNcoAAAAAOS824_2sZOSzTMzy1xDo5CkBsoN" style="width:100%;"></div>
-                                    </div>
-                                    
-                                    <span style='color:red;'>
-                                    <?php 
-                                    if(isset($_SESSION['error'])){
-                                        echo $_SESSION['error'];
-                                        unset($_SESSION['error']);
-                                    }
-                                    ?>
-                                    </span>
-                                    <br><br>
-                                    
-                                    <!-- to redirect to landing page -->
-                        
-                                    <button class="btn btn-success text-white btn-lg btn-block px-5" name="submit" type="submit" style="text-decoration:none;">Login</button>
-                                    
-                                    
+                                        <div class="d-none" id="recaptcha">
+                                            <div class="g-recaptcha text-center1 mb-2" data-sitekey="6Ld-fNcoAAAAAOS824_2sZOSzTMzy1xDo5CkBsoN" style="width:100%;"></div>
+                                        </div>
+                                        
+                                        <span style='color:red;'>
+                                        <?php 
+                                        if(isset($_SESSION['error'])){
+                                            echo $_SESSION['error'];
+                                            unset($_SESSION['error']);
+                                        }
+                                        ?>
+                                        </span>
+                                        <br><br>
+                                                                    
+                                        <button class="btn btn-success text-white btn-lg btn-block px-5" name="submit" type="submit" style="text-decoration:none;">Login</button>
+                                        
+                                        
 
-                                    <div class="pt-3">Don't have an account? 
-                                        <a href='SignUp.php' style="text-decoration: underline; color: black">Create an Account</a>
-                                    </div>
-                                </form>
+                                        <div class="pt-3">Don't have an account? 
+                                            <a href='SignUp.php' style="text-decoration: underline; color: black">Create an Account</a>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- javascript -->
-        <script>
+            <!-- javascript -->
+            <script>
 
-            // show recaptcha if the user fails to login 3 times
-            var failedLogin = <?php echo $_SESSION['failedLogin']; ?>;
-            if(failedLogin >= 3){
-                document.getElementById("recaptcha").setAttribute("class", "");
-            }
+                // show recaptcha if the user fails to login 3 times
+                var failedLogin = <?php echo $_SESSION['failedLogin']; ?>;
+                if(failedLogin >= 3){
+                    document.getElementById("recaptcha").setAttribute("class", "");
+                }
 
-        </script>
-        <script>
-          var loader = document.getElementById("preloader");
-          window.addEventListener("load", function(){
-            setTimeout(() => {
-              loader.style.display = "none";
-            }, 1500);
-          });
-        </script>
+            </script>
+
+            <script>
+            
+                var loader = document.getElementById("preloader");
+                window.addEventListener("load", function(){
+                    setTimeout(() => {
+                    loader.style.display = "none";
+                    }, 800);
+                });
+            
+            </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
     </body>

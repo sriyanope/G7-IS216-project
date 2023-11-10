@@ -20,6 +20,7 @@
             <link rel="stylesheet" href="../style.css">
             <!--Vue-->
             <script src="https://unpkg.com/vue@next"></script>
+            
             <!-- styling -->
             <style>
               
@@ -144,6 +145,7 @@
 
         <script>
 
+            // validation on the form inputs
             function validateForm() {
               var msg = "";
               var check = true;
@@ -162,12 +164,9 @@
               if (eventDate.length === 0) {
                 check = false;
               } else {
-                // Create a new Date object for today
                 var today = new Date();
-                // Create a Date object for the selected event date
                 var selectedDate = new Date(eventDate);
 
-                // Verify if the event date is earlier than today
                 if (selectedDate <= today) {
                   check = false;
                 }
@@ -176,7 +175,6 @@
               if (startTime.length === 0 || endTime.length === 0) {
                 check = false;
               } else {
-                // Verify if the start time is more recent than the end time
                 var startTimeDate = new Date(eventDate + " " + startTime);
                 var endTimeDate = new Date(eventDate + " " + endTime);
 
@@ -207,6 +205,7 @@
 
         <body>
 
+            <!-- loading screen -->
             <div id="preloader">
               <p>Loading...</p>
             </div>
@@ -216,7 +215,7 @@
 
               <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
                 <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
                 <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -224,7 +223,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                   <ul class="navbar-nav ms-auto">
                     <li class="nav-item ms-auto mt-1">
-                      <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                      <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
                       <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -242,7 +241,7 @@
               </div>
             </nav>
 
-            <!-- start the form for creating event -->
+            <!-- form for creating event -->
             <div class="container">
               <div class="row">
                 <div class="col-1"></div>
@@ -301,6 +300,7 @@
 
             <script>
 
+              // vue for form validation
               const appEventTitle = Vue.createApp({
                 data(){
                   return {eventTitle: ""}
@@ -320,12 +320,9 @@
                 },
                 methods: {
                   eventDateCheck() {
-                    // Create a new Date object for today
                     var today = new Date();
-                    // Create a Date object for the selected event date
                     var selectedDate = new Date(this.eventDate);
 
-                    // Verify if the event date is earlier than today
                     if (selectedDate <= today) {
                       return true;
                     }
@@ -341,7 +338,6 @@
                   endTimeCheck() {
                     var eventDate = document.getElementById("eventDate").value;
                     var startTime = document.getElementById("startTime").value;
-                    // Verify if the start time is more recent than the end time
                     var startTimeDate = new Date(eventDate + " " + startTime);
                     var endTimeDate = new Date(eventDate + " " + this.endTime);
                     if (startTimeDate >= endTimeDate) {
@@ -372,7 +368,7 @@
               window.addEventListener("load", function(){
                 setTimeout(() => {
                   loader.style.display = "none";
-                }, 1500);
+                }, 800);
               });
 
             </script>

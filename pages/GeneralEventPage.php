@@ -1,6 +1,7 @@
 <!doctype html>
     <html lang="en">
         <head>
+
             <?php
                 require_once "MySQL/Protect.php";
             ?>
@@ -179,6 +180,7 @@
 
         <body>
 
+            <!-- loading page -->
             <div id="preloader">
                 <p>Loading...</p>
             </div>
@@ -188,7 +190,7 @@
 
                 <div class="container-fluid m-0 p-0" style="flex-wrap: wrap; margin: 0;">
                     <img src="../logo.png" alt="Logo" style="width: 88px; height: 50px;" class="me-0 logo">
-                    <a class="navbar-brand me-auto" href="LandingPage.html"> <strong>ECOmmunity</strong></a>
+                    <a class="navbar-brand me-auto" href="index.html"> <strong>ECOmmunity</strong></a>
                     <button class="navbar-toggler align-content-center ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -196,7 +198,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown" style="font-family: 'Outfit', serif;">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item ms-auto mt-1">
-                                <a class="nav-link mx-2" href="LandingPage.html"><i class="about"></i> About</a>
+                                <a class="nav-link mx-2" href="index.html"><i class="about"></i> About</a>
                             </li>
                             <li class="nav-item ms-auto mt-1">
                                 <a class="nav-link mx-2" href="JoinAnEvent.php"><i class="events"></i> Events</a>
@@ -216,7 +218,10 @@
 
             <!-- content -->
             <div class="container">
-                <div class="row pt-5"> 
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-11">
+                    <div class="row pt-5"> 
                     <div class="col">
                         <h2><b id="eventTitleLabel"></b> <span id="bookmark"></span></h2>
                     </div>
@@ -306,8 +311,11 @@
                 </div>
             </div>
 
-            <!-- Notification -->
+            <!-- notification -->
             <div id="notification" class="notification"></div>
+                    </div>
+                </div>
+
 
 
             <!-- javascript -->
@@ -443,6 +451,7 @@
                     });
                 }
                 
+                // function to save the event
                 function save(this1){
                     let eventId = <?php echo $_GET['eventId']; ?>;
                     url = "MySQL/SavedJoinedEvents.php?type=add&eventId=" + eventId;
@@ -463,6 +472,7 @@
                     });
                 }
 
+                // function to unsave the event
                 function unsave(this1){
                     let eventId = <?php echo $_GET['eventId']; ?>;
                     url = "MySQL/SavedJoinedEvents.php?type=delete&eventId=" + eventId;
@@ -544,6 +554,7 @@
                     });
                 }
 
+                // check full slots
                 function checkFullSlots($filled, $totalSlots){
                     if($filled == $totalSlots && document.getElementById("joinBtn").getAttribute("onclick") == "joinEvent()"){
                         document.getElementById("joinBtn").setAttribute("class", "btn text-white d-none");
@@ -570,6 +581,7 @@
 
             <script>
 
+                // process comments section
                 var username = <?php echo $_SESSION['username']; ?>;
 
                 var textInput = document.getElementById('text');
@@ -589,10 +601,7 @@
                 function process(username, text) {
                     eventId = <?php echo $_GET['eventId']; ?>;
                     let gotoURL = "MySQL/chat.php?eventId=" + eventId;
-                    // this function process can be invoked with and without arguments.
-                    // When there is no argument passed in, we have no parameters to send to the API.
                     let getParameters = {};
-                    // If there are arguments passed in (i.e. parameter text has value), prepare the GET parameters to be sent to the API.
                     if (typeof text !== "undefined") {
                         getParameters.username = username;
                         getParameters.text = text;
@@ -630,9 +639,10 @@
                     textInput.value = '';
                 }
 
+                // shows the comment section
                 process();
                 
-                // pull messages every 1 second
+                // update comment section every 1 second
                 window.setInterval(process, 1000);
 
             </script>
@@ -643,7 +653,7 @@
                 window.addEventListener("load", function(){
                     setTimeout(() => {
                     loader.style.display = "none";
-                    }, 1500);
+                    }, 800);
                 });
                 
             </script>
